@@ -1,0 +1,857 @@
+html {
+  height:100%;
+  -webkit-transition: background-color 1s;
+  transition: background-color 1s;
+}
+html, body {
+  height:100%;
+  padding:0;
+  margin:0;
+  min-height: 100%;
+}
+
+/* css general */
+#btn-dx{
+  margin-left:32px;
+  border-radius: 24px;
+  margin-bottom:32px;
+  background-color: #2ebeef;
+  color: #fff;
+  transition: 0.5s;
+}
+
+#btn-dw-dx{
+  margin-left:32px;
+  border-radius: 24px;
+  margin-bottom:32px;
+  background-color: #2ebeef;
+  color: #fff;
+  transition: 0.5s;
+}
+
+#btn-dx:hover {
+  background-color: #fff;
+  color: #2ebeef;
+}
+
+.accordion {
+  font-family: 'Titillium Web', sans-serif;
+  background-color: transparent;
+  color: #fff;
+  cursor: pointer;
+  padding: 16px;
+  padding-left: 32px;
+  padding-right: 32px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 20px;
+  transition: 0.4s;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.active, .accordion:hover {
+  background-color: #2ebeef;
+}
+
+.accordion:after {
+  content: '\2304';
+  color: #fff;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+  font-size: 20px;
+  transition: 0.4s;
+}
+
+.active:after {
+  content: "\2303";
+}
+
+.panel {
+  margin: 0;
+  padding: 0px;
+  background-color: transparent;
+  width: 100%;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+/* css for desktop */
+
+@media (min-width: 768px){
+
+  .btn-home{
+    height: 100%;
+    width: 0.9%;
+    position: fixed;
+    z-index: 4;
+    bottom: 0;
+    right: 0;
+    margin: 50px;
+    box-shadow: 0px 8px 12px #2f2f2f44;
+    background-color: #02556e;
+    transition: 0.5s;
+    opacity: 1;
+    color:#fff;
+  }
+
+  .btn-options{
+    height: 100%;
+    width: 0.9%;
+    position: fixed;
+    z-index: 4;
+    bottom: 0;
+    right: 0;
+    margin: 50px;
+    box-shadow: 0px 8px 12px #2f2f2f44;
+    background-color: #fff;
+    transition: 0.5s;
+    opacity: 1;
+    color:#434343;
+  }
+
+  .btn-home:hover{
+    transform:scale(1.3,1.3);
+    -webkit-transform:scale(1.3,1.3);
+    -moz-transform:scale(1.3,1.3);
+
+    background-color:#ffffff;
+  }
+
+  .btn-options:hover{
+    transform:scale(1.3,1.3);
+    -webkit-transform:scale(1.3,1.3);
+    -moz-transform:scale(1.3,1.3);
+
+    background-color:#ffffff;
+  }
+
+  #appbar{
+    display: none;
+  }
+
+  #map{
+    margin-left: 25%;
+    height:100%;
+    width: 75%;
+    position: absolute;
+    transition: margin-left .5s;
+  }
+
+  #map-canvas{
+    height:100%;
+    width: 50%;
+  }
+
+  #pac-input {
+    border-width: inherit;
+    border-radius: 3px;
+    background-color: #fff;
+    font-size: 15px;
+    font-weight: 300;
+    margin-left: 12px;
+    padding: 0 11px 0 13px;
+    text-overflow: ellipsis;
+    width: 300px;
+    height: 32px;
+    margin-top: 10px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  #pac-input:focus {
+    border-color: #fff;
+  }
+
+  #search-pane{
+    font-family: 'Titillium Web', sans-serif;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    height:100%;
+    width: 25%;
+    background-color: #fff;
+  }
+
+  #detline{
+    height: 100%;
+    width: 0.7%;
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    margin-left: 23.5%;
+    background-color: #02556e;
+    overflow-x: hidden;
+    transition: 0.5s;
+  }
+
+  /* for sidebar */
+
+  #main {
+    transition: margin-left .5s;
+    padding: 16px;
+  }
+
+  #title {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #fff;
+    line-height: 1.3;
+  }
+
+  .header-title{
+    padding: 5%;
+    margin-top: 10px;
+  }
+
+  .sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    margin-left: 25%;
+    background-color: #025566;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+
+  .sidenav a {
+    padding: 24px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #fff;
+    display: block;
+    transition: 0.3s;
+  }
+
+  .sidenav a:hover {
+    color: #1096b2;
+  }
+
+  .sidenav .closebtn {
+    padding: 24px 8px 8px 32px;
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 32px;
+    color: #fff;
+    margin-left: 50px;
+    cursor: pointer;
+  }
+
+  .sidenav h2 {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    color: #fff;
+  }
+
+  .sidenav p {
+    padding: 0px 8px 0px 32px;
+    text-decoration: none;
+    color: #f0f0f0;
+  }
+
+  .sidenav h3 {
+    padding: 24px 40px 0px 32px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 24px;
+    line-height: 1.1;
+  }
+
+  .sidenav table {
+    padding: 8px 8px 8px 32px;
+    color: #fff1f1;
+  }
+
+  #welcome{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -250px;
+    margin-left: -200px;
+    width: 400px;
+    height: 500px;
+    z-index: 2;
+    background-color: #fff;
+    transition: 0.8s;
+    padding-left: 36px;
+    padding-right: 36px;
+    opacity: 1;
+    box-shadow: 0px 8px 12px #2f2f2f44;
+  }​
+
+  #welcome p{
+    color: #1e1e1e;
+    font-size: 16px;
+    line-height: 1.2;
+  }
+
+  #welcome .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    padding: 28px 8px 8px 32px;
+    font-size: 30px;
+    margin-left: 50px;
+    cursor: pointer;
+    color: #02556e;
+  }
+
+  #welcome .btn{
+    font-family: 'Titillium Web', sans-serif;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    color: #02556e;
+    cursor: pointer;
+    padding: 0px;
+    font-weight: bold;
+  }
+
+  .nav-detail {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    margin-left: 25%;
+    background-color: #a03522;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+
+  .nav-detail h2 h3 {
+    padding: 0px 0px 0px 32px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 25px;
+    line-height: 1.2;
+  }
+
+  .nav-detail label {
+    font-family: 'Titillium Web', sans-serif;
+    padding: 4px 0px 0px 32px;
+    text-decoration: none;
+    color: #ffffff88;
+    font-size: 12px;
+    line-height: 1.2;
+  }
+
+  .nav-detail h4 {
+    font-family: 'Titillium Web', sans-serif;
+    padding: 8px 4px 4px 32px;
+    text-decoration: none;
+    color: #d6acaa;
+    font-size: 18px;
+    line-height: 1.2;
+  }
+
+  .nav-detail .closebtn {
+    position: absolute;
+    top: 0;
+    left: -52px;
+    font-size: 64px;
+  }
+
+  .nav-detail a {
+    padding: 24px 0px 0px 32px;*/
+    text-decoration: none;
+    color: #f0f0f0;
+    display: block;
+    transition: 0.3s;
+  }
+
+  .nav-detail p {
+    padding: 0px 0px 0px 32px;
+    text-decoration: none;
+    font-size: 16px;
+    color: #fff;
+    transition: 0.3s;
+  }
+
+  .nav-detail .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+
+  /* nav dx */
+
+  .nav-detail-dx {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    margin-left: 25%;
+    background-color: #010409;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+
+  .nav-detail-project {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    margin-left: 25%;
+    background-color: #2ebeef;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+
+  #detail-title {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #fff;
+    line-height: 1.2;
+  }
+
+  #sumary p{
+    padding-bottom: 0;
+  }
+
+  #sumary td{
+    vertical-align:middle;
+    padding-bottom: 0;
+  }
+
+  #sumary tr:hover{
+    background-color: white;
+    cursor:default;
+  }
+
+  .name-app{
+    position: fixed;
+    right: auto;
+    top: 0;
+    margin-left: 5%;
+    line-height: 0.8;
+  }
+
+  h6 {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    color: #fff;
+  }
+
+  th, td {
+    border-bottom: 1px solid #328484;
+  }
+
+  tbody tr:hover{
+    background-color: #1096b2;
+    color: #1096b2;
+    cursor: pointer;
+  }
+
+  select {
+    -moz-appearance: none;
+    -webkit-appearance:none;
+    background: url("/img/down-arrow.png")
+                  right center
+                  no-repeat;
+    padding-right: 20px;
+    text-indent: 0.01px;
+    text-overflow: '';
+  }
+
+}
+
+/* css for mobile */
+
+@media (min-width: 319px) and (max-width: 767px) {
+
+  #appbar{
+    height: 70px;
+    width: 100%;
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 4;
+    padding: 23px;
+    box-shadow: 0px 5px 10px #2f2f2f44;
+  }
+
+  #appbar a{
+    font-family: 'Titillium Web', sans-serif;
+    padding: 12px;
+    text-align: center;
+    font-size: 24px;
+    color: #fff;
+  }
+
+  .search-button{
+    position: fixed;
+    right: 0;
+    margin-right: 8%;
+    color: #02556e;
+  }
+
+  #map{
+    height: 65%;
+    width: 100%;
+    position: absolute;
+    margin-top: 71px;
+    transition: margin-top .5s;
+  }
+
+  #bottombar{
+    font-family: 'Titillium Web', sans-serif;
+    height: 25%;
+    width: 100%;
+    background-color: #02556e;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 3;
+    padding-left: 18%;
+    padding-right: 15%;
+    transition: 0.5s;
+  }
+
+  .title-stats{
+    text-align: center;
+    color: #95b1c2;
+    font-size: 10px;
+    padding-top: 10%;
+  }
+
+  .stats{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 10px;
+  }
+
+  .stats >div {
+    text-align: center;
+    padding:20px 0;
+    font-size: 30px;
+  }
+
+  .stats span {
+    text-align: center;
+    padding:20px 0;
+    font-size: 30px;
+    color:#2ebeef;
+  }
+
+  .stats p {
+    text-align: center;
+    color:#fff;
+  }
+
+  #search-pane{
+    padding-left: 5%;
+    padding-right: 5%;
+    height: 0px;
+    width: 100%;
+    position: fixed;
+    z-index: 4;
+    top: 0;
+    left: 0;
+    margin-top: 68px;
+    background-color: #fff;
+    overflow-y: hidden;
+    transition: 0.5s;
+    box-shadow: 0px 5px 10px #84848455;
+  }
+
+  .pane-hide {
+    display:none;
+  }
+
+  #detline{
+    display: none;
+  }
+
+  .sidenav {
+    height: 0;
+    width: 100%;
+    position: fixed;
+    z-index: 3;
+    bottom: 0;
+    left: 0;
+    background-color: #025566;
+    overflow-x: hidden;
+    transition: 0.5s;
+  }
+
+  .sidenav a {
+    padding: 28px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #fff;
+    display: block;
+    transition: 0.3s;
+  }
+
+  .sidenav a:hover {
+    color: #1096b2;
+  }
+
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    padding: 28px 8px 8px 32px;
+    font-size: 28px;
+    color: #fff;
+    margin-left: 50px;
+    cursor: pointer;
+  }
+
+  #title {
+    padding: 48px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #fff;
+    line-height: 1.3;
+  }
+
+  .sidenav h2 {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    color: #fff;
+  }
+
+  .sidenav p {
+    padding: 0px 0px 0px 32px;
+    text-decoration: none;
+    color: #43bbe0;
+  }
+
+  .sidenav h3 {
+    padding: 24px 40px 0px 32px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+    line-height: 1.1;
+  }
+
+  .sidenav table {
+    padding: 8px 8px 8px 32px;
+    border-collapse:collapse;
+    border:none;
+    color: #fff1f1;
+  }
+
+  .sidenav table-responsive {
+    border-collapse:collapse;
+    border:none;
+  }
+
+  #snackbar {
+    height: 0;
+    width: 100%;
+    position: fixed;
+    z-index: 5;
+    bottom: 0;
+    left: 0;
+    background-color: #f68628;
+    overflow-x: hidden;
+    color: #fff;
+    padding-left: 18px;
+    font-size: 16px;
+    transition: 0.5s;
+  }
+
+  #welcome {
+    height: 50%;
+    width: 100%;
+    position: fixed;
+    z-index: 2;
+    bottom: 24%;
+    left: 0;
+    background-color: #fff;
+    overflow-x: hidden;
+    transition: 0.8s;
+    padding-left: 36px;
+    padding-right: 36px;
+  }
+
+  #welcome h3{
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 22px;
+    color: #02556e;
+    padding-top: 44px;
+    line-height: 1.2;
+  }
+
+  #welcome p{
+    color: #1e1e1e;
+    font-size: 12px;
+    line-height: 1.2;
+  }
+
+  #welcome .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    padding: 28px 8px 8px 32px;
+    font-size: 18px;
+    margin-left: 50px;
+    cursor: pointer;
+    color: #02556e;
+  }
+
+  #welcome .btn{
+    font-family: 'Titillium Web', sans-serif;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    color: #02556e;
+    cursor: pointer;
+    padding: 0px;
+    font-weight: bold;
+  }
+
+  .nav-detail {
+    height: 0;
+    width: 100%;
+    position: fixed;
+    z-index: 3;
+    bottom: 0;
+    left: 0;
+    background-color: #a03522;
+    overflow-x: hidden;
+    transition: 0.5s;
+  }
+
+  .nav-detail h2 h3 {
+    padding: 0px 0px 0px 32px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 25px;
+    line-height: 1.2;
+  }
+
+  .nav-detail label {
+    font-family: 'Titillium Web', sans-serif;
+    padding: 4px 0px 0px 32px;
+    text-decoration: none;
+    color: #ffffff88;
+    font-size: 12px;
+    line-height: 1.2;
+  }
+
+  .nav-detail h4 {
+    padding: 8px 4px 4px 32px;
+    text-decoration: none;
+    color: #d6acaa;
+    font-size: 16px;
+    line-height: 1.2;
+  }
+
+  .nav-detail .closebtn {
+    position: absolute;
+    top: 0;
+    left: -52px;
+    font-size: 64px;
+  }
+
+  .nav-detail a {
+    padding: 24px 0px 0px 32px;*/
+    text-decoration: none;
+    color: #f0f0f0;
+    display: block;
+    transition: 0.3s;
+  }
+
+  .nav-detail p {
+    padding: 0px 0px 0px 32px;
+    text-decoration: none;
+    font-size: 16px;
+    color: #fff;
+    transition: 0.3s;
+  }
+
+  .nav-detail .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+
+  .nav-detail-dx {
+    height: 0;
+    width: 100%;
+    position: fixed;
+    z-index: 3;
+    bottom: 0;
+    left: 0;
+    background-color: #010409;
+    overflow-x: hidden;
+    transition: 0.5s;
+  }
+
+  .nav-detail-project {
+    height: 0;
+    width: 100%;
+    position: fixed;
+    z-index: 3;
+    bottom: 0;
+    left: 0;
+    background-color: #2ebeef;
+    overflow-x: hidden;
+    transition: 0.5s;
+  }
+
+  #detail-title {
+    padding: 48px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #fff;
+    line-height: 1.2;
+  }
+
+  h6 {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    color: #fff;
+  }
+
+  th, td {
+    border-bottom: 1px solid #328484;
+  }
+
+  tbody tr:hover{
+    background-color: #1096b2;
+    color: #1096b2;
+  }
+
+  select {
+    -moz-appearance: none;
+    -webkit-appearance:none;
+    background: url("/img/down-arrow.png")
+                  right center
+                  no-repeat;
+    padding-right: 20px;
+    text-indent: 0.01px;
+    text-overflow: '';
+  }
+
+}

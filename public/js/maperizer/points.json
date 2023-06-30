@@ -1,0 +1,140 @@
+{
+  "Guatemala" : {
+    "name": "Guatemala",
+    "lat": 14.651621,
+    "long": -90.454251
+  },
+
+  "Alta Verapaz" : {
+    "name": "Alta Verapaz",
+    "lat": 15.625374,
+    "long": -90.095900
+  },
+
+  "Baja Verapaz" : {
+    "name": "Baja Verapaz",
+    "lat": 15.081509,
+    "long": -90.435604
+  },
+
+  "El Progreso" : {
+    "name": "El Progreso",
+    "lat": 14.904819,
+    "long": -90.030572
+  },
+
+  "Jalapa" : {
+    "name": "Jalapa",
+    "lat": 14.620549,
+    "long": -89.915160
+  },
+
+  "Izabal" : {
+    "name": "Izabal",
+    "lat": 15.545668,
+    "long": -88.996217
+  },
+
+  "Zacapa" : {
+    "name": "Zacapa",
+    "lat": 15.041556,
+    "long": -89.444801
+  },
+
+  "Chiquimula" : {
+    "name": "Chiquimula",
+    "lat": 14.685859,
+    "long": -89.399072
+  },
+
+  "Jutiapa" : {
+    "name": "Jutiapa",
+    "lat": 14.205066,
+    "long": -89.856365
+  },
+
+  "Santa Rosa" : {
+    "name": "Santa Rosa",
+    "lat": 14.186066,
+    "long": -90.307126
+  },
+
+  "Escuintla" : {
+    "name": "Escuintla",
+    "lat": 14.148062,
+    "long": -90.949515
+  },
+
+  "Suchitepéquez" : {
+    "name": "Suchitepéquez",
+    "lat": 14.424504,
+    "long": -91.432940
+  },
+
+  "Retalhuleu" : {
+    "name": "Retalhuleu",
+    "lat": 14.458244,
+    "long": -91.755223
+  },
+
+  "San Marcos" : {
+    "name": "San Marcos",
+    "lat": 14.995408,
+    "long": -91.922732
+  },
+
+  "Huehuetenango" : {
+    "name": "Huehuetenango",
+    "lat": 15.660899,
+    "long": -91.545996
+  },
+
+  "Quetzaltenango" : {
+    "name": "Quetzaltenango",
+    "lat": 14.781404,
+    "long": -91.713676
+  },
+
+  "Totonicapán" : {
+    "name": "Totonicapán",
+    "lat": 15.023089,
+    "long": -91.380214
+  },
+
+  "Sololá" : {
+    "name": "Sololá",
+    "lat": 14.717387,
+    "long": -91.224095
+  },
+
+  "Sacatepéquez" : {
+    "name": "Sacatepéquez",
+    "lat": 14.564434,
+    "long": -90.710182
+  },
+
+  "Chimaltenango" : {
+    "name": "Chimaltenango",
+    "lat": 14.693573,
+    "long": -90.916761
+  },
+
+  "Quiché" : {
+    "name": "Quiché",
+    "lat": 15.457462,
+    "long": -90.949019
+  },
+
+  "Petén" : {
+    "name": "Petén",
+    "lat": 16.902784,
+    "long": -89.928189
+  },
+
+  "EPSUM" : {
+    "name": "EPSUM",
+    "lat": 0.0,
+    "long": 0.0
+  }
+
+}
