@@ -111,22 +111,22 @@
             </div>
             <div class="mt-12 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6">
                 <div class="p-4 grayscale transition duration-200 hover:grayscale-0">
-                    <img src="./images/clients/microsoft.svg" class="h-12 w-auto mx-auto" loading="lazy" alt="client logo" width="" height="">
+                    <img src="images/clients/microsoft.svg" class="h-12 w-auto mx-auto" loading="lazy" alt="client logo" width="" height="">
                   </div>
                 <div class="p-4 grayscale transition duration-200 hover:grayscale-0">
-                  <img src="./images/clients/airbnb.svg" class="h-12 w-auto mx-auto" loading="lazy" alt="client logo" width="" height="">
+                  <img src="images/clients/airbnb.svg" class="h-12 w-auto mx-auto" loading="lazy" alt="client logo" width="" height="">
                 </div>
                 <div class="p-4 flex grayscale transition duration-200 hover:grayscale-0">
-                  <img src="./images/clients/google.svg" class="h-9 w-auto m-auto" loading="lazy" alt="client logo" width="" height="">
+                  <img src="images/clients/google.svg" class="h-9 w-auto m-auto" loading="lazy" alt="client logo" width="" height="">
                 </div>
                 <div class="p-4 grayscale transition duration-200 hover:grayscale-0">
-                    <img src="./images/clients/ge.svg" class="h-12 w-auto mx-auto" loading="lazy" alt="client logo" width="" height="">
+                    <img src="images/clients/ge.svg" class="h-12 w-auto mx-auto" loading="lazy" alt="client logo" width="" height="">
                   </div>
                   <div class="p-4 flex grayscale transition duration-200 hover:grayscale-0">
-                    <img src="./images/clients/netflix.svg" class="h-8 w-auto m-auto" loading="lazy" alt="client logo" width="" height="">
+                    <img src="images/clients/netflix.svg" class="h-8 w-auto m-auto" loading="lazy" alt="client logo" width="" height="">
                   </div>
                 <div class="p-4 grayscale transition duration-200 hover:grayscale-0">
-                    <img src="./images/clients/google-cloud.svg" class="h-12 w-auto mx-auto" loading="lazy" alt="client logo" width="" height="">
+                    <img src="images/clients/google-cloud.svg" class="h-12 w-auto mx-auto" loading="lazy" alt="client logo" width="" height="">
                 </div>
               </div>
         </div>
@@ -235,7 +235,7 @@
         <path fill-rule="evenodd" d="M12.75 3a.75.75 0 01.75-.75 8.25 8.25 0 018.25 8.25.75.75 0 01-.75.75h-7.5a.75.75 0 01-.75-.75V3z" clip-rule="evenodd"></path>
       </svg><div class="space-y-6 justify-between text-gray-600 md:flex flex-row-reverse md:gap-6 md:space-y-0 lg:gap-12 lg:items-center">
         <div class="md:5/12 lg:w-1/2">
-          <img src="./images/pie.svg" alt="image" loading="lazy" width="" height="" class="w-full">
+          <img src="images/pie.svg" alt="image" loading="lazy" width="" height="" class="w-full">
         </div>
         <div class="md:7/12 lg:w-1/2">
           <h2 class="text-3xl font-bold text-gray-900 md:text-4xl dark:text-white">
@@ -282,7 +282,7 @@
     </div><div class="md:columns-2 lg:columns-3 gap-8 space-y-8">
       <div class="aspect-auto p-8 border border-gray-100 rounded-3xl bg-white dark:bg-gray-800 dark:border-gray-700 shadow-2xl shadow-gray-600/10 dark:shadow-none">
         <div class="flex gap-4">
-          <img class="w-12 h-12 rounded-full" src="https://pbs.twimg.com/profile_images/1559671811780087810/Y4E8X2do_400x400.jpg" alt="" width="" height="" loading="lazy">
+          <img class="w-12 h-12 rounded-full" src="https://pbs.twimg.com/profile_images/1372441824560771075/DTcuXT0Z_400x400.jpg" alt="" width="" height="" loading="lazy">
           <div>
             <h6 class="text-lg font-medium text-gray-700 dark:text-white">Eric Ampire</h6>
             <p class="text-sm text-gray-500 dark:text-gray-300">Mobile dev</p>
@@ -312,7 +312,7 @@
       </div>
       <div class="aspect-auto p-8 border border-gray-100 rounded-3xl bg-white dark:bg-gray-800 dark:border-gray-700 shadow-2xl shadow-gray-600/10 dark:shadow-none">
         <div class="flex gap-4">
-          <img class="w-12 h-12 rounded-full" src="https://pbs.twimg.com/profile_images/1511686703672606725/_DV4Mfjd_400x400.jpg" alt="" width="" height="" loading="lazy">
+          <img class="w-12 h-12 rounded-full" src="https://pbs.twimg.com/profile_images/1372441824560771075/DTcuXT0Z_400x400.jpg" alt="" width="" height="" loading="lazy">
           <div>
             <h6 class="text-lg font-medium text-gray-700 dark:text-white">Dan Kyungu</h6>
             <p class="text-sm text-gray-500 dark:text-gray-300">Mobile dev</p>
@@ -332,7 +332,7 @@
       </div>
       <div class="aspect-auto p-8 border border-gray-100 rounded-3xl bg-white dark:bg-gray-800 dark:border-gray-700 shadow-2xl shadow-gray-600/10 dark:shadow-none">
         <div class="flex gap-4">
-          <img class="w-12 h-12 rounded-full" src="./images/second_user.webp" alt="" width="" height="" loading="lazy">
+          <img class="w-12 h-12 rounded-full" src="https://pbs.twimg.com/profile_images/1398547148086681604/ctgizwrN_400x400.jpg" alt="" width="" height="" loading="lazy">
           <div>
             <h6 class="text-lg font-medium text-gray-700 dark:text-white">Randy Doe</h6>
             <p class="text-sm text-gray-500 dark:text-gray-300">Mobile dev</p>
@@ -352,8 +352,8 @@
   <div class="max-w-7xl mx-auto px-6 md:px-12 xl:px-6">
     <div class="relative">
       <div class="flex items-center justify-center -space-x-2">
-        <img loading="lazy" width="220" height="220" src="https://pbs.twimg.com/profile_images/1559671811780087810/Y4E8X2do_400x400.jpg" alt="member photo" class="h-8 w-8 rounded-full object-cover">
-        <img loading="lazy" width="220" height="220" src="https://pbs.twimg.com/profile_images/1511686703672606725/_DV4Mfjd_400x400.jpg" alt="member photo" class="h-12 w-12 rounded-full object-cover">
+        <img loading="lazy" width="220" height="220" src="https://pbs.twimg.com/profile_images/1372441824560771075/DTcuXT0Z_400x400.jpg" alt="member photo" class="h-8 w-8 rounded-full object-cover">
+        <img loading="lazy" width="220" height="220" src="https://pbs.twimg.com/profile_images/1372441824560771075/DTcuXT0Z_400x400.jpg" alt="member photo" class="h-12 w-12 rounded-full object-cover">
         <img loading="lazy" width="220" height="220" src="https://pbs.twimg.com/profile_images/1372441824560771075/DTcuXT0Z_400x400.jpg" alt="member photo" class="z-10 h-16 w-16 rounded-full object-cover">
         <img loading="lazy" width="220" height="220" src="https://pbs.twimg.com/profile_images/1362367807887974401/kuJ1OFT1_400x400.jpg" alt="member photo" class="relative h-12 w-12 rounded-full object-cover">
         <img loading="lazy" width="220" height="220" src="https://pbs.twimg.com/profile_images/1398547148086681604/ctgizwrN_400x400.jpg" alt="member photo" class="h-8 w-8 rounded-full object-cover">
