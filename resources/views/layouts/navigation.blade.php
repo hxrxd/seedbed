@@ -81,7 +81,7 @@
 
             <div class="mt-3 space-y-1">
                 <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('Perfi') }}
+                    {{ __('Perfil') }}
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->

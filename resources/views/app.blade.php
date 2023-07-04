@@ -14,9 +14,11 @@
         @routes
         @viteReactRefresh
         @vite(['resources/js/app.tsx', "resources/js/Pages/{$page['component']}.tsx"])
+        @vite(['resources/css/app.css','resources/js/app.js'])
         @inertiaHead
     </head>
     <body class="font-sans antialiased">
         @inertia
+
     </body>
 </html>
