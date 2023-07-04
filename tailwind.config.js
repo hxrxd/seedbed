@@ -1,3 +1,5 @@
+const colors = require('tailwindcss/colors')
+
 import defaultTheme from 'tailwindcss/defaultTheme';
 import forms from '@tailwindcss/forms';
 
@@ -22,7 +24,7 @@ export default {
               transparent: 'transparent',
               current: '#d6df23',
               'white': '#ffffff',
-              'purple': '#3f3cbb',
+              'purple': '#652c90',
               'midnight': '#121063',
               'metal': '#565584',
               'tahiti': '#3ab7bf',
