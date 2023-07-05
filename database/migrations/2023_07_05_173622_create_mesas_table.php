@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('ubicacion');
             $table->string('zona');
-            $table->string('fiscal');
+            $table->string('fiscal')->nullable($value = true);
             $table->integer('estatus');
             $table->timestamps();
         });
