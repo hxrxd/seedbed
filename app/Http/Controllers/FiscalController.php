@@ -1,0 +1,68 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\View\View;
+use App\Models\Fiscal;
+
+
+use Auth;
+
+class FiscalController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        //
+        //$mesas = Mesa::select('jrv','departamento','municipio','nombre','fiscal')->get();
+        //return view('mesa.index',['mesas' => $mesas]);
+    }
+
+    /**
+     * Display the registration view.
+     */
+    public function create(): View
+    {
+        return view('fiscal.register');
+    }
+
+    /**
+     * Handle an incoming registration request.
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'nombres' => ['required', 'string', 'max:255'],
+            'apellidos' => ['required', 'string', 'max:255'],
+            'dpi' => ['required', 'integer'],
+            'departamento' => ['required', 'string'],
+            'municipio' => ['required', 'string'],
+            'telefono' => ['required', 'string'],
+            'rango_edad' => ['required', 'string'],
+            'sexo' => ['required', 'string'],
+            'correo' => ['required', 'string'],
+            'status' => ['string'],
+        ]);
+
+        $fiscal = Fiscal::create($validatedData);
+
+
+        return response()->json(['message' => 'Fiscal created successfully', 'data' => $fiscal], 201);
+    }
+
+    /**
+     * Display the fiscal's profile form.
+     */
+    /*public function edit(Request $request): View
+    {
+        return view('fiscal.edit', [
+            'fiscal' => $request->fiscal(),
+        ]);
+    }*/  
+
+}

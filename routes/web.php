@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MesaController;
 use App\Http\Controllers\MapController;
+use App\Http\Controllers\FiscalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,4 +47,6 @@ Route::get('/verificacion/', function () {
 
 Route::resource('mesa', MesaController::class)->middleware(['auth', 'verified']);
 Route::resource('map', MapController::class)->middleware(['auth', 'verified']);
+
+Route::resource('fiscal', FiscalController::class)->middleware(['auth', 'verified']);
 
