@@ -9,13 +9,13 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    {{ __("Bienvenido") }} {{ Auth::user()->name }}
+                    {{ __("Hola") }} {{ Auth::user()->name }}
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="py-3">
+    <div class="py-1">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             
 <div class="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
