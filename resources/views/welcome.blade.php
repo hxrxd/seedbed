@@ -9,7 +9,7 @@
         <title>Tailus astro theme</title>
 
         <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/index.350e2433.css" /></head>
+        <link rel="stylesheet" href="assets/index.350e2433.css" /></head>
     <body class="bg-white dark:bg-gray-900 astro-FLTEP2YP">
         <header class="astro-UY3JLCBK">
     <nav class="z-10 w-full absolute astro-UY3JLCBK">

@@ -177,6 +177,16 @@
         L.control.fullscreen().addTo(map);
         map.attributionControl.setPosition('bottomleft');
         var featureGroup = L.featureGroup().addTo(map);
+        @foreach($mesas as $li)
+            mark = L.marker([{{$li->latitude}}, {{$li->longitude}}],{
+                icon: L.mapbox.marker.icon({
+                        'marker-size': 'large',
+                        'marker-symbol': 'marker',
+                        'marker-color': '#2ebeef'
+                })
+            }).addTo(featureGroup);
+            mark.bindPopup(L.popup().setContent('<p> Centro de votación: {{$li->nombre}} <br />'));
+        @endforeach
 
     </script>	
     
