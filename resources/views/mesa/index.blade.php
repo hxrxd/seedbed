@@ -18,7 +18,7 @@
 
         <!--Card-->
         <div id='recipients' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
-            <table id="example" class="stripe hover " style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+            <table id="example" class="stripe hover " data-role="table" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
                 <thead>
                     <tr>
                         <th data-priority="1">Mesa</th>
@@ -32,7 +32,7 @@
                 <tbody>
                     @foreach($mesas as $mesa)
                     <tr>
-                        <td>{{ $mesa->jrv }}</td>
+                        <td>{{ intval($mesa->jrv) }}</td>
                         <td>{{ $mesa->departamento }}</td>
                         <td>{{ $mesa->municipio }}</td>
                         <td>{{ $mesa->nombre }}</td>
@@ -72,7 +72,24 @@
             var table = $('#example').DataTable({
                     responsive: true,
                     language: {
-                        url: '//cdn.datatables.net/plug-ins/1.13.5/i18n/es-ES.json',
+                        "decimal": "",
+                        "emptyTable": "No hay información",
+                        "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                        "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                        "infoPostFix": "",
+                        "thousands": ",",
+                        "lengthMenu": "Mostrar _MENU_ Entradas",
+                        "loadingRecords": "Cargando...",
+                        "processing": "Procesando...",
+                        "search": "Buscar:",
+                        "zeroRecords": "Sin resultados encontrados",
+                        "paginate": {
+                            "first": "Primero",
+                            "last": "Ultimo",
+                            "next": "Siguiente",
+                            "previous": "Anterior"
+                        }
                     },
                 })
                 .columns.adjust()

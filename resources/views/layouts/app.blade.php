@@ -26,7 +26,7 @@
             .dataTables_wrapper select,
             .dataTables_wrapper .dataTables_filter input {
                 color: #4a5568;
-                /*text-gray-700*/
+                /*text-gray-500*/
                 padding-left: 1rem;
                 /*pl-4*/
                 padding-right: 1rem;
@@ -55,7 +55,7 @@
 
             /*Pagination Buttons*/
             .dataTables_wrapper .dataTables_paginate .paginate_button {
-                font-weight: 700;
+                font-weight: 500;
                 /*font-bold*/
                 border-radius: .25rem;
                 /*rounded*/
@@ -69,7 +69,7 @@
                 /*text-white*/
                 box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06);
                 /*shadow*/
-                font-weight: 700;
+                font-weight: 500;
                 /*font-bold*/
                 border-radius: .25rem;
                 /*rounded*/
@@ -85,7 +85,7 @@
                 /*text-white*/
                 box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06);
                 /*shadow*/
-                font-weight: 700;
+                font-weight: 500;
                 /*font-bold*/
                 border-radius: .25rem;
                 /*rounded*/
