@@ -50,3 +50,5 @@ Route::resource('map', MapController::class)->middleware(['auth', 'verified']);
 
 Route::resource('fiscal', FiscalController::class)->middleware(['auth', 'verified']);
 
+Route::post('api/fetch-cities', [FiscalController::class, 'fetchCities']);
+
