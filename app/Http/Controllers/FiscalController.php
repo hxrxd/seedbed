@@ -27,7 +27,10 @@ class FiscalController extends Controller
      */
     public function create(): View
     {
-        return view('fiscal.register');
+        // fetch departments
+        $departments = Mesa::distinct()->pluck('departamento');
+
+        return view('fiscal.register', compact('departments'));
     }
 
     /**
@@ -76,5 +79,18 @@ class FiscalController extends Controller
         $mesa = Mesa::select('jrv','departamento','municipio','nombre','fiscal')->where('fiscal','=',$fiscal->correo)->first();
         return view('verificacion.fiscal', ['fiscal'=>$fiscal,'mesa'=>$mesa]);
     } 
+
+    /**
+     * Fetch the cities for a department
+     *
+     * @return response()
+     */
+    public function fetchCities(Request $request)
+    {
+        $data['cities'] = Mesa::distinct()->where("departamento", $request->departamento)
+                                ->get(["municipio"]);
+  
+        return response()->json($data);
+    }
 
 }
