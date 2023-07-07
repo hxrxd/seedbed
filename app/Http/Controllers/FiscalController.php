@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Fiscal;
+use App\Models\Mesa;
 
 
 use Auth;
@@ -63,6 +64,17 @@ class FiscalController extends Controller
         return view('fiscal.edit', [
             'fiscal' => $request->fiscal(),
         ]);
-    }*/  
+    }*/ 
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+        $fiscal = Fiscal::where('correo','=',$id)->first();
+        $mesa = Mesa::select('jrv','departamento','municipio','nombre','fiscal')->where('fiscal','=',$fiscal->correo)->first();
+        return view('verificacion.fiscal', ['fiscal'=>$fiscal,'mesa'=>$mesa]);
+    } 
 
 }
