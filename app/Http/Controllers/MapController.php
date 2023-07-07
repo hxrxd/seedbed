@@ -13,7 +13,7 @@ class MapController extends Controller
     public function index()
     {
         //
-        $mesas = Mesa::select('jrv','latitude','longitude','nombre','fiscal')->where('departamento','!=','GUATEMALA')->distinct('nombre')->get();
+        $mesas = Mesa::select('jrv','latitude','longitude','nombre','fiscal')->where('departamento','=','CHIQUIMULA')->distinct('nombre')->get();
         return view('map',['mesas' => $mesas]);
 
     }

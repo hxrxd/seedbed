@@ -52,3 +52,12 @@ Route::resource('fiscal', FiscalController::class)->middleware(['auth', 'verifie
 
 Route::post('api/fetch-cities', [FiscalController::class, 'fetchCities']);
 
+Route::get('assets/img/{filename}', function($filename){
+        $path = 'assets/img/' . $filename;
+
+        if (Storage::exists($path)) {
+            return response()->file(storage_path('app/' . $path));
+        }
+        abort(404);
+});
+
