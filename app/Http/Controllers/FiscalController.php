@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Fiscal;
+use App\Models\Mesa;
 
 
 use Auth;
@@ -26,7 +27,10 @@ class FiscalController extends Controller
      */
     public function create(): View
     {
-        return view('fiscal.register');
+        // fetch departments
+        $departments = Mesa::distinct()->pluck('departamento');
+
+        return view('fiscal.register', compact('departments'));
     }
 
     /**
@@ -64,5 +68,18 @@ class FiscalController extends Controller
             'fiscal' => $request->fiscal(),
         ]);
     }*/  
+
+    /**
+     * Fetch the cities for a department
+     *
+     * @return response()
+     */
+    public function fetchCities(Request $request)
+    {
+        $data['cities'] = Mesa::distinct()->where("departamento", $request->departamento)
+                                ->get(["municipio"]);
+  
+        return response()->json($data);
+    }
 
 }
