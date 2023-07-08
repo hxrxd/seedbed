@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Fiscal;
 use App\Models\Mesa;
-
+use Carbon\Carbon;
 
 use Auth;
 
@@ -47,11 +47,14 @@ class FiscalController extends Controller
             'departamento' => ['required', 'string'],
             'municipio' => ['required', 'string'],
             'telefono' => ['required', 'string'],
-            'rango_edad' => ['required', 'string'],
+            'fecha_nacimiento' => ['required', 'date'],
             'sexo' => ['required', 'string'],
             'correo' => ['required', 'string'],
+            'fiscal_electronico' => ['string'],
             'status' => ['string'],
         ]);
+
+        $validatedData['fecha_nacimiento'] = Carbon::parse($validatedData['fecha_nacimiento']);
 
         $fiscal = Fiscal::create($validatedData);
 

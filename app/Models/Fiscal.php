@@ -35,9 +35,10 @@ class Fiscal extends Model
         'departamento',
         'municipio',       
         'telefono',
-        'rango_edad',
+        'fecha_nacimiento',
         'sexo',
         'correo',
+        'fiscal_electronico',
     ];
 
     /**

@@ -8,6 +8,8 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     * @fiscal_electronico: 1 -> Y, 0 -> N
+     * @status: 'Active', 'Inactive'
      */
     public function up(): void
     {
@@ -19,10 +21,11 @@ return new class extends Migration
             $table->string('departamento');
             $table->string('municipio');           
             $table->string('telefono');
-            $table->string('rango_edad');
+            $table->date('fecha_nacimiento');
             $table->string('sexo');
             $table->string('correo');
-            $table->string('status')->nullable($value = 'Active');;
+            $table->string('fiscal_electronico')->nullable($value = 'N');
+            $table->string('status')->nullable($value = 'Active');
             $table->timestamps();
         });
     }
