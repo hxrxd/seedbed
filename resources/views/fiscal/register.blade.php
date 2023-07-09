@@ -145,7 +145,54 @@
 
                     <!-- JRV Address -->
                     <div class="md:basis-1/2 md:ml-6 mt-4">
-                        <!-- to do -->
+                        <x-input-label for="table-group" :value="__('Fiscal Informático')" />
+                        <div class="flex">
+                            <div class="flex items-center h-5">
+                                <input id="fiscal-informatico" name="fiscal_electronico" aria-describedby="helper-checkbox-text" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            </div>
+                            <div class="ml-2 text-sm">
+                                <label for="helper-checkbox" class="font-medium text-gray-900 dark:text-gray-300">Deseo ser un fiscal informático</label>
+                                <p id="helper-checkbox-text" class="text-xs font-normal text-gray-500 dark:text-gray-300">
+                                    <a id="link-fiscal-info" href="#" data-modal-target="info-fiscal-modal" data-modal-toggle="info-fiscal-modal" class="underline inline-flex items-center text-xs font-normal text-gray-500 hover:underline dark:text-gray-400">
+                                        <svg class="w-3 h-3 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.529 7.988a2.502 2.502 0 0 1 5 .191A2.441 2.441 0 0 1 10 10.582V12m-.01 3.008H10M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                                        </svg>
+                                        ¿Qué es un fiscal informático?
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fiscal Info modal -->
+                <div id="info-fiscal-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                    <div class="relative w-full max-w-2xl max-h-full">
+                        <!-- Modal content -->
+                        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                            <!-- Modal header -->
+                            <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
+                                <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                                    Fiscal informático
+                                </h3>
+                                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="info-fiscal-modal">
+                                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                    </svg>
+                                    <span class="sr-only">Close modal</span>
+                                </button>
+                            </div>
+                            <!-- Modal body -->
+                            <div class="p-6 space-y-6 overflow-y-auto h-64">
+                                <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                                Un fiscal informático se encarga de supervisar y comparar los resultados preliminares de las votaciones. Su responsabilidad incluye garantizar que los fiscales y las juntas receptoras de votos reciban las certificaciones de escrutinios correspondientes. Además, verifican la consistencia de los datos entre el acta final de cierre y escrutinios y las certificaciones de escrutinios. También comparan las certificaciones de escrutinios con las actas finales publicadas. Asimismo, revisan la precisión de los datos procesados por el sistema TREP mediante la comparación con las imágenes de las actas escaneadas, entre otras tareas.
+                                </p>
+                            </div>
+                            <!-- Modal footer -->
+                            <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+                                <button id="btn-fiscal-info" data-modal-hide="info-fiscal-modal" type="button" class="text-white bg-indigo-800 hover:bg-blue-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900">Entendido</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -291,8 +338,19 @@
                 event.preventDefault();         
             });
 
+            // Prevent autoscrolling in fiscal info
+            document.getElementById('btn-fiscal-info').addEventListener('click', function(event) {
+                event.preventDefault();         
+            });
+
+            // Prevent autoscrolling in fiscal info
+            document.getElementById('link-fiscal-info').addEventListener('click', function(event) {
+                event.preventDefault();         
+            });
+
             // Setting up buttons
-            enableButtonAvailability(false);          
+            enableButtonAvailability(false); 
+            enableInputEmail(false);         
             
             // City Dropdown Change Event
             $('#department').on('change', function () {
@@ -333,7 +391,10 @@
                         contentType: 'application/json',
                         dataType: 'json',
                         success: function (result) {
-                            console.log(result);                     
+                            console.log(result.data.nromesa);    
+                            console.log(result.data.departamento); 
+                            console.log(result.data.municipio);     
+                            console.log(result.data.nombre);            
                         },
                         error: function(xhr, status, error) {
                             if (xhr.status === 404) {
@@ -382,6 +443,14 @@
             $('#btn-confirm').click(function (event) {
                 event.preventDefault();
                 changeStatusToSelected(true);
+            });
+
+            $('#fiscal-informatico').change(function() {
+                if ($(this).is(':checked')) {
+                    $(this).val('Y');
+                } else {
+                    $(this).val('N');
+                }
             });
 
             // JRVs populate list 
@@ -501,6 +570,14 @@
                     $('#btn-availability').css('background-color', '#3730a3');
                     $('#btn-availability').text('Ver disponibilidad');
                     enableButtonAvailability(true);
+                }
+            }
+
+            function enableInputEmail(enable) {
+                if (enable) {
+                    $('#email').prop('disabled', false);
+                } else {
+                    $('#email').prop('disabled', true);
                 }
             }
 
