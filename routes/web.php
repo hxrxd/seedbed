@@ -51,6 +51,8 @@ Route::resource('map', MapController::class)->middleware(['auth', 'verified']);
 Route::resource('fiscal', FiscalController::class)->middleware(['auth', 'verified']);
 
 Route::post('api/fetch-cities', [FiscalController::class, 'fetchCities']);
+Route::post('api/fetch-jrvs-by-center', [FiscalController::class, 'fetchTablesByCenter']);
+Route::post('api/fetch-jrvs-by-city', [FiscalController::class, 'fetchTablesByCity']);
 
 Route::get('assets/img/{filename}', function($filename){
         $path = 'assets/img/' . $filename;

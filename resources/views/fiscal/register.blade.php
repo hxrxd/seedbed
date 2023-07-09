@@ -10,6 +10,7 @@
             <form method="POST" action="{{ route('fiscal.store') }}">
                 @csrf
                 
+                <!-- Personal info section -->
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                     {{ __('Registro de fiscal') }}
                 </h2>
@@ -65,6 +66,7 @@
                     </div>
                 </div>
 
+                <!-- Location section -->
                 <div class="md:flex md:flex-row">
                     <!-- ID document -->
                     <div class="md:basis-1/3 mt-4">
@@ -94,27 +96,11 @@
                     </div>
                 </div>
 
-                <div id="alert-container" class="max-w-7xl">
-                    <!--<div id="alert-additional-content-2" class="p-4 mb-4 text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800 mt-4" role="alert">
-                        <div class="flex items-center">
-                            <svg class="flex-shrink-0 w-4 h-4 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                            </svg>
-                            <span class="sr-only">Info</span>
-                            <h3 class="text-lg font-medium">DPI no válido</h3>
-                        </div>
-                        <div class="mt-2 mb-4 text-sm">El DPI ingresado o la fecha de nacimiento no son correctos. Por favor, revisa tu fecha de nacimiento e intenta ingresar tu DPI nuevamente.</div>
-                        <div class="flex">
-                            <button type="button" class="text-white bg-red-800 hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-xs px-3 py-1.5 mr-2 text-center inline-flex items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" data-dismiss-target="#alert-additional-content-2">
-                            Entendido
-                            </button>
-                            <button type="button" class="text-red-800 bg-transparent border border-red-800 hover:bg-red-900 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-xs px-3 py-1.5 text-center dark:hover:bg-red-600 dark:border-red-600 dark:text-red-500 dark:hover:text-white dark:focus:ring-red-800" data-dismiss-target="#alert-additional-content-2" aria-label="Close">
-                            Dismiss
-                            </button>
-                        </div>
-                    </div>-->
+                <!-- Validation alert container -->
+                <div id="alert-container" class="max-w-7xl">                   
                 </div>
 
+                <!-- Contact section -->
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight mt-6">
                     {{ __('Contacto') }}
                 </h2>
@@ -135,56 +121,25 @@
                     </div>
                 </div>
 
+                <!-- JRV selection section -->
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight mt-6">
                     {{ __('Asignación de mesa') }}
-                    <p class="text-sm leading-relaxed text-gray-500 dark:text-gray-400">Ingresa el número de tu mesa para conocer si está disponible. Si tu mesa no está disponible, intenta con una mesa del mismo centro o de tu localidad.</p>
+                    <p class="text-sm leading-relaxed text-gray-500 dark:text-gray-400">Tu mesa aparecerá en el siguiente campo siempre que hayas completado la información previa. Si no ves el número de tu mesa, por favor consúltalo en <a class="hover:underline" href="">https://dondevotas2023.tse.org.gt</a> y vuelve a este formulario.</p>
                 </h2>
 
                 <div class="md:flex md:flex-row">
                     <!-- JRV Search -->
                     <div class="md:basis-1/2 mt-4">
                         <x-input-label for="table-group" :value="__('Mesa')" />
-                        <!--<div class="flex">
-                            <label for="search-dropdown" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Your Email</label>
-                            <button id="dropdown-button" data-dropdown-toggle="dropdown" class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-l-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600" type="button">All categories <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-                                </svg>
-                            </button>
-                            <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-button">
-                                <li>
-                                    <button type="button" class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mockups</button>
-                                </li>
-                                <li>
-                                    <button type="button" class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Templates</button>
-                                </li>
-                                <li>
-                                    <button type="button" class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Design</button>
-                                </li>
-                                <li>
-                                    <button type="button" class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Logos</button>
-                                </li>
-                                </ul>
-                            </div>
-                            <div class="relative w-full">
-                                <input type="search" id="search-dropdown" class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-indigo-500" placeholder="Search Mockups, Logos, Design Templates..." required>
-                                <button type="submit" class="absolute top-0 right-0 p-2.5 text-sm font-medium h-full text-white bg-indigo-700 rounded-r-lg border border-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">
-                                    <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-                                    </svg>
-                                    <span class="sr-only">Search</span>
-                                </button>
-                            </div>
-                        </div>-->
-                        <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                        <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Buscar</label>
                         <div class="relative">
                             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                 <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                                 </svg>
                             </div>
-                            <input type="search" id="default-search" class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500" placeholder="Buscar una mesa..." required>
-                            <button id="btn-availability" class="text-white absolute right-2.5 bottom-2.5 bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900" data-modal-target="crypto-modal" data-modal-toggle="crypto-modal">Ver disponibilidad</button>
+                            <input type="search" id="input-jrv" class="block w-full p-4 pl-10 text-base font-extrabold text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500" placeholder="Buscar una mesa" required>
+                            <button id="btn-availability" class="text-white absolute right-2.5 bottom-2.5 bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900" data-modal-target="jrv-select-modal" data-modal-toggle="jrv-select-modal">Ver disponibilidad</button>
                         </div>
                     </div>
 
@@ -194,131 +149,47 @@
                     </div>
                 </div>
 
-                <!-- JRV Selection -->
+                <!-- JRV Selection Modal -->
+                <div id="jrv-select-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                    <div class="relative w-full max-w-4xl max-h-full">
+                        <!-- Modal content -->
+                        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                            <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="jrv-select-modal">
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                </svg>
+                                <span class="sr-only">Close modal</span>
+                            </button>
+                            <!-- Modal header -->
+                            <div class="px-6 py-4 border-b rounded-t dark:border-gray-600">
+                                <h3 class="text-base font-semibold text-gray-900 lg:text-xl dark:text-white">
+                                    Selecciona una mesa
+                                </h3>
+                            </div>
+                            <!-- Modal body -->
+                            <div class="p-6 overflow-y-auto h-64">
+                                <span class="text-2xl font-extrabold text-gray-800 dark:text-gray-200">Tu mesa</span>
+                                <ul id="li-jrv-01" class="my-4 space-y-3 mb-8">
+                                </ul>
+                                
+                                <span class="text-2xl font-extrabold text-gray-800 dark:text-gray-200">Mesas en tu centro</span>
+                                <ul id="li-jrv-02" class="my-4 space-y-3 mb-8">                
+                                </ul>
 
-<div id="crypto-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-    <div class="relative w-full max-w-4xl max-h-full">
-        <!-- Modal content -->
-        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-            <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="crypto-modal">
-                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                </svg>
-                <span class="sr-only">Close modal</span>
-            </button>
-            <!-- Modal header -->
-            <div class="px-6 py-4 border-b rounded-t dark:border-gray-600">
-                <h3 class="text-base font-semibold text-gray-900 lg:text-xl dark:text-white">
-                    Selecciona una mesa
-                </h3>
-            </div>
-            <!-- Modal body -->
-            <div class="p-6 overflow-y-auto h-60">
-                <p class="text-sm font-normal text-gray-500 dark:text-gray-400">Connect with one of our available wallet providers or create a new one.</p>
-                <ul class="my-4 space-y-3">
-                    <li>
-                        <a href="#" class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
-                            <div class="flex items-center">        
-                                <input id="default-radio-1" type="radio" value="" name="default-radio" class="w-4 h-4 text-cyan-600 bg-gray-100 border-gray-300 focus:ring-cyan-500 dark:focus:ring-cyan-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500 mr-4">
-                                <span class="flex-1 ml-3 whitespace-nowrap">MetaMask</span>
-                                <span class="inline-flex items-center justify-center px-2 py-0.5 ml-3 text-xs font-medium text-gray-500 bg-gray-200 rounded dark:bg-gray-700 dark:text-gray-400">Popular</span>
+                                <span class="text-2xl font-extrabold text-gray-800 dark:text-gray-200">Otras mesas en tu área</span>
+                                <ul id="li-jrv-03" class="my-4 space-y-3">                 
+                                </ul>   
                             </div>
-                        </a>
-                    </li>
-                    <li>
-                    <a href="#" class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
-                            <div class="flex items-center">        
-                                <input id="default-radio-2" type="radio" value="" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500 mr-4">
-                                <span class="flex-1 ml-3 whitespace-nowrap">MetaMask 2</span>
-                                <span class="inline-flex items-center justify-center px-2 py-0.5 ml-3 text-xs font-medium text-gray-500 bg-gray-200 rounded dark:bg-gray-700 dark:text-gray-400">Popular</span>
+                            <!-- Modal footer -->
+                            <div class="grid justify-items-end p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+                                <div class="flex items-center">
+                                    <button id="btn-view-map" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-indigo-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600 mr-4">Volver</button>
+                                    <button id="btn-confirm" type="button" class="text-white bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900" data-modal-hide="jrv-select-modal">Confirmar mesa</button>
+                                </div>
                             </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
-                            <span class="flex-1 ml-3 whitespace-nowrap">Opera Wallet</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
-                            <span class="flex-1 ml-3 whitespace-nowrap">WalletConnect</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
-                            <span class="flex-1 ml-3 whitespace-nowrap">Fortmatic</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
-                            <span class="flex-1 ml-3 whitespace-nowrap">MetaMask</span>
-                            <span class="inline-flex items-center justify-center px-2 py-0.5 ml-3 text-xs font-medium text-gray-500 bg-gray-200 rounded dark:bg-gray-700 dark:text-gray-400">Popular</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
-                            <span class="flex-1 ml-3 whitespace-nowrap">Coinbase Wallet</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
-                            <span class="flex-1 ml-3 whitespace-nowrap">Opera Wallet</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
-                            <span class="flex-1 ml-3 whitespace-nowrap">WalletConnect</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
-                            <span class="flex-1 ml-3 whitespace-nowrap">Fortmatic</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
-                            <span class="flex-1 ml-3 whitespace-nowrap">MetaMask</span>
-                            <span class="inline-flex items-center justify-center px-2 py-0.5 ml-3 text-xs font-medium text-gray-500 bg-gray-200 rounded dark:bg-gray-700 dark:text-gray-400">Popular</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
-                            <span class="flex-1 ml-3 whitespace-nowrap">Coinbase Wallet</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
-                            <span class="flex-1 ml-3 whitespace-nowrap">Opera Wallet</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
-                            <span class="flex-1 ml-3 whitespace-nowrap">WalletConnect</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
-                            <span class="flex-1 ml-3 whitespace-nowrap">Fortmatic</span>
-                        </a>
-                    </li>
-                </ul>
-                <div>
-                    <a href="#" class="inline-flex items-center text-xs font-normal text-gray-500 hover:underline dark:text-gray-400">
-                        <svg class="w-3 h-3 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.529 7.988a2.502 2.502 0 0 1 5 .191A2.441 2.441 0 0 1 10 10.582V12m-.01 3.008H10M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
-                        </svg>
-                        Why do I need to connect with my wallet?</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <!-- Modal footer -->
-            <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-                <button type="button" class="text-white bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900">Confirmar mesa</button>
-                <button type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-indigo-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Ver en el mapa</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 
                 <!-- Terms and conditions -->
                 <div id="staticModal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -368,7 +239,7 @@
                             </div>
                             <!-- Modal footer -->
                             <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-                                <button data-modal-hide="staticModal" type="button" class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">Volver al formulario</button>
+                                <button data-modal-hide="staticModal" type="button" class="text-white bg-indigo-800 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-800 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900">Volver al formulario</button>
                                 <!--<button data-modal-hide="staticModal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-indigo-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Declinar</button>-->
                             </div>
                         </div>
@@ -392,8 +263,6 @@
 
         </div>
         <!--/Card-->
-
-
     </div>
     <!--/container-->
 
@@ -401,28 +270,12 @@
     <script>
 
         $(document).ready(function () {
-            
+            var fetched = false;
             var typingTimer;
             var doneTypingInterval = 3000;
-            var date_dd = '';
-            var date_mm = '';
-            var date_yyyy = '';
-            // Create an alert for dpi validation
-            var alertHTML = '<div id="alert-additional-content-2" class="p-4 mb-4 text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800 mt-4" role="alert">' +
-                    '<div class="flex items-center">' +
-                    '<svg class="flex-shrink-0 w-4 h-4 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">' +
-                    '<path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>' +
-                    '</svg>' +
-                    '<span class="sr-only">Info</span>' +
-                    '<h3 class="text-lg font-medium">DPI no válido</h3>' +
-                    '</div>' +
-                    '<div class="mt-2 mb-4 text-sm">El DPI ingresado o la fecha de nacimiento no son correctos. Por favor, revisa tu fecha de nacimiento e intenta ingresar tu DPI nuevamente.</div>' +
-                    '<div class="flex">' +
-                    '<button type="button" class="text-white bg-red-800 hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-xs px-3 py-1.5 mr-2 text-center inline-flex items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" data-dismiss-target="#alert-additional-content-2">' +
-                    'Entendido' +
-                    '</button>' +
-                    '</div>' +
-                    '</div>';
+            var date_dd = '', date_mm = '', date_yyyy = '';
+            var JRV_USR = '', JRV_SELECTED = '';       
+            var alertValidation = '<div id="alert-additional-content-2" class="p-4 mb-4 text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800 mt-4" role="alert"><div class="flex items-center"><svg class="w-4 h-4 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg><span class="sr-only">Info</span><h3 class="text-lg font-medium">DPI no válido</h3></div><div class="mt-2 mb-4 text-sm">El DPI ingresado o la fecha de nacimiento no son correctos. Por favor, revisa tu fecha de nacimiento e intenta ingresar tu DPI nuevamente.</div><div class="flex"><button type="button" class="text-white bg-red-800 hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-xs px-3 py-1.5 mr-2 text-center inline-flex items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" data-dismiss-target="#alert-additional-content-2">Entendido</button></div></div>';
 
             // Populate days
             populateDays();
@@ -438,10 +291,9 @@
                 event.preventDefault();         
             });
 
-            document.getElementById('btn-availability').addEventListener('click', function(event) {
-                event.preventDefault();         
-            });
-
+            // Setting up buttons
+            enableButtonAvailability(false);          
+            
             // City Dropdown Change Event
             $('#department').on('change', function () {
                 var idDep = this.value;
@@ -460,7 +312,6 @@
                             $("#city").append('<option value="' + value
                                 .municipio+ '">' + value.municipio + '</option>');
                         });
-                        //$('#city').html('<option value="">-- Select City --</option>');
                     }
                 });
             });
@@ -486,8 +337,7 @@
                         },
                         error: function(xhr, status, error) {
                             if (xhr.status === 404) {
-                                //$('[data-modal-target="popup-modal"]').click();
-                                $('#alert-container').html(alertHTML);
+                                $('#alert-container').html(alertValidation);
 
                                 // Dismiss the alert when the button is clicked
                                 $('[data-dismiss-target="#alert-additional-content-2"]').click(function() {
@@ -522,6 +372,137 @@
                 date_yyyy = this.value;
                 $('#birthdate').val(date_yyyy+'-'+date_mm+'-'+date_dd);
             });
+
+            $('#input-jrv').on('input', function () {
+                var inputValue = $(this).val();
+                enableButtonAvailability(inputValue != '');
+                changeStatusToSelected(false);
+            });   
+            
+            $('#btn-confirm').click(function (event) {
+                event.preventDefault();
+                changeStatusToSelected(true);
+            });
+
+            // JRVs populate list 
+            $('#btn-availability').click(function (event) {
+                event.preventDefault(); 
+                enableButtonConfirm(false);
+                showButtonMap(false);
+
+                // Commented in order to get the current status
+                //if(!fetched)
+                
+                JRV_USR = $("#input-jrv").val();
+
+                // Init lists
+                $("#li-jrv-01").html('');
+                $("#li-jrv-02").html('');
+                $("#li-jrv-03").html('');
+
+                $.ajax({
+                    url: "{{url('api/fetch-jrvs-by-center')}}",
+                    type: "POST",
+                    data: {
+                        jrv: JRV_USR,
+                        _token: '{{csrf_token()}}'
+                    },
+                    dataType: 'json',
+                    success: function (result) {                      
+                        $.each(result.jrvs_by_center, function (index, jrvs_by_center) {
+                            if (jrvs_by_center.jrv === parseInt(JRV_USR)) {
+                                $("#li-jrv-01").append(createListItem(jrvs_by_center.jrv, jrvs_by_center.nombre+', '+jrvs_by_center.ubicacion+', ZONA '+jrvs_by_center.zona, jrvs_by_center.estatus, true));
+                            } else {
+                                $("#li-jrv-02").append(createListItem(jrvs_by_center.jrv, jrvs_by_center.nombre+', '+jrvs_by_center.ubicacion+', ZONA '+jrvs_by_center.zona, jrvs_by_center.estatus, false));
+                            }                         
+                        });
+
+                        $("#li-jrv-01").append(`<p class="inline-flex items-center text-sm font-normal text-gray-500 dark:text-gray-400"><svg class="w-6 h-6 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.529 7.988a2.502 2.502 0 0 1 5 .191A2.441 2.441 0 0 1 10 10.582V12m-.01 3.008H10M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>¿Qué opciones tengo si mi mesa no está disponible? Puedes elegir entre las mesas disponibles en tu mismo centro de votación o elegir alguna de tu mismo municipio.</p>`);
+                        $("#li-jrv-02").append(`<p class="inline-flex items-center text-sm font-normal text-gray-500 dark:text-gray-400"><svg class="w-4 h-4 text-gray-500 dark:text-white mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>No hay más mesas disponibles en tu centro de votación.</p>`);                     
+                        //fetched = true;
+                    }
+                });
+
+                $.ajax({
+                    url: "{{url('api/fetch-jrvs-by-city')}}",
+                    type: "POST",
+                    data: {
+                        jrv: JRV_USR,
+                        municipio: $('#city').val(),
+                        _token: '{{csrf_token()}}'
+                    },
+                    dataType: 'json',
+                    success: function (result) {                      
+                        $.each(result.jrvs_by_city, function (index, jrvs_by_city) {
+                            $("#li-jrv-03").append(createListItem(jrvs_by_city.jrv, jrvs_by_city.nombre+', '+jrvs_by_city.ubicacion+', ZONA '+jrvs_by_city.zona, jrvs_by_city.estatus, false));                         
+                        });
+
+                        $("#li-jrv-03").append(`<p class="inline-flex items-center text-sm font-normal text-gray-500 dark:text-gray-400"><svg class="w-4 h-4 text-gray-500 dark:text-white mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>No hay más mesas disponibles en tu municipio.</p>`);
+
+                        // Add the events to all the new list items
+                        const links = document.querySelectorAll('a.flex.items-center');
+
+                        links.forEach(function(link) {
+                            link.addEventListener('click', function(event) {
+                            event.preventDefault();
+
+                            const radioButton = link.querySelector('input[type="radio"]');
+
+                                if (!radioButton.hasAttribute('disabled')) {
+                                    radioButton.checked = true;
+                                    JRV_SELECTED = radioButton.value;
+                                    
+                                    enableButtonConfirm(radioButton.checked);
+                                    showButtonMap(radioButton.checked);
+                                }
+                            });
+                        });
+                        //fetched = true;
+                    }
+                });
+            });
+
+            function enableButtonAvailability(enable) {
+                if (enable) {
+                    $('#btn-availability').prop('disabled', false);
+                    $('#btn-availability').removeClass('cursor-not-allowed bg-indigo-300 hover:bg-indigo-400');
+                } else {
+                    $('#btn-availability').prop('disabled', true);
+                    $('#btn-availability').addClass('cursor-not-allowed bg-indigo-300 hover:bg-indigo-400');
+                }
+            }
+
+            function enableButtonConfirm(enable) {
+                if (enable) {
+                    $('#btn-confirm').prop('disabled', false);
+                    $('#btn-confirm').removeClass('cursor-not-allowed bg-indigo-300 hover:bg-indigo-400');
+                } else {
+                    $('#btn-confirm').prop('disabled', true);
+                    $('#btn-confirm').addClass('cursor-not-allowed bg-indigo-300 hover:bg-indigo-400');
+                }
+            }
+
+            function showButtonMap(showup) {
+                if (showup) {
+                    $('#btn-view-map').removeClass('invisible');
+                } else {
+                    $('#btn-view-map').addClass('invisible');
+                }
+            }
+
+            function changeStatusToSelected(change) {
+                if (change) {
+                    $('#input-jrv').val(JRV_SELECTED);
+                    $('#btn-availability').css('background-color', '#84cc16');
+                    $('#btn-availability').text('Seleccionada');
+                    enableButtonAvailability(false);
+                } else {
+                    JRV_SELECTED = '';
+                    $('#btn-availability').css('background-color', '#3730a3');
+                    $('#btn-availability').text('Ver disponibilidad');
+                    enableButtonAvailability(true);
+                }
+            }
 
         });      
 
@@ -567,18 +548,20 @@
             }
         }
 
+        // JRV list items
+        function createListItem(id_jrv, description, availability, show) {
+            var listItem = '';
 
-        const links = document.querySelectorAll('a.flex.items-center'); // Select all the anchor elements with the specified classes
+            if (availability === 0) {
+                listItem = '<li><a href="#" class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"><div class="flex items-center"><input id="rb-'+id_jrv+'" type="radio" value="'+id_jrv+'" name="default-radio" class="w-4 h-4 text-indigo-600 bg-gray-100 border-gray-300 focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"><div class="flex-column items-start ml-3"><span class="flex-1 whitespace-nowrap">#'+id_jrv+'<span class="inline-flex items-center justify-center px-2 py-0.5 ml-3 text-xs font-medium text-gray-50 rounded dark:text-gray-50" style="background-color: #84cc16">Disponible</span></span><p class="text-sm font-normal text-gray-600 dark:text-gray-500">'+description+'</p></div></div></a></li>'; 
+            } else {
+                if (show){
+                    listItem = '<li><a href="#" class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"><div class="flex items-center"><input disabled id="rb-'+id_jrv+'" type="radio" value="'+id_jrv+'" name="default-radio" class="w-4 h-4 text-indigo-600 bg-gray-100 border-gray-300 focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"><div class="flex-column items-start ml-3"><span class="flex-1 whitespace-nowrap">#'+id_jrv+'<span class="inline-flex items-center justify-center px-2 py-0.5 ml-3 text-xs font-medium text-gray-50 bg-red-500 rounded dark:bg-red-700 dark:text-gray-50">No disponible</span></span><p class="text-sm font-normal text-gray-600 dark:text-gray-500">'+description+'</p></div></div></a></li>';          
+                }
+            }
 
-        links.forEach(function(link) {
-            link.addEventListener('click', function(event) {
-            //event.preventDefault();
-
-            const radioButton = link.querySelector('input[type="radio"]');
-                radioButton.checked = true; // Selects the associated radio button
-            });
-        });
-
+            return listItem;
+        }
     </script>
 
 

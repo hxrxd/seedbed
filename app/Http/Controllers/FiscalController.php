@@ -96,4 +96,39 @@ class FiscalController extends Controller
         return response()->json($data);
     }
 
+    /**
+     * Fetch the JRVs by center
+     *
+     * @return response()
+     */
+    public function fetchTablesByCenter(Request $request)
+    {
+        $center_name =  Mesa::where("jrv", $request->jrv)->pluck('nombre')->first();
+
+        $data['jrvs_by_center'] = Mesa::where("nombre", $center_name)
+                                    ->orderBy("jrv")
+                                    ->orderBy("estatus")
+                                    ->get(["jrv","latitude","longitude","nombre","ubicacion","zona","estatus"]);
+  
+        return response()->json($data);
+    }
+
+    /**
+     * Fetch the JRVs by city
+     *
+     * @return response()
+     */
+    public function fetchTablesByCity(Request $request)
+    {
+        $center_name =  Mesa::where("jrv", $request->jrv)->pluck('nombre')->first();
+
+        $data['jrvs_by_city'] = Mesa::where("municipio", $request->municipio)
+                            ->whereNotIn("nombre", [$center_name]) // Prevent to get the tables in the same center
+                            ->orderBy("jrv")
+                            ->orderBy("estatus")
+                            ->get(["jrv","latitude","longitude","nombre","ubicacion","zona","estatus"]);
+  
+        return response()->json($data);
+    }
+
 }
