@@ -16,18 +16,11 @@
                 </h2>
 
                 <div class="md:flex md:flex-row">
-                    <!-- Names -->
+                    <!-- ID document -->
                     <div class="md:basis-1/4 mt-4">
-                        <x-input-label for="name" :value="__('Nombres')" />
-                        <x-text-input id="name" class="block mt-1 w-full" type="text" name="nombres" :value="old('name')" required autofocus autocomplete="name" />
-                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
-                    </div>
-
-                    <!-- Surnames -->
-                    <div class="md:basis-1/4 md:ml-6 mt-4">
-                        <x-input-label for="surname" :value="__('Apellidos')" />
-                        <x-text-input id="surname" class="block mt-1 w-full" type="text" name="apellidos" :value="old('surname')" required autofocus autocomplete="surname" />
-                        <x-input-error :messages="$errors->get('surname')" class="mt-2" />
+                        <x-input-label for="dpi" :value="__('DPI')" />
+                        <x-text-input id="dpi" class="block mt-1 w-full" type="number" name="dpi" :value="old('dpi')" required autofocus autocomplete="dpi" />
+                        <x-input-error :messages="$errors->get('dpi')" class="mt-2" />
                     </div>
 
                     <!-- Birthdate -->
@@ -41,7 +34,7 @@
                                 </select>
                             </div>
                             <div class="basis-1/2">                     
-                                <select id="months" class="form-control border-gray-300 mt-1 w-full" required autofocus>
+                                <select id="months" class="form-control border-gray-300 border-r-0 border-l-0 mt-1 w-full focus:border-indigo-700" required autofocus>
                                     <option value="">MM</option>
                                 </select>
                             </div>
@@ -53,30 +46,30 @@
                         </div>                     
                     </div>
 
-                    <!-- Sex -->
+                    <!-- Names -->
                     <div class="md:basis-1/4 md:ml-6 mt-4">
-                        <x-input-label for="sex" :value="__('Sexo según DPI')" />
-                        <select id="sex" name="sexo" class="form-control border-gray-300 rounded-lg mt-1 w-full" required autofocus>
-                            <option value="">Elije una opción</option>
-                            <option value="Femenino">Femenino</option>
-                            <option value="Masculino">Masculino</option>
-                            <option value="Prefiero no decirlo">Prefiero no decirlo</option>
-                        </select>
-                        <x-input-error :messages="$errors->get('sex')" class="mt-2" />
+                        <x-input-label for="name" :value="__('Nombres')" />
+                        <x-text-input id="name" class="block mt-1 w-full" type="text" name="nombres" :value="old('name')" required autofocus autocomplete="name" />
+                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                    </div>
+
+                    <!-- Surnames -->
+                    <div class="md:basis-1/4 md:ml-6 mt-4">
+                        <x-input-label for="surname" :value="__('Apellidos')" />
+                        <x-text-input id="surname" class="block mt-1 w-full" type="text" name="apellidos" :value="old('surname')" required autofocus autocomplete="surname" />
+                        <x-input-error :messages="$errors->get('surname')" class="mt-2" />
                     </div>
                 </div>
 
-                <!-- Location section -->
-                <div class="md:flex md:flex-row">
-                    <!-- ID document -->
-                    <div class="md:basis-1/3 mt-4">
-                        <x-input-label for="dpi" :value="__('DPI')" />
-                        <x-text-input id="dpi" class="block mt-1 w-full" type="number" name="dpi" :value="old('dpi')" required autofocus autocomplete="dpi" />
-                        <x-input-error :messages="$errors->get('dpi')" class="mt-2" />
-                    </div>
+                <!-- Validation alert container -->
+                <div id="alert-container" class="max-w-7xl">                   
+                </div>
+
+                <!-- Location section and Gender -->
+                <div class="md:flex md:flex-row">                  
 
                     <!-- Department -->
-                    <div class="md:basis-1/3 md:ml-6 mt-4">
+                    <div class="md:basis-1/3 mt-4">
                         <x-input-label for="department" :value="__('Departamento')" />
                         <select id="department" name="departamento" class="form-control border-gray-300 rounded-lg mt-1 w-full" required autofocus>
                             <option value="">Selecciona tu departamento</option>    
@@ -94,10 +87,18 @@
                         </select>
                         <x-input-error :messages="$errors->get('city')" class="mt-2" />
                     </div>
-                </div>
 
-                <!-- Validation alert container -->
-                <div id="alert-container" class="max-w-7xl">                   
+                    <!-- Sex -->
+                    <div class="md:basis-1/3 md:ml-6 mt-4">
+                        <x-input-label for="sex" :value="__('Sexo según DPI')" />
+                        <select id="sex" name="sexo" class="form-control border-gray-300 rounded-lg mt-1 w-full" required autofocus>
+                            <option value="">Elije una opción</option>
+                            <option value="Femenino">Femenino</option>
+                            <option value="Masculino">Masculino</option>
+                            <option value="Prefiero no decirlo">Prefiero no decirlo</option>
+                        </select>
+                        <x-input-error :messages="$errors->get('sex')" class="mt-2" />
+                    </div>
                 </div>
 
                 <!-- Contact section -->
@@ -140,6 +141,7 @@
                             </div>
                             <input type="search" id="input-jrv" class="block w-full p-4 pl-10 text-base font-extrabold text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500" placeholder="Buscar una mesa" required>
                             <button id="btn-availability" class="text-white absolute right-2.5 bottom-2.5 bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900" data-modal-target="jrv-select-modal" data-modal-toggle="jrv-select-modal">Ver disponibilidad</button>
+                            <button id="btn-availability-2" class="text-white absolute right-2.5 bottom-2.5 font-extrabold rounded-lg text-sm px-4 py-2 hidden" style="background-color:#84cc16;" disabled>Seleccionada</button>
                         </div>
                     </div>
 
@@ -148,7 +150,7 @@
                         <x-input-label for="table-group" :value="__('Fiscal Informático')" />
                         <div class="flex">
                             <div class="flex items-center h-5">
-                                <input id="fiscal-informatico" name="fiscal_electronico" aria-describedby="helper-checkbox-text" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                <input id="fiscal-informatico" name="fiscal_electronico" aria-describedby="helper-checkbox-text" type="checkbox" value="" class="w-4 h-4 text-indigo-600 bg-gray-100 border-gray-300 rounded focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                             </div>
                             <div class="ml-2 text-sm">
                                 <label for="helper-checkbox" class="font-medium text-gray-900 dark:text-gray-300">Deseo ser un fiscal informático</label>
@@ -190,7 +192,7 @@
                             </div>
                             <!-- Modal footer -->
                             <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-                                <button id="btn-fiscal-info" data-modal-hide="info-fiscal-modal" type="button" class="text-white bg-indigo-800 hover:bg-blue-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900">Entendido</button>
+                                <button id="btn-fiscal-info" data-modal-hide="info-fiscal-modal" type="button" class="text-white bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900">Entendido</button>
                             </div>
                         </div>
                     </div>
@@ -295,14 +297,14 @@
 
 
                 <div class="flex items-center justify-start mt-8">                     
-                    <x-text-input id="accept" class="block mt-1" type="checkbox" name="accept" :value="old('accept')" required autocomplete="accept" />                       
+                    <x-text-input id="accept" class="block mt-1 text-indigo-600 bg-gray-100 border-gray-300 rounded focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" type="checkbox" name="accept" :value="old('accept')" required autocomplete="accept" />                       
                     <a id="btn-terms" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ml-2" data-modal-target="staticModal" data-modal-toggle="staticModal" href="#">
                         {{ __('He leído el acuerdo de registro') }}
                     </a>                    
                 </div>
 
                 <div class="flex items-center justify-start mt-4">
-                    <x-primary-button class="">
+                    <x-primary-button class="text-white bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900">
                         {{ __('Guardar') }}
                     </x-primary-button>
                 </div>
@@ -321,6 +323,7 @@
             var typingTimer;
             var doneTypingInterval = 3000;
             var date_dd = '', date_mm = '', date_yyyy = '';
+            var USR_NAME = '', USR_SURNAME = '', USR_DEPT = '', USR_CITY = '';
             var JRV_USR = '', JRV_SELECTED = '';       
             var alertValidation = '<div id="alert-additional-content-2" class="p-4 mb-4 text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800 mt-4" role="alert"><div class="flex items-center"><svg class="w-4 h-4 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg><span class="sr-only">Info</span><h3 class="text-lg font-medium">DPI no válido</h3></div><div class="mt-2 mb-4 text-sm">El DPI ingresado o la fecha de nacimiento no son correctos. Por favor, revisa tu fecha de nacimiento e intenta ingresar tu DPI nuevamente.</div><div class="flex"><button type="button" class="text-white bg-red-800 hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-xs px-3 py-1.5 mr-2 text-center inline-flex items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" data-dismiss-target="#alert-additional-content-2">Entendido</button></div></div>';
 
@@ -350,7 +353,7 @@
 
             // Setting up buttons
             enableButtonAvailability(false); 
-            enableInputEmail(false);         
+            enableInputEmail(false);      
             
             // City Dropdown Change Event
             $('#department').on('change', function () {
@@ -370,50 +373,10 @@
                             $("#city").append('<option value="' + value
                                 .municipio+ '">' + value.municipio + '</option>');
                         });
+
+                        $('#city').val(USR_CITY);
                     }
                 });
-            });
-
-            // DPI Change Event
-            $('#dpi').on('input', function() {                                 
-                
-                // Validate data
-                clearTimeout(typingTimer);
-                typingTimer = setTimeout(function() {
-                    var dpi_value = $('#dpi').val().trim();
-                    var date_value = $('#birthdate').val()+'T06:00:00.000Z';
-                    var data = {"cui":`${dpi_value}`,"fecha":`${date_value}`};
-                    
-                    $.ajax({
-                        url: "https://dondevotas2023api.tse.org.gt/dondevotas/consulta",
-                        type: "POST",
-                        data: JSON.stringify(data),                 
-                        contentType: 'application/json',
-                        dataType: 'json',
-                        success: function (result) {
-                            console.log(result.data.nromesa);    
-                            console.log(result.data.departamento); 
-                            console.log(result.data.municipio);     
-                            console.log(result.data.nombre);            
-                        },
-                        error: function(xhr, status, error) {
-                            if (xhr.status === 404) {
-                                $('#alert-container').html(alertValidation);
-
-                                // Dismiss the alert when the button is clicked
-                                $('[data-dismiss-target="#alert-additional-content-2"]').click(function() {
-                                    $('#alert-additional-content-2').remove();
-                                    $('#dpi').val('');
-                                });
-                                // Handle 404 error
-                                //console.error("The requested resource was not found.");
-                            } else {
-                                // Handle other errors
-                                //console.error(xhr.responseText);
-                            }
-                        }
-                    });
-                }, doneTypingInterval);
             });
 
             // Days input change event
@@ -432,6 +395,46 @@
             $('#years').on('change', function () {
                 date_yyyy = this.value;
                 $('#birthdate').val(date_yyyy+'-'+date_mm+'-'+date_dd);
+
+                // Get the info
+                var dpi_value = $('#dpi').val().trim();
+                var date_value = $('#birthdate').val()+'T06:00:00.000Z';
+                var data = {"cui":`${dpi_value}`,"fecha":`${date_value}`};
+                    
+                $.ajax({
+                    url: "https://dondevotas2023api.tse.org.gt/dondevotas/consulta",
+                    type: "POST",
+                    data: JSON.stringify(data),                 
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    success: function (result) {
+                        var name_usr = result.data.nombre.split(",");
+                        USR_SURNAME = name_usr[0].trim();
+                        USR_NAME = name_usr[1].trim();
+                        USR_DEPT = result.data.departamento;
+                        USR_CITY = result.data.municipio;
+                        JRV_USR = result.data.nromesa
+
+                        $('#surname').val(USR_SURNAME);
+                        $('#name').val(USR_NAME); 
+                        $('#input-jrv').val(JRV_USR);  
+                        $('#department').val(USR_DEPT);
+                        $('#department').trigger('change'); 
+                        $('#input-jrv').trigger('input');                   
+                    },
+                    error: function(xhr, status, error) {
+                        if (xhr.status === 404) {
+                            $('#alert-container').html(alertValidation);
+                                // Dismiss the alert when the button is clicked
+                            $('[data-dismiss-target="#alert-additional-content-2"]').click(function() {
+                                $('#alert-additional-content-2').remove();
+                                $('#dpi').val('');
+                            });
+                        } else {
+                            //console.error(xhr.responseText);
+                        }
+                    }
+                });
             });
 
             $('#input-jrv').on('input', function () {
@@ -458,10 +461,8 @@
                 event.preventDefault(); 
                 enableButtonConfirm(false);
                 showButtonMap(false);
-
-                // Commented in order to get the current status
-                //if(!fetched)
                 
+                // Get a new JRV if usr change the number
                 JRV_USR = $("#input-jrv").val();
 
                 // Init lists
@@ -488,7 +489,6 @@
 
                         $("#li-jrv-01").append(`<p class="inline-flex items-center text-sm font-normal text-gray-500 dark:text-gray-400"><svg class="w-6 h-6 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.529 7.988a2.502 2.502 0 0 1 5 .191A2.441 2.441 0 0 1 10 10.582V12m-.01 3.008H10M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>¿Qué opciones tengo si mi mesa no está disponible? Puedes elegir entre las mesas disponibles en tu mismo centro de votación o elegir alguna de tu mismo municipio.</p>`);
                         $("#li-jrv-02").append(`<p class="inline-flex items-center text-sm font-normal text-gray-500 dark:text-gray-400"><svg class="w-4 h-4 text-gray-500 dark:text-white mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>No hay más mesas disponibles en tu centro de votación.</p>`);                     
-                        //fetched = true;
                     }
                 });
 
@@ -526,7 +526,6 @@
                                 }
                             });
                         });
-                        //fetched = true;
                     }
                 });
             });
@@ -534,9 +533,11 @@
             function enableButtonAvailability(enable) {
                 if (enable) {
                     $('#btn-availability').prop('disabled', false);
+                    $('#btn-availability').addClass('bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900');
                     $('#btn-availability').removeClass('cursor-not-allowed bg-indigo-300 hover:bg-indigo-400');
                 } else {
                     $('#btn-availability').prop('disabled', true);
+                    $('#btn-availability').removeClass('bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900');
                     $('#btn-availability').addClass('cursor-not-allowed bg-indigo-300 hover:bg-indigo-400');
                 }
             }
@@ -544,9 +545,11 @@
             function enableButtonConfirm(enable) {
                 if (enable) {
                     $('#btn-confirm').prop('disabled', false);
+                    $('#btn-confirm').addClass('bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900');
                     $('#btn-confirm').removeClass('cursor-not-allowed bg-indigo-300 hover:bg-indigo-400');
                 } else {
                     $('#btn-confirm').prop('disabled', true);
+                    $('#btn-confirm').removeClass('bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900');
                     $('#btn-confirm').addClass('cursor-not-allowed bg-indigo-300 hover:bg-indigo-400');
                 }
             }
@@ -562,14 +565,14 @@
             function changeStatusToSelected(change) {
                 if (change) {
                     $('#input-jrv').val(JRV_SELECTED);
-                    $('#btn-availability').css('background-color', '#84cc16');
-                    $('#btn-availability').text('Seleccionada');
-                    enableButtonAvailability(false);
+                    $('#btn-availability').addClass('hidden');
+                    $('#btn-availability-2').removeClass('hidden');
+                    //enableButtonAvailability(false);
                 } else {
                     JRV_SELECTED = '';
-                    $('#btn-availability').css('background-color', '#3730a3');
-                    $('#btn-availability').text('Ver disponibilidad');
-                    enableButtonAvailability(true);
+                    $('#btn-availability-2').addClass('hidden');
+                    $('#btn-availability').removeClass('hidden');
+                    //enableButtonAvailability(true);
                 }
             }
 
