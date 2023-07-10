@@ -64,12 +64,12 @@
                 <div class="p-4 md:p-12 text-center lg:text-left">
                     <!-- Image for mobile view-->
                     <div class="block lg:hidden rounded-full shadow-xl mx-auto -mt-16 h-48 w-48 bg-cover bg-center"
-                        style="background-image:  url({{url('assets/img/card.png')}} )"></div>
+                        style="background-image:  url({{url('assets/img/logo.png')}} ); box-shadow:none;"></div>
 
-                    <h1 class="text-3xl font-bold pt-8 lg:pt-0">Fiscal Autorizado</h1>
-                    <div class="mx-auto lg:mx-0 w-4/5 pt-3 border-b-2 border-green-500 opacity-25"></div>
+                    <h1 class="text-3xl font-bold pt-8 lg:pt-0" style="color:#652C90">Fiscal Autorizado</h1>
+                    <div class="mx-auto lg:mx-0 w-4/5 pt-3 border-b-2 border-green-500 opacity-25" style="border-color:#D7DF28"></div>
                     <p class="pt-4 text-base font-bold flex items-center justify-center lg:justify-start">
-                         Nombre: {{ $fiscal->nombres }} {{ $fiscal->apellidos }}
+                         Nombre: {{ mb_strtoupper($fiscal->nombres); }} {{ mb_strtoupper($fiscal->apellidos) }}
                     </p>
                     <p class="pt-4 text-base font-bold flex items-center justify-center lg:justify-start">
                          DPI: {{ $fiscal->dpi }}
@@ -83,7 +83,7 @@
                          Mesa: {{ $mesa->jrv }}
                     </p>
 
-                    <p class="pt-8 text-sm">Totally optional short description about yourself, what you do and so on.</p>
+                    <p class="pt-8 text-xs">Un Fiscal de JRV es la persona designada por un partido político o comité cívico electoral para vigilar las actividades de una o varias Juntas Receptoras de Votos y está debidamente acreditada.</p>
 
                 </div>
 
@@ -99,10 +99,7 @@
             </div>
 
 
-            <!-- Pin to top right corner -->
-            <div class="absolute top-0 right-0 h-12 w-18 p-4">
-                <button class="js-change-theme focus:outline-none">🌙</button>
-            </div>
+           
 
         </div>
 

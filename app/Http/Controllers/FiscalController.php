@@ -78,9 +78,6 @@ class FiscalController extends Controller
     public function show(string $id)
     {
         //
-        $fiscal = Fiscal::where('correo','=',$id)->first();
-        $mesa = Mesa::select('jrv','departamento','municipio','nombre','fiscal')->where('fiscal','=',$fiscal->correo)->first();
-        return view('verificacion.fiscal', ['fiscal'=>$fiscal,'mesa'=>$mesa]);
     } 
 
     /**

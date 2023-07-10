@@ -40,7 +40,7 @@
                              @if($mesa->fiscal==null)
                                 <span class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Pendiente</span>
                              @else 
-                                <a href="{{ 'fiscal/'.$mesa->fiscal }}">
+                                <a href="{{ 'verificacion/'.$mesa->fiscal }}">
                                 <span class="bg-purple-100 text-purple-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-purple-900 dark:text-purple-300">Asignado</span>
                                 </a>
                              @endif
