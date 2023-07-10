@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Fiscal;
 use App\Models\Mesa;
-
+use Carbon\Carbon;
 
 use Auth;
 
@@ -47,11 +47,14 @@ class FiscalController extends Controller
             'departamento' => ['required', 'string'],
             'municipio' => ['required', 'string'],
             'telefono' => ['required', 'string'],
-            'rango_edad' => ['required', 'string'],
+            'fecha_nacimiento' => ['required', 'date'],
             'sexo' => ['required', 'string'],
             'correo' => ['required', 'string'],
+            'fiscal_electronico' => ['string'],
             'status' => ['string'],
         ]);
+
+        $validatedData['fecha_nacimiento'] = Carbon::parse($validatedData['fecha_nacimiento']);
 
         $fiscal = Fiscal::create($validatedData);
 
@@ -86,6 +89,41 @@ class FiscalController extends Controller
     {
         $data['cities'] = Mesa::distinct()->where("departamento", $request->departamento)
                                 ->get(["municipio"]);
+  
+        return response()->json($data);
+    }
+
+    /**
+     * Fetch the JRVs by center
+     *
+     * @return response()
+     */
+    public function fetchTablesByCenter(Request $request)
+    {
+        $center_name =  Mesa::where("jrv", $request->jrv)->pluck('nombre')->first();
+
+        $data['jrvs_by_center'] = Mesa::where("nombre", $center_name)
+                                    ->orderBy("jrv")
+                                    ->orderBy("estatus")
+                                    ->get(["jrv","latitude","longitude","nombre","ubicacion","zona","estatus"]);
+  
+        return response()->json($data);
+    }
+
+    /**
+     * Fetch the JRVs by city
+     *
+     * @return response()
+     */
+    public function fetchTablesByCity(Request $request)
+    {
+        $center_name =  Mesa::where("jrv", $request->jrv)->pluck('nombre')->first();
+
+        $data['jrvs_by_city'] = Mesa::where("municipio", $request->municipio)
+                            ->whereNotIn("nombre", [$center_name]) // Prevent to get the tables in the same center
+                            ->orderBy("jrv")
+                            ->orderBy("estatus")
+                            ->get(["jrv","latitude","longitude","nombre","ubicacion","zona","estatus"]);
   
         return response()->json($data);
     }
