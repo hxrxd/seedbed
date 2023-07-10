@@ -53,6 +53,9 @@ Route::resource('fiscal', FiscalController::class)->middleware(['auth', 'verifie
 Route::post('api/fetch-cities', [FiscalController::class, 'fetchCities']);
 Route::post('api/fetch-jrvs-by-center', [FiscalController::class, 'fetchTablesByCenter']);
 Route::post('api/fetch-jrvs-by-city', [FiscalController::class, 'fetchTablesByCity']);
+Route::post('api/post-fiscal', [FiscalController::class, 'store']);
+//Route::get('assign/', [FiscalController::class, 'store'])->name('fiscal.assign');
+
 
 Route::get('assets/img/{filename}', function($filename){
         $path = 'assets/img/' . $filename;

@@ -58,8 +58,8 @@ class FiscalController extends Controller
 
         $fiscal = Fiscal::create($validatedData);
 
-
-        return response()->json(['message' => 'Fiscal created successfully', 'data' => $fiscal], 201);
+        return response()->json($fiscal);
+        //return redirect()->route('fiscal.assign', ['fiscal' => $fiscal]);
     }
 
     /**

@@ -7,7 +7,7 @@
         <!--Card-->
         <div id='recipients' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
             
-            <form method="POST" action="{{ route('fiscal.store') }}">
+            <form id="frm-main" class="">
                 @csrf
                 
                 <!-- Personal info section -->
@@ -117,7 +117,7 @@
                     <!-- Email Address -->
                     <div class="md:basis-1/2 md:ml-6 mt-4">
                         <x-input-label for="email" :value="__('Correo')" />
-                        <x-text-input id="email" class="block mt-1 w-full" type="email" name="correo" :value="old('email') ?? Auth::user()->email" required autocomplete="username" />
+                        <x-text-input id="email" class="block mt-1 w-full" type="email" name="correo" value="{{Auth::user()->email}}" required autocomplete="username" />
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
                 </div>
@@ -150,7 +150,7 @@
                         <x-input-label for="table-group" :value="__('Fiscal Informático')" />
                         <div class="flex">
                             <div class="flex items-center h-5">
-                                <input id="fiscal-informatico" name="fiscal_electronico" aria-describedby="helper-checkbox-text" type="checkbox" value="" class="w-4 h-4 text-indigo-600 bg-gray-100 border-gray-300 rounded focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                <input id="fiscal-informatico" name="fiscal_electronico" aria-describedby="helper-checkbox-text" type="checkbox" value="N" class="w-4 h-4 text-indigo-600 bg-gray-100 border-gray-300 rounded focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                             </div>
                             <div class="ml-2 text-sm">
                                 <label for="helper-checkbox" class="font-medium text-gray-900 dark:text-gray-300">Deseo ser un fiscal informático</label>
@@ -304,11 +304,20 @@
                 </div>
 
                 <div class="flex items-center justify-start mt-4">
-                    <x-primary-button class="text-white bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900">
+                    <button id="save" class="text-white bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900">
+                        <svg id="loading" aria-hidden="true" role="status" class="hidden inline w-4 h-4 mr-3 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
+                            <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>
+                        </svg>    
+                    
                         {{ __('Guardar') }}
-                    </x-primary-button>
+                    </button>
                 </div>
             </form>
+
+            <div id="an" class="hidden">
+
+            </div>
 
         </div>
         <!--/Card-->
@@ -323,7 +332,8 @@
             var typingTimer;
             var doneTypingInterval = 3000;
             var date_dd = '', date_mm = '', date_yyyy = '';
-            var USR_NAME = '', USR_SURNAME = '', USR_DEPT = '', USR_CITY = '';
+            const API_URL_TSE = 'https://dondevotas2023api.tse.org.gt/dondevotas/consulta';
+            var USR_NAME = '', USR_SURNAME = '', USR_DEPT = '', USR_CITY = '', USR_MAIL = '';
             var JRV_USR = '', JRV_SELECTED = '';       
             var alertValidation = '<div id="alert-additional-content-2" class="p-4 mb-4 text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800 mt-4" role="alert"><div class="flex items-center"><svg class="w-4 h-4 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg><span class="sr-only">Info</span><h3 class="text-lg font-medium">DPI no válido</h3></div><div class="mt-2 mb-4 text-sm">El DPI ingresado o la fecha de nacimiento no son correctos. Por favor, revisa tu fecha de nacimiento e intenta ingresar tu DPI nuevamente.</div><div class="flex"><button type="button" class="text-white bg-red-800 hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-xs px-3 py-1.5 mr-2 text-center inline-flex items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" data-dismiss-target="#alert-additional-content-2">Entendido</button></div></div>';
 
@@ -353,88 +363,63 @@
 
             // Setting up buttons
             enableButtonAvailability(false); 
-            enableInputEmail(false);      
-            
+
             // City Dropdown Change Event
             $('#department').on('change', function () {
-                var idDep = this.value;
-                $("#city").html('');
-                $.ajax({
-                    url: "{{url('api/fetch-cities')}}",
-                    type: "POST",
-                    data: {
-                        departamento: idDep,
-                        _token: '{{csrf_token()}}'
-                    },
-                    dataType: 'json',
-                    success: function (result) {
-                        $('#city').html('<option value="">Seleccionar Municipio</option>');
-                        $.each(result.cities, function (key, value) {
-                            $("#city").append('<option value="' + value
-                                .municipio+ '">' + value.municipio + '</option>');
-                        });
-
-                        $('#city').val(USR_CITY);
-                    }
-                });
+                fetchCities();
             });
 
             // Days input change event
             $('#days').on('change', function () {
                 date_dd = this.value;
-                $('#birthdate').val(date_yyyy+'-'+date_mm+'-'+date_dd);
+                updateBirthdate()
+            });
+
+            // Save action button
+            $('#save').click(function (event) {
+                $('#loading').removeClass('hidden');
+
+                $.ajax({
+                    url: "{{url('api/post-fiscal')}}",
+                    type: "POST",
+                    data: {
+                        nombres:$('#name').val(),
+                        apellidos:$('#surname').val(),
+                        dpi:$('#dpi').val(),
+                        departamento:$('#department').val(),
+                        municipio:$('#city').val(),
+                        telefono:$('#phone').val(),
+                        fecha_nacimiento:$('#birthdate').val(),
+                        sexo:$('#sex').val(),
+                        correo:$('#email').val(),
+                        fiscal_electronico:$('#fiscal-informatico').val(),
+                        _token: '{{csrf_token()}}'
+                    },
+                    dataType: 'json',
+                    success: function (result) {
+                        console.log(result);
+                        $('#loading').addClass('hidden');
+
+                        $('#frm-main').addClass('hidden');
+                        $('#an').removeClass('hidden');
+                        $('#an').addClass('transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300');
+                    }
+                });
             });
 
             // Days input change event
             $('#months').on('change', function () {
                 date_mm = this.value;
-                $('#birthdate').val(date_yyyy+'-'+date_mm+'-'+date_dd);
+                updateBirthdate()
             });
 
             // Days input change event
             $('#years').on('change', function () {
                 date_yyyy = this.value;
-                $('#birthdate').val(date_yyyy+'-'+date_mm+'-'+date_dd);
+                updateBirthdate()
 
-                // Get the info
-                var dpi_value = $('#dpi').val().trim();
-                var date_value = $('#birthdate').val()+'T06:00:00.000Z';
-                var data = {"cui":`${dpi_value}`,"fecha":`${date_value}`};
-                    
-                $.ajax({
-                    url: "https://dondevotas2023api.tse.org.gt/dondevotas/consulta",
-                    type: "POST",
-                    data: JSON.stringify(data),                 
-                    contentType: 'application/json',
-                    dataType: 'json',
-                    success: function (result) {
-                        var name_usr = result.data.nombre.split(",");
-                        USR_SURNAME = name_usr[0].trim();
-                        USR_NAME = name_usr[1].trim();
-                        USR_DEPT = result.data.departamento;
-                        USR_CITY = result.data.municipio;
-                        JRV_USR = result.data.nromesa
-
-                        $('#surname').val(USR_SURNAME);
-                        $('#name').val(USR_NAME); 
-                        $('#input-jrv').val(JRV_USR);  
-                        $('#department').val(USR_DEPT);
-                        $('#department').trigger('change'); 
-                        $('#input-jrv').trigger('input');                   
-                    },
-                    error: function(xhr, status, error) {
-                        if (xhr.status === 404) {
-                            $('#alert-container').html(alertValidation);
-                                // Dismiss the alert when the button is clicked
-                            $('[data-dismiss-target="#alert-additional-content-2"]').click(function() {
-                                $('#alert-additional-content-2').remove();
-                                $('#dpi').val('');
-                            });
-                        } else {
-                            //console.error(xhr.responseText);
-                        }
-                    }
-                });
+                // Get the user info from TSE API
+                fetchUserInfo();
             });
 
             $('#input-jrv').on('input', function () {
@@ -462,6 +447,73 @@
                 enableButtonConfirm(false);
                 showButtonMap(false);
                 
+                fetchJRVs();
+            });
+
+            function fetchCities() {
+                var idDep = $('#department').val();
+                $("#city").html('');
+                $.ajax({
+                    url: "{{url('api/fetch-cities')}}",
+                    type: "POST",
+                    data: {
+                        departamento: idDep,
+                        _token: '{{csrf_token()}}'
+                    },
+                    dataType: 'json',
+                    success: function (result) {
+                        $('#city').html('<option value="">Seleccionar Municipio</option>');
+                        $.each(result.cities, function (key, value) {
+                            $("#city").append('<option value="' + value
+                                .municipio+ '">' + value.municipio + '</option>');
+                        });
+
+                        $('#city').val(USR_CITY);
+                    }
+                });
+            }
+
+            function fetchUserInfo() {
+                const dpi_value = $('#dpi').val().trim();
+                const date_value = `${$('#birthdate').val()}T06:00:00.000Z`;
+                const data = { "cui": dpi_value, "fecha": date_value };
+                    
+                $.ajax({
+                    url: API_URL_TSE,
+                    type: "POST",
+                    data: JSON.stringify(data),                 
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    success: function (result) {
+                        var name_usr = result.data.nombre.split(",");
+                        USR_SURNAME = name_usr[0].trim();
+                        USR_NAME = name_usr[1].trim();
+                        USR_DEPT = result.data.departamento;
+                        USR_CITY = result.data.municipio;
+                        JRV_USR = result.data.nromesa
+
+                        $('#surname').val(USR_SURNAME);
+                        $('#name').val(USR_NAME); 
+                        $('#input-jrv').val(JRV_USR);  
+                        $('#department').val(USR_DEPT);
+                        $('#department').trigger('change'); 
+                        $('#input-jrv').trigger('input');                   
+                    },
+                    error: function(xhr, status, error) {
+                        if (xhr.status === 404) {
+                            $('#alert-container').html(alertValidation);
+                            $('[data-dismiss-target="#alert-additional-content-2"]').click(function() {
+                                $('#alert-additional-content-2').remove();
+                                $('#dpi').val('');
+                            });
+                        } else {
+                            //console.error(xhr.responseText);
+                        }
+                    }
+                });
+            }
+
+            function fetchJRVs() {
                 // Get a new JRV if usr change the number
                 JRV_USR = $("#input-jrv").val();
 
@@ -528,7 +580,12 @@
                         });
                     }
                 });
-            });
+            }
+
+            function updateBirthdate() {
+                const birthdate = `${date_yyyy}-${date_mm}-${date_dd}`;
+                $('#birthdate').val(birthdate);
+            }
 
             function enableButtonAvailability(enable) {
                 if (enable) {
@@ -584,65 +641,63 @@
                 }
             }
 
-        });      
-
-        // Populate days 
-        function populateDays() {
-            var select = document.getElementById("days");
-            
-            for (var i = 1; i <= 31; i++) {
-                var option = document.createElement("option");
-                var day = i < 10 ? "0" + i : i;
-                option.value = day;
-                option.text = day;
-                option.setAttribute("name", day);
-                select.appendChild(option);
-            }
-        }
-
-        // Populate months
-        function populateMonths() {
-            var select = document.getElementById("months");
-            
-            for (var i = 1; i <= 12; i++) {
-                var option = document.createElement("option");
-                var month = i < 10 ? "0" + i : i;
-                option.value = month;
-                option.text = month;
-                option.setAttribute("name", month);
-                select.appendChild(option);
-            }
-        }
-
-        // Populate years
-        function populateYears() {
-            var select = document.getElementById("years");
-            var currentYear = new Date().getFullYear();
-
-            for (var i = currentYear; i >= 1900; i--) {
-                var option = document.createElement("option");
-                option.value = i;
-                option.text = i;
-                option.setAttribute("name", i);
-                select.appendChild(option);
-            }
-        }
-
-        // JRV list items
-        function createListItem(id_jrv, description, availability, show) {
-            var listItem = '';
-
-            if (availability === 0) {
-                listItem = '<li><a href="#" class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"><div class="flex items-center"><input id="rb-'+id_jrv+'" type="radio" value="'+id_jrv+'" name="default-radio" class="w-4 h-4 text-indigo-600 bg-gray-100 border-gray-300 focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"><div class="flex-column items-start ml-3"><span class="flex-1 whitespace-nowrap">#'+id_jrv+'<span class="inline-flex items-center justify-center px-2 py-0.5 ml-3 text-xs font-medium text-gray-50 rounded dark:text-gray-50" style="background-color: #84cc16">Disponible</span></span><p class="text-sm font-normal text-gray-600 dark:text-gray-500">'+description+'</p></div></div></a></li>'; 
-            } else {
-                if (show){
-                    listItem = '<li><a href="#" class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"><div class="flex items-center"><input disabled id="rb-'+id_jrv+'" type="radio" value="'+id_jrv+'" name="default-radio" class="w-4 h-4 text-indigo-600 bg-gray-100 border-gray-300 focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"><div class="flex-column items-start ml-3"><span class="flex-1 whitespace-nowrap">#'+id_jrv+'<span class="inline-flex items-center justify-center px-2 py-0.5 ml-3 text-xs font-medium text-gray-50 bg-red-500 rounded dark:bg-red-700 dark:text-gray-50">No disponible</span></span><p class="text-sm font-normal text-gray-600 dark:text-gray-500">'+description+'</p></div></div></a></li>';          
+            // Populate days 
+            function populateDays() {
+                var select = document.getElementById("days");
+                
+                for (var i = 1; i <= 31; i++) {
+                    var option = document.createElement("option");
+                    var day = i < 10 ? "0" + i : i;
+                    option.value = day;
+                    option.text = day;
+                    option.setAttribute("name", day);
+                    select.appendChild(option);
                 }
             }
 
-            return listItem;
-        }
+            // Populate months
+            function populateMonths() {
+                var select = document.getElementById("months");
+                
+                for (var i = 1; i <= 12; i++) {
+                    var option = document.createElement("option");
+                    var month = i < 10 ? "0" + i : i;
+                    option.value = month;
+                    option.text = month;
+                    option.setAttribute("name", month);
+                    select.appendChild(option);
+                }
+            }
+
+            // Populate years
+            function populateYears() {
+                var select = document.getElementById("years");
+                var currentYear = new Date().getFullYear();
+
+                for (var i = currentYear; i >= 1900; i--) {
+                    var option = document.createElement("option");
+                    option.value = i;
+                    option.text = i;
+                    option.setAttribute("name", i);
+                    select.appendChild(option);
+                }
+            }
+
+            // JRV list items
+            function createListItem(id_jrv, description, availability, show) {
+                var listItem = '';
+
+                if (availability === 0) {
+                    listItem = '<li><a href="#" class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"><div class="flex items-center"><input id="rb-'+id_jrv+'" type="radio" value="'+id_jrv+'" name="default-radio" class="w-4 h-4 text-indigo-600 bg-gray-100 border-gray-300 focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"><div class="flex-column items-start ml-3"><span class="flex-1 whitespace-nowrap">#'+id_jrv+'<span class="inline-flex items-center justify-center px-2 py-0.5 ml-3 text-xs font-medium text-gray-50 rounded dark:text-gray-50" style="background-color: #84cc16">Disponible</span></span><p class="text-sm font-normal text-gray-600 dark:text-gray-500">'+description+'</p></div></div></a></li>'; 
+                } else {
+                    if (show){
+                        listItem = '<li><a href="#" class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"><div class="flex items-center"><input disabled id="rb-'+id_jrv+'" type="radio" value="'+id_jrv+'" name="default-radio" class="w-4 h-4 text-indigo-600 bg-gray-100 border-gray-300 focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"><div class="flex-column items-start ml-3"><span class="flex-1 whitespace-nowrap">#'+id_jrv+'<span class="inline-flex items-center justify-center px-2 py-0.5 ml-3 text-xs font-medium text-gray-50 bg-red-500 rounded dark:bg-red-700 dark:text-gray-50">No disponible</span></span><p class="text-sm font-normal text-gray-600 dark:text-gray-500">'+description+'</p></div></div></a></li>';          
+                    }
+                }
+
+                return listItem;
+            }
+
+        });      
     </script>
-
-
 </x-app-layout>
