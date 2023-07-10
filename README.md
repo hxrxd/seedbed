@@ -1,66 +1,40 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Registro de Fiscales del Partido Movimiento Semilla
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Este software desarrollado con Laravel 10, PHP 8.1 y MariaDB se encarga de administrar el registro de fiscales para el partido político Movimiento Semilla. El sistema cuenta con una licencia MIT, lo que permite su uso y modificación libremente.
 
-## About Laravel
+## Características principales
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+1. Registro de usuarios y validación de correos electrónicos: Los fiscales interesados pueden registrarse en el sistema proporcionando sus datos personales y una dirección de correo electrónico válida. El sistema verifica la autenticidad de las direcciones de correo electrónico para garantizar la validez de los registros.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+2. Base de datos de fiscales y mesas de votación: El sistema almacena los datos de los fiscales registrados y también cuenta con información sobre las 25,000 mesas de votación. Esto permite una gestión centralizada de los fiscales asignados a cada mesa.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+3. Georeferenciación de mesas de votación: Las mesas de votación registradas en el sistema pueden ser georeferenciadas para visualizar su ubicación en un mapa. Esto facilita la identificación y seguimiento de las mesas de votación en diferentes áreas geográficas.
 
-## Learning Laravel
+4. Generación de acreditaciones de fiscales: El sistema permite generar acreditaciones para los fiscales registrados. Estas acreditaciones pueden ser impresas o descargadas en formato digital, lo que facilita la identificación de los fiscales durante el proceso electoral.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+5. Verificación en línea de acreditaciones: Para garantizar la autenticidad de las acreditaciones de fiscales, el sistema proporciona una función de verificación en línea. Esto permite a las autoridades electorales y a los interesados confirmar la validez de una acreditación a través de un proceso de verificación seguro.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Instalación y configuración
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1. Clonar el repositorio desde GitHub: git clone <URL_DEL_REPOSITORIO>.
+2. Asegurarse de tener instalado PHP 8.1 y MariaDB en el servidor.
+3. Ejecutar el comando composer install para instalar las dependencias del proyecto.
+4. Configurar la conexión a la base de datos en el archivo .env.
+5. Ejecutar las migraciones de la base de datos con el comando php artisan migrate.
+6. Configurar el servidor web para apuntar al directorio public del proyecto.
 
-## Laravel Sponsors
+## Contribuciones
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Si deseas contribuir a este proyecto, te invitamos a seguir los siguientes pasos:
 
-### Premium Partners
+1. Realiza un fork del repositorio.
+2. Crea una rama para tus modificaciones: git checkout -b nombre-de-la-rama.
+3. Realiza los cambios y realiza commits con mensajes descriptivos.
+4. Envía tus cambios al repositorio remoto: git push origin nombre-de-la-rama.
+5. Crea un pull request en GitHub para revisar tus cambios y fusionarlos con la rama principal.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+Agradecemos cualquier contribución que realices al proyecto.
 
-## Contributing
+## Licencia
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Este software se distribuye bajo la licencia MIT. Puedes consultar el archivo LICENSE para obtener más detalles.
