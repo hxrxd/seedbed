@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MesaController;
 use App\Http\Controllers\MapController;
 use App\Http\Controllers\FiscalController;
+use App\Http\Controllers\VerificacionController;
+use App\Http\Controllers\QRController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,8 +22,6 @@ use App\Http\Controllers\FiscalController;
 Route::get('/', function () {
     return view('welcome');
 });
-
-
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -41,18 +41,16 @@ Route::get('/email/verify', function () {
     return view('auth.verify-email');
 })->middleware('auth')->name('verification.notice');
 
-Route::get('/verificacion/', function () {
-    return view('verificacion.fiscal');
-});
 
 Route::resource('mesa', MesaController::class)->middleware(['auth', 'verified']);
 Route::resource('map', MapController::class)->middleware(['auth', 'verified']);
-
+Route::resource('verificacion', VerificacionController::class);
+Route::resource('qr', QRController::class);
 Route::resource('fiscal', FiscalController::class)->middleware(['auth', 'verified']);
 
 Route::post('api/fetch-cities', [FiscalController::class, 'fetchCities']);
 
-Route::get('assets/img/{filename}', function($filename){
+Route::get('/assets/img/{filename}', function($filename){
         $path = 'assets/img/' . $filename;
 
         if (Storage::exists($path)) {
