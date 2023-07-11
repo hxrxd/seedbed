@@ -54,5 +54,6 @@
   
 
 <img src="assets/img/firma.jpg" alt="" width="750px" height="160px">
+<img src="data:image/png;base64, {!! $qrcode !!}">
 </body>
 </html>
