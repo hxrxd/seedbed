@@ -9,11 +9,8 @@
     </style>
 </head>
 <body>
+<img src="assets/img/carta.jpg" alt="" width="750px" height="200px" style="padding-top: 0;">
 
-
-<img src="assets/img/carta.jpg" alt="" width="750px" height="200px">
-
-    <br>
     <br>
 
 <p style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri",sans-serif;text-align:right;'><strong><span style='font-size:16px;font-family:"Corbel",sans-serif;'>Guatemala 30 de agosto del 2023</span></strong></p>
@@ -52,7 +49,7 @@
 <p style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri",sans-serif;text-align:justify;'><span style='font-size:16px;font-family:"Corbel",sans-serif;'>&nbsp;</span></p>
 <p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri",sans-serif;'><span style='font-size:16px;font-family:"Corbel",sans-serif;'>Agradeciendo su atenci&oacute;n y apoyo, me despido con muestras de mi alta estima.</span></p>
 
-    <br>
+  
     <br>
 
 <img src="assets/img/firma.jpg" alt="" width="750px" height="200px">
