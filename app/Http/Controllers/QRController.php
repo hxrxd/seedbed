@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Models\Fiscal;
+use App\Models\Mesa;
 
 class QRController extends Controller
 {
@@ -14,9 +16,7 @@ class QRController extends Controller
     public function index()
     {
         
-        $pdf = PDF::loadView('verificacion.acreditacion')->setPaper("letter","portrait");
-        return $pdf->stream('invoice.pdf');
-        return view('verificacion.acreditacion');
+        
        
     }
 
@@ -42,6 +42,11 @@ class QRController extends Controller
     public function show(string $id)
     {
         //
+        $fiscal = Fiscal::where('correo','=',$id)->first();
+        $mesa = Mesa::select('jrv','departamento','municipio','nombre','fiscal')->where('fiscal','=',$fiscal->correo)->first();
+        $pdf = PDF::loadView('verificacion.acreditacion',['fiscal'=>$fiscal,'mesa'=>$mesa])->setPaper("letter","portrait");
+        return $pdf->stream('invoice.pdf');
+        return view('verificacion.acreditacion');
     }
 
     /**
