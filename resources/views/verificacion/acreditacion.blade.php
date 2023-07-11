@@ -13,7 +13,7 @@
 
     <br>
     <br>
-<img src="assets/img/carta.jpg" alt="" width="750px" height="300px">
+<img src="assets/img/carta.jpg" alt="" width="750px" height="100px">
 
 <p style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri",sans-serif;text-align:right;'><strong><span style='font-size:16px;font-family:"Corbel",sans-serif;'>Guatemala 30 de agosto del 2023</span></strong></p>
 <p style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri",sans-serif;'><strong><span style='font-size:16px;font-family:"Corbel",sans-serif;'>Se&ntilde;or/a&nbsp;</span></strong></p>
