@@ -54,9 +54,5 @@
   
 
 <img src="assets/img/firma.jpg" alt="" width="750px" height="160px">
-
-<img src="{!!QrCode::format('png')->generate('Hola Mundo'), 'QrCode.png', 'image/png'!!}">
-
-
 </body>
 </html>
