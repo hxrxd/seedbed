@@ -38,8 +38,8 @@ class VerificacionController extends Controller
     public function show(string $id)
     {
         //
-        $fiscal = Fiscal::where('correo','=',$id)->first();
-        $mesa = Mesa::select('jrv','departamento','municipio','nombre','fiscal')->where('fiscal','=',$fiscal->correo)->first();
+        $fiscal = Fiscal::where('correo',$id)->first();
+        $mesa = Mesa::select('jrv','departamento','municipio','nombre','fiscal')->where('fiscal',$id)->first();
         return view('verificacion.fiscal', ['fiscal'=>$fiscal,'mesa'=>$mesa]);
     }
 
