@@ -50,9 +50,8 @@
 <p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri",sans-serif;'><span style='font-size:16px;font-family:"Corbel",sans-serif;'>Agradeciendo su atenci&oacute;n y apoyo, me despido con muestras de mi alta estima.</span></p>
 
   
-    <br>
 
-<img src="assets/img/firma.jpg" alt="" width="750px" height="200px">
+<img src="assets/img/firma.jpg" alt="" width="750px" height="160px">
 
 
 </body>
