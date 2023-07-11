@@ -9,7 +9,7 @@
     </style>
 </head>
 <body>
-<img src="assets/img/carta.jpg" alt="" width="750px" height="1800px" style="padding-top: 0;">
+<img src="assets/img/carta.jpg" alt="" width="750px" height="180px" style="padding-top: 0;">
 
     <br>
 
