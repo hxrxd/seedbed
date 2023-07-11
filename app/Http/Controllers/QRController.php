@@ -13,10 +13,11 @@ class QRController extends Controller
      */
     public function index()
     {
-        //
+        
         $pdf = PDF::loadView('verificacion.acreditacion')->setPaper("letter","portrait");
         return $pdf->stream('invoice.pdf');
         return view('verificacion.acreditacion');
+       
     }
 
     /**

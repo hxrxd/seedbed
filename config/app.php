@@ -169,7 +169,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-        Barryvdh\DomPDF\ServiceProvider::class,
+        
     ])->toArray(),
 
     /*
@@ -187,7 +187,7 @@ return [
         // 'Example' => App\Facades\Example::class,
         'Form' => Collective\Html\FormFacade::class,
         'HTML' => Collective\Html\HtmlFacade::class,
-        'PDF' => Barryvdh\DomPDF\Facade::class,
+        
     ])->toArray(),
 
 ];
