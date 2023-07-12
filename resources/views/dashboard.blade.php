@@ -74,7 +74,7 @@
                         <p class=" md:ml-2 md:mr-2 text-base text-gray-700 sm:text-lg dark:text-gray-700">Haz clic en el botón para iniciar</p>
                     </div>  
                     <div class="flex items-center justify-center mt-4">
-                        <a id="inscrib" href="{{ route('fiscal.create') }}" class="text-white font-extrabold bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 rounded-lg text-xl px-5 py-2.5 text-center dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900">Inscribirme</a>
+                        <a id="inscrib" href="{{ route('fiscal.create') }}" class="text-white font-extrabold bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 rounded-lg text-xl px-5 py-2.5 text-center dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900">Unirme</a>
                     </div>
                 </div>
             </div>
@@ -104,7 +104,7 @@
                                     </svg>
                                 </div>
                                 <p class="text-white ml-8 mb-2">JRV: <strong>#22380</strong></p>
-                                <a id="inscrib" href="#recom" class="ml-8 text-indigo-800 font-extrabold bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center">Ver ID Virtual</a>
+                                <a id="inscrib" href="verificacion/{{ Auth::user()->email}}" class="ml-8 text-indigo-800 font-extrabold bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center">Ver ID Virtual</a>
                             </div>
                         </div>     
                     </div>
@@ -133,7 +133,7 @@
                             </div>
                             <div class="flex flex-col items-start justify-start mt-4">
                                 <p class="text-white ml-8 mb-2">Fecha: <strong>10 de agosto</strong></p>
-                                <a class="ml-8 text-indigo-800 font-extrabold bg-[#f7fdcf] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center" disabled>No disponible</a>
+                                <a id="acred" href="qr/{{ Auth::user()->email}}" class="ml-8 text-indigo-800 font-extrabold bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center" >Descargar</a>
                             </div>
                         </div>     
                     </div>

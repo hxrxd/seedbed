@@ -6,7 +6,7 @@
         <link rel="icon" type="image/svg+xml" href="/favicon.svg">
         <meta name="generator" content="Astro v1.1.5">
         <meta name="description" content="Template built with tailwindcss using Tailus blocks v2">
-        <title>Tailus astro theme</title>
+        <title>Fiscales Movimiento Semilla</title>
 
         <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="assets/index.350e2433.css" />

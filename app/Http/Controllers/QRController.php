@@ -47,7 +47,7 @@ class QRController extends Controller
         $mesa = Mesa::select('jrv','departamento','municipio','nombre','fiscal')->where('fiscal',$id)->first();
         $qrcode = base64_encode(QrCode::format('svg')->size(64)->errorCorrection('H')->generate(url("").'/verificacion/'.$id));
         $pdf = PDF::loadView('verificacion.acreditacion',['fiscal'=>$fiscal,'mesa'=>$mesa,'qrcode'=>$qrcode])->setPaper("letter","portrait");
-        return $pdf->stream('invoice.pdf');
+        return $pdf->download('invoice.pdf');
     }
 
     /**
