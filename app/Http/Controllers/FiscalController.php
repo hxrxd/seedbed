@@ -95,7 +95,7 @@ class FiscalController extends Controller
         } else {
             return response()->json(['message' => 'ERROR']);
         }
-        return Redirect::to('/dashboard');
+        return redirect('/dashboard');
     }
 
     /**
