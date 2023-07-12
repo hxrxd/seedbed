@@ -86,16 +86,22 @@ class FiscalController extends Controller
         $mesa = Mesa::findOrFail($jrv);
         $currentStatus = $mesa->estatus;
 
+        $user = User::where('email',$request->input('correo'))->first();
+        $user->rol="Fiscal";
+
+
         if ($currentStatus === 0) {
             $mesa->fiscal = $request->input('fiscal');
             $mesa->estatus = $request->input('estatus');
             $mesa->save();
+            $user->save();
 
             return response()->json(['message' => 'SUCCESS']);
         } else {
             return response()->json(['message' => 'ERROR']);
         }
-        return redirect('/dashboard');
+
+        return redirect('/dahsboard');
     }
 
     /**
