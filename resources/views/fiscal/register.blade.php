@@ -1,8 +1,6 @@
 <x-app-layout>
-
-    <div class="py-3"></div>
-        
-    <div class="container max-w-7xl mx-auto sm:px-0.5 lg:px-8">
+    <div class="md:py-3"></div>    
+    <div class="container max-w-7xl mx-auto sm:px-0.5 lg:px-8 mt-16">
 
         <!--Card-->
         <div id='recipients' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
@@ -378,6 +376,7 @@
             // Save action button
             $('#save').click(function (event) {
                 $('#loading').removeClass('hidden');
+                USR_MAIL = $('#email').val();
 
                 $.ajax({
                     url: "{{url('api/post-fiscal')}}",
@@ -393,6 +392,9 @@
                         sexo:$('#sex').val(),
                         correo:$('#email').val(),
                         fiscal_electronico:$('#fiscal-informatico').val(),
+                        jrv:JRV_SELECTED,
+                        fiscal:USR_MAIL,
+                        estatus: 1,
                         _token: '{{csrf_token()}}'
                     },
                     dataType: 'json',
@@ -490,7 +492,8 @@
                         USR_NAME = name_usr[1].trim();
                         USR_DEPT = result.data.departamento;
                         USR_CITY = result.data.municipio;
-                        JRV_USR = result.data.nromesa
+                        JRV_USR = result.data.nromesa;
+                        JRV_SELECTED = JRV_USR;
 
                         $('#surname').val(USR_SURNAME);
                         $('#name').val(USR_NAME); 
@@ -578,6 +581,29 @@
                                 }
                             });
                         });
+                    }
+                });
+            }
+
+            function updateJRV() {
+                USR_MAIL = $('#email').val();
+
+                $.ajax({
+                    url: 'assign/' + JRV_SELECTED,
+                    type: 'PATCH',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        _method: 'PATCH',
+                        fiscal: USR_MAIL,
+                        estatus: 1
+                    },
+                    success: function(response) {
+                        alert(response.message);
+                        // Handle success response, e.g., show a success message or update the UI
+                    },
+                    error: function(xhr) {
+                        alert('Error updating entity. Please try again.');
+                        // Handle error response, e.g., show an error message or handle specific errors
                     }
                 });
             }

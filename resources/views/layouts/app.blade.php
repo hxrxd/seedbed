@@ -109,6 +109,27 @@
                 background-color: #667eea !important;
                 /*bg-indigo-500*/
             }
+
+            .custom-background {
+                width: auto;
+                height: auto;
+                background-image: url('assets/img/bg-main-green.svg');
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+
+            .custom-background-card {
+                background-image: url('assets/img/bg-cards.svg');
+                background-position: center;
+            }
+
+            .custom-background-welcome {
+                width: auto;
+                height: auto;
+                background-image: url('assets/img/bg-welcome.svg');
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
         </style>
     </head>
     <body class="font-sans antialiased">

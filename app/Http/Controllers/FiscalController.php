@@ -38,7 +38,7 @@ class FiscalController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request)
+    /*public function store(Request $request)
     {
         $validatedData = $request->validate([
             'nombres' => ['required', 'string', 'max:255'],
@@ -60,6 +60,41 @@ class FiscalController extends Controller
 
         return response()->json($fiscal);
         //return redirect()->route('fiscal.assign', ['fiscal' => $fiscal]);
+    }*/
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'nombres' => ['required', 'string', 'max:255'],
+            'apellidos' => ['required', 'string', 'max:255'],
+            'dpi' => ['required', 'integer'],
+            'departamento' => ['required', 'string'],
+            'municipio' => ['required', 'string'],
+            'telefono' => ['required', 'string'],
+            'fecha_nacimiento' => ['required', 'date'],
+            'sexo' => ['required', 'string'],
+            'correo' => ['required', 'string'],
+            'fiscal_electronico' => ['string'],
+            'status' => ['string'],
+        ]);
+
+        $validatedData['fecha_nacimiento'] = Carbon::parse($validatedData['fecha_nacimiento']);
+
+        $fiscal = Fiscal::create($validatedData);
+
+        // Merge code from updateJRV method
+        $jrv = $request->input('jrv');
+        $mesa = Mesa::findOrFail($jrv);
+        $currentStatus = $mesa->estatus;
+
+        if ($currentStatus === 0) {
+            $mesa->fiscal = $request->input('fiscal');
+            $mesa->estatus = $request->input('estatus');
+            $mesa->save();
+
+            return response()->json(['message' => 'SUCCESS']);
+        } else {
+            return response()->json(['message' => 'ERROR']);
+        }
     }
 
     /**
@@ -126,6 +161,26 @@ class FiscalController extends Controller
                             ->get(["jrv","latitude","longitude","nombre","ubicacion","zona","estatus"]);
   
         return response()->json($data);
+    }
+
+    /**
+     * Update the specified JRV.
+     */
+    public function updateJRV(Request $request, $jrv)
+    {
+        $mesa = Mesa::findOrFail($jrv);
+
+        $currentStatus = $mesa->estatus;
+
+        if ($currentStatus === 0) {
+            $mesa->fiscal = $request->input('fiscal');
+            $mesa->estatus = $request->input('estatus');
+            $mesa->save();
+
+            return response()->json(['message' => 'SUCCESS']);
+        } else {
+            return response()->json(['message' => 'ERROR']);
+        }
     }
 
 }

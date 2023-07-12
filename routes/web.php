@@ -54,6 +54,8 @@ Route::post('api/fetch-jrvs-by-city', [FiscalController::class, 'fetchTablesByCi
 Route::post('api/post-fiscal', [FiscalController::class, 'store']);
 //Route::get('assign/', [FiscalController::class, 'store'])->name('fiscal.assign');
 
+Route::patch('assign/{jrv}', [FiscalController::class,'updateJRV'])->name('assign.updateJRV');
+
 
 Route::get('/assets/img/{filename}', function($filename){
         $path = 'assets/img/' . $filename;
