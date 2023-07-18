@@ -32,7 +32,7 @@
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
                     </a>
                 </div>
-                    
+
                     <div class="relative flex items-center lg:hidden max-h-10 astro-UY3JLCBK">
                         <label role="button" for="toggle_nav" aria-label="humburger" id="hamburger" class="relative  p-6 -mr-6 astro-UY3JLCBK">
                             <div aria-hidden="true" id="line" class="m-auto h-0.5 w-5 rounded bg-sky-900 dark:bg-gray-300 transition duration-300 astro-UY3JLCBK"></div>
@@ -41,22 +41,22 @@
                     </div>
                 </div>
                 <div aria-hidden="true" class="fixed z-10 inset-0 h-screen w-screen bg-white/70 backdrop-blur-2xl origin-bottom scale-y-0 transition duration-500 peer-checked:origin-top peer-checked:scale-y-100 lg:hidden dark:bg-gray-900/70 astro-UY3JLCBK"></div>
-                <div class="flex-col z-20 flex-wrap gap-6 p-8 rounded-3xl border border-gray-100 bg-white shadow-2xl shadow-gray-600/10 justify-end w-full invisible opacity-0 translate-y-1  absolute top-full left-0 transition-all duration-300 scale-95 origin-top 
+                <div class="flex-col z-20 flex-wrap gap-6 p-8 rounded-3xl border border-gray-100 bg-white shadow-2xl shadow-gray-600/10 justify-end w-full invisible opacity-0 translate-y-1  absolute top-full left-0 transition-all duration-300 scale-95 origin-top
                             lg:relative lg:scale-100 lg:peer-checked:translate-y-0 lg:translate-y-0 lg:flex lg:flex-row lg:items-center lg:gap-0 lg:p-0 lg:bg-transparent lg:w-7/12 lg:visible lg:opacity-100 lg:border-none
-                            peer-checked:scale-100 peer-checked:opacity-100 peer-checked:visible lg:shadow-none 
+                            peer-checked:scale-100 peer-checked:opacity-100 peer-checked:visible lg:shadow-none
                             dark:shadow-none dark:bg-gray-800 dark:border-gray-700 astro-UY3JLCBK">
 
                     @if (Route::has('login'))
-                    
+
                         @auth
-                            
+
                             <div class="mt-12 lg:mt-0 astro-UY3JLCBK">
                                 <a href="{{ url('/dashboard') }}" class="relative flex h-9 w-full items-center justify-center px-4 before:absolute before:inset-0 before:rounded-full before:bg-primary before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 sm:w-max astro-UY3JLCBK">
                                     <span class="relative text-sm font-semibold text-white astro-UY3JLCBK">Inicio</span>
                                 </a>
                             </div>
                         @else
-                            
+
                             <div class="text-gray-600 dark:text-gray-300 lg:pr-4 lg:w-auto w-full lg:pt-0 astro-UY3JLCBK">
                                 <ul class="tracking-wide font-medium lg:text-sm flex-col flex lg:flex-row gap-6 lg:gap-0 astro-UY3JLCBK">
                                     <li class="astro-UY3JLCBK">
@@ -68,7 +68,7 @@
                             </div>
 
                             @if (Route::has('register'))
-                                
+
                             <div class="mt-12 lg:mt-0 astro-UY3JLCBK">
                                 <a href="{{ route('register') }}" style="border-radius: 0.375rem; background-color:#5a2ca0;" class="relative flex h-9 w-full items-center justify-center px-4  before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 sm:w-max astro-UY3JLCBK">
                                     <span class="relative text-sm font-semibold text-white astro-UY3JLCBK">Registrarme</span>
@@ -76,10 +76,10 @@
                             </div>
                             @endif
                         @endauth
-                    
+
                     @endif
-                   
-                    
+
+
                 </div>
             </div>
 </div>
@@ -96,33 +96,49 @@
             <div class="lg:w-2/3 text-center mx-auto">
                 <h1 class="text-teal-900 dark:text-white font-bold text-5xl md:text-6xl xl:text-7xl" style="color:#37abc8">Sistema de Gestión de <span class="text-primary dark:text-white" style="color:#5a2ca0">Fiscales Semilla</span></h1>
                 <p class="mt-8 text-gray-700 dark:text-gray-300">Registrate para iniciar tu travesía como fiscal. Selecciona tu Junta Receptora de Votos (JRV) y obtén tu acreditación digital.</p>
-                <div class="mt-16 mb-8 flex flex-wrap justify-center gap-y-4 gap-x-6">
-                    <a href="#" style="border-radius: 0.375rem; background-color:#5a2ca0;" class="relative flex h-11 w-full items-center justify-center px-6 before:absolute before:inset-0 before:rounded-full  hover:before:scale-105 active:duration-75 active:before:scale-95 sm:w-max" >
-                      <span class="relative text-base font-semibold text-white">Registrarme</span>
-                    </a>
 
-                    
-                </div>
-                <a href="{{ route('login') }}" class="block md:px-4 transition hover:text-primary astro-UY3JLCBK">
-                                            <span class="astro-UY3JLCBK">¿Ya tienes una cuenta? <strong>Iniciar Sesión</strong></span>
-                                        </a>
+                @if (Route::has('login'))
+
+                        @auth
+                            <div class="mt-16 mb-8 flex flex-wrap justify-center gap-y-4 gap-x-6">
+                                <a href="{{ url('/dashboard') }}" style="border-radius: 0.375rem; background-color:#5a2ca0;" class="relative flex h-11 w-full items-center justify-center px-6 before:absolute before:inset-0 before:rounded-full  hover:before:scale-105 active:duration-75 active:before:scale-95 sm:w-max" >
+                                  <span class="relative text-base font-semibold text-white">Inicio</span>
+                                </a>
+
+                            </div>
+                        @else
+
+                            @if (Route::has('register'))
+
+                            <div class="mt-16 mb-8 flex flex-wrap justify-center gap-y-4 gap-x-6">
+                                <a href="{{ route('register') }}" style="border-radius: 0.375rem; background-color:#5a2ca0;" class="relative flex h-11 w-full items-center justify-center px-6 before:absolute before:inset-0 before:rounded-full  hover:before:scale-105 active:duration-75 active:before:scale-95 sm:w-max" >
+                                  <span class="relative text-base font-semibold text-white">Registrarme</span>
+                                </a>
+
+                            </div>
+                            <a href="{{ route('login') }}" class="block md:px-4 transition hover:text-primary astro-UY3JLCBK">
+                                                        <span class="astro-UY3JLCBK">¿Ya tienes una cuenta? <strong>Iniciar Sesión</strong></span>
+                            @endif
+                        @endauth
+
+                @endif
 
                 <p class="text-gray-300 dark:text-gray-300" style="margin-top:64px; font-weight: 700; color:#d0d0d0">#SoyFiscalSemilla</p>
-                
-                
+
+
             </div>
-            
+
         </div>
 </div>
 </div>
         <div>
-  
+
 </div>
-        
+
 </div>
 </div>
-        
-</div>  
+
+</div>
 </div>
 
 
@@ -153,7 +169,7 @@
             d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
         </svg>
       </a>
-      
+
       <a href="#!" class="mr-9 text-neutral-800 dark:text-neutral-200">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -164,17 +180,17 @@
             d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
         </svg>
       </a>
-      
+
     </div>
   </div>
 
   <!--Copyright section-->
   <div
     class="bg-neutral-300 p-4 text-center text-neutral-700 dark:bg-neutral-700 dark:text-neutral-200" style="margin-bottom:24px; color:#5a2ca0;">
-    ©2023 
+    ©2023
     <a
       class="text-neutral-800 dark:text-neutral-400"
-      href="https://votadiferente.com/" 
+      href="https://votadiferente.com/"
       >Movimiento Semilla</a
     >
   </div>
@@ -187,14 +203,14 @@
           <div class="flex w-full justify-center space-x-12 text-gray-600 dark:text-gray-300 sm:w-7/12 md:justify-start">
             <ul class="list-inside list-disc space-y-8">
               <li><a href="#" class="transition hover:text-primary">Home</a></li>
-  
+
               <li><a href="#" class="transition hover:text-primary">About</a></li>
               <li><a href="#" class="transition hover:text-primary">Guide</a></li>
               <li><a href="#" class="transition hover:text-primary">Blocks</a></li>
               <li><a href="#" class="transition hover:text-primary">Contact</a></li>
               <li><a href="#" class="transition hover:text-primary">Terms of Use</a></li>
             </ul>
-  
+
             <ul role="list" class="space-y-8">
               <li>
                 <a href="#" class="flex items-center space-x-3 transition hover:text-primary">
@@ -220,7 +236,7 @@
                   <span>YouTube</span>
                 </a>
               </li>
-  
+
               <li>
                 <a href="#" class="flex items-center space-x-3 transition hover:text-primary">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-5" viewBox="0 0 16 16">
@@ -263,14 +279,14 @@
           </div>
           <div class="m-auto mt-16 w-10/12 space-y-6 text-center sm:mt-auto sm:w-5/12 sm:text-left">
             <span class="block text-gray-500 dark:text-gray-400">We change the way UI components librairies are used</span>
-  
+
             <span class="block text-gray-500 dark:text-gray-400">Tailus Blocks &copy; <span id="year"></span></span>
-  
+
             <span class="flex justify-between text-gray-600 dark:text-white">
               <a href="#" class="font-medium">Terms of Use </a>
               <a href="#" class="font-medium"> Privacy Policy</a>
             </span>
-  
+
             <span class="block text-gray-500 dark:text-gray-400">Need help? <a href="#" class="font-semibold text-gray-600 dark:text-white"> Contact Us</a></span>
           </div>
         </div>

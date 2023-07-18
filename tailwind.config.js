@@ -3,6 +3,7 @@ const colors = require('tailwindcss/colors')
 import defaultTheme from 'tailwindcss/defaultTheme';
 import forms from '@tailwindcss/forms';
 
+
 /** @type {import('tailwindcss').Config} */
 export default {
     content: [
@@ -20,7 +21,7 @@ export default {
             },
         },
 
-        colors: {
+    colors: {
               transparent: 'transparent',
               current: '#d6df23',
               'white': '#ffffff',
@@ -33,7 +34,7 @@ export default {
               'bermuda': '#78dcca',
               'primary': '#d6df23',
             },
-        },
+    },
 
 
 
@@ -41,4 +42,8 @@ export default {
         forms,
         require('flowbite/plugin'),
     ],
+
 };
+
+
+

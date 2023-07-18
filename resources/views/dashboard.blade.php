@@ -3,20 +3,20 @@
         <div class="w-full p-6 text-start">
 
             @if (Auth::user()->rol == "Voluntario")
-    
+
             <input id="name" class="hidden" value="{{Auth::user()->name}}"></input>
             <h5 id="saludo" class="mt-24 mb-6 md:ml-8 md:mr-8 text-4xl font-bold text-indigo-900 dark:text-white"></h5>
             <h5 class="mb-0 md:ml-8 md:mr-8 text-2xl font-extrabold text-indigo-900 dark:text-white">Bienvenido a <strong>Movimiento Semilla,</strong></h5>
             <p class="mb-6 md:ml-8 md:mr-8 text-2xl font-extrabold text-indigo-800 dark:text-white">Gracias por sumarte.</p>
             <p class="mb-8 md:ml-8 md:mr-8 text-base text-gray-700 sm:text-lg dark:text-gray-700">Nos complace enormemente darte la bienvenida como voluntario. Tu compromiso y dedicación son fundamentales para asegurar que las elecciones se lleven a cabo de manera justa, transparente y democrática.</p>
-        
+
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-4 mb-16">
                 <!-- Card for Timeline-->
                 <div class="w-full p-4 text-start bg-white border border-gray-200 rounded-lg shadow sm:p-8 sm:rounded-lg dark:bg-gray-800 dark:border-gray-700">
                     <p class="mb-6 ml-8 mr-8 text-2xl font-extrabold text-gray-600 dark:text-white">Conoce el proceso</p>
                     <!-- Timeline -->
-                    <ol class="relative border-l border-l-2 ml-6 mr-8 border-gray-200 dark:border-gray-700">                  
-                        <li class="mb-10 ml-6">            
+                    <ol class="relative border-l border-l-2 ml-6 mr-8 border-gray-200 dark:border-gray-700">
+                        <li class="mb-10 ml-6">
                             <span class="absolute flex items-center justify-center w-6 h-6 bg-indigo-700 rounded-full -left-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900" style="background-color: #84cc16">
                                 <svg class="w-4 h-4 text-gray-100 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10 2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
@@ -72,7 +72,7 @@
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-16 mb-16">
                     <div class="flex items-center justify-center mt-4">
                         <p class=" md:ml-2 md:mr-2 text-base text-gray-700 sm:text-lg dark:text-gray-700">Haz clic en el botón para iniciar</p>
-                    </div>  
+                    </div>
                     <div class="flex items-center justify-center mt-4">
                         <a id="inscrib" href="{{ route('fiscal.create') }}" class="text-white font-extrabold bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 rounded-lg text-xl px-5 py-2.5 text-center dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900">Unirme</a>
                     </div>
@@ -86,8 +86,8 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-16 mb-12  h-full">
                 <div class="flex items-center justify-start mt-4 mb-4">
                     <h5 class="mb-0 md:ml-2 md:mr-8 text-3xl font-extrabold text-indigo-900 dark:text-white">Tablero</h5>
-                </div> 
-                <div class="grid md:grid-cols-3 gap-4 sm:grid-cols-1 ">                  
+                </div>
+                <div class="grid md:grid-cols-3 gap-4 sm:grid-cols-1 ">
                     <div class="custom-background-card bg-cover bg-fixed h-52 p-10 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
                         <div class="flex flex-col items-start">
                             <div class="flex space-x-2 items-center">
@@ -106,7 +106,7 @@
                                 <p class="text-white ml-8 mb-2">JRV: <strong>#22380</strong></p>
                                 <a id="inscrib" href="verificacion/{{ Auth::user()->email}}" class="ml-8 text-indigo-800 font-extrabold bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center">Ver ID Virtual</a>
                             </div>
-                        </div>     
+                        </div>
                     </div>
                     <div class="custom-background-card bg-cover bg-fixed h-52 p-10 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
                         <div class="flex flex-col items-start">
@@ -121,7 +121,7 @@
                                 <p class="text-white ml-8 mb-2">Modalidad: <strong>Virtual</strong></p>
                                 <a class="ml-8 text-indigo-800 font-extrabold bg-[#f7fdcf] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center" disabled>Convocatoria próxima</a>
                             </div>
-                        </div>     
+                        </div>
                     </div>
                     <div class="custom-background-card bg-cover bg-fixed h-52 p-10 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
                         <div class="flex flex-col items-start">
@@ -135,7 +135,7 @@
                                 <p class="text-white ml-8 mb-2">Fecha: <strong>10 de agosto</strong></p>
                                 <a id="acred" href="qr/{{ Auth::user()->email}}" class="ml-8 text-indigo-800 font-extrabold bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center" >Descargar</a>
                             </div>
-                        </div>     
+                        </div>
                     </div>
                     <div class="custom-background-card bg-cover bg-fixed h-52 p-10 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
                         <div class="flex flex-col items-start">
@@ -143,14 +143,14 @@
                                 <svg class="w-6 h-6 text-indigo-300 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
                                 </svg>
-                                <h3 class="text-xl font-extrabold text-white">Tu reporte</h3>
+                                <h3 class="text-xl font-extrabold text-white">Acta de tu mesa</h3>
                             </div>
                             <div class="flex flex-col items-start justify-start mt-4">
                                 <p class="text-white ml-8"><strong>20 de agosto</strong></p>
                                 <p class="text-white ml-8 mb-2">Día de las elecciones</p>
-                                <a class="ml-8 text-indigo-800 font-extrabold bg-[#f7fdcf] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center" disabled>No disponible</a>
+                                <a id="voto " href="{{ route('voto.create') }}" class="ml-8 text-indigo-800 font-extrabold bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center" disabled>Ingresar</a>
                             </div>
-                        </div>     
+                        </div>
                     </div>
                     <div class="custom-background-card bg-cover bg-fixed h-52 p-10 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
                         <div class="flex flex-col items-start">
@@ -165,14 +165,14 @@
                                 <p class="text-white ml-8 mb-2">Código de Ética</strong></p>
                                 <a href="#" class="ml-8 text-indigo-800 font-extrabold bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center" disabled>Descargar</a>
                             </div>
-                        </div>     
+                        </div>
                     </div>
-                </div> 
+                </div>
 
                 <div id="recom" class="flex items-center justify-start mt-8 mb-4">
                     <h5 class="mb-0 md:ml-2 md:mr-8 text-3xl font-extrabold text-indigo-900 dark:text-white">Recomendaciones</h5>
-                </div> 
-                <div class="grid md:grid-cols-3 gap-4 sm:grid-cols-1">                  
+                </div>
+                <div class="grid md:grid-cols-3 gap-4 sm:grid-cols-1">
                     <div class="p-4 text-start">
                         <p class="mb-2 text-xl font-extrabold text-indigo-800 dark:text-white">Antes del proceso</p>
                         <!-- List -->
@@ -195,7 +195,7 @@
                                 </svg>
                                 <span class="leading-tight">Acreditate como fiscal ante la junta receptora de votos </span>
                             </li>
-                            
+
                             <li class="flex space-x-2 items-center">
                                 <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="Purple" viewBox="0 0 20 20">
                                     <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
@@ -264,10 +264,10 @@
                             </li>
                         </ul>
                     </div>
-                </div> 
+                </div>
             </div>
-            
-            
+
+
 
             @endif
 
@@ -280,7 +280,7 @@
                 </svg>
                 <p class="md:ml-2 md:mr-2 text-sm text-gray-700 sm:text-sm dark:text-gray-700">© 2023 Movimiento Semilla</p>
                 <p class="md:ml-2 md:mr-2 text-sm text-gray-700 sm:text-sm font-bold dark:text-gray-700">Sistema de Gestión de Fiscales Semilla</p>
-            </div>  
+            </div>
         </div>
 
     </div><!--end of background-->
@@ -288,8 +288,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
-            const $nameInput = $('#name'); 
-            
+            const $nameInput = $('#name');
+
             if ($nameInput.length > 0) {
                 const name_usr = $('#name').val();
                 const first_name = name_usr.split(" ")[0];

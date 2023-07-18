@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('blanco');
             $table->integer('sinusar');
             $table->integer('jrv');
-            $table->string('fiscal_electronico');
+            $table->string('fiscal');
             $table->string('status')->nullable($value = 'Active');
             $table->timestamps();
         });

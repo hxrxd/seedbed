@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Fiscal;
+use App\Models\Mesa;
+use App\Models\Voto;
+
+use Illuminate\Support\Facades\Auth;
 
 class VotoController extends Controller
 {
@@ -19,8 +24,23 @@ class VotoController extends Controller
      */
     public function create()
     {
-        //
-        return view('voto.create');
+        //comprobación si son las 6 pm
+        if(true){
+            //copmprobación si ya registro el voto
+            $id = Auth::user('email');
+            $voto = Voto::where('fiscal',$id->email)->first();
+            if($voto==null){
+
+                $fiscal = Fiscal::where('correo',$id->email)->first();
+                $mesa = Mesa::select('jrv','departamento','municipio','nombre','fiscal')->where('fiscal',$id->email)->first();
+                return view('voto.create', ['fiscal'=>$fiscal,'mesa'=>$mesa]);
+            }
+            else{
+                return redirect('/voto/'.$voto->id);
+            }
+
+        }
+
     }
 
     /**
@@ -28,7 +48,32 @@ class VotoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //registrando votos
+
+        $this->validate($request,[
+            'semilla' => 'required',
+            'une' => 'required',
+            'blanco' => 'required',
+            'nulo' => 'required',
+            'sinusar' => 'required',
+        ]);
+
+        $id = Auth::user('email');
+
+        $votos = new Voto;
+
+        $votos->semilla = $request->semilla;
+        $votos->une = $request->une;
+        $votos->blanco = $request->blanco;
+        $votos->nulo = $request->nulo;
+        $votos->sinusar = $request->sinusar;
+        $votos->jrv = $request->jrv;
+        $votos->fiscal = $id->email;
+        $votos->save();
+
+        return redirect('/dashboard');
+
+
     }
 
     /**
@@ -37,6 +82,8 @@ class VotoController extends Controller
     public function show(string $id)
     {
         //
+        $voto = Voto::find($id);
+        return view('voto.show', ['voto'=>$voto]);
     }
 
     /**
@@ -45,6 +92,8 @@ class VotoController extends Controller
     public function edit(string $id)
     {
         //
+
+
     }
 
     /**
