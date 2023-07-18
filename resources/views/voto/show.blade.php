@@ -77,7 +77,7 @@ let votosvalidos = parseInt(semilla) + parseInt(une)+ parseInt(nulo)+parseInt(bl
         'Semilla',
         'UNE',
         'Nulos',
-        'En sinusar'
+        'En blanco'
         ],
     datasets: [{
         label: 'Semilla',
