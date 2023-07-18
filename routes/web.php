@@ -7,6 +7,7 @@ use App\Http\Controllers\MapController;
 use App\Http\Controllers\FiscalController;
 use App\Http\Controllers\VerificacionController;
 use App\Http\Controllers\QRController;
+use App\Http\Controllers\VotoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +48,7 @@ Route::resource('map', MapController::class)->middleware(['auth', 'verified']);
 Route::resource('verificacion', VerificacionController::class);
 Route::resource('qr', QRController::class);
 Route::resource('fiscal', FiscalController::class)->middleware(['auth', 'verified']);
+Route::resource('voto', VotoController::class)->middleware(['auth', 'verified']);
 
 Route::post('api/fetch-cities', [FiscalController::class, 'fetchCities']);
 Route::post('api/fetch-jrvs-by-center', [FiscalController::class, 'fetchTablesByCenter']);
