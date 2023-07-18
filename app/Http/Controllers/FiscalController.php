@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Fiscal;
 use App\Models\Mesa;
+use App\Models\User;
 use Carbon\Carbon;
 
 use Auth;
@@ -38,29 +39,6 @@ class FiscalController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    /*public function store(Request $request)
-    {
-        $validatedData = $request->validate([
-            'nombres' => ['required', 'string', 'max:255'],
-            'apellidos' => ['required', 'string', 'max:255'],
-            'dpi' => ['required', 'integer'],
-            'departamento' => ['required', 'string'],
-            'municipio' => ['required', 'string'],
-            'telefono' => ['required', 'string'],
-            'fecha_nacimiento' => ['required', 'date'],
-            'sexo' => ['required', 'string'],
-            'correo' => ['required', 'string'],
-            'fiscal_electronico' => ['string'],
-            'status' => ['string'],
-        ]);
-
-        $validatedData['fecha_nacimiento'] = Carbon::parse($validatedData['fecha_nacimiento']);
-
-        $fiscal = Fiscal::create($validatedData);
-
-        return response()->json($fiscal);
-        //return redirect()->route('fiscal.assign', ['fiscal' => $fiscal]);
-    }*/
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -96,12 +74,11 @@ class FiscalController extends Controller
             $mesa->save();
             $user->save();
 
-            return response()->json(['message' => 'SUCCESS']);
+            $redirectUrl = '/seedbed/public/dashboard';
+            return response()->json(['redirect_url' => $redirectUrl]);
         } else {
             return response()->json(['message' => 'ERROR']);
         }
-
-        return redirect('/dahsboard');
     }
 
     /**

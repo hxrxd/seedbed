@@ -288,10 +288,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
-            const name_usr = $('#name').val();
-            const first_name = name_usr.split(" ")[0];
+            const $nameInput = $('#name'); 
+            
+            if ($nameInput.length > 0) {
+                const name_usr = $('#name').val();
+                const first_name = name_usr.split(" ")[0];
 
-            $('#saludo').html("¡Hola "+first_name+"!");
+                $('#saludo').html("¡Hola "+first_name+"!");
+            }
         });
     </script>
 

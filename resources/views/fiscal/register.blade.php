@@ -8,22 +8,33 @@
             <form id="frm-main" class="">
                 @csrf
                 
+                <!-- Alert messages modal -->
+                <div class="modal-overlay hidden" id="modalOverlay">
+                    <div id="alert-msg" class="modal flex flex-col items-center justify-center">
+                    </div>
+                </div>
+
+                <h1 class="font-extrabold text-3xl text-gray-800 leading-tight mb-6">
+                    {{ __('Paso 1') }}
+                </h1>
+
                 <!-- Personal info section -->
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                    {{ __('Registro de fiscal') }}
+                    {{ __('Datos personales') }}
                 </h2>
 
                 <div class="md:flex md:flex-row">
                     <!-- ID document -->
-                    <div class="md:basis-1/4 mt-4">
+                    <div class="md:basis-1/3 mt-4">
                         <x-input-label for="dpi" :value="__('DPI')" />
+                        <x-text-input id="dpi-x" class="block mt-1 w-full" type="hidden" name="dpi" :value="old('dpi')"/>
                         <x-text-input id="dpi" class="block mt-1 w-full" type="number" name="dpi" :value="old('dpi')" required autofocus autocomplete="dpi" />
                         <x-input-error :messages="$errors->get('dpi')" class="mt-2" />
                     </div>
 
                     <!-- Birthdate -->
                     <x-text-input id="birthdate" name="fecha_nacimiento" class="hidden" type="text"/>
-                    <div class="md:basis-1/4 md:ml-6 mt-4">
+                    <div class="md:basis-1/3 md:ml-6 mt-4">
                         <x-input-label for="days" :value="__('Fecha de nacimiento')" />
                         <div class="flex flex-row sm:mx-auto">
                             <div class="basis-1/2">                      
@@ -44,32 +55,42 @@
                         </div>                     
                     </div>
 
+                    <div id="badge-verify" class="md:basis-1/3 md:ml-6 mt-4 place-items-center invisible">
+                        <div class="flex flex-row items-center justify-center md:pt-8">
+                            <svg class="w-4 h-4 text-[#72b30f]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 21">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m6.072 10.072 2 2 6-4m3.586 4.314.9-.9a2 2 0 0 0 0-2.828l-.9-.9a2 2 0 0 1-.586-1.414V5.072a2 2 0 0 0-2-2H13.8a2 2 0 0 1-1.414-.586l-.9-.9a2 2 0 0 0-2.828 0l-.9.9a2 2 0 0 1-1.414.586H5.072a2 2 0 0 0-2 2v1.272a2 2 0 0 1-.586 1.414l-.9.9a2 2 0 0 0 0 2.828l.9.9a2 2 0 0 1 .586 1.414v1.272a2 2 0 0 0 2 2h1.272a2 2 0 0 1 1.414.586l.9.9a2 2 0 0 0 2.828 0l.9-.9a2 2 0 0 1 1.414-.586h1.272a2 2 0 0 0 2-2V13.8a2 2 0 0 1 .586-1.414Z"/>
+                            </svg>
+                            <p class="font-extrabold text-[#72b30f] ml-1">Persona Verificada</p>
+                        </div>
+                    </div>    
+                </div>
+
+                <!-- Personal data section -->
+                <div id="section-step-1" class="hidden">
+                <div class="md:flex md:flex-row">
                     <!-- Names -->
-                    <div class="md:basis-1/4 md:ml-6 mt-4">
+                    <div id="cont-name" class="md:basis-1/2 mt-4">
                         <x-input-label for="name" :value="__('Nombres')" />
-                        <x-text-input id="name" class="block mt-1 w-full" type="text" name="nombres" :value="old('name')" required autofocus autocomplete="name" />
+                        <x-text-input id="name-x" class="block mt-1 w-full" type="hidden" name="nombres" :value="old('name')"  />
+                        <x-text-input id="name" class="block mt-1 w-full" type="text" name="nombres" :value="old('name')" autofocus autocomplete="name" />
                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
 
                     <!-- Surnames -->
-                    <div class="md:basis-1/4 md:ml-6 mt-4">
+                    <div id="cont-surname" class="md:basis-1/2 md:ml-6 mt-4">
                         <x-input-label for="surname" :value="__('Apellidos')" />
-                        <x-text-input id="surname" class="block mt-1 w-full" type="text" name="apellidos" :value="old('surname')" required autofocus autocomplete="surname" />
+                        <x-text-input id="surname-x" class="block mt-1 w-full" type="hidden" name="apellidos" :value="old('surname')" />
+                        <x-text-input id="surname" class="block mt-1 w-full" type="text" name="apellidos" :value="old('surname')" autofocus autocomplete="surname" />
                         <x-input-error :messages="$errors->get('surname')" class="mt-2" />
                     </div>
                 </div>
 
-                <!-- Validation alert container -->
-                <div id="alert-container" class="max-w-7xl">                   
-                </div>
-
-                <!-- Location section and Gender -->
-                <div class="md:flex md:flex-row">                  
-
+                <div class="md:flex md:flex-row">
                     <!-- Department -->
                     <div class="md:basis-1/3 mt-4">
                         <x-input-label for="department" :value="__('Departamento')" />
-                        <select id="department" name="departamento" class="form-control border-gray-300 rounded-lg mt-1 w-full" required autofocus>
+                        <x-text-input id="department-x" class="block mt-1 w-full" type="hidden" name="departamento" value="" />
+                        <select id="department" name="departamento" class="form-control border-gray-300 rounded-lg mt-1 w-full" autofocus>
                             <option value="">Selecciona tu departamento</option>    
                             @foreach ($departments as $department)
                                 <option value="{{ $department }}">{{ $department }}</option>
@@ -81,7 +102,8 @@
                     <!-- City -->
                     <div class="md:basis-1/3 md:ml-6 mt-4">
                         <x-input-label for="city" :value="__('Municipio')" />
-                        <select id="city" name="municipio" class="form-control border-gray-300 rounded-lg mt-1 w-full" required autofocus>
+                        <x-text-input id="city-x" class="block mt-1 w-full" type="hidden" name="municipio" value="" />
+                        <select id="city" name="municipio" class="form-control border-gray-300 rounded-lg mt-1 w-full" autofocus>
                         </select>
                         <x-input-error :messages="$errors->get('city')" class="mt-2" />
                     </div>
@@ -89,7 +111,8 @@
                     <!-- Sex -->
                     <div class="md:basis-1/3 md:ml-6 mt-4">
                         <x-input-label for="sex" :value="__('Sexo según DPI')" />
-                        <select id="sex" name="sexo" class="form-control border-gray-300 rounded-lg mt-1 w-full" required autofocus>
+                        <x-text-input id="sex-x" class="block mt-1 w-full" type="hidden" name="sexo" value="" />
+                        <select id="sex" name="sexo" class="form-control border-gray-300 rounded-lg mt-1 w-full" required>
                             <option value="">Elije una opción</option>
                             <option value="Femenino">Femenino</option>
                             <option value="Masculino">Masculino</option>
@@ -98,8 +121,14 @@
                         <x-input-error :messages="$errors->get('sex')" class="mt-2" />
                     </div>
                 </div>
+                <!--</div>-->
+
+                <!-- Validation alert container -->
+                <div id="alert-container" class="max-w-7xl">                   
+                </div>
 
                 <!-- Contact section -->
+                <!--<div id="section-step-2" class="hidden">-->
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight mt-6">
                     {{ __('Contacto') }}
                 </h2>
@@ -108,22 +137,30 @@
                     <!-- Phone -->
                     <div class="md:basis-1/2 mt-4">
                         <x-input-label for="phone" :value="__('Teléfono')" />
-                        <x-text-input id="phone" class="block mt-1 w-full" type="text" name="telefono" :value="old('phone')" required autofocus autocomplete="phone" />
+                        <x-text-input id="phone-x" class="block mt-1 w-full" type="hidden" minlength="8" maxlength="8" name="telefono" :value="old('phone')" />
+                        <x-text-input id="phone" class="block mt-1 w-full" type="number" minlength="8" maxlength="8" name="telefono" :value="old('phone')" required autocomplete="phone" />
                         <x-input-error :messages="$errors->get('phone')" class="mt-2" />
                     </div>
 
                     <!-- Email Address -->
                     <div class="md:basis-1/2 md:ml-6 mt-4">
                         <x-input-label for="email" :value="__('Correo')" />
-                        <x-text-input id="email" class="block mt-1 w-full" type="email" name="correo" value="{{Auth::user()->email}}" required autocomplete="username" />
+                        <x-text-input id="email-x" class="block mt-1 w-full" type="hidden" name="correo" value="{{Auth::user()->email}}" />
+                        <x-text-input id="email" class="block mt-1 w-full" type="email" name="correo" value="{{Auth::user()->email}}" autocomplete="username" />
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
                 </div>
+                </div>
 
                 <!-- JRV selection section -->
+                <div id="section-step-2" class="hidden">
+                <h1 class="font-extrabold text-3xl text-gray-800 leading-tight mt-10 mb-6">
+                    {{ __('Paso 2') }}
+                </h1>
+
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight mt-6">
                     {{ __('Asignación de mesa') }}
-                    <p class="text-sm leading-relaxed text-gray-500 dark:text-gray-400">Tu mesa aparecerá en el siguiente campo siempre que hayas completado la información previa. Si no ves el número de tu mesa, por favor consúltalo en <a class="hover:underline" href="">https://dondevotas2023.tse.org.gt</a> y vuelve a este formulario.</p>
+                    <p class="text-sm mt-4 leading-relaxed text-gray-500 dark:text-gray-400">La mesa en la que votas aparecerá de manera predeterminada en el siguiente campo, pero debes revisar la disponiblidad para confirmarla. Si ya no está disponible, podrás seleccionar entre otras mesas de tu mismo centro o municipio.</p>
                 </h2>
 
                 <div class="md:flex md:flex-row">
@@ -137,40 +174,69 @@
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                                 </svg>
                             </div>
+                            <input type="hidden" id="jrv-x" class="" name="jrv" value="">
                             <input type="search" id="input-jrv" class="block w-full p-4 pl-10 text-base font-extrabold text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500" placeholder="Buscar una mesa" required>
-                            <button id="btn-availability" class="text-white absolute right-2.5 bottom-2.5 bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900" data-modal-target="jrv-select-modal" data-modal-toggle="jrv-select-modal">Ver disponibilidad</button>
+                            <!--<button id="btn-availability" class="text-white absolute right-2.5 bottom-2.5 bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900" data-modal-target="jrv-select-modal" data-modal-toggle="jrv-select-modal">Ver disponibilidad</button>-->
                             <button id="btn-availability-2" class="text-white absolute right-2.5 bottom-2.5 font-extrabold rounded-lg text-sm px-4 py-2 hidden" style="background-color:#84cc16;" disabled>Seleccionada</button>
                         </div>
-                    </div>
+                    </div> 
+                </div>
+                </div>
 
-                    <!-- JRV Address -->
-                    <div class="md:basis-1/2 md:ml-6 mt-4">
-                        <x-input-label for="table-group" :value="__('Fiscal Informático')" />
+                <div id="section-step-2-1" class="hidden">
+                <h2 class="font-semibold text-xl text-gray-800 leading-tight mt-10">
+                    {{ __('¿Deseas ser fiscal informático? (Opcional)') }}
+                    <p class="text-sm mt-6 leading-relaxed text-gray-500 dark:text-gray-400">Un fiscal informático se encarga de supervisar y comparar los resultados preliminares de las votaciones. Su responsabilidad incluye garantizar que los fiscales y las juntas receptoras de votos reciban las certificaciones de escrutinios correspondientes. Además, verifican la consistencia de los datos entre el acta final de cierre y escrutinios y las certificaciones de escrutinios. También comparan las certificaciones de escrutinios con las actas finales publicadas. Asimismo, revisan la precisión de los datos procesados por el sistema TREP mediante la comparación con las imágenes de las actas escaneadas, entre otras tareas.</p>
+                    <p class="text-sm mt-2 mb-2 font-extrabold leading-relaxed text-gray-700 dark:text-gray-400">Si accedes a ser fiscal informático, ingresarás a una lista en la que serás contactado para continuar este proceso especial.</p>
+                </h2>
+
+                <div class="md:flex md:flex-row">
+                    
+                    <div class="md:basis-1/2 md:ml-6 mt-4 mb-6">
+                        <!--<x-input-label for="table-group" :value="__('Fiscal Informático')" />-->
                         <div class="flex">
                             <div class="flex items-center h-5">
                                 <input id="fiscal-informatico" name="fiscal_electronico" aria-describedby="helper-checkbox-text" type="checkbox" value="N" class="w-4 h-4 text-indigo-600 bg-gray-100 border-gray-300 rounded focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                             </div>
                             <div class="ml-2 text-sm">
-                                <label for="helper-checkbox" class="font-medium text-gray-900 dark:text-gray-300">Deseo ser un fiscal informático</label>
-                                <p id="helper-checkbox-text" class="text-xs font-normal text-gray-500 dark:text-gray-300">
+                                <label for="helper-checkbox" class="font-medium text-gray-900 dark:text-gray-300">Sí, quiero ser un fiscal informático</label>
+                                <!--<p id="helper-checkbox-text" class="text-xs font-normal text-gray-500 dark:text-gray-300">
                                     <a id="link-fiscal-info" href="#" data-modal-target="info-fiscal-modal" data-modal-toggle="info-fiscal-modal" class="underline inline-flex items-center text-xs font-normal text-gray-500 hover:underline dark:text-gray-400">
                                         <svg class="w-3 h-3 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.529 7.988a2.502 2.502 0 0 1 5 .191A2.441 2.441 0 0 1 10 10.582V12m-.01 3.008H10M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
                                         </svg>
                                         ¿Qué es un fiscal informático?
                                     </a>
-                                </p>
+                                </p>-->
                             </div>
                         </div>
                     </div>
                 </div>
+                </div>
+
+                <div id="section-step-3" class="hidden">
+                <h2 class="font-semibold text-xl text-gray-800 leading-tight mt-10">
+                    {{ __('¡Todo listo!') }}
+                    <p class="text-sm mt-6 leading-relaxed text-gray-500 dark:text-gray-400">Para finalizar el registro, debes leer el acuerdo de registro haciendo clic en el texto <strong>He leído el acuerdo de registro.</strong> Al finalizar, marca la casilla de confirmación.</p>
+                </h2>
+
+                <div class="flex items-center justify-start mt-8 mb-6">                     
+                    <x-text-input id="accept" class="block mt-1 text-indigo-600 bg-gray-100 border-gray-300 rounded focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" type="checkbox" name="accept" :value="old('accept')" disabled />                       
+                    <a id="link-terms" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ml-2" data-modal-target="staticModal" data-modal-toggle="staticModal" href="#">
+                        {{ __('He leído el acuerdo de registro') }}
+                    </a>                    
+                </div>
+                
+                </div>
+
+                
 
                 <!-- Fiscal Info modal -->
-                <div id="info-fiscal-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                <!--<div id="info-fiscal-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
                     <div class="relative w-full max-w-2xl max-h-full">
-                        <!-- Modal content -->
+                        
                         <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                            <!-- Modal header -->
+                            
                             <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
                                 <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
                                     Fiscal informático
@@ -182,19 +248,19 @@
                                     <span class="sr-only">Close modal</span>
                                 </button>
                             </div>
-                            <!-- Modal body -->
+                            
                             <div class="p-6 space-y-6 overflow-y-auto h-64">
                                 <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
                                 Un fiscal informático se encarga de supervisar y comparar los resultados preliminares de las votaciones. Su responsabilidad incluye garantizar que los fiscales y las juntas receptoras de votos reciban las certificaciones de escrutinios correspondientes. Además, verifican la consistencia de los datos entre el acta final de cierre y escrutinios y las certificaciones de escrutinios. También comparan las certificaciones de escrutinios con las actas finales publicadas. Asimismo, revisan la precisión de los datos procesados por el sistema TREP mediante la comparación con las imágenes de las actas escaneadas, entre otras tareas.
                                 </p>
                             </div>
-                            <!-- Modal footer -->
+                            
                             <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
                                 <button id="btn-fiscal-info" data-modal-hide="info-fiscal-modal" type="button" class="text-white bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900">Entendido</button>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>-->
 
                 <!-- JRV Selection Modal -->
                 <div id="jrv-select-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -248,15 +314,15 @@
                                 <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
                                     Acuerdo de registro
                                 </h3>
-                                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="staticModal">
+                                <!--<button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="staticModal">
                                     <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
                                     </svg>
                                     <span class="sr-only">Close modal</span>
-                                </button>
+                                </button>-->
                             </div>
                             <!-- Modal body -->
-                            <div class="p-6 space-y-6 overflow-y-auto h-64">
+                            <div id="modalContent" class="p-6 space-y-6 overflow-y-auto h-64">
                                 <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
                                     Al completar este formulario, acepto trabajar como fiscal voluntario/a para el movimiento Semilla en las elecciones. Reconozco que mi participación es completamente voluntaria y que no estoy obligado/a a desempeñar ninguna función en contra de mi voluntad.
                                 </p>
@@ -286,42 +352,192 @@
                             </div>
                             <!-- Modal footer -->
                             <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-                                <button data-modal-hide="staticModal" type="button" class="text-white bg-indigo-800 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-800 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900">Volver al formulario</button>
-                                <!--<button data-modal-hide="staticModal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-indigo-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Declinar</button>-->
+                                <button id="btn-terms" data-modal-hide="staticModal" type="button" class="text-white bg-indigo-800 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-800 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900">Volver al formulario</button>
                             </div>
                         </div>
                     </div>
                 </div>
 
-
-                <div class="flex items-center justify-start mt-8">                     
-                    <x-text-input id="accept" class="block mt-1 text-indigo-600 bg-gray-100 border-gray-300 rounded focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" type="checkbox" name="accept" :value="old('accept')" required autocomplete="accept" />                       
-                    <a id="btn-terms" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ml-2" data-modal-target="staticModal" data-modal-toggle="staticModal" href="#">
-                        {{ __('He leído el acuerdo de registro') }}
-                    </a>                    
-                </div>
-
-                <div class="flex items-center justify-start mt-4">
-                    <button id="save" class="text-white bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900">
+                <div class="flex items-center justify-start mt-4 mb-3">
+                    <button id="btn-next-step" class="text-white bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900 w-full md:w-3/12" style="cursor: pointer;">
                         <svg id="loading" aria-hidden="true" role="status" class="hidden inline w-4 h-4 mr-3 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
                             <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>
                         </svg>    
                     
-                        {{ __('Guardar') }}
+                        {{ __('Verificar') }}
+                    </button>
+                    <a id="btn-next-ava" class="hidden text-white bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900 w-full md:w-3/12" data-modal-target="jrv-select-modal" data-modal-toggle="jrv-select-modal" style="cursor: pointer;">
+                        {{ __('Ver disponibilidad') }}
+                    </a>
+                </div>
+
+                <div class="flex items-center justify-start mt-4 mb-6">
+                    <button id="btn-save" class="text-white bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900 hidden">
+                        <svg id="loading" aria-hidden="true" role="status" class="hidden inline w-4 h-4 mr-3 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
+                            <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>
+                        </svg>    
+                    
+                        {{ __('Finalizar') }}
                     </button>
                 </div>
             </form>
-
-            <div id="an" class="hidden">
-
-            </div>
-
         </div>
         <!--/Card-->
     </div>
     <!--/container-->
+    <style>
+        .animate {
+            animation: expandFromTop 0.6s;
+            animation-fill-mode: forwards;
+        }
 
+        .move-button {
+            animation: bounceButton 0.9s;
+            animation-fill-mode: forwards;
+        }
+
+        .pop-up {
+            animation: modalPopUp 0.3s ease-out;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        /* Styles for desktop */
+        @media (min-width: 768px) {
+            .modal {
+                width: 600px;
+                transform: translate(-50%, -50%); 
+            }
+        }
+
+        /* Styles for mobile */
+        @media (max-width: 767px) {
+            .modal {
+                width: 90%;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        @keyframes expandWithBounce {
+            0% {
+                height: 0;
+                opacity: 0; 
+                transform-origin: top;
+            }
+            40% {
+                opacity: 0.7; 
+                height: 100%;
+                transform: scaleY(1.3);
+            }
+            60% {
+                opacity: 1;
+                transform: scaleY(0.7);
+            }
+            80% {
+                height: 100%;
+                transform: scaleY(1.1);
+            }
+            90% {
+                transform: scaleY(0.9);
+            }
+            100% {
+                height: 100%;
+                transform: scaleY(1);
+            }
+        }
+
+        @keyframes expandFromTop {
+            0% {
+                height: 0;
+                opacity: 0;
+                transform-origin: top;
+                transform: scaleY(0);
+            }
+            40% {
+                height: 0;
+                opacity: 0;
+                transform-origin: top;
+                transform: scaleY(0);
+            }
+            100% {
+                opacity: 1;
+                height: 100%;
+                transform: scaleY(1);
+            }
+        }
+
+        /* Button Animation */
+        @keyframes moveButton {
+            0% {
+                transform: translateY(0);
+                opacity: 0; 
+            }
+            40% {
+                opacity: 1; 
+            }
+            60% {
+                transform: translateY(calc(100% + 1px));
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        /* Bounce Animation */
+        @keyframes bounceButton {
+            0% {
+                opacity: 1; 
+                transform: scale(1);
+                
+            }
+            20% { 
+                transform: scale(1.2);
+            }
+            40% {
+                opacity: 0;
+                transform: scale(0); 
+            }
+            60% {
+                opacity: 1; 
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Animation for showing the modal */
+        @keyframes modalPopUp {
+            0% {
+                
+                opacity: 0;
+            }
+            100% {
+                
+                opacity: 1;
+            }
+        }
+    </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
 
@@ -334,6 +550,8 @@
             var USR_NAME = '', USR_SURNAME = '', USR_DEPT = '', USR_CITY = '', USR_MAIL = '';
             var JRV_USR = '', JRV_SELECTED = '';       
             var alertValidation = '<div id="alert-additional-content-2" class="p-4 mb-4 text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800 mt-4" role="alert"><div class="flex items-center"><svg class="w-4 h-4 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg><span class="sr-only">Info</span><h3 class="text-lg font-medium">DPI no válido</h3></div><div class="mt-2 mb-4 text-sm">El DPI ingresado o la fecha de nacimiento no son correctos. Por favor, revisa tu fecha de nacimiento e intenta ingresar tu DPI nuevamente.</div><div class="flex"><button type="button" class="text-white bg-red-800 hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-xs px-3 py-1.5 mr-2 text-center inline-flex items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" data-dismiss-target="#alert-additional-content-2">Entendido</button></div></div>';
+            let CURRENT_STEP = 'STEP_0';
+            var terms_read = false;
 
             // Populate days
             populateDays();
@@ -345,22 +563,134 @@
             populateYears();
 
             // Prevent autoscrolling in terms and conditions
-            document.getElementById('btn-terms').addEventListener('click', function(event) {
+            document.getElementById('link-terms').addEventListener('click', function(event) {
                 event.preventDefault();         
             });
+ 
+            readingDetection();
+            
+            $('#btn-next-step').click(function (event) {
+                event.preventDefault(); 
 
-            // Prevent autoscrolling in fiscal info
-            document.getElementById('btn-fiscal-info').addEventListener('click', function(event) {
-                event.preventDefault();         
+                if (CURRENT_STEP === 'STEP_0') {
+                    // Get the user info from TSE API
+                    fetchUserInfo();
+                } else {
+                    nextStep(CURRENT_STEP);
+                }
+                
             });
 
-            // Prevent autoscrolling in fiscal info
-            document.getElementById('link-fiscal-info').addEventListener('click', function(event) {
-                event.preventDefault();         
+            $('#accept').on('change', function () {
+                terms_read = this.checked;
+                $('#btn-save').prop('disabled', !terms_read);
+
+                if (terms_read) {
+                    $('#btn-save').removeClass('disabled:bg-indigo-200');
+                } else {
+                    $('#btn-save').addClass('disabled:bg-indigo-200');
+                }
+                
             });
 
-            // Setting up buttons
-            enableButtonAvailability(false); 
+            function nextStep(step){
+                if (step === 'STEP_0') {
+                    // Step 0: fill DPI and birthdathe fields
+                    disablePersonalData(true);
+
+                    $('#badge-verify').removeClass('invisible');
+                    $('#section-step-1').removeClass('hidden');
+                    $('#section-step-1').addClass('animate');
+                    $('#btn-next-step').addClass('move-button');
+                    $('#btn-next-step').html("Siguiente paso");
+
+                    // Pass the focus to the next required input
+                    $("#sex").focus();
+
+                    CURRENT_STEP = 'STEP_1';
+
+                    // Remove the animate class after the animation finishes
+                    setTimeout(() => {
+                        $('#section-step-1').removeClass('animate');
+                        $('#btn-next-step').removeClass('move-button');
+                    }, 1000);
+
+                    //console.log(CURRENT_STEP);    
+                } else if (step === 'STEP_1') {
+                    // Step 1: complete personal data
+                    $('#section-step-2').removeClass('hidden');
+                    $('#section-step-2').addClass('animate');
+                    $('#btn-next-step').addClass('move-button');
+
+                    // Change the button step for the availability button
+                    setTimeout(() => {
+                        $('#btn-next-ava').removeClass('hidden');
+                        $('#btn-next-step').addClass('hidden');
+                    }, 500);
+
+                    //$('#btn-next-step').html("Ver disponibilidad");
+
+                    // Prepare the view and load JRVs
+                    enableButtonConfirm(false);
+                    showButtonMap(false);
+                    fetchJRVs();
+
+                    CURRENT_STEP = 'STEP_2';
+
+                    setTimeout(() => {
+                        $('#section-step-2').removeClass('animate');
+                        $('#btn-next-step').removeClass('move-button');
+                    }, 1000);
+                    //console.log(CURRENT_STEP);
+                } else if (step === 'STEP_2') {
+                    $('#section-step-2-1').removeClass('hidden');
+                    $('#section-step-2-1').addClass('animate');
+                    $('#btn-next-step').addClass('move-button');
+                    $('#btn-next-step').html("Continuar");
+                    
+                    CURRENT_STEP = 'STEP_3';
+
+                    setTimeout(() => {
+                        $('#section-step-2-1').removeClass('animate');
+                        $('#btn-next-step').removeClass('move-button');
+                    }, 1000);
+                    //console.log(CURRENT_STEP);
+                } else if (step === 'STEP_3') {
+                    $('#section-step-3').removeClass('hidden');
+                    $('#section-step-3').addClass('animate');
+                    $('#btn-next-step').addClass('hidden');
+
+                    $('#btn-save').removeClass('hidden');
+
+                    //$('#btn-next-step').html('Finalizar');
+                    $('#btn-save').prop('disabled', true);
+                    $('#btn-save').addClass('disabled:bg-indigo-200');
+
+                    //nextStep(CURRENT_STEP);
+
+
+                    $('#btn-save').addClass('move-button');
+                    CURRENT_STEP = 'COMMIT';
+
+                    setTimeout(() => {
+                        $('#section-step-3').removeClass('animate');
+                        //$('#btn-next-step').removeClass('move-button');
+                        $('#btn-save').removeClass('move-button');
+                    }, 1000);
+                    //console.log(CURRENT_STEP);
+                } else if (step === 'STEP_3') {
+                    $('#section-step-4').removeClass('hidden');
+                    $('#section-step-4').addClass('animate');
+                    $('#btn-next-step').addClass('move-button');
+                    CURRENT_STEP = 'STEP_4';
+
+                    setTimeout(() => {
+                        $('#section-step-3').removeClass('animate');
+                        $('#btn-next-step').removeClass('move-button');
+                    }, 1000);
+                    //console.log(CURRENT_STEP);
+                }
+            }
 
             // City Dropdown Change Event
             $('#department').on('change', function () {
@@ -370,12 +700,13 @@
             // Days input change event
             $('#days').on('change', function () {
                 date_dd = this.value;
-                updateBirthdate()
+                updateBirthdate();
             });
 
             // Save action button
-            $('#save').click(function (event) {
-                $('#loading').removeClass('hidden');
+            $('#btn-save').click(function (event) {
+                event.preventDefault();
+                //$('#loading').removeClass('hidden');
                 USR_MAIL = $('#email').val();
 
                 $.ajax({
@@ -400,11 +731,14 @@
                     dataType: 'json',
                     success: function (result) {
                         console.log(result);
-                        $('#loading').addClass('hidden');
+                        /*$('#loading').addClass('hidden');
 
                         $('#frm-main').addClass('hidden');
                         $('#an').removeClass('hidden');
                         $('#an').addClass('transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300');
+                    */
+                        var redirectUrl = result.redirect_url;
+                        window.location.href = redirectUrl;
                     }
                 });
             });
@@ -412,21 +746,18 @@
             // Days input change event
             $('#months').on('change', function () {
                 date_mm = this.value;
-                updateBirthdate()
+                updateBirthdate();
             });
 
             // Days input change event
             $('#years').on('change', function () {
                 date_yyyy = this.value;
-                updateBirthdate()
-
-                // Get the user info from TSE API
-                fetchUserInfo();
+                updateBirthdate();
             });
 
             $('#input-jrv').on('input', function () {
                 var inputValue = $(this).val();
-                enableButtonAvailability(inputValue != '');
+                //enableButtonAvailability(inputValue != '');
                 changeStatusToSelected(false);
             });   
             
@@ -441,15 +772,6 @@
                 } else {
                     $(this).val('N');
                 }
-            });
-
-            // JRVs populate list 
-            $('#btn-availability').click(function (event) {
-                event.preventDefault(); 
-                enableButtonConfirm(false);
-                showButtonMap(false);
-                
-                fetchJRVs();
             });
 
             function fetchCities() {
@@ -471,6 +793,7 @@
                         });
 
                         $('#city').val(USR_CITY);
+                        $('#city-x').val(USR_CITY);
                     }
                 });
             }
@@ -500,15 +823,19 @@
                         $('#input-jrv').val(JRV_USR);  
                         $('#department').val(USR_DEPT);
                         $('#department').trigger('change'); 
-                        $('#input-jrv').trigger('input');                   
+                        $('#input-jrv').trigger('input');
+                        
+                        $('#surname-x').val(USR_SURNAME);
+                        $('#name-x').val(USR_NAME); 
+                        $('#jrv-x').val(JRV_USR);  
+                        $('#department-x').val(USR_DEPT);  
+                        $('#dpi-x').val(dpi_value);
+
+                        nextStep(CURRENT_STEP);
                     },
                     error: function(xhr, status, error) {
                         if (xhr.status === 404) {
-                            $('#alert-container').html(alertValidation);
-                            $('[data-dismiss-target="#alert-additional-content-2"]').click(function() {
-                                $('#alert-additional-content-2').remove();
-                                $('#dpi').val('');
-                            });
+                            showAlertMessage('Datos no encontrados','Por favor, revisa que tu número de DPI y fecha de nacimiento son correctos e intenta nuevamente.','Entendido');
                         } else {
                             //console.error(xhr.responseText);
                         }
@@ -571,7 +898,7 @@
                             event.preventDefault();
 
                             const radioButton = link.querySelector('input[type="radio"]');
-
+                                console.log('flagjrv')
                                 if (!radioButton.hasAttribute('disabled')) {
                                     radioButton.checked = true;
                                     JRV_SELECTED = radioButton.value;
@@ -599,11 +926,9 @@
                     },
                     success: function(response) {
                         alert(response.message);
-                        // Handle success response, e.g., show a success message or update the UI
                     },
                     error: function(xhr) {
                         alert('Error updating entity. Please try again.');
-                        // Handle error response, e.g., show an error message or handle specific errors
                     }
                 });
             }
@@ -611,18 +936,6 @@
             function updateBirthdate() {
                 const birthdate = `${date_yyyy}-${date_mm}-${date_dd}`;
                 $('#birthdate').val(birthdate);
-            }
-
-            function enableButtonAvailability(enable) {
-                if (enable) {
-                    $('#btn-availability').prop('disabled', false);
-                    $('#btn-availability').addClass('bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900');
-                    $('#btn-availability').removeClass('cursor-not-allowed bg-indigo-300 hover:bg-indigo-400');
-                } else {
-                    $('#btn-availability').prop('disabled', true);
-                    $('#btn-availability').removeClass('bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900');
-                    $('#btn-availability').addClass('cursor-not-allowed bg-indigo-300 hover:bg-indigo-400');
-                }
             }
 
             function enableButtonConfirm(enable) {
@@ -648,14 +961,15 @@
             function changeStatusToSelected(change) {
                 if (change) {
                     $('#input-jrv').val(JRV_SELECTED);
-                    $('#btn-availability').addClass('hidden');
+                    $('#jrv-x').val(JRV_SELECTED);
                     $('#btn-availability-2').removeClass('hidden');
-                    //enableButtonAvailability(false);
+
+                    // Change the button
+                    $('#btn-next-ava').addClass('hidden');
+                    $('#btn-next-step').removeClass('hidden');                  
                 } else {
                     JRV_SELECTED = '';
                     $('#btn-availability-2').addClass('hidden');
-                    $('#btn-availability').removeClass('hidden');
-                    //enableButtonAvailability(true);
                 }
             }
 
@@ -722,6 +1036,75 @@
                 }
 
                 return listItem;
+            }
+
+            // Disables specific fields in form
+            function disablePersonalData(flag) {
+                $('#surname').prop('disabled', flag);
+                $('#name').prop('disabled', flag); 
+                $('#department').prop('disabled', flag);
+                $('#city').prop('disabled', flag); 
+                $('#dpi').prop('disabled', flag); 
+                $('#days').prop('disabled', flag);
+                $('#months').prop('disabled', flag);
+                $('#years').prop('disabled', flag);
+                $('#email').prop('disabled', flag);
+
+                $('#surname').addClass('disabled:opacity-60');
+                $('#name').addClass('disabled:opacity-60');
+                $('#department').addClass('disabled:opacity-60');
+                $('#city').addClass('disabled:opacity-60'); 
+                $('#dpi').addClass('disabled:opacity-60'); 
+                $('#days').addClass('disabled:opacity-60');
+                $('#months').addClass('disabled:opacity-60');
+                $('#years').addClass('disabled:opacity-60');
+                $('#email').addClass('disabled:opacity-60');
+            }
+
+            // Show Alert 
+            function showAlertMessage(title, message, buttonOption) {
+                $('#alert-msg').html(`
+                                    <h2 id="alert-title" class="font-bold text-lg text-gray-800 leading-tight mb-3">`+title+`</h2>
+                                    <p id="alert-title" class="text-center">`+message+`</p>
+                                    <div class="flex items-center justify-start mt-4">
+                                        <a id="alert-btn" class="text-white bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900" style="cursor: pointer;">
+                                            `+buttonOption+`
+                                        </a>
+                                    </div>
+                                    `);
+
+                $('#modalOverlay').removeClass('hidden');
+                $('#alert-msg').addClass('pop-up');
+
+                setTimeout(() => {
+                        $('#alert-msg').removeClass('pop-up');
+                    }, 1500);
+
+                $('#alert-btn').click(function (event) {
+                $('#modalOverlay').addClass('hidden');
+            });
+            }
+
+            function readingDetection(){
+                // Initialize button state
+                $('#btn-terms').addClass('disabled:bg-indigo-200');
+                $('#btn-terms').prop('disabled', true);
+
+                const $modalContent = $('#modalContent');
+
+                $modalContent.on('scroll', function () {
+                    // Calculate the scroll position
+                    const scrollPosition = $modalContent.scrollTop();
+                    const contentHeight = $modalContent[0].scrollHeight - $modalContent.outerHeight();
+
+                    // Check if the user has scrolled to the bottom of the content
+                    if (scrollPosition === contentHeight) {
+                        //console.log('heading down.');
+                        $('#btn-terms').removeClass('disabled:bg-indigo-200');
+                        $('#btn-terms').prop('disabled', false);
+                        $('#accept').prop('disabled', false); 
+                    }
+                });
             }
 
         });      
