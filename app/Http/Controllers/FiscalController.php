@@ -74,7 +74,7 @@ class FiscalController extends Controller
             $mesa->save();
             $user->save();
 
-            $redirectUrl = '/seedbed/public/dashboard';
+            $redirectUrl = url('/dashboard');
             return response()->json(['redirect_url' => $redirectUrl]);
         } else {
             return response()->json(['message' => 'ERROR']);
@@ -89,7 +89,7 @@ class FiscalController extends Controller
         return view('fiscal.edit', [
             'fiscal' => $request->fiscal(),
         ]);
-    }*/ 
+    }*/
 
     /**
      * Display the specified resource.
@@ -97,7 +97,7 @@ class FiscalController extends Controller
     public function show(string $id)
     {
         //
-    } 
+    }
 
     /**
      * Fetch the cities for a department
@@ -108,7 +108,7 @@ class FiscalController extends Controller
     {
         $data['cities'] = Mesa::distinct()->where("departamento", $request->departamento)
                                 ->get(["municipio"]);
-  
+
         return response()->json($data);
     }
 
@@ -125,7 +125,7 @@ class FiscalController extends Controller
                                     ->orderBy("jrv")
                                     ->orderBy("estatus")
                                     ->get(["jrv","latitude","longitude","nombre","ubicacion","zona","estatus"]);
-  
+
         return response()->json($data);
     }
 
@@ -143,7 +143,7 @@ class FiscalController extends Controller
                             ->orderBy("jrv")
                             ->orderBy("estatus")
                             ->get(["jrv","latitude","longitude","nombre","ubicacion","zona","estatus"]);
-  
+
         return response()->json($data);
     }
 
