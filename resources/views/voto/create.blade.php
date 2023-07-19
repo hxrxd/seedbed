@@ -73,7 +73,7 @@
                           </div>
 
                         <div class="md:col-span-5 text-right">
-                          <div class="inline-flex items-end">
+                          <div class="mt-16 inline-flex items-end">
                             <button class="text-white bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900">Enviar acta</button>
                           </div>
                         </div>
