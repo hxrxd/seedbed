@@ -7,12 +7,6 @@
             
             <form id="frm-main" class="">
                 @csrf
-                
-                <!-- Alert messages modal -->
-                <div class="modal-overlay hidden" id="modalOverlay">
-                    <div id="alert-msg" class="modal flex flex-col items-center justify-center">
-                    </div>
-                </div>
 
                 <h1 class="font-extrabold text-3xl text-gray-800 leading-tight mb-6">
                     {{ __('Paso 1') }}
@@ -28,7 +22,7 @@
                     <div class="md:basis-1/3 mt-4">
                         <x-input-label for="dpi" :value="__('DPI')" />
                         <x-text-input id="dpi-x" class="block mt-1 w-full" type="hidden" name="dpi" :value="old('dpi')"/>
-                        <x-text-input id="dpi" class="block mt-1 w-full" type="number" name="dpi" :value="old('dpi')" required autofocus autocomplete="dpi" />
+                        <x-text-input id="dpi" class="block mt-1 w-full" type="text" name="dpi" :value="old('dpi')" required autofocus autocomplete="dpi" inputmode="numeric"/>
                         <x-input-error :messages="$errors->get('dpi')" class="mt-2" />
                     </div>
 
@@ -56,7 +50,7 @@
                     </div>
 
                     <div id="badge-verify" class="md:basis-1/3 md:ml-6 mt-4 place-items-center invisible">
-                        <div class="flex flex-row items-center justify-center md:pt-8">
+                        <div class="flex flex-row items-center justify-start md:pt-8">
                             <svg class="w-4 h-4 text-[#72b30f]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 21">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m6.072 10.072 2 2 6-4m3.586 4.314.9-.9a2 2 0 0 0 0-2.828l-.9-.9a2 2 0 0 1-.586-1.414V5.072a2 2 0 0 0-2-2H13.8a2 2 0 0 1-1.414-.586l-.9-.9a2 2 0 0 0-2.828 0l-.9.9a2 2 0 0 1-1.414.586H5.072a2 2 0 0 0-2 2v1.272a2 2 0 0 1-.586 1.414l-.9.9a2 2 0 0 0 0 2.828l.9.9a2 2 0 0 1 .586 1.414v1.272a2 2 0 0 0 2 2h1.272a2 2 0 0 1 1.414.586l.9.9a2 2 0 0 0 2.828 0l.9-.9a2 2 0 0 1 1.414-.586h1.272a2 2 0 0 0 2-2V13.8a2 2 0 0 1 .586-1.414Z"/>
                             </svg>
@@ -123,10 +117,6 @@
                 </div>
                 <!--</div>-->
 
-                <!-- Validation alert container -->
-                <div id="alert-container" class="max-w-7xl">                   
-                </div>
-
                 <!-- Contact section -->
                 <!--<div id="section-step-2" class="hidden">-->
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight mt-6">
@@ -138,7 +128,7 @@
                     <div class="md:basis-1/2 mt-4">
                         <x-input-label for="phone" :value="__('Teléfono')" />
                         <x-text-input id="phone-x" class="block mt-1 w-full" type="hidden" minlength="8" maxlength="8" name="telefono" :value="old('phone')" />
-                        <x-text-input id="phone" class="block mt-1 w-full" type="number" minlength="8" maxlength="8" name="telefono" :value="old('phone')" required autocomplete="phone" />
+                        <x-text-input id="phone" class="block mt-1 w-full" type="text" minlength="8" maxlength="8" name="telefono" :value="old('phone')" required autocomplete="phone" inputmode="numeric"/>
                         <x-input-error :messages="$errors->get('phone')" class="mt-2" />
                     </div>
 
@@ -177,7 +167,8 @@
                             <input type="hidden" id="jrv-x" class="" name="jrv" value="">
                             <input type="search" id="input-jrv" class="block w-full p-4 pl-10 text-base font-extrabold text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500" placeholder="Buscar una mesa" required>
                             <!--<button id="btn-availability" class="text-white absolute right-2.5 bottom-2.5 bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900" data-modal-target="jrv-select-modal" data-modal-toggle="jrv-select-modal">Ver disponibilidad</button>-->
-                            <button id="btn-availability-2" class="text-white absolute right-2.5 bottom-2.5 font-extrabold rounded-lg text-sm px-4 py-2 hidden" style="background-color:#84cc16;" disabled>Seleccionada</button>
+                            <!--<button id="btn-availability-2" class="text-white absolute right-2.5 bottom-2.5 font-extrabold rounded-lg text-sm px-4 py-2 hidden" style="background-color:#84cc16;" disabled>Seleccionada</button>-->
+                            <a id="btn-availability-2" class="absolute right-5 bottom-2.5 text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-indigo-300 rounded-lg border border-gray-200 text-sm font-medium hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600 px-4 py-2 hidden" data-modal-target="jrv-select-modal" data-modal-toggle="jrv-select-modal" style="cursor: pointer;">Cambiar</a>
                         </div>
                     </div> 
                 </div>
@@ -217,7 +208,7 @@
                 <div id="section-step-3" class="hidden">
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight mt-10">
                     {{ __('¡Todo listo!') }}
-                    <p class="text-sm mt-6 leading-relaxed text-gray-500 dark:text-gray-400">Para finalizar el registro, debes leer el acuerdo de registro haciendo clic en el texto <strong>He leído el acuerdo de registro.</strong> Al finalizar, marca la casilla de confirmación.</p>
+                    <p class="text-sm mt-6 leading-relaxed text-gray-500 dark:text-gray-400">Para finalizar el registro, debes leer el acuerdo de registro haciendo clic en el texto <span class="font-extrabold">He leído el acuerdo de registro</span>. Al finalizar, marca la casilla de confirmación.</p>
                 </h2>
 
                 <div class="flex items-center justify-start mt-8 mb-6">                     
@@ -280,7 +271,15 @@
                                 </h3>
                             </div>
                             <!-- Modal body -->
-                            <div class="p-6 overflow-y-auto h-64">
+                            <div id="list-jrv-loading" class="flex items-center justify-center p-6 h-64 hidden">
+                                <div class="flex items-center justify-center w-56 h-56">
+                                    <div role="status">
+                                        <svg aria-hidden="true" class="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-indigo-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/><path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/></svg>
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="list-jrv" class="p-6 overflow-y-auto h-64">
                                 <span class="text-2xl font-extrabold text-gray-800 dark:text-gray-200">Tu mesa</span>
                                 <ul id="li-jrv-01" class="my-4 space-y-3 mb-8">
                                 </ul>
@@ -296,7 +295,7 @@
                             <!-- Modal footer -->
                             <div class="grid justify-items-end p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
                                 <div class="flex items-center">
-                                    <button id="btn-view-map" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-indigo-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600 mr-4">Volver</button>
+                                    <!--<button id="btn-view-map" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-indigo-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600 mr-4">Volver</button>-->
                                     <button id="btn-confirm" type="button" class="text-white bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900" data-modal-hide="jrv-select-modal">Confirmar mesa</button>
                                 </div>
                             </div>
@@ -370,9 +369,10 @@
                     <a id="btn-next-ava" class="hidden text-white bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900 w-full md:w-3/12" data-modal-target="jrv-select-modal" data-modal-toggle="jrv-select-modal" style="cursor: pointer;">
                         {{ __('Ver disponibilidad') }}
                     </a>
+                    <button id="btn-cancel" type="button" class="ml-2 text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-indigo-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600 mr-4">Cancelar</button>
                 </div>
 
-                <div class="flex items-center justify-start mt-4 mb-6">
+                <div class="flex flex-row items-center justify-start mt-4 mb-6">
                     <button id="btn-save" class="text-white bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900 hidden">
                         <svg id="loading" aria-hidden="true" role="status" class="hidden inline w-4 h-4 mr-3 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
@@ -420,6 +420,18 @@
             background-color: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
+        }
+
+        /*.swal-button--cancel {
+            background-color: #5a2ca0; 
+        }*/
+
+        .swal-button--confirm {
+            background-color: #442178; 
+        }
+
+        .swal-button--confirm:hover {
+            background-color: #8787de !important; 
         }
 
         /* Styles for desktop */
@@ -539,6 +551,7 @@
         }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <script>
 
         $(document).ready(function () {
@@ -568,13 +581,50 @@
             });
  
             readingDetection();
+
+            $('#dpi').on('focusout', function () {
+                const inputValue = $(this).val();
+                const trimmedValue = inputValue.replace(/\s+/g, ''); // Remove leading and trailing spaces
+                const pattern = /^[0-9]+$/;
+
+                if (pattern.test(trimmedValue)) {
+                    if (trimmedValue.length != 13) {
+                        showSimpleAlert('Longitud no válida', 'Por favor, ingresa nuevamente tu número de DPI.', 'Entendido',null)
+                        $('#dpi').val('');
+                    }
+                } else {
+                    showSimpleAlert('Formato no válido','Evita colocar guiones, espacios o caracteres especiales al ingresar tu DPI','Entendido',null);
+                    $('#dpi').val('');
+                }
+            });
+
+            $('#phone').on('focusout', function () {
+                const inputValue = $(this).val();
+                const trimmedValue = inputValue.replace(/\s+/g, ''); // Remove leading and trailing spaces
+                const pattern = /^[0-9]+$/;
+
+                if (pattern.test(trimmedValue)) {
+                    if (trimmedValue.length != 8) {
+                        showSimpleAlert('Longitud no válida','Por favor, ingresa tú número nuevamente','Entendido',null);
+                        $('#phone').val('');
+                    }
+                } else {
+                    showSimpleAlert('Formato no válido','Ingresa tu número sin código de área. Evita guiones o espacios.','Entendido',null);
+                    $('#phone').val('');
+                }
+            });
             
             $('#btn-next-step').click(function (event) {
                 event.preventDefault(); 
 
                 if (CURRENT_STEP === 'STEP_0') {
-                    // Get the user info from TSE API
-                    fetchUserInfo();
+                    // Check date
+                    if($('#days').val() === '' ||$('#months').val() === '' ||$('#years').val() === ''){
+                        showSimpleAlert('Falta información', 'Por favor, completa tu fecha de nacimiento', 'Entendido',null);
+                    } else {
+                        // Get the user info from TSE API
+                        fetchUserInfo();
+                    }
                 } else {
                     nextStep(CURRENT_STEP);
                 }
@@ -659,6 +709,7 @@
                     $('#section-step-3').removeClass('hidden');
                     $('#section-step-3').addClass('animate');
                     $('#btn-next-step').addClass('hidden');
+                    $('#btn-cancel').addClass('hidden');
 
                     $('#btn-save').removeClass('hidden');
 
@@ -678,7 +729,7 @@
                         $('#btn-save').removeClass('move-button');
                     }, 1000);
                     //console.log(CURRENT_STEP);
-                } else if (step === 'STEP_3') {
+                } /*else if (step === 'STEP_3') {
                     $('#section-step-4').removeClass('hidden');
                     $('#section-step-4').addClass('animate');
                     $('#btn-next-step').addClass('move-button');
@@ -689,7 +740,7 @@
                         $('#btn-next-step').removeClass('move-button');
                     }, 1000);
                     //console.log(CURRENT_STEP);
-                }
+                }*/
             }
 
             // City Dropdown Change Event
@@ -731,14 +782,14 @@
                     dataType: 'json',
                     success: function (result) {
                         console.log(result);
-                        /*$('#loading').addClass('hidden');
+                        
+                        showSimpleAlert('¡Registro exitoso!', 'Ahora estás registrado como Fiscal Semilla', 'NO_BUTTON','success');
+                        
+                        setTimeout(() => {
+                            var redirectUrl = result.redirect_url;
+                            window.location.href = redirectUrl;
+                        }, 1000);
 
-                        $('#frm-main').addClass('hidden');
-                        $('#an').removeClass('hidden');
-                        $('#an').addClass('transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300');
-                    */
-                        var redirectUrl = result.redirect_url;
-                        window.location.href = redirectUrl;
                     }
                 });
             });
@@ -774,6 +825,34 @@
                 }
             });
 
+            $('#btn-cancel').click(function(event){
+                event.preventDefault();
+                swal({
+                    title: '¿Estás seguro que deseas salir?',
+                    text: "La información ingresada no será guardada.",
+                    icon: 'warning',
+                    buttons:  {
+                        cancel: "No, volver al formulario",
+                        confirm: "Sí",
+                    },
+                    //cancelButtonColor: '#5a2ca0',
+
+                }).then((willStore ) => {
+                    if (willStore) {
+                        var redirectUrl = "{{ url('/dashboard') }}";
+                        window.location.href = redirectUrl;
+                    }
+                });
+            });
+
+            $('#btn-next-ava').click(function(event){
+                loadJRVS(false);
+            });
+
+            $('#btn-availability-2').click(function(event){
+                loadJRVS(true);
+            });
+            
             function fetchCities() {
                 var idDep = $('#department').val();
                 $("#city").html('');
@@ -835,7 +914,7 @@
                     },
                     error: function(xhr, status, error) {
                         if (xhr.status === 404) {
-                            showAlertMessage('Datos no encontrados','Por favor, revisa que tu número de DPI y fecha de nacimiento son correctos e intenta nuevamente.','Entendido');
+                            showSimpleAlert('Datos no encontrados','Por favor, revisa que tu número de DPI y fecha de nacimiento son correctos e intenta nuevamente.','Entendido',null);
                         } else {
                             //console.error(xhr.responseText);
                         }
@@ -845,7 +924,8 @@
 
             function fetchJRVs() {
                 // Get a new JRV if usr change the number
-                JRV_USR = $("#input-jrv").val();
+                // Next assignment wass removed in order to prevent changes 
+                //JRV_USR = $("#input-jrv").val();
 
                 // Init lists
                 $("#li-jrv-01").html('');
@@ -871,6 +951,9 @@
 
                         $("#li-jrv-01").append(`<p class="inline-flex items-center text-sm font-normal text-gray-500 dark:text-gray-400"><svg class="w-6 h-6 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.529 7.988a2.502 2.502 0 0 1 5 .191A2.441 2.441 0 0 1 10 10.582V12m-.01 3.008H10M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>¿Qué opciones tengo si mi mesa no está disponible? Puedes elegir entre las mesas disponibles en tu mismo centro de votación o elegir alguna de tu mismo municipio.</p>`);
                         $("#li-jrv-02").append(`<p class="inline-flex items-center text-sm font-normal text-gray-500 dark:text-gray-400"><svg class="w-4 h-4 text-gray-500 dark:text-white mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>No hay más mesas disponibles en tu centro de votación.</p>`);                     
+                        
+                        addListItemEvents('li-jrv-01');
+                        addListItemEvents('li-jrv-02');
                     }
                 });
 
@@ -890,24 +973,7 @@
 
                         $("#li-jrv-03").append(`<p class="inline-flex items-center text-sm font-normal text-gray-500 dark:text-gray-400"><svg class="w-4 h-4 text-gray-500 dark:text-white mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>No hay más mesas disponibles en tu municipio.</p>`);
 
-                        // Add the events to all the new list items
-                        const links = document.querySelectorAll('a.flex.items-center');
-
-                        links.forEach(function(link) {
-                            link.addEventListener('click', function(event) {
-                            event.preventDefault();
-
-                            const radioButton = link.querySelector('input[type="radio"]');
-                                console.log('flagjrv')
-                                if (!radioButton.hasAttribute('disabled')) {
-                                    radioButton.checked = true;
-                                    JRV_SELECTED = radioButton.value;
-                                    
-                                    enableButtonConfirm(radioButton.checked);
-                                    showButtonMap(radioButton.checked);
-                                }
-                            });
-                        });
+                        addListItemEvents('li-jrv-03');
                     }
                 });
             }
@@ -1061,30 +1127,6 @@
                 $('#email').addClass('disabled:opacity-60');
             }
 
-            // Show Alert 
-            function showAlertMessage(title, message, buttonOption) {
-                $('#alert-msg').html(`
-                                    <h2 id="alert-title" class="font-bold text-lg text-gray-800 leading-tight mb-3">`+title+`</h2>
-                                    <p id="alert-title" class="text-center">`+message+`</p>
-                                    <div class="flex items-center justify-start mt-4">
-                                        <a id="alert-btn" class="text-white bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900" style="cursor: pointer;">
-                                            `+buttonOption+`
-                                        </a>
-                                    </div>
-                                    `);
-
-                $('#modalOverlay').removeClass('hidden');
-                $('#alert-msg').addClass('pop-up');
-
-                setTimeout(() => {
-                        $('#alert-msg').removeClass('pop-up');
-                    }, 1500);
-
-                $('#alert-btn').click(function (event) {
-                $('#modalOverlay').addClass('hidden');
-            });
-            }
-
             function readingDetection(){
                 // Initialize button state
                 $('#btn-terms').addClass('disabled:bg-indigo-200');
@@ -1107,6 +1149,66 @@
                 });
             }
 
+            function showSimpleAlert(title, msg, buttonOption, type) {
+                if (buttonOption === 'NO_BUTTON') {
+                    swal({
+                        title: title,
+                        text: msg,
+                        icon: type,
+                    });
+                } else {
+                    swal({
+                        title: title,
+                        text: msg,
+                        icon: type,
+                        buttons:  {
+                            confirm: buttonOption,
+                        },
+                    });
+                }
+            }
+
+            function loadJRVS(reload) {
+                if (reload) {
+                    $('#list-jrv-loading').removeClass('hidden');
+                    $('#list-jrv').addClass('hidden');
+                    
+                    fetchJRVs();
+                    
+                    setTimeout(() => {
+                        $('#list-jrv-loading').addClass('hidden');
+                        $('#list-jrv').removeClass('hidden');
+                    }, 600);
+                } else {
+                    $('#list-jrv-loading').removeClass('hidden');
+                    $('#list-jrv').addClass('hidden');
+
+                    setTimeout(() => {
+                        $('#list-jrv-loading').addClass('hidden');
+                        $('#list-jrv').removeClass('hidden');
+                    }, 100);
+                }
+            }
+
+            function addListItemEvents(list){
+                const liJrvContainer = document.getElementById(list);
+
+                liJrvContainer.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    const target = event.target.closest('a.flex.items-center');
+
+                    if (target) {
+                        const radioButton = target.querySelector('input[type="radio"]');
+                        if (!radioButton.hasAttribute('disabled')) {
+                            radioButton.checked = true;
+                            JRV_SELECTED = radioButton.value;
+
+                            enableButtonConfirm(radioButton.checked);
+                            //showButtonMap(radioButton.checked);
+                        }
+                    }
+                });
+            }
         });      
     </script>
 </x-app-layout>
