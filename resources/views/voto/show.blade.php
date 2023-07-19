@@ -7,7 +7,7 @@
     <input id="sinusar" name="sinusar" type="hidden" value="{{ $voto->sinusar }}">
 
     <section class="bg-white dark:bg-gray-900">
-        <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
+        <div class="py-20 px-4 mx-auto max-w-screen-xl lg:py-16">
             <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 md:p-3 mb-8">
 
                 <h1 class="text-gray-900 dark:text-white text-3xl md:text-3xl font-extrabold mb-2">Datos Registrados Mesa {{ $voto->jrv }}</h1>
