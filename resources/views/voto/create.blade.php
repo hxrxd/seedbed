@@ -34,7 +34,7 @@
 
                         <div class="md:col-span-5">
                           <label for="full_name">Movimiento Semilla</label>
-                          <input type="number" min="0" pattern="^[0-9]+" name="semilla" id="semilla" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" required/>
+                          <input type="number" min="0" pattern="^[0-9]+" name="semilla" id="semilla" inputmode="numeric" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" required/>
                           @error('semilla')
                           <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Error: </span> este campo es obligatorio</p>
                           @enderror
@@ -42,7 +42,7 @@
 
                         <div class="md:col-span-5">
                             <label for="full_name">UNE</label>
-                            <input type="number" min="0" pattern="^[0-9]+" name="une" id="une" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" required/>
+                            <input type="number" min="0" pattern="^[0-9]+" name="une" id="une" inputmode="numeric" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" required/>
                             @error('une')
                             <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Error: </span> este campo es obligatorio</p>
                             @enderror
@@ -50,7 +50,7 @@
 
                           <div class="md:col-span-5">
                             <label for="full_name">En Blanco</label>
-                            <input type="number" min="0" pattern="^[0-9]+" name="blanco" id="blanco" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" required/>
+                            <input type="number" min="0" pattern="^[0-9]+" name="blanco" id="blanco" inputmode="numeric" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" required/>
                             @error('blanco')
                             <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Error: </span> este campo es obligatorio</p>
                             @enderror
@@ -58,7 +58,7 @@
 
                           <div class="md:col-span-5">
                             <label for="full_name">Nulos</label>
-                            <input type="number" min="0" pattern="^[0-9]+" name="nulo" id="nulo" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" required/>
+                            <input type="number" min="0" pattern="^[0-9]+" name="nulo" id="nulo" inputmode="numeric" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" required/>
                             @error('nulo')
                             <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Error: </span> este campo es obligatorio</p>
                             @enderror
@@ -66,7 +66,7 @@
 
                           <div class="md:col-span-5">
                             <label for="full_name">Papeletas anuladas</label>
-                            <input type="number" min="0" pattern="^[0-9]+" name="sinusar" id="sinusar" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" required/>
+                            <input type="number" min="0" pattern="^[0-9]+" name="sinusar" id="sinusar" inputmode="numeric" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" required/>
                             @error('sinusar')
                             <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Error: </span> este campo es obligatorio</p>
                             @enderror
