@@ -36,6 +36,8 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        //si ya existe el fiscal
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,

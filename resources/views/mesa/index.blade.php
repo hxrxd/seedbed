@@ -1,6 +1,6 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+    <x-slot name="header" >
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight" style="margin-top: 4rem;">
             {{ __('Mesas') }}
         </h2>
     </x-slot>
@@ -8,8 +8,19 @@
     <div class="py-3">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("Listado de mesas con fiscales asignados") }} 
+                <div class="p-6 text-gray-900 text-center">
+                    <p class="mb-5 text-base text-gray-500 sm:text-lg dark:text-gray-400 py-2">Se muestran todas las mesas registradas, puede consultar mas información descargado los reportes</p>
+                    <p>
+                        <a href="{{url('getmesas') }}">
+                            <button type="button" class="text-white bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900">Mesas</button>
+                        </a>
+                        <a href="{{url('getmesasconfiscal') }}">
+                            <button type="button" class="text-white bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900">Mesas con fiscal</button>
+                        </a>
+                        <a href="{{url('getmesassinfiscal') }}">
+                            <button type="button" class="text-white bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900">Mesas sin fiscal</button>
+                        </a>
+                    </p>
                 </div>
             </div>
         </div>
@@ -26,7 +37,7 @@
                         <th data-priority="3">Municipio</th>
                         <th data-priority="4">Centro de Votación</th>
                         <th data-priority="5">Fiscal</th>
-                        
+
                     </tr>
                 </thead>
                 <tbody>
@@ -39,14 +50,14 @@
                         <td>
                              @if($mesa->fiscal==null)
                                 <span class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Pendiente</span>
-                             @else 
+                             @else
                                 <a href="{{ 'verificacion/'.$mesa->fiscal }}">
                                 <span class="bg-purple-100 text-purple-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-purple-900 dark:text-purple-300">Asignado</span>
                                 </a>
                              @endif
 
                         </td>
-                        
+
                     </tr>
                     @endforeach
                 </tbody>

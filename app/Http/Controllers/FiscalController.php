@@ -18,9 +18,8 @@ class FiscalController extends Controller
      */
     public function index()
     {
-        //
-        //$mesas = Mesa::select('jrv','departamento','municipio','nombre','fiscal')->get();
-        //return view('mesa.index',['mesas' => $mesas]);
+        $fiscales = Fiscal::all();
+        return view('fiscal.index',['fiscales' => $fiscales]);
     }
 
     /**

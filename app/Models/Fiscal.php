@@ -21,7 +21,7 @@ class Fiscal extends Model
      *
      * @var string
      */
-    protected $primaryKey = 'correo';
+    protected $primaryKey = 'id';
 
     /**
      * The attributes that are mass assignable.
@@ -31,9 +31,9 @@ class Fiscal extends Model
     protected $fillable = [
         'nombres',
         'apellidos',
-        'dpi',       
+        'dpi',
         'departamento',
-        'municipio',       
+        'municipio',
         'telefono',
         'fecha_nacimiento',
         'sexo',

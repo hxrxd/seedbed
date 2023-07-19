@@ -8,6 +8,7 @@ use App\Http\Controllers\FiscalController;
 use App\Http\Controllers\VerificacionController;
 use App\Http\Controllers\QRController;
 use App\Http\Controllers\VotoController;
+use App\Http\Controllers\ExcelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,7 +44,7 @@ Route::get('/email/verify', function () {
     return view('auth.verify-email');
 })->middleware('auth')->name('verification.notice');
 
-
+//Resource routes
 Route::resource('mesa', MesaController::class)->middleware(['auth', 'verified']);
 Route::resource('map', MapController::class)->middleware(['auth', 'verified']);
 Route::resource('verificacion', VerificacionController::class);
@@ -51,11 +52,19 @@ Route::resource('qr', QRController::class);
 Route::resource('fiscal', FiscalController::class)->middleware(['auth', 'verified']);
 Route::resource('voto', VotoController::class)->middleware(['auth', 'verified']);
 
+//Post routes
 Route::post('api/fetch-cities', [FiscalController::class, 'fetchCities']);
 Route::post('api/fetch-jrvs-by-center', [FiscalController::class, 'fetchTablesByCenter']);
 Route::post('api/fetch-jrvs-by-city', [FiscalController::class, 'fetchTablesByCity']);
 Route::post('api/post-fiscal', [FiscalController::class, 'store']);
 //Route::get('assign/', [FiscalController::class, 'store'])->name('fiscal.assign');
+
+//Get routes
+Route::get('getmesas', [ExcelController::class, 'getMesas'])->name('getmesas')->middleware(['auth', 'verified']);
+Route::get('getmesassinfiscal', [ExcelController::class, 'getMesasSinFiscal'])->name('getmesassinfiscal')->middleware(['auth', 'verified']);
+Route::get('getmesasconfiscal', [ExcelController::class, 'getMesasConFiscal'])->name('getmesasconfiscal')->middleware(['auth', 'verified']);
+Route::get('getfiscal', [ExcelController::class, 'getFiscales'])->name('getfiscal')->middleware(['auth', 'verified']);
+Route::get('getfiscalelectronico', [ExcelController::class, 'getFiscalesElectronicos'])->name('getfiscalelectronico')->middleware(['auth', 'verified']);
 
 Route::patch('assign/{jrv}', [FiscalController::class,'updateJRV'])->name('assign.updateJRV');
 
