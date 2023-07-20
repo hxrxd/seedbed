@@ -56,6 +56,7 @@ Route::resource('voto', VotoController::class)->middleware(['auth', 'verified'])
 Route::post('api/fetch-cities', [FiscalController::class, 'fetchCities']);
 Route::post('api/fetch-jrvs-by-center', [FiscalController::class, 'fetchTablesByCenter']);
 Route::post('api/fetch-jrvs-by-city', [FiscalController::class, 'fetchTablesByCity']);
+Route::post('api/check-jrv-status', [FiscalController::class, 'checkJrvStatus']);
 Route::post('api/post-fiscal', [FiscalController::class, 'store']);
 //Route::get('assign/', [FiscalController::class, 'store'])->name('fiscal.assign');
 

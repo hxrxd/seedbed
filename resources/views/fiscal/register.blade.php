@@ -150,8 +150,8 @@
 
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight mt-6">
                     {{ __('Asignación de mesa') }}
-                    <p class="text-sm mt-4 leading-relaxed text-gray-500 dark:text-gray-400">La mesa en la que votas aparecerá de manera predeterminada en el siguiente campo, pero debes revisar la disponiblidad para confirmarla. Si ya no está disponible, podrás seleccionar entre otras mesas de tu mismo centro o municipio.</p>
                 </h2>
+                <p class="text-md mt-4 text-gray-800">La mesa en la que votas aparecerá de manera predeterminada en el siguiente campo, pero debes revisar la disponiblidad para confirmarla. Si ya no está disponible, podrás seleccionar entre otras mesas de tu mismo centro o municipio.</p>
 
                 <div class="md:flex md:flex-row">
                     <!-- JRV Search -->
@@ -165,7 +165,7 @@
                                 </svg>
                             </div>
                             <input type="hidden" id="jrv-x" class="" name="jrv" value="">
-                            <input type="search" id="input-jrv" class="block w-full p-4 pl-10 text-base font-extrabold text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500" placeholder="Buscar una mesa" required>
+                            <input type="search" id="input-jrv" class="block w-full p-4 pl-10 text-base font-extrabold text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500" placeholder="Buscar una mesa" required disabled>
                             <!--<button id="btn-availability" class="text-white absolute right-2.5 bottom-2.5 bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900" data-modal-target="jrv-select-modal" data-modal-toggle="jrv-select-modal">Ver disponibilidad</button>-->
                             <!--<button id="btn-availability-2" class="text-white absolute right-2.5 bottom-2.5 font-extrabold rounded-lg text-sm px-4 py-2 hidden" style="background-color:#84cc16;" disabled>Seleccionada</button>-->
                             <a id="btn-availability-2" class="absolute right-5 bottom-2.5 text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-indigo-300 rounded-lg border border-gray-200 text-sm font-medium hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600 px-4 py-2 hidden" data-modal-target="jrv-select-modal" data-modal-toggle="jrv-select-modal" style="cursor: pointer;">Cambiar</a>
@@ -177,9 +177,9 @@
                 <div id="section-step-2-1" class="hidden">
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight mt-10">
                     {{ __('¿Deseas ser fiscal informático? (Opcional)') }}
-                    <p class="text-sm mt-6 leading-relaxed text-gray-500 dark:text-gray-400">Un fiscal informático se encarga de supervisar y comparar los resultados preliminares de las votaciones. Su responsabilidad incluye garantizar que los fiscales y las juntas receptoras de votos reciban las certificaciones de escrutinios correspondientes. Además, verifican la consistencia de los datos entre el acta final de cierre y escrutinios y las certificaciones de escrutinios. También comparan las certificaciones de escrutinios con las actas finales publicadas. Asimismo, revisan la precisión de los datos procesados por el sistema TREP mediante la comparación con las imágenes de las actas escaneadas, entre otras tareas.</p>
-                    <p class="text-sm mt-2 mb-2 font-extrabold leading-relaxed text-gray-700 dark:text-gray-400">Si accedes a ser fiscal informático, ingresarás a una lista en la que serás contactado para continuar este proceso especial.</p>
                 </h2>
+                <p class="text-md mt-6 text-gray-800">Un fiscal informático se encarga de supervisar y comparar los resultados preliminares de las votaciones. Su responsabilidad incluye garantizar que los fiscales y las juntas receptoras de votos reciban las certificaciones de escrutinios correspondientes. Además, verifican la consistencia de los datos entre el acta final de cierre y escrutinios y las certificaciones de escrutinios. También comparan las certificaciones de escrutinios con las actas finales publicadas. Asimismo, revisan la precisión de los datos procesados por el sistema TREP mediante la comparación con las imágenes de las actas escaneadas, entre otras tareas.</p>
+                <p class="text-md mt-2 mb-2 font-bold text-gray-800">Si accedes a ser fiscal informático, ingresarás a una lista en la que serás contactado para continuar este proceso especial.</p>
 
                 <div class="md:flex md:flex-row">
                     
@@ -208,8 +208,8 @@
                 <div id="section-step-3" class="hidden">
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight mt-10">
                     {{ __('¡Todo listo!') }}
-                    <p class="text-sm mt-6 leading-relaxed text-gray-500 dark:text-gray-400">Para finalizar el registro, debes leer el acuerdo de registro haciendo clic en el texto <span class="font-extrabold">He leído el acuerdo de registro</span>. Al finalizar, marca la casilla de confirmación.</p>
                 </h2>
+                <p class="text-md mt-6 text-gray-800">Para finalizar el registro, debes leer el acuerdo de registro haciendo clic en el texto <strong>He leído el acuerdo de registro</strong>. Al terminar, marca la casilla de confirmación.</p>
 
                 <div class="flex items-center justify-start mt-8 mb-6">                     
                     <x-text-input id="accept" class="block mt-1 text-indigo-600 bg-gray-100 border-gray-300 rounded focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" type="checkbox" name="accept" :value="old('accept')" disabled />                       
@@ -280,7 +280,7 @@
                                 </div>
                             </div>
                             <div id="list-jrv" class="p-6 overflow-y-auto h-64">
-                                <span class="text-2xl font-extrabold text-gray-800 dark:text-gray-200">Tu mesa</span>
+                                <span class="text-2xl font-extrabold text-gray-800 dark:text-gray-200">Mesa en donde votas</span>
                                 <ul id="li-jrv-01" class="my-4 space-y-3 mb-8">
                                 </ul>
                                 
@@ -288,7 +288,7 @@
                                 <ul id="li-jrv-02" class="my-4 space-y-3 mb-8">                
                                 </ul>
 
-                                <span class="text-2xl font-extrabold text-gray-800 dark:text-gray-200">Otras mesas en tu área</span>
+                                <span class="text-2xl font-extrabold text-gray-800 dark:text-gray-200">Otras mesas en tu municipio</span>
                                 <ul id="li-jrv-03" class="my-4 space-y-3">                 
                                 </ul>   
                             </div>
@@ -359,26 +359,16 @@
 
                 <div class="flex items-center justify-start mt-4 mb-3">
                     <button id="btn-next-step" class="text-white bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900 w-full md:w-3/12" style="cursor: pointer;">
-                        <svg id="loading" aria-hidden="true" role="status" class="hidden inline w-4 h-4 mr-3 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
-                            <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>
-                        </svg>    
-                    
                         {{ __('Verificar') }}
                     </button>
                     <a id="btn-next-ava" class="hidden text-white bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900 w-full md:w-3/12" data-modal-target="jrv-select-modal" data-modal-toggle="jrv-select-modal" style="cursor: pointer;">
                         {{ __('Ver disponibilidad') }}
                     </a>
-                    <button id="btn-cancel" type="button" class="ml-2 text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-indigo-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600 mr-4">Cancelar</button>
+                    <button id="btn-cancel" type="button" class="ml-4 text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-indigo-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600 mr-4">Cancelar</button>
                 </div>
 
                 <div class="flex flex-row items-center justify-start mt-4 mb-6">
-                    <button id="btn-save" class="text-white bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900 hidden">
-                        <svg id="loading" aria-hidden="true" role="status" class="hidden inline w-4 h-4 mr-3 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
-                            <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>
-                        </svg>    
-                    
+                    <button id="btn-save" class="text-white bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900 hidden">    
                         {{ __('Finalizar') }}
                     </button>
                 </div>
@@ -584,33 +574,39 @@
 
             $('#dpi').on('focusout', function () {
                 const inputValue = $(this).val();
-                const trimmedValue = inputValue.replace(/\s+/g, ''); // Remove leading and trailing spaces
-                const pattern = /^[0-9]+$/;
 
-                if (pattern.test(trimmedValue)) {
-                    if (trimmedValue.length != 13) {
-                        showSimpleAlert('Longitud no válida', 'Por favor, ingresa nuevamente tu número de DPI.', 'Entendido',null)
+                if(inputValue != ''){
+                    const trimmedValue = inputValue.replace(/\s+/g, ''); // Remove leading and trailing spaces
+                    const pattern = /^[0-9]+$/;
+
+                    if (pattern.test(trimmedValue)) {
+                        if (trimmedValue.length != 13) {
+                            showSimpleAlert('Longitud no válida', 'Por favor, ingresa nuevamente tu número de DPI.', 'Entendido',null);
+                            $('#dpi').val('');
+                        }
+                    } else {
+                        showSimpleAlert('Formato no válido','Evita colocar guiones, espacios o caracteres especiales al ingresar tu DPI','Entendido',null);
                         $('#dpi').val('');
                     }
-                } else {
-                    showSimpleAlert('Formato no válido','Evita colocar guiones, espacios o caracteres especiales al ingresar tu DPI','Entendido',null);
-                    $('#dpi').val('');
                 }
             });
 
             $('#phone').on('focusout', function () {
                 const inputValue = $(this).val();
-                const trimmedValue = inputValue.replace(/\s+/g, ''); // Remove leading and trailing spaces
-                const pattern = /^[0-9]+$/;
 
-                if (pattern.test(trimmedValue)) {
-                    if (trimmedValue.length != 8) {
-                        showSimpleAlert('Longitud no válida','Por favor, ingresa tú número nuevamente','Entendido',null);
+                if (inputValue != '') {
+                    const trimmedValue = inputValue.replace(/\s+/g, ''); // Remove leading and trailing spaces
+                    const pattern = /^[0-9]+$/;
+
+                    if (pattern.test(trimmedValue)) {
+                        if (trimmedValue.length != 8) {
+                            showSimpleAlert('Longitud no válida','Por favor, ingresa tú número nuevamente','Entendido',null);
+                            $('#phone').val('');
+                        }
+                    } else {
+                        showSimpleAlert('Formato no válido','Ingresa tu número sin código de área. Evita guiones o espacios.','Entendido',null);
                         $('#phone').val('');
                     }
-                } else {
-                    showSimpleAlert('Formato no válido','Ingresa tu número sin código de área. Evita guiones o espacios.','Entendido',null);
-                    $('#phone').val('');
                 }
             });
             
@@ -619,16 +615,21 @@
 
                 if (CURRENT_STEP === 'STEP_0') {
                     // Check date
-                    if($('#days').val() === '' ||$('#months').val() === '' ||$('#years').val() === ''){
+                    if($('#days').val() === '' || $('#months').val() === '' || $('#years').val() === ''){
                         showSimpleAlert('Falta información', 'Por favor, completa tu fecha de nacimiento', 'Entendido',null);
                     } else {
                         // Get the user info from TSE API
                         fetchUserInfo();
                     }
+                } else if (CURRENT_STEP == 'STEP_1') {
+                    if ($('#sex').val() === '' || $('#phone').val() === '') {
+                        showSimpleAlert('Falta información', 'Por favor, completa los campos en blanco', 'Entendido',null);
+                    } else {
+                        nextStep(CURRENT_STEP);
+                    }
                 } else {
                     nextStep(CURRENT_STEP);
                 }
-                
             });
 
             $('#accept').on('change', function () {
@@ -645,7 +646,7 @@
 
             function nextStep(step){
                 if (step === 'STEP_0') {
-                    // Step 0: fill DPI and birthdathe fields
+                    // Step 0: complete personal data
                     disablePersonalData(true);
 
                     $('#badge-verify').removeClass('invisible');
@@ -667,7 +668,9 @@
 
                     //console.log(CURRENT_STEP);    
                 } else if (step === 'STEP_1') {
-                    // Step 1: complete personal data
+                    // Step 1: JRV assignment
+                    //showSimpleAlert('Asignación de mesa', 'La mesa en la que votas aparecerá de manera predeterminada en el siguiente campo, pero debes revisar la disponiblidad para confirmarla. Si ya no está disponible, podrás seleccionar entre otras mesas de tu mismo centro o municipio.', 'Entendido','info')
+
                     $('#section-step-2').removeClass('hidden');
                     $('#section-step-2').addClass('animate');
                     $('#btn-next-step').addClass('move-button');
@@ -693,6 +696,7 @@
                     }, 1000);
                     //console.log(CURRENT_STEP);
                 } else if (step === 'STEP_2') {
+                    // Check fiscal inform
                     $('#section-step-2-1').removeClass('hidden');
                     $('#section-step-2-1').addClass('animate');
                     $('#btn-next-step').addClass('move-button');
@@ -706,6 +710,7 @@
                     }, 1000);
                     //console.log(CURRENT_STEP);
                 } else if (step === 'STEP_3') {
+                    // final step
                     $('#section-step-3').removeClass('hidden');
                     $('#section-step-3').addClass('animate');
                     $('#btn-next-step').addClass('hidden');
@@ -719,7 +724,6 @@
 
                     //nextStep(CURRENT_STEP);
 
-
                     $('#btn-save').addClass('move-button');
                     CURRENT_STEP = 'COMMIT';
 
@@ -729,18 +733,7 @@
                         $('#btn-save').removeClass('move-button');
                     }, 1000);
                     //console.log(CURRENT_STEP);
-                } /*else if (step === 'STEP_3') {
-                    $('#section-step-4').removeClass('hidden');
-                    $('#section-step-4').addClass('animate');
-                    $('#btn-next-step').addClass('move-button');
-                    CURRENT_STEP = 'STEP_4';
-
-                    setTimeout(() => {
-                        $('#section-step-3').removeClass('animate');
-                        $('#btn-next-step').removeClass('move-button');
-                    }, 1000);
-                    //console.log(CURRENT_STEP);
-                }*/
+                }
             }
 
             // City Dropdown Change Event
@@ -754,46 +747,6 @@
                 updateBirthdate();
             });
 
-            // Save action button
-            $('#btn-save').click(function (event) {
-                event.preventDefault();
-                //$('#loading').removeClass('hidden');
-                USR_MAIL = $('#email').val();
-
-                $.ajax({
-                    url: "{{url('api/post-fiscal')}}",
-                    type: "POST",
-                    data: {
-                        nombres:$('#name').val(),
-                        apellidos:$('#surname').val(),
-                        dpi:$('#dpi').val(),
-                        departamento:$('#department').val(),
-                        municipio:$('#city').val(),
-                        telefono:$('#phone').val(),
-                        fecha_nacimiento:$('#birthdate').val(),
-                        sexo:$('#sex').val(),
-                        correo:$('#email').val(),
-                        fiscal_electronico:$('#fiscal-informatico').val(),
-                        jrv:JRV_SELECTED,
-                        fiscal:USR_MAIL,
-                        estatus: 1,
-                        _token: '{{csrf_token()}}'
-                    },
-                    dataType: 'json',
-                    success: function (result) {
-                        console.log(result);
-                        
-                        showSimpleAlert('¡Registro exitoso!', 'Ahora estás registrado como Fiscal Semilla', 'NO_BUTTON','success');
-                        
-                        setTimeout(() => {
-                            var redirectUrl = result.redirect_url;
-                            window.location.href = redirectUrl;
-                        }, 1000);
-
-                    }
-                });
-            });
-
             // Days input change event
             $('#months').on('change', function () {
                 date_mm = this.value;
@@ -804,6 +757,32 @@
             $('#years').on('change', function () {
                 date_yyyy = this.value;
                 updateBirthdate();
+            });
+
+            // Save action button
+            $('#btn-save').click(function (event) {
+                event.preventDefault();
+                
+                // Check the selected JRV status for the last time
+
+                $.ajax({
+                    url: "{{url('api/check-jrv-status')}}",
+                    type: "POST",
+                    data: {
+                        jrv:JRV_SELECTED,
+                        _token: '{{csrf_token()}}',
+                    },
+                    dataType: 'json',
+                    success: function (result) {
+                        //console.log(result);
+                        
+                        if (result == 0) {
+                            saveAll();
+                        } else {
+                            showSimpleAlert('La mesa seleccionada ya no está disponible :(', 'Muchos voluntarios se están sumando y hace unos momentos alguien más tomó la mesa. Puedes buscar una nueva seleccionando la opción "Cambiar" en el campo Mesa, luego intenta guardar nuevamente.', 'De acuerdo','warning');
+                        }
+                    }
+                });
             });
 
             $('#input-jrv').on('input', function () {
@@ -923,10 +902,6 @@
             }
 
             function fetchJRVs() {
-                // Get a new JRV if usr change the number
-                // Next assignment wass removed in order to prevent changes 
-                //JRV_USR = $("#input-jrv").val();
-
                 // Init lists
                 $("#li-jrv-01").html('');
                 $("#li-jrv-02").html('');
@@ -999,6 +974,43 @@
                 });
             }
 
+            function saveAll() {
+                USR_MAIL = $('#email').val();
+
+                $.ajax({
+                    url: "{{url('api/post-fiscal')}}",
+                    type: "POST",
+                    data: {
+                        nombres:$('#name').val(),
+                        apellidos:$('#surname').val(),
+                        dpi:$('#dpi').val(),
+                        departamento:$('#department').val(),
+                        municipio:$('#city').val(),
+                        telefono:$('#phone').val(),
+                        fecha_nacimiento:$('#birthdate').val(),
+                        sexo:$('#sex').val(),
+                        correo:$('#email').val(),
+                        fiscal_electronico:$('#fiscal-informatico').val(),
+                        jrv:JRV_SELECTED,
+                        fiscal:USR_MAIL,
+                        estatus: 1,
+                        _token: '{{csrf_token()}}'
+                    },
+                    dataType: 'json',
+                    success: function (result) {
+                        //console.log(result);
+                        
+                        showSimpleAlert('¡Registro exitoso!', 'Ahora estás registrado como Fiscal Semilla', 'NO_BUTTON','success');
+                        
+                        setTimeout(() => {
+                            var redirectUrl = result.redirect_url;
+                            window.location.href = redirectUrl;
+                        }, 1000);
+
+                    }
+                });
+            }
+
             function updateBirthdate() {
                 const birthdate = `${date_yyyy}-${date_mm}-${date_dd}`;
                 $('#birthdate').val(birthdate);
@@ -1030,9 +1042,11 @@
                     $('#jrv-x').val(JRV_SELECTED);
                     $('#btn-availability-2').removeClass('hidden');
 
-                    // Change the button
-                    $('#btn-next-ava').addClass('hidden');
-                    $('#btn-next-step').removeClass('hidden');                  
+                    // Change the button only when is in the correct step
+                    if (CURRENT_STEP === 'STEP_2'){
+                        $('#btn-next-ava').addClass('hidden');
+                        $('#btn-next-step').removeClass('hidden'); 
+                    }                                    
                 } else {
                     JRV_SELECTED = '';
                     $('#btn-availability-2').addClass('hidden');
@@ -1186,7 +1200,7 @@
                     setTimeout(() => {
                         $('#list-jrv-loading').addClass('hidden');
                         $('#list-jrv').removeClass('hidden');
-                    }, 100);
+                    }, 150);
                 }
             }
 

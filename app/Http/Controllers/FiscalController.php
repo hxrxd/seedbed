@@ -147,6 +147,18 @@ class FiscalController extends Controller
     }
 
     /**
+     * Check the the JRV's current status
+     *
+     * @return response()
+     */
+    public function checkJrvStatus(Request $request)
+    {
+        $status =  Mesa::where("jrv", $request->jrv)->pluck('estatus')->first();
+
+        return response()->json($status);
+    }
+
+    /**
      * Update the specified JRV.
      */
     public function updateJRV(Request $request, $jrv)
