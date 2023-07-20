@@ -3,7 +3,7 @@
     <div class="py-1">
     @else
     <div class="py-1 h-full custom-background">
-    @endif 
+    @endif
 
         <div class="w-full p-6 text-start">
 
@@ -15,7 +15,7 @@
                 <h5 class="mb-0  text-2xl font-extrabold text-indigo-900 dark:text-white">Bienvenido a <strong>Movimiento Semilla,</strong></h5>
                 <p class="mb-6  text-2xl font-extrabold text-indigo-800 dark:text-white">Gracias por sumarte.</p>
                 <p class="mb-8  text-base text-gray-800 sm:text-lg dark:text-gray-700">Nos complace enormemente darte la bienvenida como voluntario. Tu compromiso y dedicación son fundamentales para asegurar que las elecciones se lleven a cabo de manera justa, transparente y democrática.</p>
-                
+
                 <!--<a id="inscrib" href="{{ route('fiscal.create') }}" class="text-white font-extrabold bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 rounded-lg text-xl px-5 py-2.5 text-center dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900">Unirme</a>-->
             </div>
 
@@ -282,7 +282,44 @@
 
             @endif
 
+
+
         </div>
+
+        @if (Auth::user()->rol == "Admin")
+        <!-- Jumbotron -->
+
+        <!-- Hero section with background image, heading, subheading and button -->
+        <div
+          class="relative h-96 overflow-hidden bg-cover bg-no-repeat p-12 text-center lg:h-scree"
+          style="background-image: url('https://images.unsplash.com/photo-1466692476868-aef1dfb1e735'); height: 800px;">
+          <div
+            class="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-fixed"
+            style="background-color: rgba(0, 167, 157, 0.7)">
+            <div class="flex h-full items-center justify-center">
+              <div class="text-white">
+                <h2 class="mb-4 text-4xl font-semibold">
+                  Panel de administrador
+                </h2>
+                <h4 class="mb-6 text-xl font-semibold">
+                  En el lmenu puedes acceder a las mesas, fiscales inscritos y el dashboard de elecciones
+                </h4>
+                <a href="{{ url('voto') }}">
+                <button
+                  type="button"
+                  class="rounded border-2 border-neutral-50 px-7 pb-[8px] pt-[10px] text-sm font-medium uppercase leading-normal text-neutral-50 transition duration-150 ease-in-out hover:border-neutral-100 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-neutral-100 focus:border-neutral-100 focus:text-neutral-100 focus:outline-none focus:ring-0 active:border-neutral-200 active:text-neutral-200 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
+                  data-te-ripple-init
+                  data-te-ripple-color="light">
+                  Ir al Dashboard
+                </button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Jumbotron -->
+        @endif
+
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-12 mb-12">
             <div class="flex flex-col items-center justify-center mt-4">
@@ -296,7 +333,7 @@
 
     </div><!--end of background-->
 
-        
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
