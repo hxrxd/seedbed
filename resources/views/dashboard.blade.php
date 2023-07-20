@@ -1,19 +1,31 @@
 <x-app-layout>
-    <div class="py-1 custom-background">
+    @if (Auth::user()->rol == "Admin")
+    <div class="py-1">
+    @else
+    <div class="py-1 h-full custom-background">
+    @endif 
+
         <div class="w-full p-6 text-start">
 
             @if (Auth::user()->rol == "Voluntario")
 
-            <input id="name" class="hidden" value="{{Auth::user()->name}}"></input>
-            <h5 id="saludo" class="mt-24 mb-6 md:ml-8 md:mr-8 text-4xl font-bold text-indigo-900 dark:text-white"></h5>
-            <h5 class="mb-0 md:ml-8 md:mr-8 text-2xl font-extrabold text-indigo-900 dark:text-white">Bienvenido a <strong>Movimiento Semilla,</strong></h5>
-            <p class="mb-6 md:ml-8 md:mr-8 text-2xl font-extrabold text-indigo-800 dark:text-white">Gracias por sumarte.</p>
-            <p class="mb-8 md:ml-8 md:mr-8 text-base text-gray-700 sm:text-lg dark:text-gray-700">Nos complace enormemente darte la bienvenida como voluntario. Tu compromiso y dedicación son fundamentales para asegurar que las elecciones se lleven a cabo de manera justa, transparente y democrática.</p>
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-4 mb-8">
+                <input id="name" class="hidden" value="{{Auth::user()->name}}"></input>
+                <h5 id="saludo" class="mt-24 mb-6  text-4xl font-bold text-indigo-900 dark:text-white"></h5>
+                <h5 class="mb-0  text-2xl font-extrabold text-indigo-900 dark:text-white">Bienvenido a <strong>Movimiento Semilla,</strong></h5>
+                <p class="mb-6  text-2xl font-extrabold text-indigo-800 dark:text-white">Gracias por sumarte.</p>
+                <p class="mb-8  text-base text-gray-800 sm:text-lg dark:text-gray-700">Nos complace enormemente darte la bienvenida como voluntario. Tu compromiso y dedicación son fundamentales para asegurar que las elecciones se lleven a cabo de manera justa, transparente y democrática.</p>
+                
+                <!--<a id="inscrib" href="{{ route('fiscal.create') }}" class="text-white font-extrabold bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 rounded-lg text-xl px-5 py-2.5 text-center dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900">Unirme</a>-->
+               
+                
+            </div>
 
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-4 mb-16">
                 <!-- Card for Timeline-->
                 <div class="w-full p-4 text-start bg-white border border-gray-200 rounded-lg shadow sm:p-8 sm:rounded-lg dark:bg-gray-800 dark:border-gray-700">
-                    <p class="mb-6 ml-8 mr-8 text-2xl font-extrabold text-gray-600 dark:text-white">Conoce el proceso</p>
+                    <p class="mb-6 ml-11 mt-2 text-2xl font-extrabold text-gray-600 dark:text-white">Conoce el proceso</p>
+
                     <!-- Timeline -->
                     <ol class="relative border-l border-l-2 ml-6 mr-8 border-gray-200 dark:border-gray-700">
                         <li class="mb-10 ml-6">
@@ -22,8 +34,8 @@
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10 2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
                                 </svg>
                             </span>
-                            <h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white">Registrarme como fiscal<span class="bg-green-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300 ml-3">Disponible</span></h3>
-                            <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">¡El registro se encuentra disponible ahora!</time>
+                            <h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white">Registrarme como fiscal</h3>
+                            <time class="block mb-2 text-sm font-normal leading-none text-gray-700 dark:text-gray-500">¡El registro se encuentra disponible ahora!</time>
                             <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">Para registrarte como fiscal, deberás completar información necesaria para elegir una Junta Receptora de Votos (JRV). <strong>Podrás encontrar la opción para inscribirte al final de esta página.</strong></p>
                         </li>
                         <li class="mb-10 ml-6">
@@ -33,7 +45,7 @@
                                 </svg>
                             </span>
                             <h3 class="mb-1 text-lg font-semibold text-gray-900 dark:text-white">Capacitación virtual</h3>
-                            <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Del 22 de julio al 7 de agosto</time>
+                            <time class="block mb-2 text-sm font-normal leading-none text-gray-700 dark:text-gray-500">Disponible desde el 22 de julio al 7 de agosto</time>
                             <p class="text-base font-normal text-gray-500 dark:text-gray-400">Después de completar el registro, participarás en sesiones de inducción a través de videoconferencias en Zoom. Durante estas sesiones, se te proporcionará información detallada sobre tus roles y responsabilidades como fiscal, así como los procedimientos legales y requisitos a seguir durante el día de las elecciones.</p>
                         </li>
                         <li class="mb-10 ml-6">
@@ -43,7 +55,7 @@
                                 </svg>
                             </span>
                             <h3 class="mb-1 text-lg font-semibold text-gray-900 dark:text-white">Capacitación presencial (opcional)</h3>
-                            <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Del 8 al 10 de agosto</time>
+                            <time class="block mb-2 text-sm font-normal leading-none text-gray-700 dark:text-gray-500">Del 8 al 10 de agosto</time>
                             <p class="text-base font-normal text-gray-500 dark:text-gray-400">Las capacitaciones presenciales serán anunciadas oportunamente y con registro previo.</p>
                         </li>
                         <li class="mb-10 ml-6">
@@ -53,8 +65,8 @@
                                 </svg>
                             </span>
                             <h3 class="mb-1 text-lg font-semibold text-gray-900 dark:text-white">Acreditación</h3>
-                            <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Disponible a partir del 1 de agosto</time>
-                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">Una vez completada la inducción, recibirás tu acreditación oficial como fiscal del Movimiento Semilla. Esta acreditación te permitirá desempeñar tu función durante el día de las elecciones y será generada como un archivo digital a través de esta plataforma.</p>
+                            <time class="block mb-2 text-sm font-normal leading-none text-gray-700 dark:text-gray-500">Disponible a partir del 1 de agosto</time>
+                            p class="text-base font-normal text-gray-500 dark:text-gray-400">Una vez completada la inducción, recibirás tu acreditación oficial como fiscal del Movimiento Semilla. Esta acreditación te permitirá desempeñar tu función durante el día de las elecciones y será generada como un archivo digital a través de esta plataforma.</p>
                         </li>
                         <li class="ml-6 mb-8">
                             <span class="absolute flex items-center justify-center w-6 h-6 bg-indigo-700 rounded-full -left-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
@@ -63,7 +75,7 @@
                                 </svg>
                             </span>
                             <h3 class="mb-1 text-lg font-semibold text-gray-900 dark:text-white">Día de las elecciones</h3>
-                            <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">20 de agosto</time>
+                            <time class="block mb-2 text-sm font-normal leading-none text-gray-700 dark:text-gray-500">20 de agosto</time>
                             <p class="text-base font-normal text-gray-500 dark:text-gray-400">En el día de las elecciones, estarás presentes en las Juntas Receptoras de Votos (JRV) para supervisar el proceso electoral y garantizar la transparencia del mismo. Tu principal tarea será informar del resultado de las votaciones y reportar cualquier incidencia o irregularidad que se presente durante el proceso. Se promoverá el uso de herramientas de comunicación descentralizadas para que puedas informar de manera eficiente y oportuna.</p>
                         </li>
                     </ol>
@@ -284,6 +296,8 @@
         </div>
 
     </div><!--end of background-->
+
+        
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
