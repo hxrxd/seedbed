@@ -17,8 +17,6 @@
                 <p class="mb-8  text-base text-gray-800 sm:text-lg dark:text-gray-700">Nos complace enormemente darte la bienvenida como voluntario. Tu compromiso y dedicación son fundamentales para asegurar que las elecciones se lleven a cabo de manera justa, transparente y democrática.</p>
                 
                 <!--<a id="inscrib" href="{{ route('fiscal.create') }}" class="text-white font-extrabold bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 rounded-lg text-xl px-5 py-2.5 text-center dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900">Unirme</a>-->
-               
-                
             </div>
 
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-4 mb-16">
@@ -115,7 +113,7 @@
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m6.072 10.072 2 2 6-4m3.586 4.314.9-.9a2 2 0 0 0 0-2.828l-.9-.9a2 2 0 0 1-.586-1.414V5.072a2 2 0 0 0-2-2H13.8a2 2 0 0 1-1.414-.586l-.9-.9a2 2 0 0 0-2.828 0l-.9.9a2 2 0 0 1-1.414.586H5.072a2 2 0 0 0-2 2v1.272a2 2 0 0 1-.586 1.414l-.9.9a2 2 0 0 0 0 2.828l.9.9a2 2 0 0 1 .586 1.414v1.272a2 2 0 0 0 2 2h1.272a2 2 0 0 1 1.414.586l.9.9a2 2 0 0 0 2.828 0l.9-.9a2 2 0 0 1 1.414-.586h1.272a2 2 0 0 0 2-2V13.8a2 2 0 0 1 .586-1.414Z"/>
                                     </svg>
                                 </div>
-                                <p class="text-white ml-8 mb-2">JRV: <strong>#22380</strong></p>
+                                <p class="text-white ml-8 mb-2">Estado: <strong>Verificado</strong></p>
                                 <a id="inscrib" href="verificacion/{{ Auth::user()->email}}" class="ml-8 text-indigo-800 font-extrabold bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center">Ver ID Virtual</a>
                             </div>
                         </div>
@@ -144,7 +142,8 @@
                                 <h3 class="text-xl font-extrabold text-white">Acreditación</h3>
                             </div>
                             <div class="flex flex-col items-start justify-start mt-4">
-                                <p class="text-white ml-8 mb-2">Fecha: <strong>10 de agosto</strong></p>
+                                <p class="text-white ml-8">Documento válido ante la JRV</strong></p>
+                                <p class="text-white ml-8 mb-2">Disponible a partir del <strong>10 de agosto</strong></p>
                                 <a id="acred" href="qr/{{ Auth::user()->email}}" class="ml-8 text-indigo-800 font-extrabold bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center" >Descargar</a>
                             </div>
                         </div>
