@@ -129,7 +129,7 @@
                             <div class="flex flex-col items-start justify-start mt-4">
                                 <p class="text-white ml-8">Fecha: <strong>1 de agosto</strong></p>
                                 <p class="text-white ml-8 mb-2">Modalidad: <strong>Virtual</strong></p>
-                                <a class="ml-8 text-indigo-800 font-extrabold bg-[#f7fdcf] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center" disabled>Convocatoria próxima</a>
+                                <a href="fiscal/{{ Auth::user()->email}}/edit" class="ml-8 text-indigo-800 font-extrabold bg-[#f7fdcf] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center">Convocatoria próxima</a>
                             </div>
                         </div>
                     </div>

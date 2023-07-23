@@ -83,12 +83,19 @@ class FiscalController extends Controller
     /**
      * Display the fiscal's profile form.
      */
-    /*public function edit(Request $request): View
+    public function edit($email): View
     {
-        return view('fiscal.edit', [
-            'fiscal' => $request->fiscal(),
-        ]);
-    }*/
+        $fiscal = Fiscal::where('correo', $email)->first();
+
+        if (!$fiscal) {
+            abort(404);
+        }
+
+        // fetch departments
+        $departments = Mesa::distinct()->pluck('departamento');
+
+        return view('fiscal.edit', compact('fiscal','departments'));
+    }
 
     /**
      * Display the specified resource.
