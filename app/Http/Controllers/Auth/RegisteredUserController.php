@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use App\Models\Fiscal;
 
 class RegisteredUserController extends Controller
 {
@@ -37,13 +38,27 @@ class RegisteredUserController extends Controller
         ]);
 
         //si ya existe el fiscal
+        $fiscal = Fiscal::where('correo', $request->email)->first();
+        if (!$fiscal) {
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'rol' =>  "Voluntario",
+                'password' => Hash::make($request->password),
+            ]);
+        }
+        else{
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'rol' =>  "Fiscal",
+                'password' => Hash::make($request->password),
+            ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'rol' =>  "Voluntario",
-            'password' => Hash::make($request->password),
-        ]);
+        }
+
+
+
 
         event(new Registered($user));
 
