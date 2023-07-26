@@ -24,7 +24,7 @@
         <link
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/tw-elements.min.css" />
-        <script src="https://cdn.tailwindcss.com/3.3.0"></script>
+        <!--<script src="https://cdn.tailwindcss.com/3.3.0"></script>-->
 
 
 

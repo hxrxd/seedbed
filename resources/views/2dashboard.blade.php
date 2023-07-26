@@ -3,7 +3,7 @@
     <div class="py-1">
     @else
     <div class="py-1 h-full custom-background">
-    @endif
+    @endif 
 
         <div class="w-full p-6 text-start">
 
@@ -15,7 +15,7 @@
                 <h5 class="mb-0  text-2xl font-extrabold text-indigo-900 dark:text-white">Bienvenido a <strong>Movimiento Semilla,</strong></h5>
                 <p class="mb-6  text-2xl font-extrabold text-indigo-800 dark:text-white">Gracias por sumarte.</p>
                 <p class="mb-8  text-base text-gray-800 sm:text-lg dark:text-gray-700">Nos complace enormemente darte la bienvenida como voluntario. Tu compromiso y dedicación son fundamentales para asegurar que las elecciones se lleven a cabo de manera justa, transparente y democrática.</p>
-
+                
                 <!--<a id="inscrib" href="{{ route('fiscal.create') }}" class="text-white font-extrabold bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 rounded-lg text-xl px-5 py-2.5 text-center dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900">Unirme</a>-->
             </div>
 
@@ -187,7 +187,6 @@
                     @endif
                 </div>
             </div>
-            
             @endif
 
             @if (Auth::user()->rol == "Coordinador")
@@ -196,42 +195,49 @@
                 <div class="flex items-center justify-start mt-4 mb-4">
                     <h5 class="mb-0 md:ml-2 md:mr-8 text-3xl font-extrabold text-indigo-900 dark:text-white">Panel de Control</h5>
                 </div>
-            </div>
-    
-            @endif
-
-            @if (Auth::user()->rol == "Admin")
-            <!-- Jumbotron -->
-
-            <!-- Hero section with background image, heading, subheading and button -->
-            <div
-            class="relative h-96 overflow-hidden bg-cover bg-no-repeat p-12 text-center lg:h-scree"
-            style="background-image: url('https://images.unsplash.com/photo-1466692476868-aef1dfb1e735'); height: 800px;">
-                <div
-                    class="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-fixed"
-                    style="background-color: rgba(0, 167, 157, 0.7)">
-                    <div class="flex h-full items-center justify-center">
-                        <div class="text-white">
-                            <h2 class="mb-4 text-4xl font-semibold">
-                            Panel de administrador
-                            </h2>
-                            <h4 class="mb-6 text-xl font-semibold">
-                            En el lmenu puedes acceder a las mesas, fiscales inscritos y el dashboard de elecciones
-                            </h4>
-                            <a href="{{ url('voto') }}">
-                            <button
-                            type="button"
-                            class="rounded border-2 border-neutral-50 px-7 pb-[8px] pt-[10px] text-sm font-medium uppercase leading-normal text-neutral-50 transition duration-150 ease-in-out hover:border-neutral-100 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-neutral-100 focus:border-neutral-100 focus:text-neutral-100 focus:outline-none focus:ring-0 active:border-neutral-200 active:text-neutral-200 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
-                            data-te-ripple-init
-                            data-te-ripple-color="light">
-                            Ir al Dashboard
-                            </button>
-                            </a>
+                <div class="grid md:grid-cols-3 gap-4 sm:grid-cols-1 ">
+                    <div class="custom-background-card bg-cover bg-fixed h-52 p-10 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
+                        <div class="flex flex-col items-start">
+                            <h3 class="text-xl font-extrabold text-white">Registro</h3>         
+                            <div class="flex flex-row items-center justify-start mt-4">
+                                <p class="text-white mr-1">Fiscal: <strong>{{ Auth::user()->name }}</strong></p>
+                                <svg class="w-4 h-4 text-white dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 21">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m6.072 10.072 2 2 6-4m3.586 4.314.9-.9a2 2 0 0 0 0-2.828l-.9-.9a2 2 0 0 1-.586-1.414V5.072a2 2 0 0 0-2-2H13.8a2 2 0 0 1-1.414-.586l-.9-.9a2 2 0 0 0-2.828 0l-.9.9a2 2 0 0 1-1.414.586H5.072a2 2 0 0 0-2 2v1.272a2 2 0 0 1-.586 1.414l-.9.9a2 2 0 0 0 0 2.828l.9.9a2 2 0 0 1 .586 1.414v1.272a2 2 0 0 0 2 2h1.272a2 2 0 0 1 1.414.586l.9.9a2 2 0 0 0 2.828 0l.9-.9a2 2 0 0 1 1.414-.586h1.272a2 2 0 0 0 2-2V13.8a2 2 0 0 1 .586-1.414Z"/>
+                                </svg>
+                            </div>
+                            <p class="text-white mb-2">Estado: <strong>Verificado</strong></p>
+                            <div class="flex flex-row items-center justify-start">
+                                <a href="fiscal/{{ Auth::user()->email}}/edit" class="text-indigo-800 font-extrabold bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg text-sm px-2 py-1.5 text-center">
+                                    <svg class="w-5 h-5 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 18">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.109 17H1v-2a4 4 0 0 1 4-4h.87M10 4.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm7.95 2.55a2 2 0 0 1 0 2.829l-6.364 6.364-3.536.707.707-3.536 6.364-6.364a2 2 0 0 1 2.829 0Z"/>
+                                    </svg>
+                                </a>
+                                <a id="inscrib" href="verificacion/{{ Auth::user()->email}}" class="ml-2 text-indigo-800 font-extrabold bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center">ID Virtual</a>
+                            </div>
                         </div>
                     </div>
+                    <div class="custom-background-card bg-cover bg-fixed h-52 p-10 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
+                        <div class="flex flex-col items-start">
+                            <h3 class="text-xl font-extrabold text-white">Capacitación</h3>                       
+                            <div class="flex flex-col items-start justify-start mt-4">
+                                <p class="text-white">Fecha: <strong>1 de agosto</strong></p>
+                                <p class="text-white mb-2">Modalidad: <strong>Virtual</strong></p>
+                                <a href="#" class="text-indigo-800 font-extrabold bg-[#f7fdcf] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center">Convocatoria próxima</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="custom-background-card bg-cover bg-fixed h-52 p-10 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
+                        <div class="flex flex-col items-start">
+                            <h3 class="text-xl font-extrabold text-white">Acreditación</h3>
+                            <div class="flex flex-col items-start justify-start mt-4">
+                                <!--<p class="text-white ml-8">Documento válido ante la JRV</strong></p>-->
+                                <p class="text-white mb-2">Disponible a partir del <strong>10 de agosto</strong></p>
+                                <a id="acred" href="qr/{{ Auth::user()->email}}" class="text-indigo-800 font-extrabold bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center" >Descargar</a>
+                            </div>
+                        </div>
+                    </div>                 
                 </div>
             </div>
-            <!-- Jumbotron -->
             
             @endif
 
@@ -249,7 +255,7 @@
 
     </div><!--end of background-->
 
-
+        
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>

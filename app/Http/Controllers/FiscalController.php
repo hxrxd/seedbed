@@ -83,12 +83,63 @@ class FiscalController extends Controller
     /**
      * Display the fiscal's profile form.
      */
-    /*public function edit(Request $request): View
+    public function edit($email): View
     {
-        return view('fiscal.edit', [
-            'fiscal' => $request->fiscal(),
+        $fiscal = Fiscal::where('correo', $email)->first();
+
+        if (!$fiscal) {
+            abort(404);
+        }
+
+        // fetch departments
+        $departments = Mesa::distinct()->pluck('departamento');
+
+        return view('fiscal.edit', compact('fiscal','departments'));
+    }
+
+    /**
+     * Update the fiscal info
+     */
+    public function updateFiscal(Request $request)
+    {
+        $fiscal = Fiscal::where('correo',$request->input('correo'))->first();
+
+        if ($fiscal !== null) {
+            $fiscal->update($request->all());
+        } 
+
+        $redirectUrl = url('/dashboard');
+        return response()->json(['redirect_url' => $redirectUrl]);
+    }
+
+    /**
+     * Downgrade fiscal
+     */
+    public function downgradeFiscal(Request $request)
+    {
+        $correo = $request->input('correo');
+
+        Mesa::where('fiscal', $correo)->update([
+            'fiscal' => null,
+            'estatus' => 0
         ]);
-    }*/
+
+        $user = User::where('email',$correo)->first();
+        if ($user !== null) {
+            $user->rol="Voluntario";
+            $user->save();
+        }
+
+        $fiscal = Fiscal::where('correo',$correo)->first();
+
+        if ($fiscal !== null) {
+            //$fiscal->status = 'Inactive';
+            $fiscal->delete();
+        } 
+
+        $redirectUrl = url('/dashboard');
+        return response()->json(['redirect_url' => $redirectUrl]);
+    }
 
     /**
      * Display the specified resource.
@@ -123,7 +174,7 @@ class FiscalController extends Controller
         $data['jrvs_by_center'] = Mesa::where("nombre", $center_name)
                                     ->orderBy("jrv")
                                     ->orderBy("estatus")
-                                    ->get(["jrv","latitude","longitude","nombre","ubicacion","zona","estatus"]);
+                                    ->get(["jrv","latitude","longitude","nombre","ubicacion","zona","estatus","municipio"]);
 
         return response()->json($data);
     }
@@ -161,21 +212,57 @@ class FiscalController extends Controller
     /**
      * Update the specified JRV.
      */
-    public function updateJRV(Request $request, $jrv)
+    public function updateJRV(Request $request)
     {
-        $mesa = Mesa::findOrFail($jrv);
+        $mesa = Mesa::findOrFail($request->jrv);
 
         $currentStatus = $mesa->estatus;
 
         if ($currentStatus === 0) {
-            $mesa->fiscal = $request->input('fiscal');
-            $mesa->estatus = $request->input('estatus');
+            $mesa->fiscal = Auth::user()->email;
+            $mesa->estatus = 1;
             $mesa->save();
 
-            return response()->json(['message' => 'SUCCESS']);
+            $redirectUrl = url('/dashboard');
+            return response()->json(['redirect_url' => $redirectUrl]);
         } else {
             return response()->json(['message' => 'ERROR']);
         }
+    }
+
+
+    /**
+     * Add new assignment
+     */
+    public function addAssignment(Request $request): View
+    {
+        $jrv = Mesa::where('fiscal', Auth::user()->email)->value('jrv');
+
+        return view('fiscal.assignment', compact('jrv'));
+    }
+
+    /**
+     * Check the assignment
+     */
+    public function checkAssignment(Request $request): View
+    {
+        $jrv = Mesa::findOrFail($request->jrv);;
+
+        return view('fiscal.assignment-detail', compact('jrv'));
+    }
+
+    /**
+     * Downgrade fiscal
+     */
+    public function removeJRV(Request $request)
+    {
+        Mesa::where('jrv', $request->jrv)->update([
+            'fiscal' => null,
+            'estatus' => 0
+        ]);
+
+        $redirectUrl = url('/dashboard');
+        return response()->json(['redirect_url' => $redirectUrl]);
     }
 
 }
