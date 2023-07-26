@@ -1,5 +1,5 @@
 <x-app-layout>
-    @if (Auth::user()->rol == "Admin")
+    @if (Auth::user()->rol == "Admin" || Auth::user()->rol == "Coordinador")
     <div class="py-1">
     @else
     <div class="py-1 h-full custom-background">
@@ -64,7 +64,7 @@
                             </span>
                             <h3 class="mb-1 text-lg font-semibold text-gray-900 dark:text-white">Acreditación</h3>
                             <time class="block mb-2 text-sm font-normal leading-none text-gray-700 dark:text-gray-500">Disponible a partir del 1 de agosto</time>
-                            p class="text-base font-normal text-gray-500 dark:text-gray-400">Una vez completada la inducción, recibirás tu acreditación oficial como fiscal del Movimiento Semilla. Esta acreditación te permitirá desempeñar tu función durante el día de las elecciones y será generada como un archivo digital a través de esta plataforma.</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">Una vez completada la inducción, recibirás tu acreditación oficial como fiscal del Movimiento Semilla. Esta acreditación te permitirá desempeñar tu función durante el día de las elecciones y será generada como un archivo digital a través de esta plataforma.</p>
                         </li>
                         <li class="ml-6 mb-8">
                             <span class="absolute flex items-center justify-center w-6 h-6 bg-indigo-700 rounded-full -left-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
@@ -93,6 +93,19 @@
 
             @if (Auth::user()->rol == "Fiscal")
 
+            @php
+                function getInitials($name) {
+                    $words = explode(' ', $name);
+                    $initials = '';
+
+                    foreach ($words as $word) {
+                        $initials .= substr($word, 0, 1);
+                    }
+
+                    return strtoupper($initials);
+                }
+            @endphp
+
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-16 mb-12  h-full">
                 <div class="flex items-center justify-start mt-4 mb-4">
                     <h5 class="mb-0 md:ml-2 md:mr-8 text-3xl font-extrabold text-indigo-900 dark:text-white">Tablero</h5>
@@ -100,186 +113,132 @@
                 <div class="grid md:grid-cols-3 gap-4 sm:grid-cols-1 ">
                     <div class="custom-background-card bg-cover bg-fixed h-52 p-10 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
                         <div class="flex flex-col items-start">
-                            <div class="flex space-x-2 items-center">
-                                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12" style="color:#84cc16;">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
+                            <h3 class="text-xl font-extrabold text-white">Registro</h3>         
+                            <div class="flex flex-row items-center justify-start mt-4">
+                                <p class="text-white mr-1">Fiscal: <strong>{{ getInitials(Auth::user()->name) }}</strong></p>
+                                <svg class="w-4 h-4 text-white dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 21">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m6.072 10.072 2 2 6-4m3.586 4.314.9-.9a2 2 0 0 0 0-2.828l-.9-.9a2 2 0 0 1-.586-1.414V5.072a2 2 0 0 0-2-2H13.8a2 2 0 0 1-1.414-.586l-.9-.9a2 2 0 0 0-2.828 0l-.9.9a2 2 0 0 1-1.414.586H5.072a2 2 0 0 0-2 2v1.272a2 2 0 0 1-.586 1.414l-.9.9a2 2 0 0 0 0 2.828l.9.9a2 2 0 0 1 .586 1.414v1.272a2 2 0 0 0 2 2h1.272a2 2 0 0 1 1.414.586l.9.9a2 2 0 0 0 2.828 0l.9-.9a2 2 0 0 1 1.414-.586h1.272a2 2 0 0 0 2-2V13.8a2 2 0 0 1 .586-1.414Z"/>
                                 </svg>
-                                <h3 class="text-xl font-extrabold text-white">Registro</h3>
                             </div>
-                            <div class="flex flex-col items-start justify-start mt-4">
-                                <div class="flex flex-row items-center justify-start">
-                                    <p class="text-white ml-8 mr-1">Fiscal: <strong>{{Auth::user()->name}}</strong></p>
-                                    <svg class="w-4 h-4 text-white dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 21">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m6.072 10.072 2 2 6-4m3.586 4.314.9-.9a2 2 0 0 0 0-2.828l-.9-.9a2 2 0 0 1-.586-1.414V5.072a2 2 0 0 0-2-2H13.8a2 2 0 0 1-1.414-.586l-.9-.9a2 2 0 0 0-2.828 0l-.9.9a2 2 0 0 1-1.414.586H5.072a2 2 0 0 0-2 2v1.272a2 2 0 0 1-.586 1.414l-.9.9a2 2 0 0 0 0 2.828l.9.9a2 2 0 0 1 .586 1.414v1.272a2 2 0 0 0 2 2h1.272a2 2 0 0 1 1.414.586l.9.9a2 2 0 0 0 2.828 0l.9-.9a2 2 0 0 1 1.414-.586h1.272a2 2 0 0 0 2-2V13.8a2 2 0 0 1 .586-1.414Z"/>
+                            <p class="text-white mb-2">Estado: <strong>Verificado</strong></p>
+                            <div class="flex flex-row items-center justify-start">
+                                <a href="fiscal/{{ Auth::user()->email}}/edit" class="text-indigo-800 font-extrabold bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg text-sm px-2 py-1.5 text-center">
+                                    <svg class="w-5 h-5 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 18">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.109 17H1v-2a4 4 0 0 1 4-4h.87M10 4.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm7.95 2.55a2 2 0 0 1 0 2.829l-6.364 6.364-3.536.707.707-3.536 6.364-6.364a2 2 0 0 1 2.829 0Z"/>
                                     </svg>
+                                </a>
+                                <a id="inscrib" href="verificacion/{{ Auth::user()->email}}" class="ml-2 text-indigo-800 font-extrabold bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center">ID Virtual</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="custom-background-card bg-cover bg-fixed h-52 p-10 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
+                        <div class="flex flex-col items-start">
+                            <h3 class="text-xl font-extrabold text-white">Capacitación</h3>                       
+                            <div class="flex flex-col items-start justify-start mt-4">
+                                <p class="text-white">Fecha: <strong>1 de agosto</strong></p>
+                                <p class="text-white mb-2">Modalidad: <strong>Virtual</strong></p>
+                                <a href="#" class="text-indigo-800 font-extrabold bg-[#f7fdcf] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center">Convocatoria próxima</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="custom-background-card bg-cover bg-fixed h-52 p-10 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
+                        <div class="flex flex-col items-start">
+                            <h3 class="text-xl font-extrabold text-white">Acreditación</h3>
+                            <div class="flex flex-col items-start justify-start mt-4">
+                                <!--<p class="text-white ml-8">Documento válido ante la JRV</strong></p>-->
+                                <p class="text-white mb-2">Disponible a partir del <strong>10 de agosto</strong></p>
+                                <a id="acred" href="qr/{{ Auth::user()->email}}" class="text-indigo-800 font-extrabold bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center" >Descargar</a>
+                            </div>
+                        </div>
+                    </div>                 
+                </div>
+
+                <div class="flex items-center justify-start mt-8 mb-4">
+                    <h5 class="mb-0 md:ml-2 md:mr-8 text-3xl font-extrabold text-indigo-900 dark:text-white">Asignaciones</h5>
+                </div>
+                <div id="jrvs" class="grid md:grid-cols-3 gap-4 sm:grid-cols-1 ">
+                    @foreach ($assignments as $jrv)
+                    <div class="custom-background-card bg-cover bg-fixed h-52 p-10 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
+                        <div class="flex flex-col items-start">
+                            <h3 class="text-xl font-extrabold text-white">JRV #{{$jrv->jrv}}</h3>
+                            <div class="flex flex-col items-start justify-start mt-4">
+                                <p class="text-white"><strong>20 de agosto</strong></p>
+                                <p class="text-white mb-2">Día de las elecciones</p>
+                                <div class="flex flex-row items-center justify-start">
+                                    <a href="{{url('assignment/detail/'.$jrv->jrv)}}" class="text-indigo-800 font-extrabold bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg text-sm px-2 py-1.5 text-center">
+                                        <svg class="w-5 h-5 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11v4.833A1.166 1.166 0 0 1 13.833 17H2.167A1.167 1.167 0 0 1 1 15.833V4.167A1.166 1.166 0 0 1 2.167 3h4.618m4.447-2H17v5.768M9.111 8.889l7.778-7.778"/>
+                                        </svg>
+                                    </a>
+                                    <a id="voto " href="{{ route('voto.create') }}" class="ml-2 text-indigo-800 font-extrabold bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center" disabled>Ingresar acta</a>
                                 </div>
-                                <p class="text-white ml-8 mb-2">Estado: <strong>Verificado</strong></p>
-                                <a id="inscrib" href="verificacion/{{ Auth::user()->email}}" class="ml-8 text-indigo-800 font-extrabold bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center">Ver ID Virtual</a>
                             </div>
                         </div>
                     </div>
-                    <div class="custom-background-card bg-cover bg-fixed h-52 p-10 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
-                        <div class="flex flex-col items-start">
-                            <div class="flex space-x-2 items-center">
-                                <svg class="w-6 h-6 text-indigo-300 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
-                                </svg>
-                                <h3 class="text-xl font-extrabold text-white">Capacitación</h3>
-                            </div>
-                            <div class="flex flex-col items-start justify-start mt-4">
-                                <p class="text-white ml-8">Fecha: <strong>1 de agosto</strong></p>
-                                <p class="text-white ml-8 mb-2">Modalidad: <strong>Virtual</strong></p>
-                                <a href="fiscal/{{ Auth::user()->email}}/edit" class="ml-8 text-indigo-800 font-extrabold bg-[#f7fdcf] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center">Convocatoria próxima</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="custom-background-card bg-cover bg-fixed h-52 p-10 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
-                        <div class="flex flex-col items-start">
-                            <div class="flex space-x-2 items-center">
-                                <svg class="w-6 h-6 text-indigo-300 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
-                                </svg>
-                                <h3 class="text-xl font-extrabold text-white">Acreditación</h3>
-                            </div>
-                            <div class="flex flex-col items-start justify-start mt-4">
-                                <p class="text-white ml-8">Documento válido ante la JRV</strong></p>
-                                <p class="text-white ml-8 mb-2">Disponible a partir del <strong>10 de agosto</strong></p>
-                                <a id="acred" href="qr/{{ Auth::user()->email}}" class="ml-8 text-indigo-800 font-extrabold bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center" >Descargar</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="custom-background-card bg-cover bg-fixed h-52 p-10 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
-                        <div class="flex flex-col items-start">
-                            <div class="flex space-x-2 items-center">
-                                <svg class="w-6 h-6 text-indigo-300 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
-                                </svg>
-                                <h3 class="text-xl font-extrabold text-white">Acta de tu mesa</h3>
-                            </div>
-                            <div class="flex flex-col items-start justify-start mt-4">
-                                <p class="text-white ml-8"><strong>20 de agosto</strong></p>
-                                <p class="text-white ml-8 mb-2">Día de las elecciones</p>
-                                <a id="voto " href="{{ route('voto.create') }}" class="ml-8 text-indigo-800 font-extrabold bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center" disabled>Ingresar</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="custom-background-card bg-cover bg-fixed h-52 p-10 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
-                        <div class="flex flex-col items-start">
-                            <div class="flex space-x-2 items-center">
-                                <svg class="w-6 h-6 text-[#e9f877] dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9h2v5m-2 0h4M9.408 5.5h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
-                                </svg>
-                                <h3 class="text-xl font-extrabold text-white">Recursos</h3>
-                            </div>
-                            <div class="flex flex-col items-start justify-start mt-4">
-                                <p class="text-white ml-8">Acuerdo de registro</strong></p>
-                                <p class="text-white ml-8 mb-2">Código de Ética</strong></p>
-                                <a href="#" class="ml-8 text-indigo-800 font-extrabold bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center" disabled>Descargar</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    @endforeach
 
-                <div id="recom" class="flex items-center justify-start mt-8 mb-4">
-                    <h5 class="mb-0 md:ml-2 md:mr-8 text-3xl font-extrabold text-indigo-900 dark:text-white">Recomendaciones</h5>
-                </div>
-                <div class="grid md:grid-cols-3 gap-4 sm:grid-cols-1">
-                    <div class="p-4 text-start">
-                        <p class="mb-2 text-xl font-extrabold text-indigo-800 dark:text-white">Antes del proceso</p>
-                        <!-- List -->
-                        <ul role="list" class="space-y-4 text-gray-500 dark:text-gray-400">
-                            <li class="flex space-x-2 items-center">
-                                <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="Purple" viewBox="0 0 20 20">
-                                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
-                                </svg>
-                                <span class="leading-tight">Descarga e imprime tu constancia que te acredita como Fiscal</span>
-                            </li>
-                            <li class="flex space-x-2 items-center">
-                                <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="Purple" viewBox="0 0 20 20">
-                                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
-                                </svg>
-                                <span class="leading-tight">Llega al centro de votación a las 5:45 am, para estar al momento en que abren y preparan las papeletas.</span>
-                            </li>
-                            <li class="flex space-x-2 items-center">
-                                <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="Purple" viewBox="0 0 20 20">
-                                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
-                                </svg>
-                                <span class="leading-tight">Acreditate como fiscal ante la junta receptora de votos </span>
-                            </li>
-
-                            <li class="flex space-x-2 items-center">
-                                <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="Purple" viewBox="0 0 20 20">
-                                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
-                                </svg>
-                                <span class="leading-tight">Verifica el conteo de apertura de las boletas en la junta receptora de votos asignada</span>
-                            </li>
-                        </ul>
+                    @if (count($assignments) < 3)
+                    <!-- Add an extra element with the button to add another assignment -->
+                    <div class="custom-background-card bg-cover bg-fixed h-52 p-10 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
+                        <div class="flex flex-col items-center justify-center h-full">
+                            <a href="{{url('assignment')}}" class="text-indigo-800 font-extrabold bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center">Agregar JRV</a>
+                        </div>
                     </div>
-                    <div class="p-4 text-start">
-                        <p class="mb-2 text-xl font-extrabold text-indigo-800 dark:text-white">Durante el proceso</p>
-                        <!-- List -->
-                        <ul role="list" class="space-y-4 text-gray-500 dark:text-gray-400">
-                            <li class="flex space-x-2 items-center">
-                                <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="Purple" viewBox="0 0 20 20">
-                                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
-                                </svg>
-                                <span class="leading-tight">Verifica la normalidad del proceso</span>
-                            </li>
-                            <li class="flex space-x-2 items-center">
-                                <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="Purple" viewBox="0 0 20 20">
-                                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
-                                </svg>
-                                <span class="leading-tight">Comportate de acuerdo a nuestro código de ética</span>
-                            </li>
-                            <li class="flex space-x-2 items-center">
-                                <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="Purple" viewBox="0 0 20 20">
-                                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
-                                </svg>
-                                <span class="leading-tight">Reporta cualquier anomalía a la junta receptora de votos</span>
-                            </li>
-                            <li class="flex space-x-2 items-center">
-                                <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="Purple" viewBox="0 0 20 20">
-                                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
-                                </svg>
-                                <span class="leading-tight">Si presentas una emergencia puedes reportarlo al grupo de Whatsapp o al contacto 5820 6501</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="p-4 text-start">
-                        <p class="mb-2 text-xl font-extrabold text-indigo-800 dark:text-white">Después del proceso</p>
-                        <!-- List -->
-                        <ul role="list" class="space-y-4 text-gray-500 dark:text-gray-400">
-                            <li class="flex space-x-2 items-center">
-                                <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="Purple" viewBox="0 0 20 20">
-                                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
-                                </svg>
-                                <span class="leading-tight">Verifica el conteo de los votos.</span>
-                            </li>
-                            <li class="flex space-x-2 items-center">
-                                <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="Purple" viewBox="0 0 20 20">
-                                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
-                                </svg>
-                                <span class="leading-tight">Vigila la anulación de la papelería electoral no utilizada con el sello "NO USADA"</span>
-                            </li>
-                            <li class="flex space-x-2 items-center">
-                                <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="Purple" viewBox="0 0 20 20">
-                                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
-                                </svg>
-                                <span class="leading-tight">Solicita una copia de las actas de todas las mesas que se te hayan asignado</span>
-                            </li>
-                            <li class="flex space-x-2 items-center">
-                                <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="Purple" viewBox="0 0 20 20">
-                                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
-                                </svg>
-                                <span class="leading-tight">Reporta incidencias y votos impugnados al grupo de Whatsapp</span>
-                            </li>
-                        </ul>
-                    </div>
+                    @endif
                 </div>
             </div>
+            @endif
 
-
-
+            @if (Auth::user()->rol == "Coordinador")
+            
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-16 mb-12  h-full">
+                <div class="flex items-center justify-start mt-4 mb-4">
+                    <h5 class="mb-0 md:ml-2 md:mr-8 text-3xl font-extrabold text-indigo-900 dark:text-white">Panel de Control</h5>
+                </div>
+                <div class="grid md:grid-cols-3 gap-4 sm:grid-cols-1 ">
+                    <div class="custom-background-card bg-cover bg-fixed h-52 p-10 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
+                        <div class="flex flex-col items-start">
+                            <h3 class="text-xl font-extrabold text-white">Registro</h3>         
+                            <div class="flex flex-row items-center justify-start mt-4">
+                                <p class="text-white mr-1">Fiscal: <strong>{{ Auth::user()->name }}</strong></p>
+                                <svg class="w-4 h-4 text-white dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 21">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m6.072 10.072 2 2 6-4m3.586 4.314.9-.9a2 2 0 0 0 0-2.828l-.9-.9a2 2 0 0 1-.586-1.414V5.072a2 2 0 0 0-2-2H13.8a2 2 0 0 1-1.414-.586l-.9-.9a2 2 0 0 0-2.828 0l-.9.9a2 2 0 0 1-1.414.586H5.072a2 2 0 0 0-2 2v1.272a2 2 0 0 1-.586 1.414l-.9.9a2 2 0 0 0 0 2.828l.9.9a2 2 0 0 1 .586 1.414v1.272a2 2 0 0 0 2 2h1.272a2 2 0 0 1 1.414.586l.9.9a2 2 0 0 0 2.828 0l.9-.9a2 2 0 0 1 1.414-.586h1.272a2 2 0 0 0 2-2V13.8a2 2 0 0 1 .586-1.414Z"/>
+                                </svg>
+                            </div>
+                            <p class="text-white mb-2">Estado: <strong>Verificado</strong></p>
+                            <div class="flex flex-row items-center justify-start">
+                                <a href="fiscal/{{ Auth::user()->email}}/edit" class="text-indigo-800 font-extrabold bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg text-sm px-2 py-1.5 text-center">
+                                    <svg class="w-5 h-5 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 18">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.109 17H1v-2a4 4 0 0 1 4-4h.87M10 4.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm7.95 2.55a2 2 0 0 1 0 2.829l-6.364 6.364-3.536.707.707-3.536 6.364-6.364a2 2 0 0 1 2.829 0Z"/>
+                                    </svg>
+                                </a>
+                                <a id="inscrib" href="verificacion/{{ Auth::user()->email}}" class="ml-2 text-indigo-800 font-extrabold bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center">ID Virtual</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="custom-background-card bg-cover bg-fixed h-52 p-10 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
+                        <div class="flex flex-col items-start">
+                            <h3 class="text-xl font-extrabold text-white">Capacitación</h3>                       
+                            <div class="flex flex-col items-start justify-start mt-4">
+                                <p class="text-white">Fecha: <strong>1 de agosto</strong></p>
+                                <p class="text-white mb-2">Modalidad: <strong>Virtual</strong></p>
+                                <a href="#" class="text-indigo-800 font-extrabold bg-[#f7fdcf] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center">Convocatoria próxima</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="custom-background-card bg-cover bg-fixed h-52 p-10 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
+                        <div class="flex flex-col items-start">
+                            <h3 class="text-xl font-extrabold text-white">Acreditación</h3>
+                            <div class="flex flex-col items-start justify-start mt-4">
+                                <!--<p class="text-white ml-8">Documento válido ante la JRV</strong></p>-->
+                                <p class="text-white mb-2">Disponible a partir del <strong>10 de agosto</strong></p>
+                                <a id="acred" href="qr/{{ Auth::user()->email}}" class="text-indigo-800 font-extrabold bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center" >Descargar</a>
+                            </div>
+                        </div>
+                    </div>                 
+                </div>
+            </div>
+            
             @endif
 
         </div>

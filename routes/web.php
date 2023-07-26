@@ -9,6 +9,7 @@ use App\Http\Controllers\VerificacionController;
 use App\Http\Controllers\QRController;
 use App\Http\Controllers\VotoController;
 use App\Http\Controllers\ExcelController;
+use App\Models\Mesa;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +27,11 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    if (Auth::user()->rol == "Fiscal") {
+        $data = Mesa::where('fiscal', Auth::user()->email)->get(['jrv']);
+    }
+    
+    return view('dashboard', ['assignments' => $data ?? []]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
@@ -58,7 +63,13 @@ Route::post('api/fetch-jrvs-by-center', [FiscalController::class, 'fetchTablesBy
 Route::post('api/fetch-jrvs-by-city', [FiscalController::class, 'fetchTablesByCity']);
 Route::post('api/check-jrv-status', [FiscalController::class, 'checkJrvStatus']);
 Route::post('api/post-fiscal', [FiscalController::class, 'store']);
-//Route::get('assign/', [FiscalController::class, 'store'])->name('fiscal.assign');
+Route::post('api/update-fiscal', [FiscalController::class, 'updateFiscal']);
+Route::post('api/downgrade-fiscal', [FiscalController::class, 'downgradeFiscal']);
+Route::post('api/update-jrv', [FiscalController::class, 'updateJRV']);
+Route::post('api/remove-jrv', [FiscalController::class, 'removeJRV']);
+Route::get('assignment', [FiscalController::class, 'addAssignment'])->middleware(['auth', 'verified'])->name('assignment');
+Route::get('assignment/detail/{jrv}', [FiscalController::class, 'checkAssignment'])->middleware(['auth', 'verified'])->name('assignment.detail');
+
 
 //Get routes
 Route::get('getmesas', [ExcelController::class, 'getMesas'])->name('getmesas')->middleware(['auth', 'verified']);
@@ -67,7 +78,7 @@ Route::get('getmesasconfiscal', [ExcelController::class, 'getMesasConFiscal'])->
 Route::get('getfiscal', [ExcelController::class, 'getFiscales'])->name('getfiscal')->middleware(['auth', 'verified']);
 Route::get('getfiscalelectronico', [ExcelController::class, 'getFiscalesElectronicos'])->name('getfiscalelectronico')->middleware(['auth', 'verified']);
 
-Route::patch('assign/{jrv}', [FiscalController::class,'updateJRV'])->name('assign.updateJRV');
+//Route::patch('assign/{jrv}', [FiscalController::class,'updateJRV'])->name('assign.updateJRV');
 
 
 Route::get('/assets/img/{filename}', function($filename){

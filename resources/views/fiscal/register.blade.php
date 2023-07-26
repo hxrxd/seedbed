@@ -377,169 +377,7 @@
         <!--/Card-->
     </div>
     <!--/container-->
-    <style>
-        .animate {
-            animation: expandFromTop 0.6s;
-            animation-fill-mode: forwards;
-        }
-
-        .move-button {
-            animation: bounceButton 0.9s;
-            animation-fill-mode: forwards;
-        }
-
-        .pop-up {
-            animation: modalPopUp 0.3s ease-out;
-        }
-
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-
-        .modal {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
-
-        /*.swal-button--cancel {
-            background-color: #5a2ca0; 
-        }*/
-
-        .swal-button--confirm {
-            background-color: #442178; 
-        }
-
-        .swal-button--confirm:hover {
-            background-color: #8787de !important; 
-        }
-
-        /* Styles for desktop */
-        @media (min-width: 768px) {
-            .modal {
-                width: 600px;
-                transform: translate(-50%, -50%); 
-            }
-        }
-
-        /* Styles for mobile */
-        @media (max-width: 767px) {
-            .modal {
-                width: 90%;
-                transform: translate(-50%, -50%);
-            }
-        }
-
-        @keyframes expandWithBounce {
-            0% {
-                height: 0;
-                opacity: 0; 
-                transform-origin: top;
-            }
-            40% {
-                opacity: 0.7; 
-                height: 100%;
-                transform: scaleY(1.3);
-            }
-            60% {
-                opacity: 1;
-                transform: scaleY(0.7);
-            }
-            80% {
-                height: 100%;
-                transform: scaleY(1.1);
-            }
-            90% {
-                transform: scaleY(0.9);
-            }
-            100% {
-                height: 100%;
-                transform: scaleY(1);
-            }
-        }
-
-        @keyframes expandFromTop {
-            0% {
-                height: 0;
-                opacity: 0;
-                transform-origin: top;
-                transform: scaleY(0);
-            }
-            40% {
-                height: 0;
-                opacity: 0;
-                transform-origin: top;
-                transform: scaleY(0);
-            }
-            100% {
-                opacity: 1;
-                height: 100%;
-                transform: scaleY(1);
-            }
-        }
-
-        /* Button Animation */
-        @keyframes moveButton {
-            0% {
-                transform: translateY(0);
-                opacity: 0; 
-            }
-            40% {
-                opacity: 1; 
-            }
-            60% {
-                transform: translateY(calc(100% + 1px));
-            }
-            100% {
-                transform: translateY(0);
-            }
-        }
-
-        /* Bounce Animation */
-        @keyframes bounceButton {
-            0% {
-                opacity: 1; 
-                transform: scale(1);
-                
-            }
-            20% { 
-                transform: scale(1.2);
-            }
-            40% {
-                opacity: 0;
-                transform: scale(0); 
-            }
-            60% {
-                opacity: 1; 
-                transform: scale(1.2);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        /* Animation for showing the modal */
-        @keyframes modalPopUp {
-            0% {
-                
-                opacity: 0;
-            }
-            100% {
-                
-                opacity: 1;
-            }
-        }
-    </style>
+    <style>.animate{animation:expandFromTop 0.6s;animation-fill-mode:forwards}.move-button{animation:bounceButton 0.9s;animation-fill-mode:forwards}.pop-up{animation:modalPopUp 0.3s ease-out}.modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,0.5)}.modal{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);padding:20px;background-color:#fff;box-shadow:0 0 10px rgba(0,0,0,0.1);border-radius:10px}.swal-button--confirm{background-color:#442178}.swal-button--confirm:hover{background-color:#8787de!important}@media (min-width:768px){.modal{width:600px;transform:translate(-50%,-50%)}}@media (max-width:767px){.modal{width:90%;transform:translate(-50%,-50%)}}@keyframes expandWithBounce{0%{height:0;opacity:0;transform-origin:top}40%{opacity:.7;height:100%;transform:scaleY(1.3)}60%{opacity:1;transform:scaleY(.7)}80%{height:100%;transform:scaleY(1.1)}90%{transform:scaleY(.9)}100%{height:100%;transform:scaleY(1)}}@keyframes expandFromTop{0%{height:0;opacity:0;transform-origin:top;transform:scaleY(0)}100%{opacity:1;height:100%;transform:scaleY(1)}}@keyframes moveButton{0%{transform:translateY(0);opacity:0}40%{opacity:1}60%{transform:translateY(calc(100% + 1px))}100%{transform:translateY(0)}}@keyframes bounceButton{0%{opacity:1;transform:scale(1)}20%{transform:scale(1.2)}40%{opacity:0;transform:scale(0)}60%{opacity:1;transform:scale(1.2)}100%{transform:scale(1)}}@keyframes modalPopUp{0%{opacity:0}100%{opacity:1}}</style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <script>
@@ -929,9 +767,13 @@
                         
                         addListItemEvents('li-jrv-01');
                         addListItemEvents('li-jrv-02');
+
+                        fetchJRVsByCity();
                     }
                 });
+            }
 
+            function fetchJRVsByCity() {
                 $.ajax({
                     url: "{{url('api/fetch-jrvs-by-city')}}",
                     type: "POST",
