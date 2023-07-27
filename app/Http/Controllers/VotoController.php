@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Fiscal;
 use App\Models\Mesa;
 use App\Models\Voto;
@@ -62,13 +64,15 @@ class VotoController extends Controller
             $MIN= abs($diff2->diff);
         }
 
+        $votos = DB::table('votos as v')->select(['semilla','une','blanco','nulo','v.jrv','departamento','municipio','m.nombre'])->join('mesas as m', 'v.jrv', '=', 'm.jrv')->get();
+
 
         return view('voto.index', ['votos'=>$votos,'votoCount'=>$votoCount,'countMesas'=>$countMesas,
         'semilla'=>$semilla,'une'=>$une,'nulo'=>$nulo,'blanco'=>$blanco,'sinusar'=>$sinusar,
         'GTAV'=>$GTAV,'GTBV'=>$GTBV,'GTCM'=>$GTCM,'GTCQ'=>$GTCQ,'GTES'=>$GTES,'GTGU'=>$GTGU,'GTHU'=>$GTHU,
         'GTIZ'=>$GTIZ,'GTJA'=>$GTJA,'GTJU'=>$GTJU,'GTPE'=>$GTPE,'GTPR'=>$GTPR,'GTQC'=>$GTQC,'GTQZ'=>$GTQZ,
         'GTRE'=>$GTRE,'GTSA'=>$GTSA,'GTSM'=>$GTSM,'GTSO'=>$GTSO,'GTSR'=>$GTSR,'GTSU'=>$GTSU,'GTTO'=>$GTTO,'GTZA'=>$GTZA,
-        'MAX'=>$MAX,'MIN'=>$MIN]);
+        'MAX'=>$MAX,'MIN'=>$MIN,'votos'=>$votos]);
     }
 
     /**
@@ -94,39 +98,107 @@ class VotoController extends Controller
         }
 
     }
+    /**
+     * Review
+     */
+    public function createstore(Request $request)
+    {
+        //registrando votos
+        $rules = [
+            'semilla' => 'required',
+            'une' => 'required',
+            'blanco' => 'required',
+            'nulo' => 'required',
+            'sinusar' => 'required',
+        ];
+
+
+        $customMessages = [
+            'semilla.required' => 'Los votos de semilla son obligatorios.',
+            'une.required' => 'Los votos de une son obligatorios.',
+            'blanco.required' => 'Los votos en blanco son obligatorios.',
+            'nulo.required' => 'Los votos  nulos son obligatorios.',
+            'sinusar.required' => 'Las papeletas anuladas son obligatorios.',
+            // Agrega aquí otros mensajes personalizados para otras reglas de validación
+        ];
+        try{
+            $validatedData = $request->validate($rules, $customMessages);
+
+            $semillaold = $request->semilla;
+            $uneold = $request->une;
+            $blancoold = $request->blanco;
+            $nuloold = $request->nulo;
+            $sinusarold = $request->sinusar;
+
+            $id = Auth::user('email');
+            $fiscal = Fiscal::where('correo',$id->email)->first();
+            $mesa = Mesa::select('jrv','departamento','municipio','nombre','fiscal')->where('fiscal',$id->email)->first();
+
+            return view('voto.createv', ['fiscal'=>$fiscal,'mesa'=>$mesa,'semillaold'=>$semillaold,'uneold'=>$uneold,'blancoold'=>$blancoold,'nuloold'=>$nuloold,'sinusarold'=>$sinusarold]);
+        } catch (ValidationException $e) {
+            $errors = $e->validator->errors()->messages();
+
+            return response()->json(['errors' => $errors], 422);
+        }
+
+    }
+
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //registrando votos
+        //validar votos
+            $validator = Validator::make($request->all(), [
+                'semilla' => 'required|numeric|in:'.$request->semillaold,
+                'une' => 'required|numeric|in:'.$request->uneold,
+                'blanco' => 'required|numeric|in:'.$request->blancoold,
+                'nulo' => 'required|numeric|in:'.$request->nuloold,
+                'sinusar' => 'required|numeric|in:'.$request->sinusarold,
+            ],
+            [
+                'semilla.required' => 'Los votos de semilla son obligatorios.',
+                'une.required' => 'Los votos de une son obligatorios.',
+                'blanco.required' => 'Los votos en blanco son obligatorios.',
+                'nulo.required' => 'Los votos  nulos son obligatorios.',
+                'sinusar.required' => 'Las papeletas anuladas son obligatorios.',
+                //in
+                'semilla.in' => 'Los votos de semilla difieren.',
+                'une.in' => 'Los votos de une difieren.',
+                'blanco.in' => 'Los votos en blanco difieren.',
+                'nulo.in' => 'Los votos  nulos difieren.',
+                'sinusar.in' => 'Las papeletas anuladas difieren.',
+            ]
+            );
 
-        $this->validate($request,[
-            'semilla' => 'required',
-            'une' => 'required',
-            'blanco' => 'required',
-            'nulo' => 'required',
-            'sinusar' => 'required',
-        ]);
+            if ($validator->fails()) {
+                return redirect('voto/create')
+                            ->withErrors($validator)
+                            ->withInput();
+            }
+            //Guardar
+            $id = Auth::user('email');
+            $votos = new Voto;
 
-        $id = Auth::user('email');
+            $votos->semilla = $request->semilla;
+            $votos->une = $request->une;
+            $votos->blanco = $request->blanco;
+            $votos->nulo = $request->nulo;
+            $votos->sinusar = $request->sinusar;
+            $votos->jrv = $request->jrv;
+            $votos->fiscal = $id->email;
+            $votos->save();
 
-        $votos = new Voto;
-
-        $votos->semilla = $request->semilla;
-        $votos->une = $request->une;
-        $votos->blanco = $request->blanco;
-        $votos->nulo = $request->nulo;
-        $votos->sinusar = $request->sinusar;
-        $votos->jrv = $request->jrv;
-        $votos->fiscal = $id->email;
-        $votos->save();
-
-        return redirect('/dashboard');
-
-
+            return redirect('/dashboard');
     }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array<string, string>
+     */
+
 
     /**
      * Display the specified resource.

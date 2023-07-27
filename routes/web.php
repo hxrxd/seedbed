@@ -30,7 +30,7 @@ Route::get('/dashboard', function () {
     if (Auth::user()->rol == "Fiscal") {
         $data = Mesa::where('fiscal', Auth::user()->email)->get(['jrv']);
     }
-    
+
     return view('dashboard', ['assignments' => $data ?? []]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -58,6 +58,7 @@ Route::resource('fiscal', FiscalController::class)->middleware(['auth', 'verifie
 Route::resource('voto', VotoController::class)->middleware(['auth', 'verified']);
 
 //Post routes
+Route::post('createstore', [VotoController::class,'createstore'])->name('createstore');
 Route::post('api/fetch-cities', [FiscalController::class, 'fetchCities']);
 Route::post('api/fetch-jrvs-by-center', [FiscalController::class, 'fetchTablesByCenter']);
 Route::post('api/fetch-jrvs-by-city', [FiscalController::class, 'fetchTablesByCity']);
@@ -69,6 +70,7 @@ Route::post('api/update-jrv', [FiscalController::class, 'updateJRV']);
 Route::post('api/remove-jrv', [FiscalController::class, 'removeJRV']);
 Route::get('assignment', [FiscalController::class, 'addAssignment'])->middleware(['auth', 'verified'])->name('assignment');
 Route::get('assignment/detail/{jrv}', [FiscalController::class, 'checkAssignment'])->middleware(['auth', 'verified'])->name('assignment.detail');
+
 
 
 //Get routes
