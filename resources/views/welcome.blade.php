@@ -3,7 +3,7 @@
    <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width">
-      <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+      <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
       <meta name="generator" content="Astro v1.1.5">
       <meta name="description" content="Template built with tailwindcss using Tailus blocks v2">
       <title>SoyFiscalSemilla</title>
