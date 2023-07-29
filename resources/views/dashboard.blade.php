@@ -111,7 +111,7 @@
                     <h5 class="mb-0 md:ml-2 md:mr-8 text-3xl font-extrabold text-indigo-900 dark:text-white">Tablero</h5>
                 </div>
                 <div class="grid md:grid-cols-3 gap-4 sm:grid-cols-1 ">
-                    <div class="custom-background-card bg-cover bg-fixed h-52 p-10 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
+                    <div class="custom-background-card bg-cover bg-fixed h-52 p-8 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
                         <div class="flex flex-col items-start">
                             <h3 class="text-xl font-extrabold text-white">Registro</h3>         
                             <div class="flex flex-row items-center justify-start mt-4">
@@ -120,7 +120,7 @@
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m6.072 10.072 2 2 6-4m3.586 4.314.9-.9a2 2 0 0 0 0-2.828l-.9-.9a2 2 0 0 1-.586-1.414V5.072a2 2 0 0 0-2-2H13.8a2 2 0 0 1-1.414-.586l-.9-.9a2 2 0 0 0-2.828 0l-.9.9a2 2 0 0 1-1.414.586H5.072a2 2 0 0 0-2 2v1.272a2 2 0 0 1-.586 1.414l-.9.9a2 2 0 0 0 0 2.828l.9.9a2 2 0 0 1 .586 1.414v1.272a2 2 0 0 0 2 2h1.272a2 2 0 0 1 1.414.586l.9.9a2 2 0 0 0 2.828 0l.9-.9a2 2 0 0 1 1.414-.586h1.272a2 2 0 0 0 2-2V13.8a2 2 0 0 1 .586-1.414Z"/>
                                 </svg>
                             </div>
-                            <p class="text-white mb-2">Estado: <strong>Verificado</strong></p>
+                            <p class="text-white mb-4">Estado: <strong>Verificado</strong></p>
                             <div class="flex flex-row items-center justify-start">
                                 <a href="fiscal/{{ Auth::user()->email}}/edit" class="text-indigo-800 font-extrabold bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg text-sm px-2 py-1.5 text-center">
                                     <svg class="w-5 h-5 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 18">
@@ -131,60 +131,45 @@
                             </div>
                         </div>
                     </div>
-                    <div class="custom-background-card bg-cover bg-fixed h-52 p-10 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
+                    <div class="custom-background-card bg-cover bg-fixed h-52 p-8 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
+                        <div class="flex flex-col items-start">
+                            <h3 class="text-xl font-extrabold text-white">Asignaciones</h3>
+                            <div class="flex flex-col items-start justify-start mt-4">
+                                <p class="text-white mb-4">Juntas Receptoras de Votos vinculadas</p>
+                                <a id="voto " href="{{url('assignments')}}" class="text-indigo-800 font-extrabold bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center">Ver mis asignaciones</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="custom-background-card bg-cover bg-fixed h-52 p-8 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
                         <div class="flex flex-col items-start">
                             <h3 class="text-xl font-extrabold text-white">Capacitación</h3>                       
                             <div class="flex flex-col items-start justify-start mt-4">
-                                <p class="text-white">Fecha: <strong>1 de agosto</strong></p>
-                                <p class="text-white mb-2">Modalidad: <strong>Virtual</strong></p>
+                                <!--<p class="text-white">Disponible a partir del <strong>31 de julio</strong></p>-->
+                                <p class="text-white mb-4">Disponible a partir del <strong>31 de julio</strong></p>
                                 <a href="#" class="text-indigo-800 font-extrabold bg-[#f7fdcf] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center">Convocatoria próxima</a>
                             </div>
                         </div>
                     </div>
-                    <div class="custom-background-card bg-cover bg-fixed h-52 p-10 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
+                    <div class="custom-background-card bg-cover bg-fixed h-52 p-8 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
                         <div class="flex flex-col items-start">
                             <h3 class="text-xl font-extrabold text-white">Acreditación</h3>
                             <div class="flex flex-col items-start justify-start mt-4">
                                 <!--<p class="text-white ml-8">Documento válido ante la JRV</strong></p>-->
-                                <p class="text-white mb-2">Disponible a partir del <strong>10 de agosto</strong></p>
+                                <p class="text-white mb-4">Disponible a partir del <strong>14 de agosto</strong></p>
                                 <a id="acred" href="qr/{{ Auth::user()->email}}" class="text-indigo-800 font-extrabold bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center" >Descargar</a>
                             </div>
                         </div>
-                    </div>                 
-                </div>
-
-                <div class="flex items-center justify-start mt-8 mb-4">
-                    <h5 class="mb-0 md:ml-2 md:mr-8 text-3xl font-extrabold text-indigo-900 dark:text-white">Asignaciones</h5>
-                </div>
-                <div id="jrvs" class="grid md:grid-cols-3 gap-4 sm:grid-cols-1 ">
-                    @foreach ($assignments as $jrv)
-                    <div class="custom-background-card bg-cover bg-fixed h-52 p-10 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
+                    </div> 
+                    <div class="custom-background-card bg-cover bg-fixed h-52 p-8 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
                         <div class="flex flex-col items-start">
-                            <h3 class="text-xl font-extrabold text-white">JRV #{{$jrv->jrv}}</h3>
+                            <h3 class="text-xl font-extrabold text-white">Librería</h3>
                             <div class="flex flex-col items-start justify-start mt-4">
-                                <p class="text-white"><strong>20 de agosto</strong></p>
-                                <p class="text-white mb-2">Día de las elecciones</p>
-                                <div class="flex flex-row items-center justify-start">
-                                    <a href="{{url('assignment/detail/'.$jrv->jrv)}}" class="text-indigo-800 font-extrabold bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg text-sm px-2 py-1.5 text-center">
-                                        <svg class="w-5 h-5 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11v4.833A1.166 1.166 0 0 1 13.833 17H2.167A1.167 1.167 0 0 1 1 15.833V4.167A1.166 1.166 0 0 1 2.167 3h4.618m4.447-2H17v5.768M9.111 8.889l7.778-7.778"/>
-                                        </svg>
-                                    </a>
-                                    <a id="voto " href="{{ route('voto.create') }}" class="ml-2 text-indigo-800 font-extrabold bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center" disabled>Ingresar acta</a>
-                                </div>
+                                <!--<p class="text-white ml-8">Documento válido ante la JRV</strong></p>-->
+                                <p class="text-white mb-4">Recursos y documentos útiles</p>
+                                <a id="acred" href="#" class="text-indigo-800 font-extrabold bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center" >Descargar</a>
                             </div>
                         </div>
-                    </div>
-                    @endforeach
-
-                    @if (count($assignments) < 3)
-                    <!-- Add an extra element with the button to add another assignment -->
-                    <div class="custom-background-card bg-cover bg-fixed h-52 p-10 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
-                        <div class="flex flex-col items-center justify-center h-full">
-                            <a href="{{url('assignment')}}" class="text-indigo-800 font-extrabold bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center">Agregar JRV</a>
-                        </div>
-                    </div>
-                    @endif
+                    </div>              
                 </div>
             </div>
             

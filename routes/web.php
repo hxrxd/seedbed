@@ -27,11 +27,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    if (Auth::user()->rol == "Fiscal") {
-        $data = Mesa::where('fiscal', Auth::user()->email)->get(['jrv']);
-    }
-
-    return view('dashboard', ['assignments' => $data ?? []]);
+    return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
@@ -58,7 +54,6 @@ Route::resource('fiscal', FiscalController::class)->middleware(['auth', 'verifie
 Route::resource('voto', VotoController::class)->middleware(['auth', 'verified']);
 
 //Post routes
-Route::post('createstore', [VotoController::class,'createstore'])->name('createstore');
 Route::post('api/fetch-cities', [FiscalController::class, 'fetchCities']);
 Route::post('api/fetch-jrvs-by-center', [FiscalController::class, 'fetchTablesByCenter']);
 Route::post('api/fetch-jrvs-by-city', [FiscalController::class, 'fetchTablesByCity']);
@@ -70,8 +65,7 @@ Route::post('api/update-jrv', [FiscalController::class, 'updateJRV']);
 Route::post('api/remove-jrv', [FiscalController::class, 'removeJRV']);
 Route::get('assignment', [FiscalController::class, 'addAssignment'])->middleware(['auth', 'verified'])->name('assignment');
 Route::get('assignment/detail/{jrv}', [FiscalController::class, 'checkAssignment'])->middleware(['auth', 'verified'])->name('assignment.detail');
-
-
+Route::get('assignments', [FiscalController::class, 'listAssignments'])->middleware(['auth', 'verified'])->name('assignments');
 
 //Get routes
 Route::get('getmesas', [ExcelController::class, 'getMesas'])->name('getmesas')->middleware(['auth', 'verified']);
@@ -82,6 +76,9 @@ Route::get('getfiscalelectronico', [ExcelController::class, 'getFiscalesElectron
 
 //Route::patch('assign/{jrv}', [FiscalController::class,'updateJRV'])->name('assign.updateJRV');
 
+Route::get('/previous', function () {
+    return back();
+});
 
 Route::get('/assets/img/{filename}', function($filename){
         $path = 'assets/img/' . $filename;

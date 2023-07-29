@@ -149,7 +149,7 @@
                 </h1>
 
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight mt-6">
-                    {{ __('Asignación de mesa') }}
+                    {{ __('Asignación de mesa (JRV)') }}
                 </h2>
                 <p class="text-md mt-4 text-gray-800">La mesa en la que votas aparecerá de manera predeterminada en el siguiente campo, pero debes revisar la disponiblidad para confirmarla. Si ya no está disponible, podrás seleccionar entre otras mesas de tu mismo centro o municipio.</p>
 
@@ -267,7 +267,7 @@
                             <!-- Modal header -->
                             <div class="px-6 py-4 border-b rounded-t dark:border-gray-600">
                                 <h3 class="text-base font-semibold text-gray-900 lg:text-xl dark:text-white">
-                                    Selecciona una mesa
+                                    Selecciona una Junta Receptora de Votos
                                 </h3>
                             </div>
                             <!-- Modal body -->
@@ -994,10 +994,10 @@
                     // Calculate the scroll position
                     const scrollPosition = $modalContent.scrollTop();
                     const contentHeight = $modalContent[0].scrollHeight - $modalContent.outerHeight();
-
+                    
                     // Check if the user has scrolled to the bottom of the content
-                    if (scrollPosition === contentHeight) {
-                        //console.log('heading down.');
+                    if (scrollPosition >= (contentHeight-(contentHeight/2))) {
+                        //console.log('heading down');
                         $('#btn-terms').removeClass('disabled:bg-indigo-200');
                         $('#btn-terms').prop('disabled', false);
                         $('#accept').prop('disabled', false); 

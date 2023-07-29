@@ -223,7 +223,7 @@ class FiscalController extends Controller
             $mesa->estatus = 1;
             $mesa->save();
 
-            $redirectUrl = url('/dashboard');
+            $redirectUrl = url('/assignments');
             return response()->json(['redirect_url' => $redirectUrl]);
         } else {
             return response()->json(['message' => 'ERROR']);
@@ -263,6 +263,20 @@ class FiscalController extends Controller
 
         $redirectUrl = url('/dashboard');
         return response()->json(['redirect_url' => $redirectUrl]);
+    }
+
+    /**
+     * List all asignments for a specific fiscal
+     */
+    public function listAssignments(Request $request): View
+    {
+        //$assignments = Mesa::where('fiscal', Auth::user()->email)->get();
+        $assignments = Mesa::leftJoin('votos', 'mesas.jrv', '=', 'votos.jrv')
+                        ->where('mesas.fiscal', Auth::user()->email)
+                        ->select('mesas.*', \DB::raw('CASE WHEN votos.jrv IS NOT NULL THEN 1 ELSE 0 END AS votos'))
+                        ->get();
+
+        return view('fiscal.assignments', compact('assignments'));
     }
 
 }
