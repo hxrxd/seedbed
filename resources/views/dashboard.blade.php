@@ -33,7 +33,7 @@
                                 </svg>
                             </span>
                             <h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white">Registrarme como fiscal</h3>
-                            <time class="block mb-2 text-sm font-normal leading-none text-gray-700 dark:text-gray-500">¡El registro se encuentra disponible ahora!</time>
+                            <time class="w-4 h-4 text-gray-100 dark:text-white">¡El registro se encuentra disponible ahora!</time>
                             <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">Para registrarte como fiscal, deberás completar información necesaria para elegir una Junta Receptora de Votos (JRV). <strong>Podrás encontrar la opción para inscribirte al final de esta página.</strong></p>
                         </li>
                         <li class="mb-10 ml-6">
@@ -43,7 +43,7 @@
                                 </svg>
                             </span>
                             <h3 class="mb-1 text-lg font-semibold text-gray-900 dark:text-white">Capacitación virtual</h3>
-                            <time class="block mb-2 text-sm font-normal leading-none text-gray-700 dark:text-gray-500">Disponible desde el 22 de julio al 7 de agosto</time>
+                            <time class="block mb-2 text-sm font-normal leading-none text-gray-700 dark:text-gray-500">Disponible desde el 1 de agosto</time>
                             <p class="text-base font-normal text-gray-500 dark:text-gray-400">Después de completar el registro, participarás en sesiones de inducción a través de videoconferencias en Zoom. Durante estas sesiones, se te proporcionará información detallada sobre tus roles y responsabilidades como fiscal, así como los procedimientos legales y requisitos a seguir durante el día de las elecciones.</p>
                         </li>
                         <li class="mb-10 ml-6">
@@ -53,7 +53,7 @@
                                 </svg>
                             </span>
                             <h3 class="mb-1 text-lg font-semibold text-gray-900 dark:text-white">Capacitación presencial (opcional)</h3>
-                            <time class="block mb-2 text-sm font-normal leading-none text-gray-700 dark:text-gray-500">Del 8 al 10 de agosto</time>
+                            <time class="block mb-2 text-sm font-normal leading-none text-gray-700 dark:text-gray-500">A partir del 1 de agosto</time>
                             <p class="text-base font-normal text-gray-500 dark:text-gray-400">Las capacitaciones presenciales serán anunciadas oportunamente y con registro previo.</p>
                         </li>
                         <li class="mb-10 ml-6">
@@ -63,7 +63,7 @@
                                 </svg>
                             </span>
                             <h3 class="mb-1 text-lg font-semibold text-gray-900 dark:text-white">Acreditación</h3>
-                            <time class="block mb-2 text-sm font-normal leading-none text-gray-700 dark:text-gray-500">Disponible a partir del 1 de agosto</time>
+                            <time class="block mb-2 text-sm font-normal leading-none text-gray-700 dark:text-gray-500">Disponible desde 14 de agosto</time>
                             <p class="text-base font-normal text-gray-500 dark:text-gray-400">Una vez completada la inducción, recibirás tu acreditación oficial como fiscal del Movimiento Semilla. Esta acreditación te permitirá desempeñar tu función durante el día de las elecciones y será generada como un archivo digital a través de esta plataforma.</p>
                         </li>
                         <li class="ml-6 mb-8">
@@ -113,7 +113,7 @@
                 <div class="grid md:grid-cols-3 gap-4 sm:grid-cols-1 ">
                     <div class="custom-background-card bg-cover bg-fixed h-52 p-8 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
                         <div class="flex flex-col items-start">
-                            <h3 class="text-xl font-extrabold text-white">Registro</h3>         
+                            <h3 class="text-xl font-extrabold text-white">Registro</h3>
                             <div class="flex flex-row items-center justify-start mt-4">
                                 <p class="text-white mr-1">Fiscal: <strong>{{ getInitials(Auth::user()->name) }}</strong></p>
                                 <svg class="w-4 h-4 text-white dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 21">
@@ -142,10 +142,10 @@
                     </div>
                     <div class="custom-background-card bg-cover bg-fixed h-52 p-8 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
                         <div class="flex flex-col items-start">
-                            <h3 class="text-xl font-extrabold text-white">Capacitación</h3>                       
+                            <h3 class="text-xl font-extrabold text-white">Capacitación</h3>
                             <div class="flex flex-col items-start justify-start mt-4">
                                 <!--<p class="text-white">Disponible a partir del <strong>31 de julio</strong></p>-->
-                                <p class="text-white mb-4">Disponible a partir del <strong>31 de julio</strong></p>
+                                <p class="text-white mb-4">Disponible a partir del <strong>1 de Agosto</strong></p>
                                 <a class="text-indigo-800 font-extrabold bg-[#f7fdcf] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center">Convocatoria próxima</a>
                             </div>
                         </div>
@@ -159,7 +159,7 @@
                                 <a id="acred" class="text-indigo-800 font-extrabold bg-[#f7fdcf] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center">No disponible</a>
                             </div>
                         </div>
-                    </div> 
+                    </div>
                     <div class="custom-background-card bg-cover bg-fixed h-52 p-8 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
                         <div class="flex flex-col items-start">
                             <h3 class="text-xl font-extrabold text-white">Información</h3>
@@ -169,20 +169,20 @@
                                 <a href="{{url('resources')}}" class="text-indigo-800 font-extrabold bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center">Conocer más</a>
                             </div>
                         </div>
-                    </div>              
+                    </div>
                 </div>
             </div>
-            
+
             @endif
 
             @if (Auth::user()->rol == "Coordinador")
-            
+
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-30 mb-12">
                 <div class="flex items-center justify-start mt-4 mb-4">
                     <h5 class="mb-0 md:ml-2 md:mr-8 text-3xl font-extrabold text-indigo-900 dark:text-white">Panel de Control</h5>
                 </div>
             </div>
-    
+
             @endif
 
             @if (Auth::user()->rol == "Admin")
@@ -217,7 +217,7 @@
                 </div>
             </div>
             <!-- Jumbotron -->
-            
+
             @endif
 
         </div>

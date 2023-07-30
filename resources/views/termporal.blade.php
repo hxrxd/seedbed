@@ -38,7 +38,7 @@
     <div class="container d-flex flex-column align-items-center">
 
       <h1>Soy Fiscal Semilla</h1>
-      <h2>Estamos trabajando duro para lanzar nuestra aplicación web de fiscales y estaremos listos para lanzarlo después de</h2>
+      <h2>Estamos trabajando para que puedas acceder pronto a la web de fiscales y estaremos listos para lanzarlo después de</h2>
       <div class="countdown d-flex justify-content-center" data-count="2023/07/31">
         <div>
           <h3>%d</h3>

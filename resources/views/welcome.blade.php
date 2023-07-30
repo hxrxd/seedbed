@@ -13,10 +13,10 @@
       <link rel="stylesheet" href="assets/index.350e2431.css" />
       <style>
          .container-semilla {
-            position: relative; 
+            position: relative;
             width: 120px;
-            height: 60px; 
-            background-image: url('assets/img/plant-emoji.svg'); 
+            height: 60px;
+            background-image: url('assets/img/plant-emoji.svg');
             background-size: cover;
             background-position: center;
             text-align: center;
@@ -133,7 +133,7 @@
                <h2 class="mb-6 text-4xl md:text-4xl font-extrabold tracking-tight text-center text-secondary lg:mb-8 lg:text-3xl">Proceso Fiscal Semilla</h2>
                <div class="grid md:grid-cols-3 gap-8 sm:grid-cols-1 ">
                     <div class="h-64 p-10 md:p-8 rounded-lg text-center">
-                        <div class="flex flex-col items-center">        
+                        <div class="flex flex-col items-center">
                             <div class="flex flex-row items-center justify-start mt-4">
                             <svg class="w-32 h-32 text-third" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M10 19a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0 0a8.949 8.949 0 0 0 4.951-1.488A3.987 3.987 0 0 0 11 14H9a3.987 3.987 0 0 0-3.951 3.512A8.948 8.948 0 0 0 10 19Zm3-11a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
@@ -144,7 +144,7 @@
                         </div>
                     </div>
                     <div class="h-64 p-10 md:p-8 rounded-lg text-center">
-                        <div class="flex flex-col items-center">        
+                        <div class="flex flex-col items-center">
                             <div class="flex flex-row items-center justify-start mt-4">
                             <svg class="w-32 h-32 text-third" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M5 1v3m5-3v3m5-3v3M1 7h18M5 11h10M2 3h16a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/>
@@ -155,16 +155,16 @@
                         </div>
                     </div>
                     <div class="h-64 p-10 md:p-8 rounded-lg text-center">
-                        <div class="flex flex-col items-center">        
+                        <div class="flex flex-col items-center">
                             <div class="flex flex-row items-center justify-start mt-4">
                             <svg class="w-32 h-32 text-third" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 21">
                               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="m6.072 10.072 2 2 6-4m3.586 4.314.9-.9a2 2 0 0 0 0-2.828l-.9-.9a2 2 0 0 1-.586-1.414V5.072a2 2 0 0 0-2-2H13.8a2 2 0 0 1-1.414-.586l-.9-.9a2 2 0 0 0-2.828 0l-.9.9a2 2 0 0 1-1.414.586H5.072a2 2 0 0 0-2 2v1.272a2 2 0 0 1-.586 1.414l-.9.9a2 2 0 0 0 0 2.828l.9.9a2 2 0 0 1 .586 1.414v1.272a2 2 0 0 0 2 2h1.272a2 2 0 0 1 1.414.586l.9.9a2 2 0 0 0 2.828 0l.9-.9a2 2 0 0 1 1.414-.586h1.272a2 2 0 0 0 2-2V13.8a2 2 0 0 1 .586-1.414Z"/>
                             </svg>
                             </div>
                             <h2 class="text-primary mt-4 mb-2">3. Acreditación</h2>
-                            <p class="text-sm text-gray-500">Obtén tus documentos válidos ante las JRVs con un solo clic.</p>
+                            <p class="text-sm text-gray-500">Obtén tus documentos oficiales ante las Junta Receptora de Votos</p>
                         </div>
-                    </div>                
+                    </div>
                 </div>
                </div>
             </div>
@@ -200,7 +200,7 @@
                         <div class="py-5 border-b border-gray-200">
                            <ol class="pl-5 text-gray-500 list-disc">
                               <li>Haz clic en <a href="{{ route('register') }}" class="text-primary underline hover:underline">Registrarme</a></li>
-                              <li>Ingresa tu nombre, correo electrónico (recomendamos que sea un correo personal; evita utilizar correos institucionales o de iCloud), elige una contraseña y haz clic en el botón para confirmar. Un enlace será enviado al correo registrado.</li>
+                              <li>Ingresa tu nombre, correo electrónico (recomendamos que sea un correo personal; evita utilizar correos institucionales o de iCloud), elige una contraseña y haz clic en el botón para confirmar. Un enlace será enviado al correo registrado, esto puede tardar unos minutos.</li>
                               <li>Revisa tu bandeja de correos y haz clic en el botón que aparece en el mensaje. En ese momento tu cuenta será activada y te redirigirá a la pantalla de inicio de sesión. Si no ves el mensaje en tu bandeja de entrada, revisa la bandeja de SPAM.</li>
                               <li>En la pantalla de inicio de sesión, ingresa tu correo y contraseña registrados. Hecho esto, estarás dentro de la plataforma.</li>
                            </ol>
@@ -216,11 +216,11 @@
                      </h3>
                      <div id="accordion-flush-body-3" class="hidden" aria-labelledby="accordion-flush-heading-3">
                         <div class="py-5 border-b border-gray-200">
-                           <p class="mb-2 text-gray-500">El registro como fiscal consta de 2 pasos: registro de datos personales y asignación de Junta Receptora de Votos (JRV). El registro es guiado, esto significa que solo se te mostrarán los campos que debes completar en cada paso. Para resgistrarte como fiscal:</p>
+                           <p class="mb-2 text-gray-500">El registro como fiscal consta de 2 pasos: registro de datos personales y asignación de Junta Receptora de Votos (JRV). El registro es guiado, esto significa que solo se te mostrarán los campos que debes completar en cada paso. Para registrarte como fiscal:</p>
                            <ul class="pl-5 text-gray-500 list-disc">
                               <li>Dentro de la plataforma, selecciona el botón <strong>Registrarme como fiscal</strong></li>
                               <li>Ingresa tus datos personales según te indique el mismo formulario.</li>
-                              <li>Elije una Junta Receptora de Votos (JRV). En el caso que la JRV en donde votas no está disponible, puedes elegir otra del mismo centro. Si todas las mesas de tu centro no están están disponibles, puedes elegir una de tu mismo municipio.</li>
+                              <li>Elije una Junta Receptora de Votos (JRV). En el caso que la JRV en donde votas no está disponible, puedes elegir otra del mismo centro. Si todas las mesas de tu centro no están están disponibles, puedes elegir una de tu mismo municipio. Si tu municipio estuviera lleno, envíanos un mensaje al correo @html_mailto(preguntas@fiscalsemilla.com) </li>
                               <li>Al llegar al acuerdo de registro, es importante que lo leas para que conozcas tu compromiso como fiscal.</li>
                               <li>Cuando hayas leído el acuerdo, marca la casilla de verificación.</li>
                               <li>Haz clic en <strong>Finalizar</strong> y estarás registrado como fiscal en la JRV que seleccionaste</li>
@@ -250,12 +250,12 @@
                      </h3>
                      <div id="accordion-flush-body-5" class="hidden" aria-labelledby="accordion-flush-heading-5">
                         <div class="py-5 border-b border-gray-200">
-                           <p class="mb-2 text-gray-500">Puedes descargarla desde el apartado de Acreditación en tu tablero personal. Este documento estará disponible siempre y cuando hayas completado una capacitación (virtual o presencial) en fechas específicas.</p>
+                           <p class="mb-2 text-gray-500">Puedes descargarla desde el apartado de Acreditación en tu tablero personal. Este documento estará disponible siempre y cuando hayas completado una capacitación (virtual o presencial) en fechas específicas. Este proceso puede variar dependiendo del municipio o departamento en el que te localices </p>
                         </div>
                      </div>
                      <h3 id="accordion-flush-heading-6">
                         <button type="button" class="flex items-center justify-between w-full py-5 font-medium text-left text-gray-500 border-b border-gray-200" data-accordion-target="#accordion-flush-body-6" aria-expanded="false" aria-controls="accordion-flush-body-6">
-                           <span>¿Puedo darme de baja como fiscal?</span>
+                           <span>¿Que pasará con mi información después de las elecciones?</span>
                            <svg data-accordion-icon="" class="w-6 h-6 shrink-0 accordion-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                               <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                            </svg>
@@ -263,7 +263,7 @@
                      </h3>
                      <div id="accordion-flush-body-6" class="hidden" aria-labelledby="accordion-flush-heading-6">
                         <div class="py-5 border-b border-gray-200">
-                           <p class="mb-2 text-gray-500">Sí. Tienes la opción de darte de baja como fiscal desde la opción <strong>Editar</strong> en tu tablero personal.</p>
+                           <p class="mb-2 text-gray-500">Después de completar el proceso de elecciones, nuestro sistema se preparará para una etapa posterior. Durante esta fase, se habilitará una opción especial que permitirá a los usuarios eliminar sus cuentas y los datos personales registrados en nuestra plataforma.</p>
                         </div>
                      </div>
                      <h3 id="accordion-flush-heading-7">
@@ -375,7 +375,7 @@
              active: false,
            },
          ];
-         
+
          const options = {
            alwaysOpen: true,
            activeClasses: 'bg-gray-100 text-gray-900',
@@ -390,7 +390,7 @@
              //console.log('accordion item has been toggled');console.log(item);
            },
          };
-         
+
          // Function to toggle accordion items
          function toggleAccordion(item) {
            if (item.active) {
@@ -408,12 +408,12 @@
            }
            options.onToggle(item);
          }
-         
+
          // Add click event listeners to accordion triggers (buttons)
          accordionItems.forEach((item) => {
            item.triggerEl.addEventListener('click', () => toggleAccordion(item));
          });
-         
+
          // Automatically open the first accordion item if alwaysOpen option is true
          if (options.alwaysOpen && accordionItems.length > 0) {
            toggleAccordion(accordionItems[0]);
