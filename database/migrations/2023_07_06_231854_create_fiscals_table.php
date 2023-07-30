@@ -24,7 +24,7 @@ return new class extends Migration
             $table->date('fecha_nacimiento');
             $table->string('sexo');
             $table->string('correo');
-            $table->string('coordinador');
+            $table->string('coordinador')->nullable($value = true);
             $table->string('fiscal_electronico')->nullable($value = 'N');
             $table->string('status')->nullable($value = 'Active');
             $table->timestamps();
