@@ -145,7 +145,7 @@
                             <h3 class="text-xl font-extrabold text-white">Capacitación</h3>
                             <div class="flex flex-col items-start justify-start mt-4">
                                 <!--<p class="text-white">Disponible a partir del <strong>31 de julio</strong></p>-->
-                                <p class="text-white mb-4">Disponible a partir del <strong>1 de Agosto</strong></p>
+                                <p class="text-white mb-4">Disponible a partir del <strong>1 de agosto</strong></p>
                                 <a class="text-indigo-800 font-extrabold bg-[#f7fdcf] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center">Convocatoria próxima</a>
                             </div>
                         </div>
