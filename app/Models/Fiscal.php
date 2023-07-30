@@ -39,6 +39,7 @@ class Fiscal extends Model
         'sexo',
         'correo',
         'fiscal_electronico',
+        'coordinador',
     ];
 
     /**

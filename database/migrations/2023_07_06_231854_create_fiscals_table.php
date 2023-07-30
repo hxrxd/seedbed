@@ -16,14 +16,15 @@ return new class extends Migration
         Schema::create('fiscals', function (Blueprint $table) {
             $table->id();
             $table->string('nombres');
-            $table->string('apellidos');   
-            $table->string('dpi');      
+            $table->string('apellidos');
+            $table->string('dpi');
             $table->string('departamento');
-            $table->string('municipio');           
+            $table->string('municipio');
             $table->string('telefono');
             $table->date('fecha_nacimiento');
             $table->string('sexo');
             $table->string('correo');
+            $table->string('coordinador');
             $table->string('fiscal_electronico')->nullable($value = 'N');
             $table->string('status')->nullable($value = 'Active');
             $table->timestamps();
