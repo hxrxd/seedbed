@@ -11,13 +11,13 @@
                 <!-- JRV selection section -->
                 <div class="flex flex-col md:flex-row px-4 md:px-0 items-center justify-start mb-4">
                     <div class="flex flex-row mr-auto items-center justify-start">
-                        <a href="{{url('/dashboard')}}" class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
+                        <a href="{{url('assignments')}}" class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
                             <svg class="w-6 h-6 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 1 1.3 6.326a.91.91 0 0 0 0 1.348L7 13"/>
                             </svg>
                         </a>
                         <h1 class="font-extrabold text-3xl text-gray-800 leading-tight">
-                            {{ __('Asignaciones') }}
+                            {{ __('Nueva asignación') }}
                         </h1>
                     </div>
 
@@ -36,74 +36,44 @@
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 17V1m0 0L1 4m3-3 3 3m4-3h6l-6 6h6m-7 10 3.5-7 3.5 7m-6.125-2H16"/>
                             </svg>
                         </a>
-                        @if (count($assignments) < 1)
-                        <a id="addButton" href="{{ url('add-jrv') }}" class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
-                            <svg class="w-6 h-6 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 1v16M1 9h16"/>
-                            </svg>
-                        </a>
-                        @else
-                        <span class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center opacity-50 cursor-not-allowed">
-                            <svg class="w-6 h-6 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 1v16M1 9h16"/>
-                            </svg>
-                        </span>
-                        @endif
-                        
                     </div>
                 </div>
 
                 <div id="itemsContainer" class="md:p-1">
-                @foreach ($assignments as $jrv)
+                @foreach ($data as $jrv)
                     <div class="flex items-center p-6 md:p-3 font-bold text-gray-900 border-b-2 border-dotted hover:bg-gray-50 group item-list">
                         <div class="flex items-center">
                             <div class="flex-column items-start ml-3">
                                 <input id="current-jrv" type="hidden" value="{{ $jrv->jrv }}"/>
-                                <h2 class="text-xl flex-1 whitespace-nowrap" data-jrv="#{{ $jrv->jrv }}">#{{ $jrv->jrv }}</h2>         
+                                <h2 class="text-xl flex-row items-center whitespace-nowrap" data-jrv="#{{ $jrv->jrv }}">#{{ $jrv->jrv }} 
+                                    @if($jrv->estatus == 0)    
+                                    <span class="mb-2 text-xs px-1 text-white bg-[#72b30f] rounded-md">Disponible</span>
+                                    @else
+                                    <span class="text-xs px-1 text-white bg-[#d35f5f] rounded-md">No disponible</span>
+                                    @endif
+                                </h2>         
                                 <p class="text-sm mt-2 mb-2 text-gray-700"><span data-nombre="{{ $jrv->nombre }}">{{ $jrv->nombre }}</span></p>
                                 <p class="text-sm mt-2 mb-2 text-gray-500">{{ $jrv->ubicacion }}, ZONA {{ $jrv->zona }}. {{ $jrv->departamento }}, {{ $jrv->municipio }}.</p>
                                 <div class="flex flex-row items-center justify-start mt-4 mb-2">
-                                    <span class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center opacity-50 cursor-not-allowed">
+                                    @if ($jrv->estatus == 0)
+                                    <a href="#" data-jrv="{{ $jrv->jrv }}" class="add-jrv-button text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
                                         <div class="flex flex-row items-center justify-start">
-                                            <svg class="w-4 h-4 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16">
-                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12V1m0 0L4 5m4-4 4 4m3 5v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3"/>
+                                            <svg class="w-4 h-4 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 5.757v8.486M5.757 10h8.486M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
                                             </svg>
-                                            <span class="ml-2">Acta</span>
-                                        </div>
-                                    </span>
-                                    @if ($jrv->votos == 1)
-                                    <a href="#" class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
-                                        <div class="flex flex-row items-center justify-start">
-                                            <svg class="w-5 h-5 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 21">
-                                                <g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
-                                                <path d="M9 4.025A7.5 7.5 0 1 0 16.975 12H9V4.025Z"/>
-                                                <path d="M12.5 1c-.169 0-.334.014-.5.025V9h7.975c.011-.166.025-.331.025-.5A7.5 7.5 0 0 0 12.5 1Z"/>
-                                                </g>
-                                            </svg>
-                                            <span class="ml-2">Resultados</span>
+                                            <span class="ml-2">Confirmar asignación</span>
                                         </div>
                                     </a>
                                     @else 
                                     <span class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center opacity-50 cursor-not-allowed">
                                         <div class="flex flex-row items-center justify-start">
-                                            <svg class="w-5 h-5 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 21">
-                                                <g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
-                                                <path d="M9 4.025A7.5 7.5 0 1 0 16.975 12H9V4.025Z"/>
-                                                <path d="M12.5 1c-.169 0-.334.014-.5.025V9h7.975c.011-.166.025-.331.025-.5A7.5 7.5 0 0 0 12.5 1Z"/>
-                                                </g>
+                                            <svg class="w-4 h-4 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 5.757v8.486M5.757 10h8.486M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
                                             </svg>
-                                            <span class="ml-2">Resultados</span>
+                                            <span class="ml-2">Confirmar asignación</span>
                                         </div>
                                     </span>
                                     @endif
-                                    <a href="#" data-jrv="{{ $jrv->jrv }}" class="remove-jrv-button text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
-                                        <div class="flex flex-row items-center justify-start">
-                                            <svg class="w-5 h-5 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
-                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M1 5h16M7 8v8m4-8v8M7 1h4a1 1 0 0 1 1 1v3H6V2a1 1 0 0 1 1-1ZM3 5h12v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Z"/>
-                                            </svg>
-                                            <span class="ml-2">Desvincular</span>
-                                        </div>
-                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -120,7 +90,7 @@
                 </div>
                 <div id="endOfResults">
                     <div class="flex flex-col items-center justyfy-center mt-3 mb-3 font-bold text-gray-900 w-full">   
-                        <span class="text-md text-gray-500 mt-8">No tienes más asignaciones</span>
+                        <span class="text-md text-gray-500 mt-8">No hay más mesas en tu municipio</span>
                     </div>
                 </div>
             </form>
@@ -137,51 +107,38 @@
         $(document).ready(function () {    
             var SORT_ASC = false;
 
-            // Remove the JRV
-            function removeJRV(currentJRV, button) {
-                swal({
-                    title: '¿Estás seguro que quieres desvincular esta JRV de tu perfil?',
-                    text: "La JRV será removida de tu perfil y estará disponible para alguien más",
-                    icon: 'warning',
-                    buttons:  {
-                        cancel: "No, volver al detalle",
-                        confirm: "Sí",
-                    },
-
-                }).then((willStore ) => {
-                    if (willStore) {
-                        remove(currentJRV, button);
-                    }
-                });               
-            };
-
-            $('#btn-cancel').click(function(event){
-                event.preventDefault();
-                var redirectUrl = "{{ url('/dashboard') }}";
-                window.location.href = redirectUrl;
+            var addButtons = document.querySelectorAll(".add-jrv-button");
+            addButtons.forEach(function(button) {
+                //console.log('flag');
+                button.addEventListener("click", function(event) {
+                    event.preventDefault();
+                    var jrv = this.dataset.jrv; 
+                    updateJRV(jrv);
+                });
             });
 
-            function remove(currentJRV, button) {
+            function updateJRV(currentJRV) {
+
                 $.ajax({
-                    url: "{{url('api/remove-jrv')}}",
+                    url: "{{url('api/update-jrv')}}",
                     type: "POST",
                     data: {
                         jrv: currentJRV,
-                        _token: '{{csrf_token()}}'
+                        _token: '{{csrf_token()}}',
                     },
                     dataType: 'json',
                     success: function (result) {
-                        showSimpleAlert('JRV removida', 'La JRV fue desvinculada de tu perfil', 'NO_BUTTON','success');
+                        //console.log(result);
                         
-                        // Remove the item from the list in the DOM
-                        var item = button.closest(".item-list");
-                        item.remove();
+                        showSimpleAlert('¡Proceso exitoso!', 'La JRV fue asociada a tu usuario', 'NO_BUTTON','success');
+                        
+                        setTimeout(() => {
+                            var redirectUrl = result.redirect_url;
+                            window.location.href = redirectUrl;
+                        }, 1000);
+
                     }
                 });
-            }
-
-            function showLimitMessage() {
-                showSimpleAlert('No puedes asignarte más', 'Llegaste al número máximo de asignaciones', 'NO_BUTTON', 'info');
             }
 
             function showSimpleAlert(title, msg, buttonOption, type) {
@@ -202,16 +159,6 @@
                     });
                 }
             }
-
-            var removeButtons = document.querySelectorAll(".remove-jrv-button");
-            removeButtons.forEach(function(button) {
-                //console.log('flag');
-                button.addEventListener("click", function(event) {
-                    event.preventDefault();
-                    var jrv = this.dataset.jrv; 
-                    removeJRV(jrv, this);
-                });
-            });
 
 
             // Function to handle filtering based on search input

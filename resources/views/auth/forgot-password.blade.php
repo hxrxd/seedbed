@@ -17,9 +17,9 @@
         </div>
 
         <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
+            <button class="ml-4 text-indigo-800 bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg font-extrabold text-md px-2 py-1.5 text-center">
                 {{ __('Reestablecer') }}
-            </x-primary-button>
+            </button>
         </div>
     </form>
 </x-guest-layout>

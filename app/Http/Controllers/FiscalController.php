@@ -279,4 +279,27 @@ class FiscalController extends Controller
         return view('fiscal.assignments', compact('assignments'));
     }
 
+    /**
+     * List all asignments for a specific fiscal
+     */
+    public function listJRVs(Request $request): View
+    {
+        $city =  Fiscal::where("correo", Auth::user()->email)->pluck('municipio')->first();
+
+        $data = Mesa::where("municipio", $city)
+                        ->orderBy("jrv")
+                        ->orderBy("estatus")
+                        ->get(["jrv","latitude","longitude","nombre","ubicacion","zona","departamento","municipio","estatus"]);
+
+        return view('fiscal.search-jrvs', compact('data'));
+    }
+
+    /**
+     * Show all documents and resources
+     */
+    public function showResources(Request $request): View
+    {
+        return view('fiscal.resources');
+    }
+
 }

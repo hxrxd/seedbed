@@ -66,6 +66,8 @@ Route::post('api/remove-jrv', [FiscalController::class, 'removeJRV']);
 Route::get('assignment', [FiscalController::class, 'addAssignment'])->middleware(['auth', 'verified'])->name('assignment');
 Route::get('assignment/detail/{jrv}', [FiscalController::class, 'checkAssignment'])->middleware(['auth', 'verified'])->name('assignment.detail');
 Route::get('assignments', [FiscalController::class, 'listAssignments'])->middleware(['auth', 'verified'])->name('assignments');
+Route::get('add-jrv', [FiscalController::class, 'listJRVs'])->middleware(['auth', 'verified'])->name('add.jrv');
+Route::get('resources', [FiscalController::class, 'showResources'])->middleware(['auth', 'verified'])->name('resources');
 
 //Get routes
 Route::get('getmesas', [ExcelController::class, 'getMesas'])->name('getmesas')->middleware(['auth', 'verified']);

@@ -92,7 +92,7 @@
                <div class="blur-[106px] h-32 bg-gradient-to-r from-cyan-400 to-indigo-900"></div>
             </div>
             <div class="max-w-7xl mx-auto px-6 md:px-12 xl:px-6">
-               <div class="relative pt-48 ml-auto">
+               <div class="relative pt-48 sm:pt-36 ml-auto">
                   <div class="lg:w-2/3 text-center mx-auto">
                      <div class="mx-auto container-semilla">
                         <!--<p class="text-secondary font-extrabold text-2xl md:text-3xl xl:text-5xl">#SOY</p>-->
@@ -130,7 +130,7 @@
          <section id="section-s1" class="pt-20">
             <div class="max-w-screen-xl px-4 pb-8 mx-auto lg:pb-24 lg:px-6 ">
                <div class="max-w-screen-md mx-auto">
-               <h2 class="mb-6 text-3xl font-extrabold tracking-tight text-center text-secondary lg:mb-8 lg:text-3xl">Proceso Fiscal Semilla</h2>
+               <h2 class="mb-6 text-4xl md:text-4xl font-extrabold tracking-tight text-center text-secondary lg:mb-8 lg:text-3xl">Proceso Fiscal Semilla</h2>
                <div class="grid md:grid-cols-3 gap-8 sm:grid-cols-1 ">
                     <div class="h-64 p-10 md:p-8 rounded-lg text-center">
                         <div class="flex flex-col items-center">        
@@ -172,7 +172,7 @@
          <!--FAQ-->
          <section class="bg-white mb-8">
             <div class="max-w-screen-xl px-4 pb-8 mx-auto lg:pb-24 lg:px-6 ">
-               <h2 class="mb-6 text-3xl font-extrabold tracking-tight text-center text-secondary lg:mb-8 lg:text-3xl">Preguntas frecuentes</h2>
+               <h2 class="mb-6 text-4xl md:text-4xl font-extrabold tracking-tight text-center text-secondary lg:mb-8 lg:text-3xl">Preguntas frecuentes</h2>
                <div class="max-w-screen-md mx-auto">
                   <div id="accordion-flush" data-accordion="collapse" data-active-classes="bg-white text-gray-900" data-inactive-classes="text-gray-500">
                      <h3 id="accordion-flush-heading-1">
@@ -285,7 +285,7 @@
       <!--Footer container-->
       <footer class="text-center items-center justify-center w-full m-auto" >
          <div class="">
-            <p class="text-base font-semibold text-secondary mb-16">#SoyFiscalSemilla</p>
+            <p class="text-base font-semibold text-gray-300 mb-16">#SoyFiscalSemilla</p>
             <div class="mb-0 flex items-center justify-center">
                <a href="https://www.facebook.com/msemillagt" class="mr-9 text-gray-500">
                   <svg
@@ -322,7 +322,7 @@
          <!--Copyright section-->
          <div
             class="p-4 mb-8 text-center text-xs font-base text-gray-500">
-            ©2023
+            ©{{ date("Y") }}
             <a
                class=""
                href="https://votadiferente.com/"

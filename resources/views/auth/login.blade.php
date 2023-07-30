@@ -39,9 +39,9 @@
                 </a>
             @endif
 
-            <x-primary-button class="ml-3">
+            <button class="ml-4 text-indigo-800 bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg mr-2 font-extrabold text-md px-2 py-1.5 text-center">
                 {{ __('Acceder') }}
-            </x-primary-button>
+            </button>
         </div>
     </form>
 </x-guest-layout>

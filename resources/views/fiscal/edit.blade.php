@@ -15,9 +15,19 @@
                     $day = str_pad($birthdate[2], 2, '0', STR_PAD_LEFT);
                 @endphp
 
-                <h1 class="font-extrabold text-3xl text-gray-800 leading-tight mb-6">
-                    {{ __('Actualizar información') }}
-                </h1>
+                <!-- Title -->
+                <div class="flex flex-col md:flex-row md:px-0 items-center justify-start mb-4">
+                    <div class="flex flex-row mr-auto items-center justify-start">
+                        <a href="{{url('/dashboard')}}" class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
+                            <svg class="w-6 h-6 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 1 1.3 6.326a.91.91 0 0 0 0 1.348L7 13"/>
+                            </svg>
+                        </a>
+                        <h1 class="font-extrabold text-3xl text-gray-800 leading-tight">
+                            {{ __('Actualizar datos') }}
+                        </h1>
+                    </div>
+                </div>
 
                 <!-- Personal info section -->
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">

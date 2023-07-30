@@ -1,6 +1,6 @@
 <x-guest-layout>
     <div class="mb-4 text-sm text-gray-600">
-        {{ __('Gracias por registrarte! Antes de comenzar, ¿Podrías verificar tu dirección de correo electrónico haciendo clic en el enlace que le acabamos de enviar? Si no recibiste el correo electrónico, con gusto te enviaremos otro. Puede que esto tarde unos minutos o llegue a tu bandeja de spam') }}
+        {{ __('Gracias por registrarte! Te hemos enviado un correo a '.Auth::user()->email.'. Por  favor, haz clic en el enlace para activar tu usuario. Puede que esto tarde unos minutos o llegue a tu bandeja de spam. Si no recibiste el correo electrónico, haz clic en el botón "Reenviar".') }}
     </div>
 
     @if (session('status') == 'verification-link-sent')
@@ -14,9 +14,9 @@
             @csrf
 
             <div>
-                <x-primary-button>
+                <button class="text-indigo-800 bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
                     {{ __('Reenviar verificación de Email') }}
-                </x-primary-button>
+                </button>
             </div>
         </form>
 

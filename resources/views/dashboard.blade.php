@@ -146,7 +146,7 @@
                             <div class="flex flex-col items-start justify-start mt-4">
                                 <!--<p class="text-white">Disponible a partir del <strong>31 de julio</strong></p>-->
                                 <p class="text-white mb-4">Disponible a partir del <strong>31 de julio</strong></p>
-                                <a href="#" class="text-indigo-800 font-extrabold bg-[#f7fdcf] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center">Convocatoria próxima</a>
+                                <a class="text-indigo-800 font-extrabold bg-[#f7fdcf] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center">Convocatoria próxima</a>
                             </div>
                         </div>
                     </div>
@@ -156,17 +156,17 @@
                             <div class="flex flex-col items-start justify-start mt-4">
                                 <!--<p class="text-white ml-8">Documento válido ante la JRV</strong></p>-->
                                 <p class="text-white mb-4">Disponible a partir del <strong>14 de agosto</strong></p>
-                                <a id="acred" href="qr/{{ Auth::user()->email}}" class="text-indigo-800 font-extrabold bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center" >Descargar</a>
+                                <a id="acred" class="text-indigo-800 font-extrabold bg-[#f7fdcf] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center">No disponible</a>
                             </div>
                         </div>
                     </div> 
                     <div class="custom-background-card bg-cover bg-fixed h-52 p-8 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
                         <div class="flex flex-col items-start">
-                            <h3 class="text-xl font-extrabold text-white">Librería</h3>
+                            <h3 class="text-xl font-extrabold text-white">Información</h3>
                             <div class="flex flex-col items-start justify-start mt-4">
                                 <!--<p class="text-white ml-8">Documento válido ante la JRV</strong></p>-->
-                                <p class="text-white mb-4">Recursos y documentos útiles</p>
-                                <a id="acred" href="#" class="text-indigo-800 font-extrabold bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center" >Descargar</a>
+                                <p class="text-white mb-4">Recomendaciones para Fiscales Semilla</p>
+                                <a href="{{url('resources')}}" class="text-indigo-800 font-extrabold bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center">Conocer más</a>
                             </div>
                         </div>
                     </div>              
@@ -177,7 +177,7 @@
 
             @if (Auth::user()->rol == "Coordinador")
             
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-16 mb-12  h-full">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-30 mb-12">
                 <div class="flex items-center justify-start mt-4 mb-4">
                     <h5 class="mb-0 md:ml-2 md:mr-8 text-3xl font-extrabold text-indigo-900 dark:text-white">Panel de Control</h5>
                 </div>
