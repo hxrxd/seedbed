@@ -279,24 +279,24 @@
                         </div>
 
                      <h3 id="accordion-flush-heading-8">
-                        <button type="button" class="flex items-center justify-between w-full py-5 font-medium text-left text-gray-500 border-b border-gray-200" data-accordion-target="#accordion-flush-body-7" aria-expanded="false" aria-controls="accordion-flush-body-7">
+                        <button type="button" class="flex items-center justify-between w-full py-5 font-medium text-left text-gray-500 border-b border-gray-200" data-accordion-target="#accordion-flush-body-8" aria-expanded="false" aria-controls="accordion-flush-body-8">
                             <span>¿Recibiré alguna compensación económica por ser Fiscal o voluntario en el proceso?</span>
                             <svg data-accordion-icon="" class="w-6 h-6 shrink-0 accordion-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                         </button>
                      </h3>
-                        <div id="accordion-flush-body-8" class="hidden" aria-labelledby="accordion-flush-heading-7">
+                        <div id="accordion-flush-body-8" class="hidden" aria-labelledby="accordion-flush-heading-8">
                         <div class="py-5 border-b border-gray-200">
                             <p class="mb-2 text-gray-500">No, la participación como Fiscal o voluntario en el proceso de segunda vuelta electoral es completamente voluntario y no conlleva ninguna compensación económica. Todos los Fiscales que colaboran en este proceso lo hacen de manera desinteresada y comprometida con el bienestar de la comunidad y la integridad del proceso electoral. Agradecemos sinceramente a aquellos que deciden dedicar su tiempo y esfuerzo para contribuir al desarrollo democrático de nuestra sociedad. Su participación es fundamental para asegurar la transparencia y legitimidad de las elecciones.</p>
                         </div>
                         </div>
 
                      <h3 id="accordion-flush-heading-9">
-                        <button type="button" class="flex items-center justify-between w-full py-5 font-medium text-left text-gray-500 border-b border-gray-200" data-accordion-target="#accordion-flush-body-7" aria-expanded="false" aria-controls="accordion-flush-body-7">
+                        <button type="button" class="flex items-center justify-between w-full py-5 font-medium text-left text-gray-500 border-b border-gray-200" data-accordion-target="#accordion-flush-body-9" aria-expanded="false" aria-controls="accordion-flush-body-9">
                             <span>¿Por qué se solicitan datos personales para postular como Fiscal Electoral?</span>
                             <svg data-accordion-icon="" class="w-6 h-6 shrink-0 accordion-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                         </button>
                      </h3>
-                        <div id="accordion-flush-body-9" class="hidden" aria-labelledby="accordion-flush-heading-7">
+                        <div id="accordion-flush-body-9" class="hidden" aria-labelledby="accordion-flush-heading-9">
                         <div class="py-5 border-b border-gray-200">
                             <p class="mb-2 text-gray-500">La solicitud de datos personales como el Documento Personal de Identificación -DPI- y fecha de nacimiento, junto con la confirmación del correo electrónico, tiene como objetivo garantizar la integridad y transparencia del proceso de convocatoria para Fiscales. Estas medidas adicionales de seguridad están diseñadas para prevenir cualquier intento de interferencia malintencionada o de afectar la convocatoria de Fiscales en la Segunda Vuelta.</p>
                         </div>
