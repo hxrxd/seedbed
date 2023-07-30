@@ -76,12 +76,25 @@
                     </p>
 
                     <p class="pt-4 text-base font-bold flex items-center justify-center lg:justify-start">
-                         Centro de Votación: {{ $mesa->nombre }}
+                         Centro de Votación: {{ $mesas->first()->nombre }}
                     </p>
 
                     <p class="pt-4 text-base font-bold flex items-center justify-center lg:justify-start">
-                         Mesa: {{ $mesa->jrv }}
+                         Mesas: {{ $mesas->first()->jrv }}
+                         @foreach ($mesas->slice(1) as $mesa )
+                         , {{ $mesa->jrv }}
+                         @endforeach
                     </p>
+                    </br>
+                    @auth
+                    <div class="pt-12 pb-8">
+                        <a href="{{ url('dashboard') }}">
+                            <button class="text-indigo-800 bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg mr-2 font-extrabold text-md px-2 py-1.5 text-center">
+				         Regresar
+				            </button>
+                        </a>
+                    </div>
+                    @endauth
 
                     <p class="pt-8 text-xs">Un Fiscal de JRV es la persona designada por un partido político o comité cívico electoral para vigilar las actividades de una o varias Juntas Receptoras de Votos y está debidamente acreditada.</p>
 
@@ -99,7 +112,7 @@
             </div>
 
 
-           
+
 
         </div>
 
@@ -115,8 +128,8 @@
             const toggle = document.querySelector('.js-change-theme');
             const body = document.querySelector('body');
             const profile = document.getElementById('profile');
-            
-            
+
+
             toggle.addEventListener('click', () => {
 
               if (body.classList.contains('text-gray-900')) {
@@ -130,12 +143,12 @@
                 toggle.innerHTML = "🌙";
                 body.classList.remove('text-gray-100');
                 body.classList.add('text-gray-900');
-                profile.classList.remove('bg-gray-900');            
+                profile.classList.remove('bg-gray-900');
                 profile.classList.add('bg-white');
-                
+
               }
             });
-            
+
         </script>
 
     </body>

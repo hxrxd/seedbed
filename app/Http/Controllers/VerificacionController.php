@@ -39,8 +39,8 @@ class VerificacionController extends Controller
     {
         //
         $fiscal = Fiscal::where('correo',$id)->first();
-        $mesa = Mesa::select('jrv','departamento','municipio','nombre','fiscal')->where('fiscal',$id)->first();
-        return view('verificacion.fiscal', ['fiscal'=>$fiscal,'mesa'=>$mesa]);
+        $mesas = Mesa::select('jrv','departamento','municipio','nombre','fiscal')->where('fiscal',$id)->get();
+        return view('verificacion.fiscal', ['fiscal'=>$fiscal,'mesas'=>$mesas]);
     }
 
     /**
