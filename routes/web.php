@@ -51,7 +51,7 @@ Route::get('/email/verify', function () {
 Route::resource('mesa', MesaController::class)->middleware(['auth', 'verified']);
 Route::resource('map', MapController::class)->middleware(['auth', 'verified']);
 Route::resource('verificacion', VerificacionController::class);
-Route::resource('qr', QRController::class);
+Route::resource('qr', QRController::class)->middleware(['auth', 'verified']);
 Route::resource('fiscal', FiscalController::class)->middleware(['auth', 'verified']);
 Route::resource('voto', VotoController::class)->middleware(['auth', 'verified']);
 
