@@ -10,7 +10,6 @@ use App\Http\Controllers\QRController;
 use App\Http\Controllers\VotoController;
 use App\Http\Controllers\ExcelController;
 use App\Models\Mesa;
-use Carbon\Carbon;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,18 +24,7 @@ use Carbon\Carbon;
 
 Route::get('/', function () {
     //return view('welcome');
-    // Obtener la hora actual
-    $horaActual = Carbon::now();
-
-    // Definir la hora límite (medianoche)
-    $medianoche = Carbon::createFromDate(2023, 7, 1)->endOfDay();
-
-    // Comprobar si es antes de medianoche
-    if ($horaActual->lt($medianoche)) {
-        return View::make('termporal');
-    } else {
-        return View::make('welcome');
-    }
+    return view('termporal');
 
 });
 
