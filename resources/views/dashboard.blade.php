@@ -74,7 +74,7 @@
                             </span>
                             <h3 class="mb-1 text-lg font-semibold text-gray-900 dark:text-white">Día de las elecciones</h3>
                             <time class="block mb-2 text-sm font-normal leading-none text-gray-700 dark:text-gray-500">20 de agosto</time>
-                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">En el día de las elecciones, estarás presentes en las Juntas Receptoras de Votos (JRV) para supervisar el proceso electoral y garantizar la transparencia del mismo. Tu principal tarea será informar del resultado de las votaciones y reportar cualquier incidencia o irregularidad que se presente durante el proceso. Se promoverá el uso de herramientas de comunicación descentralizadas para que puedas informar de manera eficiente y oportuna.</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">En el día de las elecciones, estarás presente en las Juntas Receptoras de Votos (JRV) para supervisar el proceso electoral y garantizar la transparencia del mismo. Tu principal tarea será informar del resultado de las votaciones y reportar cualquier incidencia o irregularidad que se presente durante el proceso. Se promoverá el uso de herramientas de comunicación descentralizadas para que puedas informar de manera eficiente y oportuna.</p>
                         </li>
                     </ol>
                 </div><!--end of Card-->

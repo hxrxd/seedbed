@@ -23,8 +23,7 @@ use App\Models\Mesa;
 */
 
 Route::get('/', function () {
-    //return view('welcome');
-    return view('termporal');
+    return view('welcome');
 
 });
 
