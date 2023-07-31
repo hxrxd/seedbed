@@ -29,7 +29,7 @@ Route::get('/', function () {
     $horaActual = Carbon::now();
 
     // Definir la hora límite (medianoche)
-    $medianoche = Carbon::today()->endOfDay();
+    $medianoche = Carbon::createFromDate(2023, 7, 1)->endOfDay();
 
     // Comprobar si es antes de medianoche
     if ($horaActual->lt($medianoche)) {
