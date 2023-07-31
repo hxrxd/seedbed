@@ -219,10 +219,10 @@
                 </div>
 
                 <div id="section-step-2-1" class="">
-                <h2 class="font-semibold text-xl text-gray-800 leading-tight mt-10">
+                <h2 class="font-semibold text-xl text-gray-800 leading-tight mt-10 mb-4">
                     {{ __('Aplicar como fiscal informático (Opcional)') }}
                 </h2>
-                <a data-modal-target="info-fiscal-modal" data-modal-toggle="info-fiscal-modal" class="underline text-md mt-8 mb-2 font-bold text-indigo-600" style="cursor: pointer; margin-top:6">¿Qué es un fiscal informático?</a>
+                <a data-modal-target="info-fiscal-modal" data-modal-toggle="info-fiscal-modal" class="underline text-md mb-2 font-bold text-indigo-800" style="cursor: pointer;">¿Qué es un fiscal informático?</a>
                 <!--<p class="text-md mt-6 text-gray-800">Un fiscal informático se encarga de supervisar y comparar los resultados preliminares de las votaciones. Su responsabilidad incluye garantizar que los fiscales y las juntas receptoras de votos reciban las certificaciones de escrutinios correspondientes. Además, verifican la consistencia de los datos entre el acta final de cierre y escrutinios y las certificaciones de escrutinios. También comparan las certificaciones de escrutinios con las actas finales publicadas. Asimismo, revisan la precisión de los datos procesados por el sistema TREP mediante la comparación con las imágenes de las actas escaneadas, entre otras tareas.</p>-->
                 <p class="text-md mt-2 mb-2 text-gray-800">Si accedes a ser fiscal informático, ingresarás a una lista en la que serás contactado para continuar este proceso especial.</p>
 
@@ -406,7 +406,7 @@
 
 
             <!-- Danger Zone -->
-            <div>
+            <!--<div>
                 <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700 mt-12">
                 <h2 class="font-semibold text-xl text-red-800 leading-tight mt-12">
                     {{ __('Darme de baja como fiscal') }}
@@ -414,7 +414,7 @@
                 <p class="text-md mt-4 text-gray-800">Tu registro será removido de la lista de fiscales y la JRV que seleccionaste será desbloqueada. Para darte de baja como fiscal, por favor ingresa tu número de DPI en el siguiente campo:</p>
 
                 <div class="md:flex md:flex-row">
-                    <!-- JRV Search -->
+                    
                     <div class="md:basis-1/2 mt-4">
                         <x-text-input id="input-confirm" class="block mt-1 w-full" type="text" name="input-confirm" value="" required autofocus autocomplete="dpi" inputmode="numeric"/>
                     </div> 
@@ -426,7 +426,7 @@
                     </button>
                 </div>
 
-            </div>
+            </div>-->
 
         </div>
         <!--/Card-->
@@ -509,7 +509,7 @@
                 }
             });
 
-            $('#btn-downgrade').click(function (event) {
+            /*$('#btn-downgrade').click(function (event) {
                 event.preventDefault(); 
 
                 if($('#input-confirm').val() === ''){
@@ -535,7 +535,7 @@
                         showSimpleAlert('DPI no coincide', 'El número de DPI ingresado no coincide', 'Volver a intentar',null);
                     }
                 }
-            });
+            });*/
 
             // City Dropdown Change Event
             $('#department').on('change', function () {
