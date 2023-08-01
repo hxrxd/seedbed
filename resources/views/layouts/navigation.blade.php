@@ -89,6 +89,7 @@
 
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
+        @if (Auth::user()->rol == "Admin")    
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('admin.fiscales')" :active="request()->routeIs('admin.fiscales')">
                 {{ __('Fiscales') }}
@@ -99,6 +100,7 @@
                 {{ __('Mesas') }}
             </x-responsive-nav-link>
         </div>
+        @endif
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
