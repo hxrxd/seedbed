@@ -393,6 +393,7 @@
             var alertValidation = '<div id="alert-additional-content-2" class="p-4 mb-4 text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800 mt-4" role="alert"><div class="flex items-center"><svg class="w-4 h-4 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg><span class="sr-only">Info</span><h3 class="text-lg font-medium">DPI no válido</h3></div><div class="mt-2 mb-4 text-sm">El DPI ingresado o la fecha de nacimiento no son correctos. Por favor, revisa tu fecha de nacimiento e intenta ingresar tu DPI nuevamente.</div><div class="flex"><button type="button" class="text-white bg-red-800 hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-xs px-3 py-1.5 mr-2 text-center inline-flex items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" data-dismiss-target="#alert-additional-content-2">Entendido</button></div></div>';
             let CURRENT_STEP = 'STEP_0';
             var terms_read = false;
+            var isProcessing = false;
 
             // Populate days
             populateDays();
@@ -600,9 +601,17 @@
             // Save action button
             $('#btn-save').click(function (event) {
                 event.preventDefault();
+
+                // Check if the button is already being processed
+                if (isProcessing) {
+                    return;
+                }
+
+                // Disable the button to prevent double-click
+                $(this).prop('disabled', true);
+                isProcessing = true;
                 
                 // Check the selected JRV status for the last time
-
                 $.ajax({
                     url: "{{url('api/check-jrv-status')}}",
                     type: "POST",
@@ -619,6 +628,10 @@
                         } else {
                             showSimpleAlert('La mesa seleccionada ya no está disponible :(', 'Muchos voluntarios se están sumando y hace unos momentos alguien más tomó la mesa. Puedes buscar una nueva seleccionando la opción "Cambiar" en el campo Mesa, luego intenta guardar nuevamente.', 'De acuerdo','warning');
                         }
+                    },
+                    complete: function() {
+                        $('#ajaxButton').prop('disabled', false);
+                        isProcessing = false;
                     }
                 });
             });
