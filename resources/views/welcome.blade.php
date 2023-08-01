@@ -136,7 +136,7 @@
                      <!-- Donate -->
                      <div class="mt-24 flex flex-wrap justify-center gap-y-4 gap-x-6">
                         <div class="flex flex-col p-8 items-center justify-center bg-[#f7fdcf] rounded-lg">
-                        <p class="text-base font-medium text-indigo-800 mb-4">¿Deseas apoyar al cambio y futuro en Guatemala?</p>
+                        <p class="text-base font-medium text-indigo-900 mb-4">¡Ahora puedes apoyar a la construcción del cambio y futuro de Guatemala!</p>
                         <a href="https://forms.gle/63EfPET7zD9pv74B6" class="relative flex h-12 w-full items-center justify-center bg-[#e9f877] hover:bg-[#d6df23] rounded-lg text-sm px-6 py-1.5 text-center sm:w-max">
                            <span class="relative text-xl font-semibold text-primary">Dona aquí</span>
                         </a>
