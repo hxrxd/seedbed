@@ -29,6 +29,20 @@
             cursor: pointer;
          }
       </style>
+      <!-- Basic metadata -->
+      <meta property="og:title" content="Fiscal Semilla">
+      <meta property="og:description" content="Sistema de Gestión de Fiscales Semilla">
+      <meta property="og:url" content="https://fiscalsemilla.com">
+      <meta property="og:type" content="website">
+
+      <!-- Image preview -->
+      <meta property="og:image" content="assets/img/meta-card.png">
+      <meta property="og:image:width" content="1200"> 
+      <meta property="og:image:height" content="675">
+
+      <!-- Twitter-specific image preview -->
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:image" content="assets/img/meta-card.png">
    </head>
    <body class="bg-white astro-FLTEP2YP">
       <header class="astro-UY3JLCBK">
@@ -91,8 +105,8 @@
                <div class="blur-[106px] h-56 bg-gradient-to-br from-primary to-indigo-700"></div>
                <div class="blur-[106px] h-32 bg-gradient-to-r from-cyan-400 to-indigo-900"></div>
             </div>
-            <div class="max-w-7xl mx-auto px-6 md:px-12 xl:px-6">
-               <div class="relative pt-48 sm:pt-36 ml-auto">
+            <div class="max-w-7xl mx-auto px-6 md:px-12 xl:px-6 pt-32 md:pt-48 xl:pt-48">
+               <div class="relative ml-auto">
                   <div class="lg:w-2/3 text-center mx-auto">
                      <div class="mx-auto container-semilla">
                         <!--<p class="text-secondary font-extrabold text-2xl md:text-3xl xl:text-5xl">#SOY</p>-->
@@ -110,15 +124,24 @@
                      @if (Route::has('register'))
                      <div class="mt-16 mb-8 flex flex-wrap justify-center gap-y-4 gap-x-6">
                         <a href="{{ route('register') }}" class="relative flex h-12 w-full items-center justify-center bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg text-sm px-6 py-1.5 text-center sm:w-max">
-                        <span class="relative text-2xl font-bold text-primary">Registrarme</span>
+                        <span class="relative text-2xl font-semibold text-primary">Registrarme</span>
                         </a>
                         <a onclick="scrollToSection('section-s1')" class="scroll-button relative flex h-12 w-full items-center justify-center bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg text-sm px-6 py-1.5 text-center sm:w-max">
-                        <span class="relative text-2xl font-bold text-primary">Conocer más</span>
+                        <span class="relative text-2xl font-semibold text-primary">Conocer más</span>
                         </a>
                      </div>
                      <span class="text-base text-gray-600">¿Ya tienes una cuenta?</span>
                      <a href="{{ route('login') }}" class="block px-4  w-full items-center justify-center rounded-lg text-sm px-4 py-1.5 text-center astro-UY3JLCBK">
                      <span class="text-lg text-primary hover:text-primary font-semibold">Iniciar Sesión</span></a>
+                     <!-- Donate -->
+                     <div class="mt-24 flex flex-wrap justify-center gap-y-4 gap-x-6">
+                        <div class="flex flex-col p-8 items-center justify-center bg-[#f7fdcf] rounded-lg">
+                        <p class="text-base font-medium text-indigo-800 mb-4">¿Deseas apoyar al cambio y futuro en Guatemala?</p>
+                        <a href="https://forms.gle/63EfPET7zD9pv74B6" class="relative flex h-12 w-full items-center justify-center bg-[#e9f877] hover:bg-[#d6df23] rounded-lg text-sm px-6 py-1.5 text-center sm:w-max">
+                           <span class="relative text-xl font-semibold text-primary">Dona aquí</span>
+                        </a>
+      </div>
+                     </div>
                      @endif
                      @endauth
                      @endif

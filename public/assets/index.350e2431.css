@@ -2429,6 +2429,14 @@ input:checked+.toggle-bg {
 	padding-top: .75rem
 }
 
+.pt-24 {
+	padding-top: 7rem
+}
+
+.pt-32 {
+	padding-top: 8rem
+}
+
 .pt-36 {
 	padding-top: 9rem
 }
