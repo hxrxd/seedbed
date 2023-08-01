@@ -9,85 +9,99 @@
                 @csrf          
 
                 <!-- JRV selection section -->
-                <div class="flex flex-col md:flex-row px-4 md:px-0 items-center justify-start mb-4">
+                <div class="flex flex-col md:flex-row px-8 md:px-0 items-center justify-start mb-4">
                     <div class="flex flex-row mr-auto items-center justify-start">
-                        @if (Auth::user()->rol == "Admin")
-                        <a href="{{url('admin/assignments/'.$email)}}" class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
-                            <svg class="w-6 h-6 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 1 1.3 6.326a.91.91 0 0 0 0 1.348L7 13"/>
-                            </svg>
-                        </a>
-                        @else
-                        <a href="{{url('assignments')}}" class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
-                            <svg class="w-6 h-6 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 1 1.3 6.326a.91.91 0 0 0 0 1.348L7 13"/>
-                            </svg>
-                        </a>
-                        @endif
                         <h1 class="font-extrabold text-3xl text-gray-800 leading-tight">
-                            {{ __('Nueva asignación') }}
+                            {{ __('Mesas') }}
                         </h1>
                     </div>
 
                     <!-- Toolbar -->
                     <div class="flex flex-row items-center md:justify-end mt-8 md:mt-0 md:ml-auto">
-                        <div class="relative mr-2">
-                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-                                </svg>
+                        <div class="grid md:grid-cols-2 gap-4 sm:grid-cols-1 ">
+                            <div>
+                                <select id="department" name="departamento" class="rounded-lg w-full text-gray-900 border-0 border-white bg-gray-100 hover:bg-gray-200 focus:ring-white" autofocus>
+                                    <option value="ALL">Todos los departamentos</option>    
+                                    @foreach ($departments as $department)
+                                        <option value="{{ $department }}">{{ $department }}</option>
+                                    @endforeach
+                                </select>
                             </div>
-                            <input type="text" id="searchInput" class="block p-2 pl-10 text-base font-bold text-gray-900 rounded-lg border-0 border-white bg-gray-100 focus:ring-white" placeholder="Buscar una JRV">
+                            <div class="flex flex-row items-center md:justify-end md:mt-0 md:ml-auto">
+                                <div class="relative mr-2">
+                                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                                        </svg>
+                                    </div>
+                                    <input type="text" id="searchInput" class="block p-2 pl-10 text-base font-bold text-gray-900 rounded-lg border-0 border-white bg-gray-100 hover:bg-gray-200 focus:ring-white" placeholder="Buscar una JRV">
+                                </div>
+
+                                <a id="sortButton" href="#" class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
+                                    <svg class="w-6 h-6 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 20">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6v13m0 0 3-3m-3 3-3-3m11-2V1m0 0L9 4m3-3 3 3"/>
+                                    </svg>
+                                </a>
+                                <a id="downloadButton" href="{{url('getmesas') }}" class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
+                                    <svg class="w-6 h-6 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 18">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 1v11m0 0 4-4m-4 4L4 8m11 4v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3"/>
+                                    </svg>
+                                </a>
+                            </div>
                         </div>
-                        <a id="sortButton" href="#" class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
-                            <svg class="w-6 h-6 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 17V1m0 0L1 4m3-3 3 3m4-3h6l-6 6h6m-7 10 3.5-7 3.5 7m-6.125-2H16"/>
-                            </svg>
-                        </a>
                     </div>
                 </div>
 
-                <div id="itemsContainer" class="md:p-1">
-                <input id="email" type="hidden" value="{{$email}}"/>
-                @foreach ($data as $jrv)
+                <div id="loading" class="flex items-center justify-center p-6 h-64">
+                    <div class="flex items-center justify-center w-56 h-56">
+                        <div role="status" class="flex flex-col items-center justify-center">
+                            <svg aria-hidden="true" class="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-indigo-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/><path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/></svg>
+                            <span id="loading-msg">Cargando...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="itemsContainer" class="md:p-1 hidden">
+                    @foreach ($data as $jrv)
                     <div class="flex items-center p-6 md:p-3 font-bold text-gray-900 border-b-2 border-dotted hover:bg-gray-50 group item-list">
                         <div class="flex items-center">
                             <div class="flex-column items-start ml-3">
                                 <input id="current-jrv" type="hidden" value="{{ $jrv->jrv }}"/>
-                                <h2 class="text-xl flex-row items-center whitespace-nowrap" data-jrv="#{{ $jrv->jrv }}">#{{ $jrv->jrv }} 
+                                <h2 class="item-data text-sm text-xl flex-row items-center whitespace-nowrap" data-jrv="#{{ $jrv->jrv }}">#{{ $jrv->jrv }} 
                                     @if($jrv->estatus == 0)    
-                                    <span class="mb-2 text-xs px-1 text-white bg-[#72b30f] rounded-md">Disponible</span>
+                                    <span class="item-data mb-2 text-xs px-1 text-white bg-[#72b30f] rounded-md">SIN ASIGNAR</span>
                                     @else
-                                    <span class="text-xs px-1 text-white bg-[#d35f5f] rounded-md">No disponible</span>
+                                    <span class="item-data text-xs px-1 text-white bg-[#d35f5f] rounded-md">ASIGNADA</span>
                                     @endif
                                 </h2>         
                                 <p class="text-sm mt-2 mb-2 text-gray-700"><span data-nombre="{{ $jrv->nombre }}">{{ $jrv->nombre }}</span></p>
                                 <p class="text-sm mt-2 mb-2 text-gray-500">{{ $jrv->ubicacion }}, ZONA {{ $jrv->zona }}. {{ $jrv->departamento }}, {{ $jrv->municipio }}.</p>
-                                <div class="flex flex-row items-center justify-start mt-4 mb-2">
+                                <!--<div class="flex flex-row items-center justify-start mt-4 mb-2">
                                     @if ($jrv->estatus == 0)
                                     <a href="#" data-jrv="{{ $jrv->jrv }}" class="add-jrv-button text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
                                         <div class="flex flex-row items-center justify-start">
-                                            <svg class="w-4 h-4 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20">
-                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 5.757v8.486M5.757 10h8.486M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
-                                            </svg>
-                                            <span class="ml-2">Confirmar asignación</span>
+                                        <svg class="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 19 19">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.013 7.962a3.519 3.519 0 0 0-4.975 0l-3.554 3.554a3.518 3.518 0 0 0 4.975 4.975l.461-.46m-.461-4.515a3.518 3.518 0 0 0 4.975 0l3.553-3.554a3.518 3.518 0 0 0-4.974-4.975L10.3 3.7"/>
+                                        </svg>
+                                            <span class="ml-2">Asignar</span>
                                         </div>
                                     </a>
                                     @else 
                                     <span class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center opacity-50 cursor-not-allowed">
                                         <div class="flex flex-row items-center justify-start">
-                                            <svg class="w-4 h-4 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20">
-                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 5.757v8.486M5.757 10h8.486M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                                            <svg class="w-4 h-5 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18.5 8V4.5a3.5 3.5 0 1 0-7 0V8M8 12.167v3M2 8h12a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1Z"/>
                                             </svg>
-                                            <span class="ml-2">Confirmar asignación</span>
+                                            <span class="ml-2">Liberar</span>
                                         </div>
                                     </span>
                                     @endif
-                                </div>
+                                </div>-->
                             </div>
                         </div>
-                    </div>         
-                @endforeach
+                    </div>
+                    @endforeach  
+
                 </div>
                 <div id="noResults" class="hidden">
                     <div class="flex flex-col items-center justyfy-center p-12 mt-16 mb-16 font-bold text-gray-900 w-full">
@@ -99,7 +113,7 @@
                 </div>
                 <div id="endOfResults">
                     <div class="flex flex-col items-center justyfy-center mt-3 mb-3 font-bold text-gray-900 w-full">   
-                        <span class="text-md text-gray-500 mt-8">No hay más mesas en tu municipio</span>
+                        <span class="text-md text-gray-500 mt-8">No hay más mesas mesas</span>
                     </div>
                 </div>
             </form>
@@ -115,6 +129,20 @@
 
         $(document).ready(function () {    
             var SORT_ASC = false;
+
+            setTimeout(() => {
+                $('#loading-msg').text('Preparando los registros...');
+            }, 200);
+
+            setTimeout(() => {
+                $('#loading').addClass('hidden');
+                $('#itemsContainer').removeClass('hidden');
+            }, 2000);
+
+            // City Dropdown Change Event
+            $('#department').on('change', function () {
+                filterItems('SELECT');
+            });
 
             var addButtons = document.querySelectorAll(".add-jrv-button");
             addButtons.forEach(function(button) {
@@ -133,7 +161,6 @@
                     type: "POST",
                     data: {
                         jrv: currentJRV,
-                        email: $('#email').val(),
                         _token: '{{csrf_token()}}',
                     },
                     dataType: 'json',
@@ -172,13 +199,27 @@
 
 
             // Function to handle filtering based on search input
-            function filterItems() {
-                const input = document.getElementById("searchInput").value.toLowerCase();
+            function filterItems(searchType) {
+                let input = document.getElementById("searchInput").value.toLowerCase();
+
+                if (searchType === 'SELECT') {
+                    input = document.getElementById("department").value.toLowerCase();
+                } else if (searchType === 'SORT') {
+                    if (SORT_ASC) {
+                        input = 'sin asignar'
+                        SORT_ASC = false;
+                    } else {
+                        input = 'asignada'
+                        SORT_ASC = true;
+                    }
+                    console.log(input);
+                }
+
                 const items = document.querySelectorAll("#itemsContainer > div");
                 let hasResults = false;
                 
                 items.forEach(item => {
-                const textElements = item.querySelectorAll(".text-xl, .text-sm");
+                const textElements = item.querySelectorAll(".item-data .text-xl, .text-sm");
                 let foundMatch = false;
                 textElements.forEach(textElement => {
                     const text = textElement.textContent.toLowerCase();
@@ -203,8 +244,8 @@
             }
 
             // Function to handle sorting based on select option
-            function sortItems() {
-                const sortBy = 'nombre';//document.getElementById("sortButton").value;
+            /*function sortItems() {
+                const sortBy = 'availability';//document.getElementById("sortButton").value;
                 const itemsContainer = document.getElementById("itemsContainer");
                 const items = Array.from(itemsContainer.children);
                     
@@ -226,11 +267,21 @@
                     SORT_ASC = false;
                 }
                 items.forEach(item => itemsContainer.appendChild(item));
-            }
+            }*/
 
             // Attach event listeners
-            document.getElementById("searchInput").addEventListener("keyup", filterItems);
-            document.getElementById("sortButton").addEventListener("click", sortItems);
+            //document.getElementById("searchInput").addEventListener("keyup", filterItems);
+            //document.getElementById("sortButton").addEventListener("click", sortItems);
+
+            document.getElementById("searchInput").addEventListener("keyup", function(event) {
+                $('#department').val('ALL');
+                filterItems('INPUT');
+            });
+
+            document.getElementById("sortButton").addEventListener("click", function(event) {
+                $('#department').val('ALL');
+                filterItems('SORT');
+            });
 
             //sortItems();
         });  

@@ -108,7 +108,12 @@ class FiscalController extends Controller
             $fiscal->update($request->all());
         } 
 
-        $redirectUrl = url('/dashboard');
+        if(Auth::user()->rol === 'Admin') {
+            $redirectUrl = url('admin/fiscales');
+        } else {
+            $redirectUrl = url('/dashboard');
+        }
+        
         return response()->json(['redirect_url' => $redirectUrl]);
     }
 
@@ -214,16 +219,24 @@ class FiscalController extends Controller
      */
     public function updateJRV(Request $request)
     {
+        
         $mesa = Mesa::findOrFail($request->jrv);
 
         $currentStatus = $mesa->estatus;
 
+        if(Auth::user()->rol === 'Admin') {
+            $email = $request->email;
+            $redirectUrl = url('admin/assignments/'.$email);
+        } else {
+            $email = Auth::user()->email;
+            $redirectUrl = url('/assignments');
+        }
+
         if ($currentStatus === 0) {
-            $mesa->fiscal = Auth::user()->email;
+            $mesa->fiscal = $email;
             $mesa->estatus = 1;
             $mesa->save();
-
-            $redirectUrl = url('/assignments');
+            
             return response()->json(['redirect_url' => $redirectUrl]);
         } else {
             return response()->json(['message' => 'ERROR']);
@@ -300,6 +313,103 @@ class FiscalController extends Controller
     public function showResources(Request $request): View
     {
         return view('fiscal.resources');
+    }
+
+    /**
+     * List all users registered
+     */
+    public function adminListFiscales(Request $request): View
+    {
+        // fetch departments
+        $departments = Mesa::distinct()->pluck('departamento');
+
+        $data = Fiscal::all();
+
+        return view('fiscal.admin-assignments', compact('data','departments'));
+    }
+
+    /**
+     * List all JRVs registered
+     */
+    public function adminListMesas(Request $request): View
+    {
+        // fetch departments
+        $departments = Mesa::distinct()->pluck('departamento');
+
+        $data = Mesa::all();
+
+        return view('mesa.admin-jrvs', compact('data','departments'));
+    }
+
+    /**
+     * List all asignments for a specific fiscal, only Admin
+     */
+    public function adminFiscalAssignments(Request $request): View
+    {
+        $assginments = null;
+
+        $email = $request->email;
+
+        if(Auth::user()->rol === 'Admin') {
+            $assignments = Mesa::leftJoin('votos', 'mesas.jrv', '=', 'votos.jrv')
+                        ->where('mesas.fiscal', $request->email)
+                        ->select('mesas.*', \DB::raw('CASE WHEN votos.jrv IS NOT NULL THEN 1 ELSE 0 END AS votos'))
+                        ->get();
+        }
+
+        return view('fiscal.assignments', compact('assignments','email'));
+    }
+
+    /**
+     * List all asignments for a specific fiscal used by Admin
+     */
+    public function listAdminJRVs(Request $request): View
+    {
+        $data = null;
+
+        $email = $request->email;
+
+        if(Auth::user()->rol === 'Admin') {
+            $city =  Fiscal::where("correo", $request->email)->pluck('municipio')->first();
+
+            $data = Mesa::where("municipio", $city)
+                        ->orderBy("jrv")
+                        ->orderBy("estatus")
+                        ->get(["jrv","latitude","longitude","nombre","ubicacion","zona","departamento","municipio","estatus"]);
+
+        }
+
+        return view('fiscal.search-jrvs', compact('data','email'));
+    }
+
+    /**
+     * Get stats
+     */
+    public function getStats(Request $request)
+    {
+        $dept = $request->department;
+        
+        
+        if($dept == ''){
+            $total_jrvs = Mesa::count();
+            $total_jrvs_assigned = Mesa::where('estatus', '=', 1)->count();
+            $total_fiscales = Fiscal::count();
+        }else {
+            $total_jrvs = Mesa::where('departamento', '=', $dept)->count();
+            $total_jrvs_assigned = Mesa::where('departamento', '=', $dept)->where('estatus','=',1)->count();
+            $total_fiscales = Fiscal::where('departamento', '=', $dept)->count();
+        }
+
+        $percent = number_format($total_jrvs_assigned * 100 / $total_jrvs,2);
+
+        $data = [
+            'total_jrvs' => $total_jrvs,
+            'total_jrvs_assigned' => $total_jrvs_assigned,
+            'total_fiscales' => $total_fiscales,
+            'percent' => $percent,
+        ];
+
+        return response()->json($data);
     }
 
 }

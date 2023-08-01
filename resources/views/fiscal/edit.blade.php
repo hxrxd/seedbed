@@ -18,11 +18,19 @@
                 <!-- Title -->
                 <div class="flex flex-col md:flex-row md:px-0 items-center justify-start mb-4">
                     <div class="flex flex-row mr-auto items-center justify-start">
+                        @if (Auth::user()->rol == "Admin")    
+                        <a href="{{url('admin/fiscales')}}" class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
+                            <svg class="w-6 h-6 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 1 1.3 6.326a.91.91 0 0 0 0 1.348L7 13"/>
+                            </svg>
+                        </a>
+                        @else 
                         <a href="{{url('/dashboard')}}" class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
                             <svg class="w-6 h-6 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 1 1.3 6.326a.91.91 0 0 0 0 1.348L7 13"/>
                             </svg>
                         </a>
+                        @endif
                         <h1 class="font-extrabold text-3xl text-gray-800 leading-tight">
                             {{ __('Actualizar datos') }}
                         </h1>
@@ -179,8 +187,8 @@
                     <!-- Email Address -->
                     <div class="md:basis-1/2 md:ml-6 mt-4">
                         <x-input-label for="email" :value="__('Correo')" />
-                        <x-text-input id="email-x" class="block mt-1 w-full" type="hidden" name="correo" value="{{Auth::user()->email}}" />
-                        <x-text-input id="email" class="block mt-1 w-full" type="email" name="correo" value="{{Auth::user()->email}}" autocomplete="username" />
+                        <x-text-input id="email-x" class="block mt-1 w-full" type="hidden" name="correo" value="{{$fiscal->correo}}" />
+                        <x-text-input id="email" class="block mt-1 w-full" type="email" name="correo" value="{{$fiscal->correo}}" autocomplete="username" />
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
                 </div>

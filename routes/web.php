@@ -24,11 +24,15 @@ use App\Models\Mesa;
 
 Route::get('/', function () {
     return view('welcome');
-
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    //return view('dashboard');
+    if (Auth::user()->rol == "Admin") {
+        $data = Mesa::distinct()->pluck('departamento');
+    }
+
+    return view('dashboard', ['departments' => $data ?? []]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
@@ -64,11 +68,18 @@ Route::post('api/update-fiscal', [FiscalController::class, 'updateFiscal']);
 Route::post('api/downgrade-fiscal', [FiscalController::class, 'downgradeFiscal']);
 Route::post('api/update-jrv', [FiscalController::class, 'updateJRV']);
 Route::post('api/remove-jrv', [FiscalController::class, 'removeJRV']);
+Route::post('api/get-stats', [FiscalController::class, 'getStats']);
 Route::get('assignment', [FiscalController::class, 'addAssignment'])->middleware(['auth', 'verified'])->name('assignment');
 Route::get('assignment/detail/{jrv}', [FiscalController::class, 'checkAssignment'])->middleware(['auth', 'verified'])->name('assignment.detail');
 Route::get('assignments', [FiscalController::class, 'listAssignments'])->middleware(['auth', 'verified'])->name('assignments');
-Route::get('add-jrv', [FiscalController::class, 'listJRVs'])->middleware(['auth', 'verified'])->name('add.jrv');
+Route::get('assignments/new', [FiscalController::class, 'listJRVs'])->middleware(['auth', 'verified'])->name('add.jrv');
 Route::get('resources', [FiscalController::class, 'showResources'])->middleware(['auth', 'verified'])->name('resources');
+
+//Admin
+Route::get('admin/fiscales', [FiscalController::class, 'adminListFiscales'])->middleware(['auth', 'verified'])->name('admin.fiscales');
+Route::get('admin/assignments/{email}', [FiscalController::class, 'adminFiscalAssignments'])->middleware(['auth', 'verified'])->name('admin.assignments');
+Route::get('admin/assignments/{email}/new', [FiscalController::class, 'listAdminJRVs'])->middleware(['auth', 'verified'])->name('add.jrv');
+Route::get('admin/jrvs', [FiscalController::class, 'adminListMesas'])->middleware(['auth', 'verified'])->name('admin.jrvs');
 
 //Get routes
 Route::get('getmesas', [ExcelController::class, 'getMesas'])->name('getmesas')->middleware(['auth', 'verified']);

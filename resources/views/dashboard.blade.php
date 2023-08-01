@@ -189,7 +189,7 @@
             <!-- Jumbotron -->
 
             <!-- Hero section with background image, heading, subheading and button -->
-            <div
+            <!--<div
             class="relative h-96 overflow-hidden bg-cover bg-no-repeat p-12 text-center lg:h-scree"
             style="background-image: url('https://images.unsplash.com/photo-1466692476868-aef1dfb1e735'); height: 800px;">
                 <div
@@ -215,9 +215,50 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
             <!-- Jumbotron -->
-
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-16 mb-12  h-full">
+                <div class="flex flex-col md:flex-row items-center md:justify-start">
+                    <div class="max-w-7xl sm:px-6 lg:px-8 md:mr-auto">
+                        <div class="flex items-center justify-start mt-4 mb-4">
+                            <h5 class="mb-0 md:ml-2 md:mr-8 text-3xl font-extrabold text-indigo-800">Stats</h5>
+                        </div>
+                    </div>
+                    <div class="flex flex-row items-center md:justify-start md:mt-0 w-full">
+                        <select id="department" name="departamento" class="rounded-lg w-full font-bold text-lg text-gray-700 border-0  bg-gray-200 hover:bg-gray-300">
+                            <option value="">GENERAL</option>    
+                                @foreach ($departments as $department)
+                                <option value="{{ $department }}">{{ $department }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-4 sm:grid-cols-1 ">
+                    <div class="bg-[#e9f877] h-52 p-8 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
+                        <div class="flex flex-col items-start">
+                            <h3 id="stats-1" class="text-5xl font-extrabold text-indigo-800"></h3>
+                            <p class="text-lg font-extrabold text-indigo-800">Mesas asignadas</p>
+                            <p id="stats-2" class="text-sm my-4 font-medium text-indigo-800"></p>
+                        </div>
+                    </div>
+                    <div class="custom-background-card bg-cover bg-fixed h-52 p-8 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
+                        <div class="flex flex-col items-start">
+                            <h3 id="stats-3" class="text-5xl font-extrabold text-white"></h3>
+                            <p class="text-lg font-extrabold text-white">Fiscales registrados</p>
+                            <p id="stats-4" class="text-sm my-4 font-medium text-white"></p>
+                        </div>
+                    </div>
+                    <div class="custom-background-card bg-cover bg-fixed h-52 p-8 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
+                        <div class="flex flex-col items-start">
+                            <h3 class="text-5xl font-extrabold text-white">0</h3>
+                            <p class="text-lg font-extrabold text-white">Fiscales acreditados</p>
+                            <p class="text-sm my-4 font-medium text-white">Proceso de acreditación aún no ha iniciado.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
             @endif
 
         </div>
@@ -248,6 +289,42 @@
                 $('#saludo').html("¡Hola "+first_name+"!");
             }
         });
+        
+        setTimeout(() => {
+            $('#department').val('');
+            $('#department').trigger('change');
+        }, 10);
+
+        // City Dropdown Change Event
+        $('#department').on('change', function () {
+            getStats();
+            $('#department').blur();
+        });
+
+        function getStats() {
+                $.ajax({
+                    url: "{{url('api/get-stats')}}",
+                    type: "POST",
+                    data: {
+                        department: $('#department').val(),
+                        _token: '{{csrf_token()}}'
+                    },
+                    dataType: 'json',
+                    success: function (result) {
+                        var desc_stats_4 = '';
+                        if ($('#department').val() === '') {
+                            desc_stats_4 = 'a nivel nacional';
+                        } else {
+                            desc_stats_4 = 'en '+$('#department').val()    
+                        }
+
+                        $('#stats-1').html(result.percent+'%');
+                        $('#stats-2').html(result.total_jrvs_assigned+' asignaciones de un total de '+result.total_jrvs+' JRVs.');
+                        $('#stats-3').html(result.total_fiscales);
+                        $('#stats-4').html(desc_stats_4);
+                    }
+                });
+        }
     </script>
 
 

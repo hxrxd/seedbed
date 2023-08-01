@@ -11,11 +11,19 @@
                 <!-- JRV selection section -->
                 <div class="flex flex-col md:flex-row px-4 md:px-0 items-center justify-start mb-4">
                     <div class="flex flex-row mr-auto items-center justify-start">
+                        @if (Auth::user()->rol == "Admin")
+                        <a href="{{url('admin/fiscales')}}" class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
+                            <svg class="w-6 h-6 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 1 1.3 6.326a.91.91 0 0 0 0 1.348L7 13"/>
+                            </svg>
+                        </a>
+                        @else
                         <a href="{{url('/dashboard')}}" class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
                             <svg class="w-6 h-6 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 1 1.3 6.326a.91.91 0 0 0 0 1.348L7 13"/>
                             </svg>
                         </a>
+                        @endif
                         <h1 class="font-extrabold text-3xl text-gray-800 leading-tight">
                             {{ __('Asignaciones') }}
                         </h1>
@@ -36,18 +44,20 @@
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 17V1m0 0L1 4m3-3 3 3m4-3h6l-6 6h6m-7 10 3.5-7 3.5 7m-6.125-2H16"/>
                             </svg>
                         </a>
-                        @if (count($assignments) < 1)
-                        <a id="addButton" href="{{ url('add-jrv') }}" class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
+                        @if (Auth::user()->rol == "Admin")
+                        <a id="addButton" href="{{ url('admin/assignments/'.$email.'/new') }}" class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
                             <svg class="w-6 h-6 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 1v16M1 9h16"/>
                             </svg>
                         </a>
                         @else
-                        <span class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center opacity-50 cursor-not-allowed">
-                            <svg class="w-6 h-6 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 1v16M1 9h16"/>
-                            </svg>
-                        </span>
+                            @if (count($assignments) < 2)
+                            <span class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center opacity-50 cursor-not-allowed">
+                                <svg class="w-6 h-6 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 1v16M1 9h16"/>
+                                </svg>
+                            </span>
+                            @endif
                         @endif
                         
                     </div>
@@ -96,14 +106,16 @@
                                         </div>
                                     </span>
                                     @endif
-                                    <!--<a href="#" data-jrv="{{ $jrv->jrv }}" class="remove-jrv-button text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
+                                    @if(Auth::user()->rol == "Admin")
+                                    <a href="#" data-jrv="{{ $jrv->jrv }}" class="remove-jrv-button text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
                                         <div class="flex flex-row items-center justify-start">
                                             <svg class="w-5 h-5 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
                                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M1 5h16M7 8v8m4-8v8M7 1h4a1 1 0 0 1 1 1v3H6V2a1 1 0 0 1 1-1ZM3 5h12v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Z"/>
                                             </svg>
                                             <span class="ml-2">Desvincular</span>
                                         </div>
-                                    </a>-->
+                                    </a>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -140,8 +152,8 @@
             // Remove the JRV
             function removeJRV(currentJRV, button) {
                 swal({
-                    title: '¿Estás seguro que quieres desvincular esta JRV de tu perfil?',
-                    text: "La JRV será removida de tu perfil y estará disponible para alguien más",
+                    title: '¿Estás seguro que quieres desvincular esta JRV?',
+                    text: "La JRV será liberada y estará disponible para alguien más",
                     icon: 'warning',
                     buttons:  {
                         cancel: "No, volver al detalle",
