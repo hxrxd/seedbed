@@ -412,27 +412,40 @@ class FiscalController extends Controller
                 ->selectRaw('AVG(DATEDIFF(?, fecha_nacimiento)) AS average_age', [$currentDate])
                 ->value('average_age');
 
+            //Top departamentos
             $topDeptos = Mesa::select(
                 'departamento',
                 DB::raw('COUNT(*) as total_count'),
-                DB::raw('SUM(CASE WHEN estatus = 1 THEN 1 ELSE 0 END) as total_count_estatus_1'),
-                DB::raw('ROW_NUMBER() OVER (ORDER BY total_count_estatus_1 DESC) as ranking')
+                DB::raw('SUM(CASE WHEN estatus = 1 THEN 1 ELSE 0 END) as total_count_estatus_1')
             )
             ->groupBy('departamento')
             ->orderBy('total_count_estatus_1', 'desc')
             ->limit(5)
             ->get();
 
+            
+            $rank = 1;
+            foreach ($topDeptos as $depto) {
+                $depto->ranking = $rank;
+                $rank++;
+            }
+
+            //Top municipios
             $topMunicipios = Mesa::select(
                 'municipio',
                 DB::raw('COUNT(*) as total_count'),
-                DB::raw('SUM(CASE WHEN estatus = 1 THEN 1 ELSE 0 END) as total_count_estatus_1'),
-                DB::raw('ROW_NUMBER() OVER (ORDER BY total_count_estatus_1 DESC) as ranking')
+                DB::raw('SUM(CASE WHEN estatus = 1 THEN 1 ELSE 0 END) as total_count_estatus_1')
             )
             ->groupBy('municipio')
             ->orderBy('total_count_estatus_1', 'desc')
             ->limit(5)
             ->get();
+        
+            $rank = 1;
+            foreach ($topMunicipios as $municipioData) {
+                $municipioData->ranking = $rank;
+                $rank++;
+            }
 
         }else {
             $total_jrvs = Mesa::where('departamento', '=', $dept)->count();
@@ -446,28 +459,42 @@ class FiscalController extends Controller
                 ->selectRaw('AVG(DATEDIFF(?, fecha_nacimiento)) AS average_age', [$currentDate])
                 ->value('average_age');
 
+            //Top departamentos
             $topDeptos = Mesa::select(
                 'departamento',
                 DB::raw('COUNT(*) as total_count'),
-                DB::raw('SUM(CASE WHEN estatus = 1 THEN 1 ELSE 0 END) as total_count_estatus_1'),
-                DB::raw('ROW_NUMBER() OVER (ORDER BY total_count_estatus_1 DESC) as ranking')
+                DB::raw('SUM(CASE WHEN estatus = 1 THEN 1 ELSE 0 END) as total_count_estatus_1')
             )
             ->groupBy('departamento')
             ->orderBy('total_count_estatus_1', 'desc')
             ->limit(5)
             ->get();
 
+            
+            $rank = 1;
+            foreach ($topDeptos as $depto) {
+                $depto->ranking = $rank;
+                $rank++;
+            }
+
+            //Top municipios
             $topMunicipios = Mesa::select(
-                    'municipio',
-                    DB::raw('COUNT(*) as total_count'),
-                    DB::raw('SUM(CASE WHEN estatus = 1 THEN 1 ELSE 0 END) as total_count_estatus_1'),
-                    DB::raw('ROW_NUMBER() OVER (ORDER BY total_count_estatus_1 DESC) as ranking')
-                )
-                ->where('departamento',$dept)
-                ->groupBy('municipio')
-                ->orderBy('total_count_estatus_1', 'desc')
-                ->limit(5)
-                ->get();
+                'municipio',
+                DB::raw('COUNT(*) as total_count'),
+                DB::raw('SUM(CASE WHEN estatus = 1 THEN 1 ELSE 0 END) as total_count_estatus_1')
+            )
+            ->where('departamento',$dept)
+            ->groupBy('municipio')
+            ->orderBy('total_count_estatus_1', 'desc')
+            ->limit(5)
+            ->get();
+        
+            $rank = 1;
+            foreach ($topMunicipios as $municipioData) {
+                $municipioData->ranking = $rank;
+                $rank++;
+            }
+
         }
 
         $percent = number_format($total_jrvs_assigned * 100 / $total_jrvs,2);
