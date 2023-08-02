@@ -17,7 +17,7 @@
                     </div>
 
                     <!-- Toolbar -->
-                    <div class="flex flex-row items-center md:justify-end mt-8 md:mt-0 md:ml-auto">
+                    <div class="flex flex-col items-center md:justify-end mt-8 md:mt-0 md:ml-auto">
                         <div class="grid md:grid-cols-2 gap-4 sm:grid-cols-1 ">
                             <div>
                                 <select id="department" name="departamento" class="rounded-lg w-full text-gray-900 border-0 border-white bg-gray-100 hover:bg-gray-200 focus:ring-white" autofocus>
@@ -42,7 +42,7 @@
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6v13m0 0 3-3m-3 3-3-3m11-2V1m0 0L9 4m3-3 3 3"/>
                                     </svg>
                                 </a>
-                                <a id="downloadButton" href="{{url('getfiscal') }}" class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
+                                <a id="downloadButton" class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center cursor-pointer">
                                     <svg class="w-6 h-6 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 18">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 1v11m0 0 4-4m-4 4L4 8m11 4v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3"/>
                                     </svg>
@@ -50,6 +50,11 @@
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div id="downloadOptions" class="hidden flex flex-row px-8 items-center justify-center md:mt-0 md:ml-auto w-full">
+                    <a id="downloadButton1" href="{{url('getfiscal') }}" class="text-white bg-indigo-800 hover:bg-indigo-900 rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">Lista General de Fiscales</a>
+                    <a id="downloadButton2" href="{{url('getfiscalelectronico') }}" class="text-white bg-indigo-800 hover:bg-indigo-900 rounded-lg font-extrabold text-sm px-2 py-1.5 text-center">Interesados Fiscales Informáticos</a>
                 </div>
 
                 <div id="loading" class="flex items-center justify-center p-6 h-64">
@@ -147,6 +152,19 @@
             // City Dropdown Change Event
             $('#department').on('change', function () {
                 filterItems('SELECT');
+            });
+
+            // download button action
+            $('#downloadButton').on('click', function() {
+                $('#downloadOptions').removeClass('hidden');
+            });
+
+            $('#downloadButton1').on('click', function() {
+                $('#downloadOptions').addClass('hidden');
+            });
+
+            $('#downloadButton2').on('click', function() {
+                $('#downloadOptions').addClass('hidden');
             });
 
             /*var addButtons = document.querySelectorAll(".add-jrv-button");

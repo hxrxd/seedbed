@@ -42,7 +42,7 @@
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6v13m0 0 3-3m-3 3-3-3m11-2V1m0 0L9 4m3-3 3 3"/>
                                     </svg>
                                 </a>
-                                <a id="downloadButton" href="{{url('getmesas') }}" class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
+                                <a id="downloadButton" class="text-indigo-800 hover:bg-[#e9f877] rounded-lg font-extrabold text-sm px-2 py-1.5 text-center cursor-pointer">
                                     <svg class="w-6 h-6 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 18">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 1v11m0 0 4-4m-4 4L4 8m11 4v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3"/>
                                     </svg>
@@ -50,6 +50,12 @@
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div id="downloadOptions" class="hidden flex flex-row px-8 items-center justify-center md:mt-0 md:ml-auto w-full">
+                    <a id="downloadButton1" href="{{url('getmesas') }}" class="text-white bg-indigo-800 hover:bg-indigo-900 rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">Lista General de Mesas</a>
+                    <a id="downloadButton2" href="{{url('getmesasconfiscal') }}" class="text-white bg-indigo-800 hover:bg-indigo-900 rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">Mesas con Fiscal</a>
+                    <a id="downloadButton2" href="{{url('getmesassinfiscal') }}" class="text-white bg-indigo-800 hover:bg-indigo-900 rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">Mesas sin Fiscal</a>
                 </div>
 
                 <div id="loading" class="flex items-center justify-center p-6 h-64">
@@ -142,6 +148,23 @@
             // City Dropdown Change Event
             $('#department').on('change', function () {
                 filterItems('SELECT');
+            });
+
+            // download button action
+            $('#downloadButton').on('click', function() {
+                $('#downloadOptions').removeClass('hidden');
+            });
+
+            $('#downloadButton1').on('click', function() {
+                $('#downloadOptions').addClass('hidden');
+            });
+
+            $('#downloadButton2').on('click', function() {
+                $('#downloadOptions').addClass('hidden');
+            });
+            
+            $('#downloadButton3').on('click', function() {
+                $('#downloadOptions').addClass('hidden');
             });
 
             var addButtons = document.querySelectorAll(".add-jrv-button");
