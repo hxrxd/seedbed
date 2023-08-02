@@ -1,6 +1,6 @@
 <x-app-layout>
     @if (Auth::user()->rol == "Admin" || Auth::user()->rol == "Coordinador")
-    <div class="py-1">
+    <div class="py-1 bg-red">
     @else
     <div class="py-1 h-full custom-background">
     @endif
@@ -238,16 +238,61 @@
                 <div class="grid md:grid-cols-3 gap-4 sm:grid-cols-1 ">
                     <div class="bg-[#e9f877] h-52 p-8 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
                         <div class="flex flex-col items-start">
-                            <h3 id="stats-1" class="text-5xl font-extrabold text-indigo-800"></h3>
+                            <h3 id="stats-1" class="text-5xl font-extrabold text-indigo-800">0</h3>
                             <p class="text-lg font-extrabold text-indigo-800">Mesas asignadas</p>
                             <p id="stats-2" class="text-sm my-4 font-medium text-indigo-800"></p>
                         </div>
                     </div>
                     <div class="custom-background-card bg-cover bg-fixed h-52 p-8 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
                         <div class="flex flex-col items-start">
-                            <h3 id="stats-3" class="text-5xl font-extrabold text-white"></h3>
+                            <h3 id="stats-3" class="text-5xl font-extrabold text-white">0</h3>
                             <p class="text-lg font-extrabold text-white">Fiscales registrados</p>
                             <p id="stats-4" class="text-sm my-4 font-medium text-white"></p>
+                        </div>
+                    </div>
+                    <div class="custom-background-card bg-cover bg-fixed h-52 p-8 md:p-8 rounded-lg shadow sm:rounded-lg">
+                        <div class="flex flex-row items-center">
+                            <div class="flex flex-col items-start w-1/2">
+                                <h3 id="stats-17" class="text-3xl font-extrabold text-white">0</h3>
+                                <p class="text-lg font-extrabold text-white">Mujeres</p>
+                            </div>
+                            <div class="flex flex-col items-end w-1/2">
+                                <h3 id="stats-18" class="text-3xl font-extrabold text-white">0</h3>
+                                <p class="text-lg font-extrabold text-white">Hombres</p>
+                            </div>
+                        </div>
+                        <p id="stats-19" class="text-md mt-4 text-start font-medium text-white"></p>
+                        <p id="stats-20" class="text-md text-start font-medium text-white"></p>
+                    </div>
+                    <div class="custom-background-card bg-cover bg-fixed h-52 p-8 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
+                        <div class="flex flex-col items-start">
+                            <p class="text-md mb-2 font-extrabold text-indigo-700" style="color:#e9f877;">Top Cobertura Departamental</p>
+                            <h3 id="stats-5" class="text-xl font-extrabold text-white">#1 DEPTO</h3>
+                            <p id="stats-6" class="text-sm font-extrabold text-white"> </p>
+                            
+                            <p class="mt-2 text-xl font-medium text-white">
+                                <ol class="text-xs font-medium text-white">
+                                    <li id="stats-7">2. D2</li>
+                                    <li id="stats-8">3. D3</li>
+                                    <li id="stats-9">4. D4</li>
+                                    <li id="stats-10">5. D5</li>
+                                </ol>
+                            </p> 
+                        </div>
+                    </div>
+                    <div class="custom-background-card bg-cover bg-fixed h-52 p-8 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
+                        <div class="flex flex-col items-start">
+                            <p class="text-md mb-2 font-extrabold text-indigo-700" style="color:#e9f877;">Top Cobertura Municipal</p>
+                            <h3 id="stats-11" class="text-xl font-extrabold text-white">#1 MUNI</h3>
+                            <p id="stats-12" class="text-sm font-extrabold text-white"> </p>
+                            <p class="mt-2 text-xl font-medium text-white">
+                                <ol class="text-xs font-medium text-white">
+                                    <li id="stats-13">2. D2</li>
+                                    <li id="stats-14">3. D3</li>
+                                    <li id="stats-15">4. D4</li>
+                                    <li id="stats-16">5. D5</li>
+                                </ol>
+                            </p> 
                         </div>
                     </div>
                     <div class="custom-background-card bg-cover bg-fixed h-52 p-8 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
@@ -311,17 +356,43 @@
                     },
                     dataType: 'json',
                     success: function (result) {
-                        var desc_stats_4 = '';
-                        if ($('#department').val() === '') {
-                            desc_stats_4 = 'a nivel nacional';
-                        } else {
-                            desc_stats_4 = 'en '+$('#department').val()    
-                        }
+                        var cobertura = 0;
+
+                        var tasa_reg_h = (result.total_fiscales/(result.days*24)).toFixed(2);
+                        var tasa_reg_mi = (result.total_fiscales/(result.days*24*60)).toFixed(2);
+                        var cobertura_dept = (result.top_deptos[0].total_count_estatus_1*100/result.top_deptos[0].total_count).toFixed(2);
+                        var cobertura_muni = (result.top_municipios[0].total_count_estatus_1*100/result.top_municipios[0].total_count).toFixed(2);
+                        var percent_w = (result.total_fiscales_sex_f*100/result.total_fiscales).toFixed(2);
+                        var percent_m = (result.total_fiscales_sex_m*100/result.total_fiscales).toFixed(2);
+                        var percent_u = (result.total_fiscales_sex_u*100/result.total_fiscales).toFixed(2);
 
                         $('#stats-1').html(result.percent+'%');
-                        $('#stats-2').html(result.total_jrvs_assigned+' asignaciones de un total de '+result.total_jrvs+' JRVs.');
+                        $('#stats-2').html('<strong>'+result.total_jrvs_assigned+'</strong> asignaciones de un total de  <strong>'+result.total_jrvs+'</strong> Juntas Receptoras de Votos.');
                         $('#stats-3').html(result.total_fiscales);
-                        $('#stats-4').html(desc_stats_4);
+                        $('#stats-4').html('Tasa de registro actual es del <strong>'+tasa_reg_h+'</strong> usuarios por hora o <strong>'+tasa_reg_mi+'</strong> usuarios por minuto');
+
+                        // Stats by dept
+                        $('#stats-5').html(result.top_deptos[0].ranking+'. '+result.top_deptos[0].departamento+' ('+cobertura_dept+'%)');
+                        //$('#stats-6').html('Cobertura del '+cobertura_dept+'%');
+                        $('#stats-7').html(result.top_deptos[1].ranking+'. '+result.top_deptos[1].departamento);
+                        $('#stats-8').html(result.top_deptos[2].ranking+'. '+result.top_deptos[2].departamento);
+                        $('#stats-9').html(result.top_deptos[3].ranking+'. '+result.top_deptos[3].departamento);
+                        $('#stats-10').html(result.top_deptos[4].ranking+'. '+result.top_deptos[4].departamento);
+
+                        // Stats by dept
+                        $('#stats-11').html(result.top_municipios[0].ranking+'. '+result.top_municipios[0].municipio+' ('+cobertura_muni+'%)');
+                        //$('#stats-12').html('Cobertura del '+cobertura_muni+'%');
+                        $('#stats-13').html(result.top_municipios[1].ranking+'. '+result.top_municipios[1].municipio);
+                        $('#stats-14').html(result.top_municipios[2].ranking+'. '+result.top_municipios[2].municipio);
+                        $('#stats-15').html(result.top_municipios[3].ranking+'. '+result.top_municipios[3].municipio);
+                        $('#stats-16').html(result.top_municipios[4].ranking+'. '+result.top_municipios[4].municipio);
+
+                        // Demography
+                        $('#stats-17').html(percent_w+'%');
+                        $('#stats-18').html(percent_m+'%');
+                        $('#stats-19').html('<strong>'+percent_u+'%</strong> prefiere no decir su sexo.');
+                        $('#stats-20').html('La edad promedio es de <strong>'+(result.average_age).toFixed(2)+'</strong> años.');
+
                     }
                 });
         }

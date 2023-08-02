@@ -7,7 +7,9 @@ use Illuminate\View\View;
 use App\Models\Fiscal;
 use App\Models\Mesa;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use DateTime;
 
 use Auth;
 
@@ -389,24 +391,100 @@ class FiscalController extends Controller
     {
         $dept = $request->department;
         
+        // Date of release
+        $release = '2023-07-31';
+
+        // Create DateTime objects for the current date and the date in the past
+        $currentDate = new DateTime();
+        $releaseDate = new DateTime($release);
+        $interval = $currentDate->diff($releaseDate);
+        $daysDifference = $interval->days;
+        
         
         if($dept == ''){
             $total_jrvs = Mesa::count();
             $total_jrvs_assigned = Mesa::where('estatus', '=', 1)->count();
             $total_fiscales = Fiscal::count();
+            $total_fiscales_sex_f = Fiscal::where('sexo', 'Femenino')->count();
+            $total_fiscales_sex_m = Fiscal::where('sexo', 'Masculino')->count();
+            $total_fiscales_sex_u = Fiscal::where('sexo', 'Prefiero no decirlo')->count();
+            $averageAge = DB::table('fiscals')
+                ->selectRaw('AVG(DATEDIFF(?, fecha_nacimiento)) AS average_age', [$currentDate])
+                ->value('average_age');
+
+            $topDeptos = Mesa::select(
+                'departamento',
+                DB::raw('COUNT(*) as total_count'),
+                DB::raw('SUM(CASE WHEN estatus = 1 THEN 1 ELSE 0 END) as total_count_estatus_1'),
+                DB::raw('ROW_NUMBER() OVER (ORDER BY total_count_estatus_1 DESC) as ranking')
+            )
+            ->groupBy('departamento')
+            ->orderBy('total_count_estatus_1', 'desc')
+            ->limit(5)
+            ->get();
+
+            $topMunicipios = Mesa::select(
+                'municipio',
+                DB::raw('COUNT(*) as total_count'),
+                DB::raw('SUM(CASE WHEN estatus = 1 THEN 1 ELSE 0 END) as total_count_estatus_1'),
+                DB::raw('ROW_NUMBER() OVER (ORDER BY total_count_estatus_1 DESC) as ranking')
+            )
+            ->groupBy('municipio')
+            ->orderBy('total_count_estatus_1', 'desc')
+            ->limit(5)
+            ->get();
+
         }else {
             $total_jrvs = Mesa::where('departamento', '=', $dept)->count();
             $total_jrvs_assigned = Mesa::where('departamento', '=', $dept)->where('estatus','=',1)->count();
             $total_fiscales = Fiscal::where('departamento', '=', $dept)->count();
+            $total_fiscales_sex_f = Fiscal::where('sexo', 'Femenino')->where('departamento',$dept)->count();
+            $total_fiscales_sex_m = Fiscal::where('sexo', 'Masculino')->where('departamento',$dept)->count();
+            $total_fiscales_sex_u = Fiscal::where('sexo', 'Prefiero no decirlo')->where('departamento',$dept)->count();
+            $averageAge = DB::table('fiscals')
+                ->where('departamento',$dept)    
+                ->selectRaw('AVG(DATEDIFF(?, fecha_nacimiento)) AS average_age', [$currentDate])
+                ->value('average_age');
+
+            $topDeptos = Mesa::select(
+                'departamento',
+                DB::raw('COUNT(*) as total_count'),
+                DB::raw('SUM(CASE WHEN estatus = 1 THEN 1 ELSE 0 END) as total_count_estatus_1'),
+                DB::raw('ROW_NUMBER() OVER (ORDER BY total_count_estatus_1 DESC) as ranking')
+            )
+            ->groupBy('departamento')
+            ->orderBy('total_count_estatus_1', 'desc')
+            ->limit(5)
+            ->get();
+
+            $topMunicipios = Mesa::select(
+                    'municipio',
+                    DB::raw('COUNT(*) as total_count'),
+                    DB::raw('SUM(CASE WHEN estatus = 1 THEN 1 ELSE 0 END) as total_count_estatus_1'),
+                    DB::raw('ROW_NUMBER() OVER (ORDER BY total_count_estatus_1 DESC) as ranking')
+                )
+                ->where('departamento',$dept)
+                ->groupBy('municipio')
+                ->orderBy('total_count_estatus_1', 'desc')
+                ->limit(5)
+                ->get();
         }
 
         $percent = number_format($total_jrvs_assigned * 100 / $total_jrvs,2);
+        $averageAgeInYears = $averageAge / 365;
 
         $data = [
             'total_jrvs' => $total_jrvs,
             'total_jrvs_assigned' => $total_jrvs_assigned,
             'total_fiscales' => $total_fiscales,
+            'total_fiscales_sex_f' => $total_fiscales_sex_f,
+            'total_fiscales_sex_m' => $total_fiscales_sex_m,
+            'total_fiscales_sex_u' =>$total_fiscales_sex_u,
+            'average_age' => $averageAgeInYears,
+            'days' => $daysDifference,
             'percent' => $percent,
+            'top_deptos' => $topDeptos,
+            'top_municipios' => $topMunicipios
         ];
 
         return response()->json($data);
