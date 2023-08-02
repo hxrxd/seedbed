@@ -369,7 +369,7 @@
                         $('#stats-1').html(result.percent+'%');
                         $('#stats-2').html('<strong>'+result.total_jrvs_assigned+'</strong> asignaciones de un total de  <strong>'+result.total_jrvs+'</strong> Juntas Receptoras de Votos.');
                         $('#stats-3').html(result.total_fiscales);
-                        $('#stats-4').html('Tasa de registro actual es del <strong>'+tasa_reg_h+'</strong> usuarios por hora o <strong>'+tasa_reg_mi+'</strong> usuarios por minuto');
+                        $('#stats-4').html('La tasa de registro actual es de <strong>'+tasa_reg_h+'</strong> usuarios por hora o <strong>'+tasa_reg_mi+'</strong> usuarios por minuto');
 
                         // Stats by dept
                         $('#stats-5').html(result.top_deptos[0].ranking+'. '+result.top_deptos[0].departamento+' ('+cobertura_dept+'%)');
@@ -391,7 +391,7 @@
                         $('#stats-17').html(percent_w+'%');
                         $('#stats-18').html(percent_m+'%');
                         $('#stats-19').html('<strong>'+percent_u+'%</strong> prefiere no decir su sexo.');
-                        $('#stats-20').html('La edad promedio es de <strong>'+(result.average_age).toFixed(2)+'</strong> años.');
+                        $('#stats-20').html('La edad promedio es de <strong>'+Math.round(result.average_age)+'</strong> años.');
 
                     }
                 });
