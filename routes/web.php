@@ -63,6 +63,7 @@ Route::resource('voto', VotoController::class)->middleware(['auth', 'verified'])
 
 //Post routes
 Route::post('createstore', [VotoController::class,'createstore'])->name('createstore');
+Route::post('acreditacionesdownload', [VerificacionController::class, 'getAcreditaciones'])->name('acreditacionesdownload')->middleware(['auth', 'verified']);
 Route::post('api/fetch-cities', [FiscalController::class, 'fetchCities'])->middleware(['auth', 'verified'])->name('api.fetch.cities');
 Route::post('api/fetch-jrvs-by-center', [FiscalController::class, 'fetchTablesByCenter'])->middleware(['auth', 'verified'])->name('api.fetch.jrvs.center');
 Route::post('api/fetch-jrvs-by-city', [FiscalController::class, 'fetchTablesByCity'])->middleware(['auth', 'verified'])->name('api.fetch.jrvs.city');
