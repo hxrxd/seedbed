@@ -63,11 +63,7 @@
 
 <img src="assets/img/firma.jpg" alt="" width="750px" height="160px">
 
-@php
-    $qrcode = base64_encode(QrCode::format('svg')->size(64)->errorCorrection('H')->generate(url("").'/verificacion/'.$ac->fiscal));
-@endphp
 
-<img src="data:image/png;base64, {!! $qrcode !!}">
 
 <div class="page-break"></div>
 @endforeach
