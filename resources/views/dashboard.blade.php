@@ -12,7 +12,7 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-4 mb-8">
                 <input id="name" class="hidden" value="{{Auth::user()->name}}"></input>
                 <h5 id="saludo" class="mt-24 mb-6  text-4xl font-bold text-indigo-900 dark:text-white"></h5>
-                <h5 class="mb-0  text-2xl font-extrabold text-indigo-900 dark:text-white">Bienvenido a <strong>Movimiento Semilla,</strong></h5>
+                <h5 class="mb-0  text-2xl font-extrabold text-indigo-900 dark:text-white">Bienvenid@ a <strong>Movimiento Semilla,</strong></h5>
                 <p class="mb-6  text-2xl font-extrabold text-indigo-800 dark:text-white">Gracias por sumarte.</p>
                 <p class="mb-8  text-base text-gray-800 sm:text-lg dark:text-gray-700">Nos complace enormemente darte la bienvenida como voluntario. Tu compromiso y dedicación son fundamentales para asegurar que las elecciones se lleven a cabo de manera justa, transparente y democrática.</p>
 
