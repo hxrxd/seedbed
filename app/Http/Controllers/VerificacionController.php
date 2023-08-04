@@ -17,7 +17,7 @@ class VerificacionController extends Controller
     public function index()
     {
         //
-        $municipios = Mesa::distinct()->pluck('municipio');
+        $municipios = Mesa::orderBy('municipio')->distinct()->pluck('municipio');
         return view('verificacion.index',['municipios'=>$municipios]);
     }
 
