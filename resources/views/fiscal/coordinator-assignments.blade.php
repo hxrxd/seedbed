@@ -21,9 +21,9 @@
                         <div class="grid md:grid-cols-2 gap-4 sm:grid-cols-1 ">
                             <div>
                                 <select id="department" name="departamento" class="rounded-lg w-full text-gray-900 border-0 border-white bg-gray-100 hover:bg-gray-200 focus:ring-white" autofocus>
-                                    <option value="">Todos los departamentos</option>    
-                                    @foreach ($departments as $department)
-                                        <option value="{{ $department }}">{{ $department }}</option>
+                                    <option value="">Todos los municipios</option>    
+                                    @foreach ($cities as $city)
+                                        <option value="{{ $city }}">{{ $city }}</option>
                                     @endforeach
                                 </select>
                             </div>

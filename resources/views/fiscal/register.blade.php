@@ -395,6 +395,10 @@
             var terms_read = false;
             var isProcessing = false;
 
+            document.addEventListener('contextmenu', function (event) {
+                event.preventDefault();
+            });
+
             // Populate days
             populateDays();
 

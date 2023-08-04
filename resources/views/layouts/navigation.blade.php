@@ -33,8 +33,24 @@
                     </div>
 
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('admin.users')" :active="request()->routeIs('admin.users')">
+                            {{ __('Usuarios') }}
+
+                        </x-nav-link>
+                    </div>
+
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-nav-link :href="route('voto.index')" :active="request()->routeIs('fiscal.index')">
                             {{ __('Dashboard') }}
+
+                        </x-nav-link>
+                    </div>
+                @endif
+
+                @if (Auth::user()->rol == "Coordinador")
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('admin.fiscales')" :active="request()->routeIs('admin.fiscales')">
+                            {{ __('Fiscales') }}
 
                         </x-nav-link>
                     </div>
@@ -98,6 +114,18 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('admin.jrvs')" :active="request()->routeIs('admin.jrvs')">
                 {{ __('Mesas') }}
+            </x-responsive-nav-link>
+        </div>
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('admin.users')" :active="request()->routeIs('admin.users')">
+                {{ __('Usuarios') }}
+            </x-responsive-nav-link>
+        </div>
+        @endif
+        @if (Auth::user()->rol == "Coordinador")    
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('admin.fiscales')" :active="request()->routeIs('admin.fiscales')">
+                {{ __('Fiscales') }}
             </x-responsive-nav-link>
         </div>
         @endif

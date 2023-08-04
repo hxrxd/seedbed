@@ -12,7 +12,7 @@
                 <div class="flex flex-col md:flex-row px-8 md:px-0 items-center justify-start mb-4">
                     <div class="flex flex-row mr-auto items-center justify-start">
                         <h1 class="font-extrabold text-3xl text-gray-800 leading-tight">
-                            {{ __('Fiscales') }}
+                            {{ __('Usuarios') }}
                         </h1>
                     </div>
 
@@ -20,10 +20,10 @@
                     <div class="flex flex-col items-center md:justify-end mt-8 md:mt-0 md:ml-auto">
                         <div class="grid md:grid-cols-2 gap-4 sm:grid-cols-1 ">
                             <div>
-                                <select id="department" name="departamento" class="rounded-lg w-full text-gray-900 border-0 border-white bg-gray-100 hover:bg-gray-200 focus:ring-white" autofocus>
-                                    <option value="">Todos los departamentos</option>    
-                                    @foreach ($departments as $department)
-                                        <option value="{{ $department }}">{{ $department }}</option>
+                                <select id="rollesSelect" name="rolles" class="rounded-lg w-full text-gray-900 border-0 border-white bg-gray-100 hover:bg-gray-200 focus:ring-white" autofocus>
+                                    <option value="">Todos los roles</option>    
+                                    @foreach ($rolles as $roll)
+                                        <option value="{{ $roll }}">{{ $roll }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -34,7 +34,7 @@
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                                         </svg>
                                     </div>
-                                    <input type="text" id="searchInput" class="block p-2 pl-10 text-base font-bold text-gray-900 rounded-lg border-0 border-white bg-gray-100 hover:bg-gray-200 focus:ring-white" placeholder="Buscar fiscal">
+                                    <input type="text" id="searchInput" class="block p-2 pl-10 text-base font-bold text-gray-900 rounded-lg border-0 border-white bg-gray-100 hover:bg-gray-200 focus:ring-white" placeholder="Buscar">
                                 </div>
 
                                 <a id="sortButton" href="#" class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
@@ -67,21 +67,19 @@
                 </div>
 
                 <div id="itemsContainer" class="md:p-1 hidden">
-                    @foreach ($data as $fiscal)
+                    @foreach ($data as $user)
                     <div class="flex items-center p-6 md:p-3 font-bold text-gray-900 border-b-2 border-dotted hover:bg-gray-50 group item-list">
                         <div class="flex items-center">
                             <div class="flex-column items-start ml-3">
-                                <h2 class="item-data text-sm text-xl flex-row items-center" data-nombre="{{ $fiscal->apellidos }}">{{ $fiscal->apellidos }}, {{ $fiscal->nombres }}
-                                    @if($fiscal->nombres == '')    
-                                    <span class="item-data mb-2 text-xs px-1 text-gray-700 bg-[#ffbf00] rounded-md">PRECARGADO</span>
-                                    @endif
+                                <h2 class="item-data text-sm text-xl flex-row items-center" data-rol="{{ $user->rol }}">{{ $user->name }}
+                                    <span class="item-data mb-2 text-lg px-1 text-gray-700 bg-[#ffbf00] rounded-md">{{ $user->rol }}</span>
                                 </h2>         
-                                <span class="text-sm py-1 px-2 font-bold mt-2 mb-2 bg-[#e9f877] rounded-md text-indigo-800">{{ $fiscal->dpi }}</span> 
-                                <p class="text-sm font-bold mt-2 mb-2 text-gray-400"><span class="text-sm mt-2 mb-2 text-gray-500"><span class="text-sm mt-2 mb-2 text-gray-500">CONTACTO: </span>+502 {{ $fiscal->telefono }} / {{ $fiscal->correo }}</p>
-                                <p class="text-sm mt-2 mb-2 text-gray-500">{{ $fiscal->departamento }}, {{ $fiscal->municipio }}</p>
+                                <span class="text-sm py-1 font-bold mt-2 mb-2 rounded-md text-indigo-800">{{ $user->email }}</span> 
+                                @if($user->rol == 'Coordinador')
+                                <p class="text-sm font-bold mt-2 mb-2 text-gray-500"><span class="text-sm mt-2 mb-2 text-gray-500">COORDINADOR DEPARTAMENTAL: </span>{{ $user->location }}</p>
+                                @endif
                                 <div class="flex flex-row items-center justify-start mt-4 mb-2">
-                                    @if ($fiscal->status == 'Active')
-                                    <a href="{{url('fiscal/'.$fiscal->correo.'/edit')}}" data-jrv="{{ $fiscal->dpi }}" class="add-jrv-button text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
+                                    <a href="{{url('admin/users/'.$user->email.'/edit')}}" class="edit-user-button text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
                                         <div class="flex flex-row items-center justify-start">
                                             <svg class="w-5 h-5 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 18">
                                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.109 17H1v-2a4 4 0 0 1 4-4h.87M10 4.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm7.95 2.55a2 2 0 0 1 0 2.829l-6.364 6.364-3.536.707.707-3.536 6.364-6.364a2 2 0 0 1 2.829 0Z"/>
@@ -89,23 +87,6 @@
                                             <span class="ml-2">Editar</span>
                                         </div>
                                     </a>
-                                    <a href="{{url('admin/assignments/'.$fiscal->correo)}}" data-jrv="{{ $fiscal->dpi }}" class="add-jrv-button text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
-                                        <div class="flex flex-row items-center justify-start">
-                                            <svg class="w-5 h-5 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 18">
-                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.5 3h9.563M9.5 9h9.563M9.5 15h9.563M1.5 13a2 2 0 1 1 3.321 1.5L1.5 17h5m-5-15 2-1v6m-2 0h4"/>
-                                            </svg>
-                                            <span class="ml-2">Asignar</span>
-                                        </div>
-                                    </a>
-                                    <span class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center opacity-50 cursor-not-allowed">
-                                        <div class="flex flex-row items-center justify-start">
-                                            <svg class="w-5 h-5 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 21">
-                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m6.072 10.072 2 2 6-4m3.586 4.314.9-.9a2 2 0 0 0 0-2.828l-.9-.9a2 2 0 0 1-.586-1.414V5.072a2 2 0 0 0-2-2H13.8a2 2 0 0 1-1.414-.586l-.9-.9a2 2 0 0 0-2.828 0l-.9.9a2 2 0 0 1-1.414.586H5.072a2 2 0 0 0-2 2v1.272a2 2 0 0 1-.586 1.414l-.9.9a2 2 0 0 0 0 2.828l.9.9a2 2 0 0 1 .586 1.414v1.272a2 2 0 0 0 2 2h1.272a2 2 0 0 1 1.414.586l.9.9a2 2 0 0 0 2.828 0l.9-.9a2 2 0 0 1 1.414-.586h1.272a2 2 0 0 0 2-2V13.8a2 2 0 0 1 .586-1.414Z"/>
-                                            </svg>
-                                            <span class="ml-2">Acreditar</span>
-                                        </div>
-                                    </span>
-                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -150,7 +131,7 @@
             }, 100);
 
             // City Dropdown Change Event
-            $('#department').on('change', function () {
+            $('#rollesSelect').on('change', function () {
                 filterItems('SELECT');
             });
 
@@ -226,16 +207,7 @@
                 let input = document.getElementById("searchInput").value.toLowerCase();
 
                 if (searchType === 'SELECT') {
-                    input = document.getElementById("department").value.toLowerCase();
-                } else if (searchType === 'SORT') {
-                    if (SORT_ASC) {
-                        input = 'sin asignar'
-                        SORT_ASC = false;
-                    } else {
-                        input = 'asignada'
-                        SORT_ASC = true;
-                    }
-                    console.log(input);
+                    input = document.getElementById("rollesSelect").value.toLowerCase();
                 }
 
                 const items = document.querySelectorAll("#itemsContainer > div");
@@ -246,8 +218,9 @@
                 let foundMatch = false;
                 textElements.forEach(textElement => {
                     const text = textElement.textContent.toLowerCase();
+                    
                     if (text.includes(input)) {
-                    foundMatch = true;
+                        foundMatch = true;
                     }
                 });
 
@@ -268,7 +241,7 @@
 
             // Function to handle sorting based on select option
             function sortItems() {
-                const sortBy = 'nombre';//document.getElementById("sortButton").value;
+                const sortBy = 'rol';//document.getElementById("rollesSelect").value;
                 const itemsContainer = document.getElementById("itemsContainer");
                 const items = Array.from(itemsContainer.children);
                     

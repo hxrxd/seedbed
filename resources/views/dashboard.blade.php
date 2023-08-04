@@ -33,7 +33,7 @@
                                 </svg>
                             </span>
                             <h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white">Registrarme como fiscal</h3>
-                            <time class="w-4 h-4 text-gray-100 dark:text-white">¡El registro se encuentra disponible ahora!</time>
+                            <time class="block mb-2 text-sm font-normal leading-none text-gray-700 dark:text-gray-500">¡El registro se encuentra disponible ahora!</time>
                             <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">Para registrarte como fiscal, deberás completar información necesaria para elegir una Junta Receptora de Votos (JRV). <strong>Podrás encontrar la opción para inscribirte al final de esta página.</strong></p>
                         </li>
                         <li class="mb-10 ml-6">
@@ -175,48 +175,7 @@
 
             @endif
 
-            @if (Auth::user()->rol == "Coordinador")
-
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-30 mb-12">
-                <div class="flex items-center justify-start mt-4 mb-4">
-                    <h5 class="mb-0 md:ml-2 md:mr-8 text-3xl font-extrabold text-indigo-900 dark:text-white">Panel de Control</h5>
-                </div>
-            </div>
-
-            @endif
-
-            @if (Auth::user()->rol == "Admin")
-            <!-- Jumbotron -->
-
-            <!-- Hero section with background image, heading, subheading and button -->
-            <!--<div
-            class="relative h-96 overflow-hidden bg-cover bg-no-repeat p-12 text-center lg:h-scree"
-            style="background-image: url('https://images.unsplash.com/photo-1466692476868-aef1dfb1e735'); height: 800px;">
-                <div
-                    class="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-fixed"
-                    style="background-color: rgba(0, 167, 157, 0.7)">
-                    <div class="flex h-full items-center justify-center">
-                        <div class="text-white">
-                            <h2 class="mb-4 text-4xl font-semibold">
-                            Panel de administrador
-                            </h2>
-                            <h4 class="mb-6 text-xl font-semibold">
-                            En el lmenu puedes acceder a las mesas, fiscales inscritos y el dashboard de elecciones
-                            </h4>
-                            <a href="{{ url('voto') }}">
-                            <button
-                            type="button"
-                            class="rounded border-2 border-neutral-50 px-7 pb-[8px] pt-[10px] text-sm font-medium uppercase leading-normal text-neutral-50 transition duration-150 ease-in-out hover:border-neutral-100 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-neutral-100 focus:border-neutral-100 focus:text-neutral-100 focus:outline-none focus:ring-0 active:border-neutral-200 active:text-neutral-200 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
-                            data-te-ripple-init
-                            data-te-ripple-color="light">
-                            Ir al Dashboard
-                            </button>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>-->
-            <!-- Jumbotron -->
+            @if (Auth::user()->rol == "Admin" || Auth::user()->rol == "Coordinador")
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-16 mb-12  h-full">
                 <div class="flex flex-col md:flex-row items-center md:justify-start">
                     <div class="max-w-7xl sm:px-6 lg:px-8 md:mr-auto">
@@ -226,12 +185,21 @@
                     </div>
                     <div class="flex flex-row items-center md:justify-start md:mt-0 w-full">
                         <select id="department" name="departamento" class="rounded-lg w-full font-bold text-lg text-gray-700 border-0  bg-gray-200 hover:bg-gray-300">
-                            <option value="">GENERAL</option>    
+                            @if (Auth::user()->rol == "Admin")
+                                <option value="">GENERAL</option>    
                                 @foreach ($departments as $department)
                                 <option value="{{ $department }}">{{ $department }}</option>
                                 @endforeach
+                            @else if (Auth::user()->rol == "Coordinador")
+                                @foreach ($departments as $department)
+                                <option value="{{ $department }}" selected>{{ $department }}</option>
+                                @endforeach
+                            @endif
                             </select>
                         </div>
+                         
+
+                        
                     </div>
                 </div>
                 
@@ -250,6 +218,7 @@
                             <p id="stats-4" class="text-sm my-4 font-medium text-white"></p>
                         </div>
                     </div>
+                    @if (Auth::user()->rol == "Admin")
                     <div class="custom-background-card bg-cover bg-fixed h-52 p-8 md:p-8 rounded-lg shadow sm:rounded-lg">
                         <div class="flex flex-row items-center">
                             <div class="flex flex-col items-start w-1/2">
@@ -280,6 +249,7 @@
                             </p> 
                         </div>
                     </div>
+                    @endif
                     <div class="custom-background-card bg-cover bg-fixed h-52 p-8 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
                         <div class="flex flex-col items-start">
                             <p class="text-md mb-2 font-extrabold text-indigo-700" style="color:#e9f877;">Top Cobertura Municipal</p>
@@ -308,7 +278,7 @@
 
         </div>
 
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-12 mb-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-12 pb-12">
             <div class="flex flex-col items-center justify-center mt-4">
                 <svg class="flex-shrink-0 w-8 h-8 text-green-200" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M18.054 7.55929C17.9643 7.39438 17.7898 7.29361 17.6021 7.29838C16.1141 7.33616 12.7603 8.18772 10.8653 11.3002C8.8165 10.0069 6.58714 10.1901 5.76875 10.4277C5.60431 10.4754 5.47573 10.604 5.42799 10.7685C5.11597 11.8432 4.93393 14.4565 6.79472 16.3173C7.67344 17.196 8.58139 17.551 9.40487 17.5649C10.0522 17.5758 10.6174 17.3751 11.0403 17.0971C11.3139 17.3855 11.6032 17.6065 11.8648 17.7575C12.4735 18.1089 13.4851 18.4008 14.6 18.1765C15.7373 17.9477 16.9201 17.1943 17.8624 15.5622C19.7376 12.3143 18.7777 8.88972 18.054 7.55929ZM10.4439 16.2914C10.324 16.0793 10.2185 15.8481 10.1343 15.5982C9.81977 14.6649 9.81623 13.5142 10.3989 12.1892C8.83822 11.1732 7.1316 11.1846 6.32091 11.3266C6.11905 12.3387 6.14296 14.2513 7.50183 15.6102C8.22455 16.3329 8.89392 16.5561 9.42174 16.565C9.82986 16.5719 10.1826 16.4514 10.4439 16.2914ZM11.6331 11.9657C13.1571 9.32619 15.8906 8.45757 17.3147 8.31802C17.9058 9.62105 18.5204 12.4227 16.9964 15.0622C16.1787 16.4785 15.2233 17.031 14.4028 17.1961C13.983 17.2806 13.5823 17.2669 13.2328 17.2011L15.9393 12.2393C16.0715 11.9969 15.9822 11.6932 15.7397 11.561C15.4973 11.4287 15.1936 11.5181 15.0614 11.7605L13.6458 14.3558L13.4745 13.8419C13.3872 13.5799 13.104 13.4383 12.842 13.5257C12.58 13.613 12.4385 13.8962 12.5258 14.1581L12.9915 15.5552L12.288 16.8449C11.8686 16.5783 11.3405 16.0459 11.0819 15.2788C10.8146 14.4857 10.8154 13.382 11.6331 11.9657Z" fill="#47495F"/>
@@ -333,10 +303,14 @@
 
                 $('#saludo').html("¡Hola "+first_name+"!");
             }
+
+            document.addEventListener('contextmenu', function (event) {
+                event.preventDefault();
+            });
         });
         
         setTimeout(() => {
-            $('#department').val('');
+            $('#department').val();
             $('#department').trigger('change');
         }, 10);
 

@@ -110,7 +110,7 @@ class FiscalController extends Controller
             $fiscal->update($request->all());
         } 
 
-        if(Auth::user()->rol === 'Admin') {
+        if(Auth::user()->rol === 'Admin' || Auth::user()->rol === 'Coordinador') {
             $redirectUrl = url('admin/fiscales');
         } else {
             $redirectUrl = url('/dashboard');
@@ -226,7 +226,7 @@ class FiscalController extends Controller
 
         $currentStatus = $mesa->estatus;
 
-        if(Auth::user()->rol === 'Admin') {
+        if(Auth::user()->rol === 'Admin' || Auth::user()->rol === 'Coordinador') {
             $email = $request->email;
             $redirectUrl = url('admin/assignments/'.$email);
         } else {
@@ -322,12 +322,22 @@ class FiscalController extends Controller
      */
     public function adminListFiscales(Request $request): View
     {
-        // fetch departments
-        $departments = Mesa::distinct()->pluck('departamento');
+        if(Auth::user()->rol === 'Admin') {
+            // fetch departments
+            $departments = Mesa::distinct()->pluck('departamento');
 
-        $data = Fiscal::all();
+            $data = Fiscal::all();
 
-        return view('fiscal.admin-assignments', compact('data','departments'));
+            return view('fiscal.admin-assignments', compact('data','departments'));
+
+        } else if(Auth::user()->rol === 'Coordinador') {
+            // fetch departments
+            $cities = Mesa::where('departamento',Auth::user()->location)->distinct('municipio')->pluck('municipio');
+
+            $data = Fiscal::where('departamento',Auth::user()->location)->get();
+    
+            return view('fiscal.coordinator-assignments', compact('data','cities'));
+        }
     }
 
     /**
@@ -352,7 +362,7 @@ class FiscalController extends Controller
 
         $email = $request->email;
 
-        if(Auth::user()->rol === 'Admin') {
+        if(Auth::user()->rol === 'Admin' || Auth::user()->rol === 'Coordinador') {
             $assignments = Mesa::leftJoin('votos', 'mesas.jrv', '=', 'votos.jrv')
                         ->where('mesas.fiscal', $request->email)
                         ->select('mesas.*', \DB::raw('CASE WHEN votos.jrv IS NOT NULL THEN 1 ELSE 0 END AS votos'))
@@ -371,11 +381,10 @@ class FiscalController extends Controller
 
         $email = $request->email;
 
-        if(Auth::user()->rol === 'Admin') {
+        if(Auth::user()->rol === 'Admin' || Auth::user()->rol === 'Coordinador') {
             $city =  Fiscal::where("correo", $request->email)->pluck('municipio')->first();
 
             $data = Mesa::where("municipio", $city)
-                        ->orderBy("jrv")
                         ->orderBy("estatus")
                         ->get(["jrv","latitude","longitude","nombre","ubicacion","zona","departamento","municipio","estatus"]);
 
