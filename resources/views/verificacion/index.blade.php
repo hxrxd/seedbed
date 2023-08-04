@@ -20,10 +20,10 @@
                     <div class="flex flex-row items-center md:justify-end mt-8 md:mt-0 md:ml-auto">
                         <div class="p-2 ">
                             <div>
-                                <select id="departamento" name="departamento" class="rounded-lg w-full text-gray-900 border-0 border-white bg-gray-100 hover:bg-gray-200 focus:ring-white" autofocus>
+                                <select id="municipio" name="municipio" class="rounded-lg w-full text-gray-900 border-0 border-white bg-gray-100 hover:bg-gray-200 focus:ring-white" autofocus>
 
-                                    @foreach ($departments as $department)
-                                        <option value="{{ $department }}">{{ $department }}</option>
+                                    @foreach ($municipios as $municipio)
+                                        <option value="{{ $municipio }}">{{ $municipio }}</option>
                                     @endforeach
                                 </select>
 

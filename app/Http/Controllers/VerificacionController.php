@@ -17,8 +17,8 @@ class VerificacionController extends Controller
     public function index()
     {
         //
-        $departments = Mesa::distinct()->pluck('departamento');
-        return view('verificacion.index',['departments'=>$departments]);
+        $municipios = Mesa::distinct()->pluck('municipio');
+        return view('verificacion.index',['municipios'=>$municipios]);
     }
 
     /**
@@ -84,7 +84,7 @@ class VerificacionController extends Controller
         $acreditaciones = DB::table('mesas')
                             ->join('fiscals', 'mesas.fiscal', '=', 'fiscals.correo')
                             ->whereNotNull('mesas.fiscal')
-                            ->where('mesas.departamento', $request->departamento)
+                            ->where('mesas.municipio', $request->municipio)
                             ->select('fiscals.nombres', 'fiscals.apellidos', 'fiscals.dpi',  'mesas.nombre as mesa', 'mesas.jrv','mesas.fiscal')
                             ->get();
 
