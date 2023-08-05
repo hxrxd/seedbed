@@ -68,6 +68,7 @@ Route::post('api/fetch-cities', [FiscalController::class, 'fetchCities'])->middl
 Route::post('api/fetch-jrvs-by-center', [FiscalController::class, 'fetchTablesByCenter'])->middleware(['auth', 'verified'])->name('api.fetch.jrvs.center');
 Route::post('api/fetch-jrvs-by-city', [FiscalController::class, 'fetchTablesByCity'])->middleware(['auth', 'verified'])->name('api.fetch.jrvs.city');
 Route::post('api/check-jrv-status', [FiscalController::class, 'checkJrvStatus'])->middleware(['auth', 'verified'])->name('api.check.jrv');
+Route::post('api/check-dpi', [FiscalController::class, 'checkDPI'])->middleware(['auth', 'verified'])->name('api.check.dpi');
 Route::post('api/post-fiscal', [FiscalController::class, 'store'])->middleware(['auth', 'verified'])->name('api.post.fiscal');
 Route::post('api/update-fiscal', [FiscalController::class, 'updateFiscal'])->middleware(['auth', 'verified'])->name('api.update.fiscal');
 Route::post('api/downgrade-fiscal', [FiscalController::class, 'downgradeFiscal'])->middleware(['auth', 'verified'])->name('api.downgrade.fiscal');;
@@ -82,6 +83,7 @@ Route::get('resources', [FiscalController::class, 'showResources'])->middleware(
 
 //Admin
 Route::get('admin/fiscales', [FiscalController::class, 'adminListFiscales'])->middleware(['auth', 'verified'])->name('admin.fiscales');
+Route::get('admin/fiscales/create', [FiscalController::class, 'adminCreateFiscal'])->middleware(['auth', 'verified'])->name('admin.fiscales.create');
 Route::get('admin/assignments/{email}', [FiscalController::class, 'adminFiscalAssignments'])->middleware(['auth', 'verified'])->name('admin.assignments');
 Route::get('admin/assignments/{email}/new', [FiscalController::class, 'listAdminJRVs'])->middleware(['auth', 'verified'])->name('add.jrv');
 Route::get('admin/jrvs', [FiscalController::class, 'adminListMesas'])->middleware(['auth', 'verified'])->name('admin.jrvs');

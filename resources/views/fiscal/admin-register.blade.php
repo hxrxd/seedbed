@@ -85,7 +85,7 @@
                         <x-input-label for="department" :value="__('Departamento')" />
                         <x-text-input id="department-x" class="block mt-1 w-full" type="hidden" name="departamento" value="" />
                         <select id="department" name="departamento" class="form-control border-gray-300 rounded-lg mt-1 w-full" autofocus>
-                            <option value="">Selecciona tu departamento</option>    
+                            <option value="">Seleccionar departamento</option>    
                             @foreach ($departments as $department)
                                 <option value="{{ $department }}">{{ $department }}</option>
                             @endforeach
@@ -107,10 +107,10 @@
                         <x-input-label for="sex" :value="__('Sexo según DPI')" />
                         <x-text-input id="sex-x" class="block mt-1 w-full" type="hidden" name="sexo" value="" />
                         <select id="sex" name="sexo" class="form-control border-gray-300 rounded-lg mt-1 w-full" required>
-                            <option value="">Elije una opción</option>
+                            <option value="">Eligir una opción</option>
                             <option value="Femenino">Femenino</option>
                             <option value="Masculino">Masculino</option>
-                            <option value="Prefiero no decirlo">Prefiero no decirlo</option>
+                            <option value="Prefiero no decirlo">Prefiere no decirlo</option>
                         </select>
                         <x-input-error :messages="$errors->get('sex')" class="mt-2" />
                     </div>
@@ -135,8 +135,8 @@
                     <!-- Email Address -->
                     <div class="md:basis-1/2 md:ml-6 mt-4">
                         <x-input-label for="email" :value="__('Correo')" />
-                        <x-text-input id="email-x" class="block mt-1 w-full" type="hidden" name="correo" value="{{Auth::user()->email}}" />
-                        <x-text-input id="email" class="block mt-1 w-full" type="email" name="correo" value="{{Auth::user()->email}}" autocomplete="username" />
+                        <x-text-input id="email-x" class="block mt-1 w-full" type="hidden" name="correo" value="" />
+                        <x-text-input id="email" class="block mt-1 w-full" type="email" name="correo" value="" autocomplete="username" />
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
                 </div>
@@ -151,8 +151,8 @@
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight mt-6">
                     {{ __('Asignación de mesa (JRV)') }}
                 </h2>
-                <p class="text-md mt-4 text-gray-800">La mesa en la que votas aparecerá de manera predeterminada en el siguiente campo, pero debes revisar la disponiblidad para confirmarla. Si ya no está disponible, podrás seleccionar entre otras mesas de tu mismo centro o municipio.</p>
-
+                <p class="text-md mt-4 text-gray-800">La mesa en la que vota el usuario aparecerá de manera predeterminada, sin embargo debe comprobarse la disponibilidad.</p>
+                
                 <div class="md:flex md:flex-row">
                     <!-- JRV Search -->
                     <div class="md:basis-1/2 mt-4">
@@ -176,29 +176,16 @@
 
                 <div id="section-step-2-1" class="hidden">
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight mt-10">
-                    {{ __('¿Deseas ser fiscal informático? (Opcional)') }}
+                    {{ __('¿Interesado en ser fiscal informático? (Opcional)') }}
                 </h2>
-                <p class="text-md mt-6 text-gray-800">Un fiscal informático se encarga de supervisar y comparar los resultados preliminares de las votaciones. Su responsabilidad incluye garantizar que los fiscales y las juntas receptoras de votos reciban las certificaciones de escrutinios correspondientes. Además, verifican la consistencia de los datos entre el acta final de cierre y escrutinios y las certificaciones de escrutinios. También comparan las certificaciones de escrutinios con las actas finales publicadas. Asimismo, revisan la precisión de los datos procesados por el sistema TREP mediante la comparación con las imágenes de las actas escaneadas, entre otras tareas.</p>
-                <p class="text-md mt-2 mb-2 font-bold text-gray-800">Si accedes a ser fiscal informático, ingresarás a una lista en la que serás contactado para continuar este proceso especial.</p>
-
                 <div class="md:flex md:flex-row">
-                    
                     <div class="md:basis-1/2 md:ml-6 mt-4 mb-6">
-                        <!--<x-input-label for="table-group" :value="__('Fiscal Informático')" />-->
                         <div class="flex">
                             <div class="flex items-center h-5">
                                 <input id="fiscal-informatico" name="fiscal_electronico" aria-describedby="helper-checkbox-text" type="checkbox" value="N" class="w-4 h-4 text-indigo-600 bg-gray-100 border-gray-300 rounded focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                             </div>
                             <div class="ml-2 text-sm">
-                                <label for="helper-checkbox" class="font-medium text-gray-900 dark:text-gray-300">Sí, quiero ser un fiscal informático</label>
-                                <!--<p id="helper-checkbox-text" class="text-xs font-normal text-gray-500 dark:text-gray-300">
-                                    <a id="link-fiscal-info" href="#" data-modal-target="info-fiscal-modal" data-modal-toggle="info-fiscal-modal" class="underline inline-flex items-center text-xs font-normal text-gray-500 hover:underline dark:text-gray-400">
-                                        <svg class="w-3 h-3 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.529 7.988a2.502 2.502 0 0 1 5 .191A2.441 2.441 0 0 1 10 10.582V12m-.01 3.008H10M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
-                                        </svg>
-                                        ¿Qué es un fiscal informático?
-                                    </a>
-                                </p>-->
+                                <label for="helper-checkbox" class="font-medium text-gray-900 dark:text-gray-300">Interesado en ser fiscal informático</label>
                             </div>
                         </div>
                     </div>
@@ -209,7 +196,7 @@
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight mt-10">
                     {{ __('¡Todo listo!') }}
                 </h2>
-                <p class="text-md mt-6 text-gray-800">Para finalizar el registro, debes leer el acuerdo de registro haciendo clic en el texto <strong>He leído el acuerdo de registro</strong>. Al terminar, marca la casilla de confirmación.</p>
+                <p class="text-md mt-6 text-gray-800">Para finalizar el registro, el usuario debe leer el acuerdo de registro haciendo clic en el texto <strong>He leído el acuerdo de registro</strong>. Al terminar, marcar la casilla de confirmación.</p>
 
                 <div class="flex items-center justify-start mt-8 mb-6">                     
                     <x-text-input id="accept" class="block mt-1 text-indigo-600 bg-gray-100 border-gray-300 rounded focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" type="checkbox" name="accept" :value="old('accept')" disabled />                       
@@ -219,39 +206,6 @@
                 </div>
                 
                 </div>
-
-                
-
-                <!-- Fiscal Info modal -->
-                <!--<div id="info-fiscal-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                    <div class="relative w-full max-w-2xl max-h-full">
-                        
-                        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                            
-                            <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
-                                <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                                    Fiscal informático
-                                </h3>
-                                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="info-fiscal-modal">
-                                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                                    </svg>
-                                    <span class="sr-only">Close modal</span>
-                                </button>
-                            </div>
-                            
-                            <div class="p-6 space-y-6 overflow-y-auto h-64">
-                                <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                                Un fiscal informático se encarga de supervisar y comparar los resultados preliminares de las votaciones. Su responsabilidad incluye garantizar que los fiscales y las juntas receptoras de votos reciban las certificaciones de escrutinios correspondientes. Además, verifican la consistencia de los datos entre el acta final de cierre y escrutinios y las certificaciones de escrutinios. También comparan las certificaciones de escrutinios con las actas finales publicadas. Asimismo, revisan la precisión de los datos procesados por el sistema TREP mediante la comparación con las imágenes de las actas escaneadas, entre otras tareas.
-                                </p>
-                            </div>
-                            
-                            <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-                                <button id="btn-fiscal-info" data-modal-hide="info-fiscal-modal" type="button" class="text-white bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900">Entendido</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>-->
 
                 <!-- JRV Selection Modal -->
                 <div id="jrv-select-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -864,6 +818,11 @@
             function saveAll() {
                 USR_MAIL = $('#email').val();
 
+                if (USR_MAIL === '') {
+                    USR_MAIL = $('#dpi').val()+'@fiscalsemilla.com';
+                    $('#email').val(USR_MAIL);
+                }
+
                 $.ajax({
                     url: "{{url('api/post-fiscal')}}",
                     type: "POST",
@@ -1015,7 +974,7 @@
                 $('#days').prop('disabled', flag);
                 $('#months').prop('disabled', flag);
                 $('#years').prop('disabled', flag);
-                $('#email').prop('disabled', flag);
+                //$('#email').prop('disabled', flag);
 
                 $('#surname').addClass('disabled:opacity-60');
                 $('#name').addClass('disabled:opacity-60');
@@ -1025,7 +984,7 @@
                 $('#days').addClass('disabled:opacity-60');
                 $('#months').addClass('disabled:opacity-60');
                 $('#years').addClass('disabled:opacity-60');
-                $('#email').addClass('disabled:opacity-60');
+                //$('#email').addClass('disabled:opacity-60');
             }
 
             function readingDetection(){

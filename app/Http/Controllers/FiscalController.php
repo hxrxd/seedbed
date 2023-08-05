@@ -65,17 +65,26 @@ class FiscalController extends Controller
         $mesa = Mesa::findOrFail($jrv);
         $currentStatus = $mesa->estatus;
 
-        $user = User::where('email',$request->input('correo'))->first();
-        $user->rol="Fiscal";
+        // When the Admin or coordinator create a Fiscal... that's why
+        if (Auth::user()->rol === 'Voluntario') {
+            $user = User::where('email',$request->input('correo'))->first();
+            $user->rol="Fiscal";
 
-
+            if ($currentStatus === 0) {
+                $user->save();
+            }
+        }
+        
         if ($currentStatus === 0) {
             $mesa->fiscal = $request->input('fiscal');
             $mesa->estatus = $request->input('estatus');
             $mesa->save();
-            $user->save();
-
-            $redirectUrl = url('/dashboard');
+            
+            if (Auth::user()->rol === 'Admin' || Auth::user()->rol === 'Coordinador') {
+                $redirectUrl = url('admin/fiscales');
+            } else {
+                $redirectUrl = url('/dashboard');
+            }
             return response()->json(['redirect_url' => $redirectUrl]);
         } else {
             return response()->json(['message' => 'ERROR']);
@@ -217,6 +226,18 @@ class FiscalController extends Controller
     }
 
     /**
+     * Check the the JRV's current status
+     *
+     * @return response()
+     */
+    public function checkDPI(Request $request)
+    {
+        $rows =  Fiscal::where("dpi", $request->dpi)->count();
+
+        return response()->json($rows);
+    }
+
+    /**
      * Update the specified JRV.
      */
     public function updateJRV(Request $request)
@@ -337,6 +358,20 @@ class FiscalController extends Controller
             $data = Fiscal::where('departamento',Auth::user()->location)->get();
     
             return view('fiscal.coordinator-assignments', compact('data','cities'));
+        }
+    }
+
+    /**
+     * List all users registered
+     */
+    public function adminCreateFiscal(Request $request): View
+    {
+        // fetch departments
+        $departments = Mesa::distinct()->pluck('departamento');
+        if(Auth::user()->rol === 'Admin' || Auth::user()->rol === 'Coordinador') {
+            return view('fiscal.admin-register', compact('departments'));
+        } else {
+            return view('fiscal.coordinator-assignments', compact('departments'));
         }
     }
 
