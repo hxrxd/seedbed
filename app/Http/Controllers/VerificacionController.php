@@ -81,15 +81,13 @@ class VerificacionController extends Controller
         set_time_limit(0);
         ini_set("memory_limit",-1);
         ini_set('max_execution_time', 0);
-        $acreditaciones = Fiscal::select('fiscals.nombres', 'fiscals.apellidos', 'fiscals.dpi', 'mesas.nombre as centro')
-            ->selectRaw('GROUP_CONCAT(mesas.jrv SEPARATOR ", ") AS mesas')
-            ->join('mesas', 'fiscals.correo', '=', 'mesas.fiscal')
+        $acreditaciones = Mesa::select('fiscals.nombres', 'fiscals.apellidos', 'fiscals.dpi', 'mesas.nombre as centro','mesas.jrv ')
+            ->join('fiscals', 'mesas.fiscal', '=', 'fiscals.correo')
             ->where('mesas.municipio', $request->municipio)
             ->whereNotNull('mesas.fiscal')
-            ->groupBy('fiscals.nombres', 'fiscals.apellidos', 'fiscals.dpi', 'centro')
             ->get();
         $pdf = PDF::loadView('verificacion.fiscales',['acreditaciones'=>$acreditaciones])->setPaper("letter","portrait");
-        return $pdf->stream('acreditacion.pdf');
+        return $pdf->download('acreditacion.pdf');
 
 
     }
