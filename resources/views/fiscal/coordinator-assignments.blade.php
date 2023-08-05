@@ -81,14 +81,22 @@
                                 <p class="text-sm mt-2 mb-2 text-gray-500">{{ $fiscal->departamento }}, {{ $fiscal->municipio }}</p>
                                 <div class="flex flex-row items-center justify-start mt-4 mb-2">
                                     @if ($fiscal->status == 'Active')
-                                    <a href="{{url('fiscal/'.$fiscal->correo.'/edit')}}" data-jrv="{{ $fiscal->dpi }}" class="add-jrv-button text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
+                                    <!--<a href="{{url('fiscal/'.$fiscal->correo.'/edit')}}" data-jrv="{{ $fiscal->dpi }}" class="add-jrv-button text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
                                         <div class="flex flex-row items-center justify-start">
                                             <svg class="w-5 h-5 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 18">
                                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.109 17H1v-2a4 4 0 0 1 4-4h.87M10 4.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm7.95 2.55a2 2 0 0 1 0 2.829l-6.364 6.364-3.536.707.707-3.536 6.364-6.364a2 2 0 0 1 2.829 0Z"/>
                                             </svg>
                                             <span class="ml-2">Editar</span>
                                         </div>
-                                    </a>
+                                    </a>-->
+                                    <span class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center opacity-50 cursor-not-allowed">
+                                        <div class="flex flex-row items-center justify-start">
+                                                <svg class="w-5 h-5 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 18">
+                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.109 17H1v-2a4 4 0 0 1 4-4h.87M10 4.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm7.95 2.55a2 2 0 0 1 0 2.829l-6.364 6.364-3.536.707.707-3.536 6.364-6.364a2 2 0 0 1 2.829 0Z"/>
+                                                </svg>
+                                            <span class="ml-2">Editar</span>
+                                        </div>
+                                    </span>
                                     <a href="{{url('admin/assignments/'.$fiscal->correo)}}" data-jrv="{{ $fiscal->dpi }}" class="add-jrv-button text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
                                         <div class="flex flex-row items-center justify-start">
                                             <svg class="w-5 h-5 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 18">
