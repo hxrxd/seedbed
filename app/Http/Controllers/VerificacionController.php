@@ -81,7 +81,7 @@ class VerificacionController extends Controller
         set_time_limit(0);
         ini_set("memory_limit",-1);
         ini_set('max_execution_time', 0);
-        $acreditaciones = Mesa::select('fiscals.nombres', 'fiscals.apellidos', 'fiscals.dpi', 'mesas.nombre as centro','mesas.jrv ')
+        $acreditaciones = Mesa::select('fiscals.nombres', 'fiscals.apellidos', 'fiscals.dpi','mesas.nombre as centro')
             ->join('fiscals', 'mesas.fiscal', '=', 'fiscals.correo')
             ->where('mesas.municipio', $request->municipio)
             ->whereNotNull('mesas.fiscal')
