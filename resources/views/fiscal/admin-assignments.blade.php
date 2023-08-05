@@ -37,14 +37,19 @@
                                     <input type="text" id="searchInput" class="block p-2 pl-10 text-base font-bold text-gray-900 rounded-lg border-0 border-white bg-gray-100 hover:bg-gray-200 focus:ring-white" placeholder="Buscar fiscal">
                                 </div>
 
-                                <a id="sortButton" href="#" class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
+                                <!--<a id="sortButton" href="#" class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
                                     <svg class="w-6 h-6 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 20">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6v13m0 0 3-3m-3 3-3-3m11-2V1m0 0L9 4m3-3 3 3"/>
                                     </svg>
-                                </a>
+                                </a>-->
                                 <a id="downloadButton" class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center cursor-pointer">
                                     <svg class="w-6 h-6 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 18">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 1v11m0 0 4-4m-4 4L4 8m11 4v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3"/>
+                                    </svg>
+                                </a>
+                                <a id="addButton" href="{{ route('admin.fiscales.create') }}" class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center cursor-pointer">
+                                    <svg class="w-6 h-6 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 1v16M1 9h16"/>
                                     </svg>
                                 </a>
                             </div>
@@ -294,7 +299,7 @@
 
             // Attach event listeners
             //document.getElementById("searchInput").addEventListener("keyup", filterItems);
-            document.getElementById("sortButton").addEventListener("click", sortItems);
+            //document.getElementById("sortButton").addEventListener("click", sortItems);
 
             document.getElementById("searchInput").addEventListener("keyup", function(event) {
                 $('#department').val('');

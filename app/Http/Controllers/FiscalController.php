@@ -81,7 +81,7 @@ class FiscalController extends Controller
             $mesa->save();
             
             if (Auth::user()->rol === 'Admin' || Auth::user()->rol === 'Coordinador') {
-                $redirectUrl = url('admin/fiscales');
+                $redirectUrl = url('admin/fiscales/create');
             } else {
                 $redirectUrl = url('/dashboard');
             }
@@ -352,11 +352,25 @@ class FiscalController extends Controller
             return view('fiscal.admin-assignments', compact('data','departments'));
 
         } else if(Auth::user()->rol === 'Coordinador') {
-            // fetch departments
-            $cities = Mesa::where('departamento',Auth::user()->location)->distinct('municipio')->pluck('municipio');
+            
+            if(Auth::user()->location === 'GUATEMALA') {
+                // fetch departments
+                $cities = Mesa::where('departamento',Auth::user()->location)
+                        ->whereNotIn('municipio',[Auth::user()->location])->distinct('municipio')->pluck('municipio');
 
-            $data = Fiscal::where('departamento',Auth::user()->location)->get();
-    
+                $data = Fiscal::where('departamento',Auth::user()->location)
+                        ->whereNotIn('municipio',[Auth::user()->location])->get();
+            } else {
+                // fetch departments
+                $cities = Mesa::where('departamento',Auth::user()->location)->distinct('municipio')->pluck('municipio');
+
+                $data = Fiscal::where('departamento',Auth::user()->location)
+                        // this is to handle the pre-register
+                        ->union(Fiscal::where('coordinador', Auth::user()->email))
+                        ->distinct()
+                        ->get();
+            }
+
             return view('fiscal.coordinator-assignments', compact('data','cities'));
         }
     }

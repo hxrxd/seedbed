@@ -8,9 +8,18 @@
             <form id="frm-main" class="">
                 @csrf
 
-                <h1 class="font-extrabold text-3xl text-gray-800 leading-tight mb-6">
-                    {{ __('Paso 1') }}
-                </h1>
+                <div class="flex flex-col md:flex-row px-4 md:px-0 items-center justify-start mb-4">
+                    <div class="flex flex-row mr-auto items-center justify-start">
+                        <a href="{{url('admin/fiscales')}}" class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
+                            <svg class="w-6 h-6 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 1 1.3 6.326a.91.91 0 0 0 0 1.348L7 13"/>
+                            </svg>
+                        </a>
+                        <h1 class="font-extrabold text-3xl text-gray-800 leading-tight">
+                            {{ __('Nuevo Fiscal') }}
+                        </h1>
+                    </div>
+                </div>
 
                 <!-- Personal info section -->
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -144,9 +153,6 @@
 
                 <!-- JRV selection section -->
                 <div id="section-step-2" class="hidden">
-                <h1 class="font-extrabold text-3xl text-gray-800 leading-tight mt-10 mb-6">
-                    {{ __('Paso 2') }}
-                </h1>
 
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight mt-6">
                     {{ __('Asignación de mesa (JRV)') }}
@@ -179,13 +185,13 @@
                     {{ __('¿Interesado en ser fiscal informático? (Opcional)') }}
                 </h2>
                 <div class="md:flex md:flex-row">
-                    <div class="md:basis-1/2 md:ml-6 mt-4 mb-6">
+                    <div class="md:basis-1/2 mt-4 mb-6">
                         <div class="flex">
                             <div class="flex items-center h-5">
                                 <input id="fiscal-informatico" name="fiscal_electronico" aria-describedby="helper-checkbox-text" type="checkbox" value="N" class="w-4 h-4 text-indigo-600 bg-gray-100 border-gray-300 rounded focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                             </div>
                             <div class="ml-2 text-sm">
-                                <label for="helper-checkbox" class="font-medium text-gray-900 dark:text-gray-300">Interesado en ser fiscal informático</label>
+                                <label for="helper-checkbox" class="font-medium text-gray-900 dark:text-gray-300">Sí, el usuario está interesado en ser fiscal informático</label>
                             </div>
                         </div>
                     </div>
@@ -194,14 +200,14 @@
 
                 <div id="section-step-3" class="hidden">
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight mt-10">
-                    {{ __('¡Todo listo!') }}
+                    {{ __('Aceptación de acuerdo de registro') }}
                 </h2>
-                <p class="text-md mt-6 text-gray-800">Para finalizar el registro, el usuario debe leer el acuerdo de registro haciendo clic en el texto <strong>He leído el acuerdo de registro</strong>. Al terminar, marcar la casilla de confirmación.</p>
+                <!--<p class="text-md mt-6 text-gray-800">Para finalizar el registro, el usuario debe leer el acuerdo de registro haciendo clic en el texto <strong>He leído el acuerdo de registro</strong>. Al terminar, marcar la casilla de confirmación.</p>-->
 
                 <div class="flex items-center justify-start mt-8 mb-6">                     
-                    <x-text-input id="accept" class="block mt-1 text-indigo-600 bg-gray-100 border-gray-300 rounded focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" type="checkbox" name="accept" :value="old('accept')" disabled />                       
+                    <x-text-input id="accept" class="block mt-1 text-indigo-600 bg-gray-100 border-gray-300 rounded focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" type="checkbox" name="accept" :value="old('accept')"/>                       
                     <a id="link-terms" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ml-2" data-modal-target="staticModal" data-modal-toggle="staticModal" href="#">
-                        {{ __('He leído el acuerdo de registro') }}
+                        {{ __('El nuevo fiscal ha leído el acuerdo de registro') }}
                     </a>                    
                 </div>
                 
@@ -497,16 +503,37 @@
                     $('#section-step-2-1').removeClass('hidden');
                     $('#section-step-2-1').addClass('animate');
                     $('#btn-next-step').addClass('move-button');
-                    $('#btn-next-step').html("Continuar");
+                    $('#btn-next-step').html("Continuar");                   
                     
                     CURRENT_STEP = 'STEP_3';
 
                     setTimeout(() => {
                         $('#section-step-2-1').removeClass('animate');
                         $('#btn-next-step').removeClass('move-button');
-                    }, 1000);
+                    }, 500);
                     //console.log(CURRENT_STEP);
-                } else if (step === 'STEP_3') {
+
+                    // final step
+                    $('#section-step-3').removeClass('hidden');
+                    $('#section-step-3').addClass('animate');
+                    $('#btn-next-step').addClass('hidden');
+                    $('#btn-cancel').addClass('hidden');
+
+                    $('#btn-save').removeClass('hidden');
+
+                    //$('#btn-next-step').html('Finalizar');
+                    $('#btn-save').prop('disabled', false);
+                    $('#btn-save').addClass('disabled:bg-indigo-200');
+
+                    $('#btn-save').addClass('move-button');
+                    CURRENT_STEP = 'COMMIT';
+
+                    setTimeout(() => {
+                        $('#section-step-3').removeClass('animate');
+                        //$('#btn-next-step').removeClass('move-button');
+                        $('#btn-save').removeClass('move-button');
+                    }, 1000);
+                } /*else if (step === 'STEP_3') {
                     // final step
                     $('#section-step-3').removeClass('hidden');
                     $('#section-step-3').addClass('animate');
@@ -530,7 +557,7 @@
                         $('#btn-save').removeClass('move-button');
                     }, 1000);
                     //console.log(CURRENT_STEP);
-                }
+                }*/
             }
 
             // City Dropdown Change Event
@@ -818,6 +845,12 @@
             function saveAll() {
                 USR_MAIL = $('#email').val();
 
+                // If the user wrote a non-email text
+                if (!USR_MAIL.includes('@')) {
+                    USR_MAIL = '';
+                }
+
+                // If there's no email
                 if (USR_MAIL === '') {
                     USR_MAIL = $('#dpi').val()+'@fiscalsemilla.com';
                     $('#email').val(USR_MAIL);
@@ -1004,7 +1037,7 @@
                         //console.log('heading down');
                         $('#btn-terms').removeClass('disabled:bg-indigo-200');
                         $('#btn-terms').prop('disabled', false);
-                        $('#accept').prop('disabled', false); 
+                        //$('#accept').prop('disabled', false); 
                     }
                 });
             }

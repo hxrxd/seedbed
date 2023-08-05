@@ -79,8 +79,7 @@
                                 <span class="text-sm py-1 px-2 font-bold mt-2 mb-2 bg-[#e9f877] rounded-md text-indigo-800">{{ $fiscal->dpi }}</span> 
                                 <p class="text-sm font-bold mt-2 mb-2 text-gray-400"><span class="text-sm mt-2 mb-2 text-gray-500"><span class="text-sm mt-2 mb-2 text-gray-500">CONTACTO: </span>+502 {{ $fiscal->telefono }} / {{ $fiscal->correo }}</p>
                                 <p class="text-sm mt-2 mb-2 text-gray-500">{{ $fiscal->departamento }}, {{ $fiscal->municipio }}</p>
-                                <div class="flex flex-row items-center justify-start mt-4 mb-2">
-                                    @if ($fiscal->status == 'Active')
+                                <div class="flex flex-row items-center justify-start mt-4 mb-2">                                  
                                     <!--<a href="{{url('fiscal/'.$fiscal->correo.'/edit')}}" data-jrv="{{ $fiscal->dpi }}" class="add-jrv-button text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
                                         <div class="flex flex-row items-center justify-start">
                                             <svg class="w-5 h-5 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 18">
@@ -105,6 +104,16 @@
                                             <span class="ml-2">Asignar</span>
                                         </div>
                                     </a>
+                                    @if ($fiscal->status == 'Acreditado')
+                                    <a href="{{url('admin/assignments/'.$fiscal->correo)}}" data-jrv="{{ $fiscal->dpi }}" class="add-jrv-button text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
+                                        <div class="flex flex-row items-center justify-start">
+                                            <svg class="w-6 h-6 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 18">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 1v11m0 0 4-4m-4 4L4 8m11 4v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3"/>
+                                            </svg>
+                                            <span class="ml-2">Descargar Acreditación</span>
+                                        </div>
+                                    </a>
+                                    @else
                                     <span class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center opacity-50 cursor-not-allowed">
                                         <div class="flex flex-row items-center justify-start">
                                             <svg class="w-5 h-5 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 21">
