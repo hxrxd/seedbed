@@ -16,9 +16,9 @@ class QRController extends Controller
      */
     public function index()
     {
-        
-        
-       
+
+
+
     }
 
     /**
@@ -42,12 +42,33 @@ class QRController extends Controller
      */
     public function show(string $id)
     {
-        //
-        $fiscal = Fiscal::where('correo',$id)->first();
-        $mesa = Mesa::select('jrv','departamento','municipio','nombre','fiscal')->where('fiscal',$id)->first();
-        $qrcode = base64_encode(QrCode::format('svg')->size(64)->errorCorrection('H')->generate(url("").'/verificacion/'.$id));
-        $pdf = PDF::loadView('verificacion.acreditacion',['fiscal'=>$fiscal,'mesa'=>$mesa,'qrcode'=>$qrcode])->setPaper("letter","portrait");
-        return $pdf->download('acreditacion.pdf');
+        // Si el usuario es coordinador o admin
+        if(Auth::user()->rol == "Admin" || Auth::user()->rol == "Coordinador"){
+            $fiscal = Fiscal::where('correo',$id)->first();
+            $fiscal->fiscals = "Acreditado";
+            $fiscal->save();
+
+            $mesas = Mesa::select('jrv','departamento','municipio','nombre','fiscal')->where('fiscal',$id)->get();
+            $qrcode = base64_encode(QrCode::format('svg')->size(64)->errorCorrection('H')->generate(url("").'/verificacion/'.$id));
+            $pdf = PDF::loadView('verificacion.acreditacion',['fiscal'=>$fiscal,'mesas'=>$mesas,'qrcode'=>$qrcode])->setPaper("letter","portrait");
+            return $pdf->download('acreditacion.pdf');
+
+
+        }
+
+        // Si el susuario es fiscal
+        if(Auth::user()->rol == "Fiscal"){
+
+            $fiscal = Fiscal::where('correo',$id)->first();
+
+            if( $fiscal->fiscals == "Acreditado"){
+                $mesas = Mesa::select('jrv','departamento','municipio','nombre','fiscal')->where('fiscal',$id)->get();
+                $qrcode = base64_encode(QrCode::format('svg')->size(64)->errorCorrection('H')->generate(url("").'/verificacion/'.$id));
+                $pdf = PDF::loadView('verificacion.acreditacion',['fiscal'=>$fiscal,'mesas'=>$mesas,'qrcode'=>$qrcode])->setPaper("letter","portrait");
+                return $pdf->download('acreditacion.pdf');
+            }
+
+        }
     }
 
     /**
