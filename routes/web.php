@@ -90,6 +90,8 @@ Route::get('admin/jrvs', [FiscalController::class, 'adminListMesas'])->middlewar
 Route::get('admin/users', [UserController::class, 'getUsers'])->middleware(['auth', 'verified'])->name('admin.users');
 Route::get('admin/users/{email}/edit', [UserController::class, 'editUser'])->middleware(['auth', 'verified'])->name('admin.users.edit');
 Route::post('admin/users/update', [UserController::class, 'updateUser'])->middleware(['auth', 'verified'])->name('admin.user.update');
+Route::post('admin/authorize', [QRController::class, 'authorizeFiscal'])->middleware(['auth', 'verified'])->name('admin.authorize');
+Route::get('admin/qr/{id}', [QRController::class, 'downloadAuthorization'])->middleware(['auth', 'verified'])->name('admin.qr');
 
 //Get routes
 Route::get('getmesas', [ExcelController::class, 'getMesas'])->name('getmesas')->middleware(['auth', 'verified']);

@@ -37,9 +37,14 @@
                                     <input type="text" id="searchInput" class="block p-2 pl-10 text-base font-bold text-gray-900 rounded-lg border-0 border-white bg-gray-100 hover:bg-gray-200 focus:ring-white" placeholder="Buscar fiscal">
                                 </div>
 
-                                <a id="sortButton" href="#" class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
+                                <!--<a id="sortButton" href="#" class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
                                     <svg class="w-6 h-6 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 20">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6v13m0 0 3-3m-3 3-3-3m11-2V1m0 0L9 4m3-3 3 3"/>
+                                    </svg>
+                                </a>-->
+                                <a id="downloadButton" href="{{url('getfiscal') }}" class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
+                                    <svg class="w-6 h-6 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 18">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 1v11m0 0 4-4m-4 4L4 8m11 4v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3"/>
                                     </svg>
                                 </a>
                                 <a id="addButton" href="{{ route('admin.fiscales.create') }}" class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center cursor-pointer">
@@ -50,11 +55,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div id="downloadOptions" class="hidden flex flex-row px-8 items-center justify-center md:mt-0 md:ml-auto w-full">
-                    <a id="downloadButton1" href="{{url('getfiscal') }}" class="text-white bg-indigo-800 hover:bg-indigo-900 rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">Lista General de Fiscales</a>
-                    <a id="downloadButton2" href="{{url('getfiscalelectronico') }}" class="text-white bg-indigo-800 hover:bg-indigo-900 rounded-lg font-extrabold text-sm px-2 py-1.5 text-center">Interesados Fiscales Informáticos</a>
                 </div>
 
                 <div id="loading" class="flex items-center justify-center p-6 h-64">
@@ -78,7 +78,7 @@
                                 </h2>         
                                 <span class="text-sm py-1 px-2 font-bold mt-2 mb-2 bg-[#e9f877] rounded-md text-indigo-800">{{ $fiscal->dpi }}</span> 
                                 <p class="text-sm font-bold mt-2 mb-2 text-gray-400"><span class="text-sm mt-2 mb-2 text-gray-500"><span class="text-sm mt-2 mb-2 text-gray-500">CONTACTO: </span>+502 {{ $fiscal->telefono }} / {{ $fiscal->correo }}</p>
-                                <p class="text-sm mt-2 mb-2 text-gray-500">{{ $fiscal->departamento }}, {{ $fiscal->municipio }}</p>
+                                <p class="text-sm mt-2 mb-2 text-gray-500">{{ $fiscal->departamento }}, <span class="item-city">{{ $fiscal->municipio }}</span></p>
                                 <div class="flex flex-row items-center justify-start mt-4 mb-2">                                  
                                     <a href="{{url('fiscal/'.$fiscal->correo.'/edit')}}" data-jrv="{{ $fiscal->dpi }}" class="add-jrv-button text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
                                         <div class="flex flex-row items-center justify-start">
@@ -105,7 +105,7 @@
                                         </div>
                                     </a>
                                     @if ($fiscal->status == 'Acreditado')
-                                    <a href="{{url('admin/assignments/'.$fiscal->correo)}}" data-jrv="{{ $fiscal->dpi }}" class="add-jrv-button text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
+                                    <a href="{{url('admin/qr/'.$fiscal->correo)}}" class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
                                         <div class="flex flex-row items-center justify-start">
                                             <svg class="w-6 h-6 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 18">
                                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 1v11m0 0 4-4m-4 4L4 8m11 4v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3"/>
@@ -114,14 +114,14 @@
                                         </div>
                                     </a>
                                     @else
-                                    <span class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center opacity-50 cursor-not-allowed">
+                                    <a data-fiscal="{{ $fiscal->correo }}" class="auth-button text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center cursor-pointer">
                                         <div class="flex flex-row items-center justify-start">
                                             <svg class="w-5 h-5 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 21">
                                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m6.072 10.072 2 2 6-4m3.586 4.314.9-.9a2 2 0 0 0 0-2.828l-.9-.9a2 2 0 0 1-.586-1.414V5.072a2 2 0 0 0-2-2H13.8a2 2 0 0 1-1.414-.586l-.9-.9a2 2 0 0 0-2.828 0l-.9.9a2 2 0 0 1-1.414.586H5.072a2 2 0 0 0-2 2v1.272a2 2 0 0 1-.586 1.414l-.9.9a2 2 0 0 0 0 2.828l.9.9a2 2 0 0 1 .586 1.414v1.272a2 2 0 0 0 2 2h1.272a2 2 0 0 1 1.414.586l.9.9a2 2 0 0 0 2.828 0l.9-.9a2 2 0 0 1 1.414-.586h1.272a2 2 0 0 0 2-2V13.8a2 2 0 0 1 .586-1.414Z"/>
                                             </svg>
                                             <span class="ml-2">Acreditar</span>
                                         </div>
-                                    </span>
+                                    </a>
                                     @endif
                                 </div>
                             </div>
@@ -171,49 +171,61 @@
                 filterItems('SELECT');
             });
 
-            // download button action
-            $('#downloadButton').on('click', function() {
-                $('#downloadOptions').removeClass('hidden');
-            });
-
-            $('#downloadButton1').on('click', function() {
-                $('#downloadOptions').addClass('hidden');
-            });
-
-            $('#downloadButton2').on('click', function() {
-                $('#downloadOptions').addClass('hidden');
-            });
-
-            /*var addButtons = document.querySelectorAll(".add-jrv-button");
+            var addButtons = document.querySelectorAll(".auth-button");
             addButtons.forEach(function(button) {
                 //console.log('flag');
                 button.addEventListener("click", function(event) {
                     event.preventDefault();
-                    var jrv = this.dataset.jrv; 
-                    updateJRV(jrv);
+                    var fiscal = this.dataset.fiscal; 
+                    authorizeFiscal(fiscal, this);
                 });
-            });*/
+            });
 
-            function updateJRV(currentJRV) {
+            // Auth confirmation
+            function authorizeFiscal(currentJRV, button) {
+                swal({
+                    title: '¿Está seguro que este fiscal debe ser acreditado?',
+                    text: "El fiscal será acreditado",
+                    icon: 'warning',
+                    buttons:  {
+                        cancel: "No, volver a la lista",
+                        confirm: "Sí",
+                    },
+
+                }).then((willStore ) => {
+                    if (willStore) {
+                        authorize(currentJRV, button);
+                    }
+                });               
+            };
+
+            function authorize(currentID, button) {
 
                 $.ajax({
-                    url: "{{url('api/update-jrv')}}",
+                    url: "{{url('admin/authorize')}}",
                     type: "POST",
                     data: {
-                        jrv: currentJRV,
+                        id: currentID,
                         _token: '{{csrf_token()}}',
                     },
                     dataType: 'json',
                     success: function (result) {
                         //console.log(result);
                         
-                        showSimpleAlert('¡Proceso exitoso!', 'La JRV fue asociada a tu usuario', 'NO_BUTTON','success');
+                        showSimpleAlert('¡Proceso exitoso!', 'El fiscal fue acreditado', 'NO_BUTTON','success');
+                        
+                        // Remove the item from the list in the DOM
+                        //var item = button.closest(".item-list");
+                        //item.disable();
                         
                         setTimeout(() => {
                             var redirectUrl = result.redirect_url;
                             window.location.href = redirectUrl;
                         }, 1000);
 
+                    },
+                    error: function(xhr, status, error) {
+                        console.log('ERROR: '+error);
                     }
                 });
             }
@@ -244,22 +256,19 @@
 
                 if (searchType === 'SELECT') {
                     input = document.getElementById("department").value.toLowerCase();
-                } else if (searchType === 'SORT') {
-                    if (SORT_ASC) {
-                        input = 'sin asignar'
-                        SORT_ASC = false;
-                    } else {
-                        input = 'asignada'
-                        SORT_ASC = true;
-                    }
-                    console.log(input);
                 }
 
                 const items = document.querySelectorAll("#itemsContainer > div");
                 let hasResults = false;
                 
                 items.forEach(item => {
-                const textElements = item.querySelectorAll(".item-data, .text-xl, .text-sm");
+                    let textElements = null;
+                    if (searchType === 'SELECT') {
+                        textElements = item.querySelectorAll(".item-city");
+                    } else {
+                        textElements = item.querySelectorAll(".item-data, .text-xl, .text-sm");
+                    }
+                
                 let foundMatch = false;
                 textElements.forEach(textElement => {
                     const text = textElement.textContent.toLowerCase();
@@ -311,7 +320,7 @@
 
             // Attach event listeners
             //document.getElementById("searchInput").addEventListener("keyup", filterItems);
-            document.getElementById("sortButton").addEventListener("click", sortItems);
+            //document.getElementById("sortButton").addEventListener("click", sortItems);
 
             document.getElementById("searchInput").addEventListener("keyup", function(event) {
                 $('#department').val('');

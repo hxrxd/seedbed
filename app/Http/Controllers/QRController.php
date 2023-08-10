@@ -8,6 +8,8 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\Fiscal;
 use App\Models\Mesa;
 
+use Auth;
+
 
 class QRController extends Controller
 {
@@ -45,7 +47,7 @@ class QRController extends Controller
         // Si el usuario es coordinador o admin
         if(Auth::user()->rol == "Admin" || Auth::user()->rol == "Coordinador"){
             $fiscal = Fiscal::where('correo',$id)->first();
-            $fiscal->fiscals = "Acreditado";
+            $fiscal->status = "Acreditado";
             $fiscal->save();
 
             $mesas = Mesa::select('jrv','departamento','municipio','nombre','fiscal')->where('fiscal',$id)->get();
@@ -61,13 +63,52 @@ class QRController extends Controller
 
             $fiscal = Fiscal::where('correo',$id)->first();
 
-            if( $fiscal->fiscals == "Acreditado"){
+            if( $fiscal->status == "Acreditado"){
                 $mesas = Mesa::select('jrv','departamento','municipio','nombre','fiscal')->where('fiscal',$id)->get();
                 $qrcode = base64_encode(QrCode::format('svg')->size(64)->errorCorrection('H')->generate(url("").'/verificacion/'.$id));
                 $pdf = PDF::loadView('verificacion.acreditacion',['fiscal'=>$fiscal,'mesas'=>$mesas,'qrcode'=>$qrcode])->setPaper("letter","portrait");
                 return $pdf->download('acreditacion.pdf');
             }
 
+        }
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function authorizeFiscal(Request $request)
+    {
+        $id = $request->id;
+        // Si el usuario es coordinador o admin
+        if(Auth::user()->rol == "Admin" || Auth::user()->rol == "Coordinador") {
+            $fiscal = Fiscal::where('correo',$id)->first();
+            $fiscal->status = "Acreditado";
+            $fiscal->save();
+
+            /*$mesas = Mesa::select('jrv','departamento','municipio','nombre','fiscal')->where('fiscal',$id)->get();
+            $qrcode = base64_encode(QrCode::format('svg')->size(64)->errorCorrection('H')->generate(url("").'/verificacion/'.$id));
+            $pdf = PDF::loadView('verificacion.acreditacion',['fiscal'=>$fiscal,'mesas'=>$mesas,'qrcode'=>$qrcode])->setPaper("letter","portrait");
+            return $pdf->download('acreditacion.pdf');*/
+            
+            $redirectUrl = url('admin/fiscales');
+            return response()->json(['redirect_url' => $redirectUrl]);
+
+        }
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function downloadAuthorization($id)
+    {
+        //$id = $request->id;
+        $fiscal = Fiscal::where('correo',$id)->first();
+        // Si el usuario es coordinador o admin
+        if(Auth::user()->rol == "Admin" || Auth::user()->rol == "Coordinador"){
+            $mesas = Mesa::select('jrv','departamento','municipio','nombre','fiscal')->where('fiscal',$id)->get();
+            $qrcode = base64_encode(QrCode::format('svg')->size(64)->errorCorrection('H')->generate(url("").'/verificacion/'.$id));
+            $pdf = PDF::loadView('verificacion.acreditacion',['fiscal'=>$fiscal,'mesas'=>$mesas,'qrcode'=>$qrcode])->setPaper("letter","portrait");
+            return $pdf->download('acreditacion.pdf');
         }
     }
 
