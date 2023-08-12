@@ -104,7 +104,7 @@ class QRController extends Controller
         //$id = $request->id;
         $fiscal = Fiscal::where('correo',$id)->first();
         // Si el usuario es coordinador o admin
-        if(Auth::user()->rol == "Admin" || Auth::user()->rol == "Coordinador"){
+        if(Auth::user()->rol == "Admin" || Auth::user()->rol == "Coordinador" || Auth::user()->rol == "Fiscal"){
             $mesas = Mesa::select('jrv','departamento','municipio','nombre','fiscal')->where('fiscal',$id)->get();
             $qrcode = base64_encode(QrCode::format('svg')->size(64)->errorCorrection('H')->generate(url("").'/verificacion/'.$id));
             $pdf = PDF::loadView('verificacion.acreditacion',['fiscal'=>$fiscal,'mesas'=>$mesas,'qrcode'=>$qrcode])->setPaper("letter","portrait");

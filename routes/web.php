@@ -11,6 +11,7 @@ use App\Http\Controllers\VotoController;
 use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\UserController;
 use App\Models\Mesa;
+use App\Models\Fiscal;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,9 +34,11 @@ Route::get('/dashboard', function () {
         $data = Mesa::distinct()->pluck('departamento');
     } else if (Auth::user()->rol == "Coordinador") {
         $data = [Auth::user()->location];
+    } else if (Auth::user()->rol == "Fiscal") {
+        $sts = Fiscal::where("correo", Auth::user()->email)->pluck('status')->first();
     }
 
-    return view('dashboard', ['departments' => $data ?? []]);
+    return view('dashboard', ['departments' => $data ?? [], 'sts' => $sts ?? 0]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
