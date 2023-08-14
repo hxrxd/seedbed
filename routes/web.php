@@ -35,10 +35,10 @@ Route::get('/dashboard', function () {
     } else if (Auth::user()->rol == "Coordinador") {
         $data = [Auth::user()->location];
     } else if (Auth::user()->rol == "Fiscal") {
-        $sts = Fiscal::where("correo", Auth::user()->email)->pluck('status')->first();
+        $fis = Fiscal::where("correo", Auth::user()->email)->first();
     }
 
-    return view('dashboard', ['departments' => $data ?? [], 'sts' => $sts ?? 0]);
+    return view('dashboard', ['departments' => $data ?? [], 'fis' => $fis ?? []]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 

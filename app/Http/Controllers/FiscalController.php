@@ -360,7 +360,11 @@ class FiscalController extends Controller
                         ->whereNotIn('municipio',[Auth::user()->location])->distinct('municipio')->pluck('municipio');
 
                 $data = Fiscal::where('departamento',Auth::user()->location)
-                        ->whereNotIn('municipio',[Auth::user()->location])->get();
+                        ->whereNotIn('municipio',[Auth::user()->location])
+                        // this is to handle the pre-register
+                        ->union(Fiscal::where('coordinador', Auth::user()->email))
+                        ->distinct()
+                        ->get();
             } else {
                 // fetch departments
                 $cities = Mesa::where('departamento',Auth::user()->location)->distinct('municipio')->pluck('municipio');
