@@ -320,9 +320,10 @@ class FiscalController extends Controller
      */
     public function listJRVs(Request $request): View
     {
-        $city =  Fiscal::where("correo", Auth::user()->email)->pluck('municipio')->first();
+        $fiscal =  Fiscal::where("correo", Auth::user()->email)->first();
 
-        $data = Mesa::where("municipio", $city)
+        $data = Mesa::where("departamento", $fiscal->departamento)
+                        ->where("municipio", $fiscal->municipio)
                         ->orderBy("jrv")
                         ->orderBy("estatus")
                         ->get(["jrv","latitude","longitude","nombre","ubicacion","zona","departamento","municipio","estatus"]);
@@ -431,9 +432,10 @@ class FiscalController extends Controller
         $email = $request->email;
 
         if(Auth::user()->rol === 'Admin' || Auth::user()->rol === 'Coordinador') {
-            $city =  Fiscal::where("correo", $request->email)->pluck('municipio')->first();
+            $fiscal =  Fiscal::where("correo", $request->email)->first();
 
-            $data = Mesa::where("municipio", $city)
+            $data = Mesa::where("departamento", $fiscal->departamento)
+                        ->where("municipio", $fiscal->municipio)
                         ->orderBy("estatus")
                         ->get(["jrv","latitude","longitude","nombre","ubicacion","zona","departamento","municipio","estatus"]);
 
