@@ -114,6 +114,16 @@
                     <h5 class="mb-0 md:ml-2 md:mr-8 text-3xl font-extrabold text-indigo-900 dark:text-white">Tablero</h5>
                 </div>
                 <div class="grid md:grid-cols-3 gap-4 sm:grid-cols-1 ">
+                    @if ($currentDate == $bday)
+                    <div class="custom-background-card bg-cover bg-fixed h-52 p-8 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
+                        <div class="flex flex-col items-start">
+                            <h3 class="text-3xl font-extrabold text-white">¡Feliz cumpleaños! &#x1F382&#x1F389</h3>
+                            <div class="flex flex-col items-start justify-start mt-4">
+                                <p class="text-white mb-4">Te desea</br><span class="text-lg font-bold" style="color:#e9f877;">Movimiento Semilla</span> &#x1F331</p>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
                     <div class="custom-background-card bg-cover bg-fixed h-52 p-8 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
                         <div class="flex flex-col items-start">
                             <h3 class="text-xl font-extrabold text-white">Registro</h3>
@@ -128,9 +138,6 @@
                             @else
                             <p class="text-white mb-4">Estado: <strong>Acreditado </strong></p>
                             @endif
-                            <!--@if ($currentDate == $bday)
-                            <p class="text-white mb-4"><strong>Feliz cumpleaños!</strong></p>
-                            @endif-->
                             <div class="flex flex-row items-center justify-start">
                                 <a href="fiscal/{{ Auth::user()->email}}/edit" class="text-indigo-800 font-extrabold bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg text-sm px-2 py-1.5 text-center">
                                     <svg class="w-5 h-5 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 18">
