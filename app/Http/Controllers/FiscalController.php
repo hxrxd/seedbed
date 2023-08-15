@@ -480,6 +480,7 @@ class FiscalController extends Controller
             $total_jrvs = Mesa::count();
             $total_jrvs_assigned = Mesa::where('estatus', '=', 1)->count();
             $total_fiscales = Fiscal::count();
+            $total_fiscales_auth = Fiscal::where('status', '=', 'Acreditado')->count();
             $total_fiscales_sex_f = Fiscal::where('sexo', 'Femenino')->count();
             $total_fiscales_sex_m = Fiscal::where('sexo', 'Masculino')->count();
             $total_fiscales_sex_u = Fiscal::where('sexo', 'Prefiero no decirlo')->count();
@@ -526,6 +527,7 @@ class FiscalController extends Controller
             $total_jrvs = Mesa::where('departamento', '=', $dept)->count();
             $total_jrvs_assigned = Mesa::where('departamento', '=', $dept)->where('estatus','=',1)->count();
             $total_fiscales = Fiscal::where('departamento', '=', $dept)->count();
+            $total_fiscales_auth = Fiscal::where('status', '=', 'Acreditado')->where('departamento',$dept)->count();
             $total_fiscales_sex_f = Fiscal::where('sexo', 'Femenino')->where('departamento',$dept)->count();
             $total_fiscales_sex_m = Fiscal::where('sexo', 'Masculino')->where('departamento',$dept)->count();
             $total_fiscales_sex_u = Fiscal::where('sexo', 'Prefiero no decirlo')->where('departamento',$dept)->count();
@@ -579,6 +581,7 @@ class FiscalController extends Controller
             'total_jrvs' => $total_jrvs,
             'total_jrvs_assigned' => $total_jrvs_assigned,
             'total_fiscales' => $total_fiscales,
+            'total_fiscales_auth' => $total_fiscales_auth,
             'total_fiscales_sex_f' => $total_fiscales_sex_f,
             'total_fiscales_sex_m' => $total_fiscales_sex_m,
             'total_fiscales_sex_u' =>$total_fiscales_sex_u,

@@ -247,11 +247,11 @@
                     <div class="custom-background-card bg-cover bg-fixed h-52 p-8 md:p-8 rounded-lg shadow sm:rounded-lg">
                         <div class="flex flex-row items-center">
                             <div class="flex flex-col items-start w-1/2">
-                                <h3 id="stats-17" class="text-3xl font-extrabold text-white">0</h3>
+                                <h3 id="stats-17" class="text-3xl font-extrabold text-white">0%</h3>
                                 <p class="text-lg font-extrabold text-white">Mujeres</p>
                             </div>
                             <div class="flex flex-col items-end w-1/2">
-                                <h3 id="stats-18" class="text-3xl font-extrabold text-white">0</h3>
+                                <h3 id="stats-18" class="text-3xl font-extrabold text-white">0%</h3>
                                 <p class="text-lg font-extrabold text-white">Hombres</p>
                             </div>
                         </div>
@@ -261,15 +261,15 @@
                     <div class="custom-background-card bg-cover bg-fixed h-52 p-8 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
                         <div class="flex flex-col items-start">
                             <p class="text-md mb-2 font-extrabold text-indigo-700" style="color:#e9f877;">Top Cobertura Departamental</p>
-                            <h3 id="stats-5" class="text-xl font-extrabold text-white">#1 DEPTO</h3>
+                            <h3 id="stats-5" class="text-xl font-extrabold text-white">Fetching data...</h3>
                             <p id="stats-6" class="text-sm font-extrabold text-white"> </p>
                             
                             <p class="mt-2 text-xl font-medium text-white">
                                 <ol class="text-xs font-medium text-white">
-                                    <li id="stats-7">2. D2</li>
-                                    <li id="stats-8">3. D3</li>
-                                    <li id="stats-9">4. D4</li>
-                                    <li id="stats-10">5. D5</li>
+                                    <li id="stats-7"></li>
+                                    <li id="stats-8"></li>
+                                    <li id="stats-9"></li>
+                                    <li id="stats-10"></li>
                                 </ol>
                             </p> 
                         </div>
@@ -278,23 +278,23 @@
                     <div class="custom-background-card bg-cover bg-fixed h-52 p-8 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
                         <div class="flex flex-col items-start">
                             <p class="text-md mb-2 font-extrabold text-indigo-700" style="color:#e9f877;">Top Cobertura Municipal</p>
-                            <h3 id="stats-11" class="text-xl font-extrabold text-white">#1 MUNI</h3>
+                            <h3 id="stats-11" class="text-xl font-extrabold text-white">Fetching data...</h3>
                             <p id="stats-12" class="text-sm font-extrabold text-white"> </p>
                             <p class="mt-2 text-xl font-medium text-white">
                                 <ol class="text-xs font-medium text-white">
-                                    <li id="stats-13">2. D2</li>
-                                    <li id="stats-14">3. D3</li>
-                                    <li id="stats-15">4. D4</li>
-                                    <li id="stats-16">5. D5</li>
+                                    <li id="stats-13"></li>
+                                    <li id="stats-14"></li>
+                                    <li id="stats-15"></li>
+                                    <li id="stats-16"></li>
                                 </ol>
                             </p> 
                         </div>
                     </div>
                     <div class="custom-background-card bg-cover bg-fixed h-52 p-8 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
                         <div class="flex flex-col items-start">
-                            <h3 class="text-5xl font-extrabold text-white">0</h3>
+                            <h3 id="stats-21" class="text-5xl font-extrabold text-white">0</h3>
                             <p class="text-lg font-extrabold text-white">Fiscales acreditados</p>
-                            <p class="text-sm my-4 font-medium text-white">Proceso de acreditación aún no ha iniciado.</p>
+                            <p id="stats-22" class="text-sm my-4 font-medium text-white">Proceso de acreditación iniciado...</p>
                         </div>
                     </div>
                 </div>
@@ -370,6 +370,7 @@
                         var percent_w = (result.total_fiscales_sex_f*100/result.total_fiscales).toFixed(2);
                         var percent_m = (result.total_fiscales_sex_m*100/result.total_fiscales).toFixed(2);
                         var percent_u = (result.total_fiscales_sex_u*100/result.total_fiscales).toFixed(2);
+                        var percent_auth = (result.total_fiscales_auth*100/result.total_fiscales).toFixed(2);
 
                         $('#stats-1').html(result.percent+'%');
                         $('#stats-2').html('<strong>'+result.total_jrvs_assigned+'</strong> asignaciones de un total de  <strong>'+result.total_jrvs+'</strong> Juntas Receptoras de Votos.');
@@ -398,6 +399,9 @@
                         $('#stats-19').html('<strong>'+percent_u+'%</strong> prefiere no decir su sexo.');
                         $('#stats-20').html('La edad promedio es de <strong>'+Math.round(result.average_age)+'</strong> años.');
 
+                        // Acred
+                        $('#stats-21').html(result.total_fiscales_auth);
+                        $('#stats-22').html('Se ha acreditado al '+percent_auth+'%'+' del total de fiscales.');
                     }
                 });
         }
