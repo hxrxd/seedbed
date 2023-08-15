@@ -20,7 +20,7 @@ class MesasFiscalExport implements FromView
         //
         $mesas = DB::table('mesas')
                 ->join('fiscals', 'mesas.fiscal', '=', 'fiscals.correo')
-                ->select('mesas.*', 'fiscals.nombres','fiscals.apellidos','fiscals.dpi','fiscals.telefono')
+                ->select('mesas.*', 'fiscals.nombres','fiscals.apellidos','fiscals.dpi','fiscals.telefono','fiscals.fiscal_electronico')
                 ->where('mesas.fiscal','!=','null')
                 ->get();
 
