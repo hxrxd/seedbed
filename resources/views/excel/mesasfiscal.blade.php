@@ -11,6 +11,7 @@
             <th>Ubicación</th>
             <th>Zona</th>
             <th>Fiscal</th>
+            <th>DPI</th>
             <th>Teléfono</th>
             <th>Correo</th>
         </tr>
@@ -29,6 +30,7 @@
                 <td>{{ $mesa->zona }}</td>
                 <td>{{ $mesa->nombres }} {{ $mesa->apellidos }}</td>
                 <td>{{ $mesa->telefono }}</td>
+                <td>{{ $mesa->dpi }}</td>
                 <td>{{ $mesa->fiscal }}</td>
             </tr>
         @endforeach

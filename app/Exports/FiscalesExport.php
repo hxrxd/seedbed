@@ -27,7 +27,7 @@ class FiscalesExport implements FromView
         if(Auth::user()->rol == "Coordinador"){
             return view('excel.coordinador', [
                 'mesas'=> Mesa::leftJoin('fiscals', 'mesas.fiscal', '=', 'fiscals.correo')
-                ->select('mesas.*', 'fiscals.nombres', 'fiscals.apellidos', 'fiscals.dpi', 'fiscals.telefono')
+                ->select('mesas.*', 'fiscals.nombres', 'fiscals.apellidos', 'fiscals.dpi', 'fiscals.telefono','fiscals.fiscal_electronico')
                 ->where('mesas.departamento',Auth::user()->location )
                 ->get()
             ]);

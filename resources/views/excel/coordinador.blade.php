@@ -14,6 +14,7 @@
             <th>DPI</th>
             <th>Correo</th>
             <th>Teléfono</th>
+            <th>Fiscal Electronico</th>
         </tr>
     </thead>
     <tbody>
@@ -32,6 +33,7 @@
                 <td>{{ $mesa->dpi }}</td>
                 <td>{{ $mesa->fiscal }}</td>
                 <td>{{ $mesa->telefono }}</td>
+                <td>{{ $mesa->fiscal_electronico}} </td>
             </tr>
         @endforeach
     </tbody>
