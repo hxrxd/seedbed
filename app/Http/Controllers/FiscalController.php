@@ -365,6 +365,17 @@ class FiscalController extends Controller
                         ->union(Fiscal::where('coordinador', Auth::user()->email))
                         ->distinct()
                         ->get();
+            } else if(Auth::user()->location === 'CDGT') {
+                // fetch departments
+                $cities = Mesa::where('departamento','GUATEMALA')
+                ->where('municipio',['GUATEMALA'])->distinct('municipio')->pluck('municipio');
+
+                $data = Fiscal::where('departamento','GUATEMALA')
+                ->where('municipio',['GUATEMALA'])
+                // this is to handle the pre-register
+                ->union(Fiscal::where('coordinador', Auth::user()->email))
+                ->distinct()
+                ->get();
             } else {
                 // fetch departments
                 $cities = Mesa::where('departamento',Auth::user()->location)->distinct('municipio')->pluck('municipio');

@@ -60,7 +60,8 @@
                     <div class="md:basis-1/3 md:ml-6 mt-4">
                         <x-input-label for="location" :value="__('Departamento')" />
                         <select id="department" name="location" class="form-control border-gray-300 rounded-lg mt-1 w-full" autofocus>
-                            <option value="" selected>Seleccionar departamento</option>                              
+                            <option value="" selected>Seleccionar departamento</option>
+                            <option value="CDGT" selected>CIUDAD DE GUATEMALA</option>                              
                             @php
                                 $userDept = $user->location;
                             @endphp

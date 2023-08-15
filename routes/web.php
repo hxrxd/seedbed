@@ -34,6 +34,9 @@ Route::get('/dashboard', function () {
         $data = Mesa::distinct()->pluck('departamento');
     } else if (Auth::user()->rol == "Coordinador") {
         $data = [Auth::user()->location];
+        if (Auth::user()->location == "CDGT") {
+            $data = ['GUATEMALA'];
+        }
     } else if (Auth::user()->rol == "Fiscal") {
         $fis = Fiscal::where("correo", Auth::user()->email)->first();
     }
