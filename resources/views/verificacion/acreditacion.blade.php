@@ -55,8 +55,12 @@
 <p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri",sans-serif;'><span style='font-size:16px;font-family:"Corbel",sans-serif;'>Agradeciendo su atenci&oacute;n y apoyo, me despido con muestras de mi alta estima.</span></p>
 
 
+@if ($mesas->first()->nombre = "ESCUINTLA" || $mesas->first()->nombre = "JALAPA" || $mesas->first()->nombre = "QUICHE" || $mesas->first()->nombre = "SACATEPEQUEZ" || $mesas->first()->nombre = "SANTA ROSA" ||$mesas->first()->nombre = "ALTA VERAPAZ" ||$mesas->first()->nombre = "CHIMALTENANGO" || $mesas->first()->nombre = "TOTONICAPAN"  )
+    <img src="assets/img/sinfirma.jpg" alt="" width="750px" height="160px">
+@else
+    <img src="assets/img/firma.jpg" alt="" width="750px" height="160px">
+@endif
 
-<img src="assets/img/firma.jpg" alt="" width="750px" height="160px">
 <img src="data:image/png;base64, {!! $qrcode !!}">
 </body>
 </html>
