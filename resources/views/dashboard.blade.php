@@ -177,7 +177,7 @@
                             <div class="flex flex-col items-start justify-start mt-4">
                                 <!--<p class="text-white ml-8">Documento válido ante la JRV</strong></p>-->
                                 <p class="text-white mb-4">Disponible a partir del <strong>14 de agosto</strong></p>
-                                @if ($fis->status == "Acreditado listo cuando se necesite activar") 
+                                @if ($fis->status == "Acreditado") 
                                 <a id="acred" href="{{url('admin/qr/'.Auth::user()->email)}}" class="text-indigo-800 font-extrabold bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center">Descargar</a>
                                 @else
                                 <a id="acred2" class="text-indigo-800 font-extrabold bg-[#f7fdcf] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center">No disponible</a>
