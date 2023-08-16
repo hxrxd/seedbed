@@ -56,10 +56,10 @@
 
 
 @if ($mesas->first()->nombre = "ESCUINTLA" || $mesas->first()->nombre = "JALAPA" || $mesas->first()->nombre = "QUICHE" || $mesas->first()->nombre = "SACATEPEQUEZ" || $mesas->first()->nombre = "SANTA ROSA" ||$mesas->first()->nombre = "ALTA VERAPAZ" ||$mesas->first()->nombre = "CHIMALTENANGO" || $mesas->first()->nombre = "TOTONICAPAN"  )
-    <img src="assets/img/sinfirma.jpg" alt="" width="750px" height="160px">
 @else
-    <img src="assets/img/firma.jpg" alt="" width="750px" height="160px">
 @endif
+
+<img src="assets/img/firma.jpg" alt="" width="750px" height="160px">
 
 <img src="data:image/png;base64, {!! $qrcode !!}">
 </body>
