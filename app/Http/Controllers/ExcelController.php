@@ -10,6 +10,7 @@ use App\Exports\MesasFiscalExport;
 use App\Exports\MesasSinFiscalExport;
 use App\Exports\FiscalesElectronicosExport;
 use App\Exports\FiscalesExport;
+use App\Exports\VotosExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ExcelController extends Controller
@@ -49,6 +50,16 @@ class ExcelController extends Controller
     public function getFiscalesElectronicos()
     {
         return Excel::download(new FiscalesElectronicosExport, 'FiscalesElectronicos.xlsx');
+    }
+
+    public function getVotos()
+    {
+        return Excel::download(new FiscalesExport, 'Fiscales.xlsx');
+    }
+
+    public function getVotosMuestra()
+    {
+        return Excel::download(new VotosExport, 'Votos.xlsx');
     }
 
 }

@@ -98,6 +98,7 @@ Route::get('admin/users/{email}/edit', [UserController::class, 'editUser'])->mid
 Route::post('admin/users/update', [UserController::class, 'updateUser'])->middleware(['auth', 'verified'])->name('admin.user.update');
 Route::post('admin/authorize', [QRController::class, 'authorizeFiscal'])->middleware(['auth', 'verified'])->name('admin.authorize');
 Route::get('admin/qr/{id}', [QRController::class, 'downloadAuthorization'])->middleware(['auth', 'verified'])->name('admin.qr');
+Route::get('voto/create/{id}', [VotoController::class, 'create'])->middleware(['auth', 'verified'])->name('voto.create');
 
 //Get routes
 Route::get('getmesas', [ExcelController::class, 'getMesas'])->name('getmesas')->middleware(['auth', 'verified']);
@@ -105,6 +106,8 @@ Route::get('getmesassinfiscal', [ExcelController::class, 'getMesasSinFiscal'])->
 Route::get('getmesasconfiscal', [ExcelController::class, 'getMesasConFiscal'])->name('getmesasconfiscal')->middleware(['auth', 'verified']);
 Route::get('getfiscal', [ExcelController::class, 'getFiscales'])->name('getfiscal')->middleware(['auth', 'verified']);
 Route::get('getfiscalelectronico', [ExcelController::class, 'getFiscalesElectronicos'])->name('getfiscalelectronico')->middleware(['auth', 'verified']);
+Route::get('getvotosmuestra', [ExcelController::class, 'getVotosMuestra'])->name('getmesas')->middleware(['auth', 'verified']);
+Route::get('voto.muestra', [VotoController::class, 'indexMuestra'])->name('voto.muestra')->middleware(['auth', 'verified']);
 
 //Route::patch('assign/{jrv}', [FiscalController::class,'updateJRV'])->name('assign.updateJRV');
 

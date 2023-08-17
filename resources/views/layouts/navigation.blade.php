@@ -41,7 +41,13 @@
 
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-nav-link :href="route('voto.index')" :active="request()->routeIs('fiscal.index')">
-                            {{ __('Dashboard') }}
+                            {{ __('Votos') }}
+
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('voto.muestra')" :active="request()->routeIs('fiscal.index')">
+                            {{ __('Muestra') }}
 
                         </x-nav-link>
                     </div>
@@ -105,7 +111,7 @@
 
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        @if (Auth::user()->rol == "Admin")    
+        @if (Auth::user()->rol == "Admin")
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('admin.fiscales')" :active="request()->routeIs('admin.fiscales')">
                 {{ __('Fiscales') }}
@@ -122,7 +128,7 @@
             </x-responsive-nav-link>
         </div>
         @endif
-        @if (Auth::user()->rol == "Coordinador")    
+        @if (Auth::user()->rol == "Coordinador")
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('admin.fiscales')" :active="request()->routeIs('admin.fiscales')">
                 {{ __('Fiscales') }}

@@ -43,6 +43,7 @@ class Mesa extends Model
         'zona',
         'fiscal',
         'estatus',
+        'muestra',
     ];
 
 

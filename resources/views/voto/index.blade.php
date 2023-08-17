@@ -34,9 +34,14 @@
         <div class="py-20 px-4 mx-auto max-w-screen-xl lg:py-20">
             <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 md:p-12 mb-8">
 
-                <h1 class="text-gray-900 dark:text-white text-3xl md:text-5xl font-extrabold mb-2">Dashboard segunda vuelta</h1>
-                <p class="text-lg font-normal text-gray-500 dark:text-gray-400 mb-6">Mostramos las estadisticas registradas de mesas atendidas por fiscales.</p>
-                <p class="text-justify text-gray-500 dark:text-gray-400">{{ $votoCount }} de {{ $countMesas }} mesas computadas</p>
+                <h1 class="text-gray-900 dark:text-white text-3xl md:text-5xl font-extrabold mb-2">Votos segunda vuelta</h1>
+                <p class="text-lg font-normal text-gray-500 dark:text-gray-400 pb-1">Mostramos las estadisticas registradas de mesas atendidas por fiscales.</p>
+                <p class="pb-1">
+                    <a href="{{url('getvotosmuestra') }}">
+                        <button type="button" class="text-white bg-indigo-800 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-700 dark:hover:bg-indigo-800 dark:focus:ring-indigo-900">Votos Conteo Rápido</button>
+                    </a>
+                </p>
+                <p class="text-center text-gray-500 dark:text-gray-400">{{ $votoCount }} de {{ $countMesas }} mesas computadas</p>
                 <p class=" rounded-lg overflow-hidden">
                     <div id="geochart-colors"></div>
                 </p>
