@@ -57,6 +57,8 @@
 
 @if ($mesas->first()->departamento == "ESCUINTLA" || $mesas->first()->departamento == "JALAPA" || $mesas->first()->departamento == "QUICHE" || $mesas->first()->departamento == "SACATEPÉQUEZ" || $mesas->first()->departamento == "SANTA ROSA" ||$mesas->first()->departamento == "ALTA VERAPAZ" ||$mesas->first()->departamento == "CHIMALTENANGO" || $mesas->first()->departamento == "TOTONICAPÁN"  )
 <img src="assets/img/sinfirma.jpg" alt="" width="750px" height="160px">
+@else if ($mesas->first()->departamento == "SAN MARCOS")
+<img src="assets/img/firma-san-marcos.jpg" alt="" width="750px" height="160px">
 @else
 <img src="assets/img/firma.jpg" alt="" width="750px" height="160px">
 @endif
