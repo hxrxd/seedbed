@@ -73,7 +73,7 @@
                           </div>
 
                           <div class="md:col-span-5">
-                            <label for="full_name">Papeletas anuladas</label>
+                            <label for="full_name">Papeletas sin usar</label>
                             <input type="number" min="0" pattern="^[0-9]+" name="sinusar" id="sinusar" inputmode="numeric" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" required/>
 
                           </div>
