@@ -64,10 +64,13 @@
                                 @endif       
                                 <p class="text-sm mt-2 mb-2 text-gray-700"><span data-nombre="{{ $data->nombre }}">{{ $data->nombre }}</span></p>
                                 <p class="text-sm mt-2 mb-2 text-gray-500">{{ $data->ubicacion }}, ZONA {{ $data->zona }}. {{ $data->departamento }}, <span class="item-city">{{ $data->municipio }}</span>.</p>
+                                
+                                <div class="item-list-fiscal">
                                 @if ($data->estatus == 1)
                                 <p class="text-sm mt-6 mb-2 text-indigo-800">{{ $data->nombres }} {{ $data->apellidos }}</p>
                                 <p class="text-sm mt-2 mb-2 text-indigo-800"><span class="text-gray-500">DPI: </span>{{ $data->dpi }} <span class="text-gray-500">CEL: </span>{{ $data->telefono }}</p>
                                 @endif
+                                </div>
                                 <div class="flex flex-row items-center justify-start mt-4 mb-2">
                                     @if ($data->votos == 1)
                                     <span class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center opacity-50 cursor-not-allowed">
@@ -147,7 +150,7 @@
                 </div>
                 <div id="endOfResults">
                     <div class="flex flex-col items-center justyfy-center mt-3 mb-3 font-bold text-gray-900 w-full">   
-                        <span class="text-md text-gray-500 mt-8">No tienes más asignaciones</span>
+                        <span class="text-md text-gray-500 mt-8">No hay más mesas para mostrar</span>
                     </div>
                 </div>
             </form>
@@ -167,7 +170,7 @@
             // Remove the JRV
             function removeJRV(currentJRV, button) {
                 swal({
-                    title: '¿Estás seguro que quieres desvincular esta JRV?',
+                    title: '¿Estás seguro que quieres liberar esta mesa?',
                     text: "La JRV será liberada y estará disponible para alguien más",
                     icon: 'warning',
                     buttons:  {
@@ -198,11 +201,13 @@
                     },
                     dataType: 'json',
                     success: function (result) {
-                        showSimpleAlert('JRV removida', 'La JRV fue desvinculada de tu perfil', 'NO_BUTTON','success');
+                        showSimpleAlert('JRV liberada', 'La JRV fue desvinculada del fiscal', 'NO_BUTTON','success');
                         
                         // Remove the item from the list in the DOM
-                        var item = button.closest(".item-list");
-                        item.remove();
+                        var item = button.closest('.item-list');
+                        var itemFiscalElement = item.querySelector('.item-list-fiscal');
+                        itemFiscalElement.remove();
+                        button.remove();
                     }
                 });
             }
