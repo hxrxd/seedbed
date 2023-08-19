@@ -11,72 +11,65 @@
                 <!-- JRV selection section -->
                 <div class="flex flex-col md:flex-row px-4 md:px-0 items-center justify-start mb-4">
                     <div class="flex flex-row mr-auto items-center justify-start">
-                        @if (Auth::user()->rol == "Admin" || Auth::user()->rol == "Coordinador")
-                        <a href="{{url('admin/fiscales')}}" class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
-                            <svg class="w-6 h-6 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 1 1.3 6.326a.91.91 0 0 0 0 1.348L7 13"/>
-                            </svg>
-                        </a>
-                        @else
-                        <a href="{{url('/dashboard')}}" class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
-                            <svg class="w-6 h-6 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 1 1.3 6.326a.91.91 0 0 0 0 1.348L7 13"/>
-                            </svg>
-                        </a>
-                        @endif
                         <h1 class="font-extrabold text-3xl text-gray-800 leading-tight">
-                            {{ __('Asignaciones') }}
+                            {{ __('Mesas') }}
                         </h1>
                     </div>
 
                     <!-- Toolbar -->
-                    <div class="flex flex-row items-center md:justify-end mt-8 md:mt-0 md:ml-auto">
-                        <div class="relative mr-2">
-                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-                                </svg>
+                    <div class="flex flex-col items-center md:justify-end mt-8 md:mt-0 md:ml-auto">
+                        <div class="grid md:grid-cols-2 gap-4 sm:grid-cols-1 ">
+                            <div>
+                                <select id="department" name="departamento" class="rounded-lg w-full text-gray-900 border-0 border-white bg-gray-100 hover:bg-gray-200 focus:ring-white" autofocus>
+                                    <option value="">Todos los municipios</option>    
+                                    @foreach ($cities as $city)
+                                        <option value="{{ $city }}">{{ $city }}</option>
+                                    @endforeach
+                                </select>
                             </div>
-                            <input type="text" id="searchInput" class="block p-2 pl-10 text-base font-bold text-gray-900 rounded-lg border-0 border-white bg-gray-100 focus:ring-white" placeholder="Buscar una JRV">
-                        </div>
-                        <a id="sortButton" href="#" class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
-                            <svg class="w-6 h-6 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 17V1m0 0L1 4m3-3 3 3m4-3h6l-6 6h6m-7 10 3.5-7 3.5 7m-6.125-2H16"/>
-                            </svg>
-                        </a>
-                        @if (Auth::user()->rol == "Admin" || Auth::user()->rol == "Coordinador")
-                        <a id="addButton" href="{{ url('admin/assignments/'.$email.'/new') }}" class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
-                            <svg class="w-6 h-6 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 1v16M1 9h16"/>
-                            </svg>
-                        </a>
-                        @else
-                            @if (count($assignments) < 2)
-                            <span class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center opacity-50 cursor-not-allowed">
-                                <svg class="w-6 h-6 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 1v16M1 9h16"/>
-                                </svg>
-                            </span>
-                            @endif
-                        @endif
-                        
+                            <div class="flex flex-row items-center md:justify-end mt-8 md:mt-0 md:ml-auto">
+                                <div class="relative mr-2">
+                                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                                        </svg>
+                                    </div>
+                                    <input type="text" id="searchInput" class="block p-2 pl-10 text-base font-bold text-gray-900 rounded-lg border-0 border-white bg-gray-100 focus:ring-white" placeholder="Buscar una JRV">
+                                </div>
+                                <a id="sortButton" href="#" class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
+                                    <svg class="w-6 h-6 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 17V1m0 0L1 4m3-3 3 3m4-3h6l-6 6h6m-7 10 3.5-7 3.5 7m-6.125-2H16"/>
+                                    </svg>
+                                </a>
+                                <!--<a id="downloadButton" class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center cursor-pointer">
+                                    <svg class="w-6 h-6 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 18">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 1v11m0 0 4-4m-4 4L4 8m11 4v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3"/>
+                                    </svg>
+                                </a>-->
+                            </div>
+                        </div>                     
                     </div>
                 </div>
 
                 <div id="itemsContainer" class="md:p-1">
-                @foreach ($assignments as $jrv)
+                @foreach ($data as $data)
                     <div class="flex items-center p-6 md:p-3 font-bold text-gray-900 border-b-2 border-dotted hover:bg-gray-50 group item-list">
                         <div class="flex items-center">
-                            <div class="flex-column items-start ml-3">
-                                <input id="current-jrv" type="hidden" value="{{ $jrv->jrv }}"/>
-                                @if ($jrv->muestra == 0)
-                                <h2 class="text-xl flex-1 whitespace-nowrap" data-jrv="#{{ $jrv->jrv }}">#{{ $jrv->jrv }}</h2>  
+                            <div class="item-data flex-column items-start ml-3">
+                                <input id="current-jrv" type="hidden" value="{{ $data->jrv }}"/>
+                                @if ($data->muestra == 0)
+                                <h2 class="text-xl flex-1 whitespace-nowrap" data-jrv="#{{ $data->jrv }}">#{{ $data->jrv }}</h2>  
                                 @else 
-                                <h2 class="text-xl flex-1 whitespace-nowrap" data-jrv="#{{ $jrv->jrv }}">#{{ $jrv->jrv }} <span class="item-data mb-2 text-lg px-1 text-indigo-800 bg-[#e9f877] rounded-md">Conteo Rápido</span></h2>
+                                <h2 class="text-xl flex-1 whitespace-nowrap" data-jrv="#{{ $data->jrv }}">#{{ $data->jrv }} <span class="item-data mb-2 text-lg px-1 text-indigo-800 bg-[#e9f877] rounded-md">Conteo Rápido</span></h2>
                                 @endif       
-                                <p class="text-sm mt-2 mb-2 text-gray-700"><span data-nombre="{{ $jrv->nombre }}">{{ $jrv->nombre }}</span></p>
-                                <p class="text-sm mt-2 mb-2 text-gray-500">{{ $jrv->ubicacion }}, ZONA {{ $jrv->zona }}. {{ $jrv->departamento }}, {{ $jrv->municipio }}.</p>
+                                <p class="text-sm mt-2 mb-2 text-gray-700"><span data-nombre="{{ $data->nombre }}">{{ $data->nombre }}</span></p>
+                                <p class="text-sm mt-2 mb-2 text-gray-500">{{ $data->ubicacion }}, ZONA {{ $data->zona }}. {{ $data->departamento }}, <span class="item-city">{{ $data->municipio }}</span>.</p>
+                                @if ($data->estatus == 1)
+                                <p class="text-sm mt-6 mb-2 text-indigo-800">{{ $data->nombres }} {{ $data->apellidos }}</p>
+                                <p class="text-sm mt-2 mb-2 text-indigo-800"><span class="text-gray-500">DPI: </span>{{ $data->dpi }} <span class="text-gray-500">CEL: </span>{{ $data->telefono }}</p>
+                                @endif
                                 <div class="flex flex-row items-center justify-start mt-4 mb-2">
+                                    @if ($data->votos == 1)
                                     <span class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center opacity-50 cursor-not-allowed">
                                         <div class="flex flex-row items-center justify-start">
                                             <svg class="w-4 h-4 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16">
@@ -85,8 +78,8 @@
                                             <span class="ml-2">Acta</span>
                                         </div>
                                     </span>
-                                    @if ($jrv->votos == 1)
-                                    <a href="#" class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
+                                    
+                                    <a href="{{url('/voto/create/'.$data->jrv)}}" class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
                                         <div class="flex flex-row items-center justify-start">
                                             <svg class="w-5 h-5 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 21">
                                                 <g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
@@ -98,6 +91,22 @@
                                         </div>
                                     </a>
                                     @else 
+                                    <!--<a href="{{url('/voto/create/'.$data->jrv)}}" class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
+                                        <div class="flex flex-row items-center justify-start">
+                                            <svg class="w-4 h-4 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12V1m0 0L4 5m4-4 4 4m3 5v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3"/>
+                                            </svg>
+                                            <span class="ml-2">Acta</span>
+                                        </div>
+                                    </a>-->
+                                    <span class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center opacity-50 cursor-not-allowed">
+                                        <div class="flex flex-row items-center justify-start">
+                                            <svg class="w-4 h-4 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12V1m0 0L4 5m4-4 4 4m3 5v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3"/>
+                                            </svg>
+                                            <span class="ml-2">Acta</span>
+                                        </div>
+                                    </span>
                                     <span class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center opacity-50 cursor-not-allowed">
                                         <div class="flex flex-row items-center justify-start">
                                             <svg class="w-5 h-5 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 21">
@@ -111,14 +120,16 @@
                                     </span>
                                     @endif
                                     @if(Auth::user()->rol == "Admin" || Auth::user()->rol == "Coordinador")
-                                    <a href="#" data-jrv="{{ $jrv->jrv }}" class="remove-jrv-button text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
-                                        <div class="flex flex-row items-center justify-start">
-                                            <svg class="w-5 h-5 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
-                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M1 5h16M7 8v8m4-8v8M7 1h4a1 1 0 0 1 1 1v3H6V2a1 1 0 0 1 1-1ZM3 5h12v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Z"/>
-                                            </svg>
-                                            <span class="ml-2">Desvincular</span>
-                                        </div>
-                                    </a>
+                                        @if($data->estatus == 1)
+                                        <a href="#" data-jrv="{{ $data->jrv }}" class="remove-jrv-button text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
+                                            <div class="flex flex-row items-center justify-start">
+                                                <svg class="w-5 h-5 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M1 5h16M7 8v8m4-8v8M7 1h4a1 1 0 0 1 1 1v3H6V2a1 1 0 0 1 1-1ZM3 5h12v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Z"/>
+                                                </svg>
+                                                <span class="ml-2">Desvincular fiscal</span>
+                                            </div>
+                                        </a>
+                                        @endif
                                     @endif
                                 </div>
                             </div>
@@ -229,15 +240,60 @@
                 });
             });
 
+            // City Dropdown Change Event
+            $('#department').on('change', function () {
+                filterItems('SELECT');
+            });
 
             // Function to handle filtering based on search input
-            function filterItems() {
+            /*function filterItems() {
                 const input = document.getElementById("searchInput").value.toLowerCase();
                 const items = document.querySelectorAll("#itemsContainer > div");
                 let hasResults = false;
                 
                 items.forEach(item => {
                 const textElements = item.querySelectorAll(".text-xl, .text-sm");
+                let foundMatch = false;
+                textElements.forEach(textElement => {
+                    const text = textElement.textContent.toLowerCase();
+                    if (text.includes(input)) {
+                    foundMatch = true;
+                    }
+                });
+
+                item.style.display = foundMatch ? "flex" : "none";
+
+                if (foundMatch) {
+                    hasResults = true;
+                }
+                });
+
+                // Show/hide "No results" message
+                const noResultsMessage = document.getElementById("noResults");
+                const lastItemMessage = document.getElementById("endOfResults");
+                noResultsMessage.style.display = hasResults ? "none" : "block";
+                lastItemMessage.style.display = !hasResults ? "none" : "block";
+            
+            }*/
+            // Function to handle filtering based on search input
+            function filterItems(searchType) {
+                let input = document.getElementById("searchInput").value.toLowerCase();
+
+                if (searchType === 'SELECT') {
+                    input = document.getElementById("department").value.toLowerCase();
+                }
+
+                const items = document.querySelectorAll("#itemsContainer > div");
+                let hasResults = false;
+                
+                items.forEach(item => {
+                    let textElements = null;
+                    if (searchType === 'SELECT') {
+                        textElements = item.querySelectorAll(".item-city");
+                    } else {
+                        textElements = item.querySelectorAll(".item-data, .text-xl, .text-sm");
+                    }
+                
                 let foundMatch = false;
                 textElements.forEach(textElement => {
                     const text = textElement.textContent.toLowerCase();
@@ -288,8 +344,13 @@
             }
 
             // Attach event listeners
-            document.getElementById("searchInput").addEventListener("keyup", filterItems);
+            //document.getElementById("searchInput").addEventListener("keyup", filterItems);
             document.getElementById("sortButton").addEventListener("click", sortItems);
+
+            document.getElementById("searchInput").addEventListener("keyup", function(event) {
+                $('#department').val('');
+                filterItems('INPUT');
+            });
 
             //sortItems();
         });  

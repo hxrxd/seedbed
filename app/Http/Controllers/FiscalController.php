@@ -411,11 +411,23 @@ class FiscalController extends Controller
     public function adminListMesas(Request $request): View
     {
         // fetch departments
-        $departments = Mesa::distinct()->pluck('departamento');
+        if(Auth::user()->rol === 'Admin') {
+            $departments = Mesa::distinct()->pluck('departamento');
 
-        $data = Mesa::all();
+            $data = Mesa::all();
 
-        return view('mesa.admin-jrvs', compact('data','departments'));
+            return view('mesa.admin-jrvs', compact('data','departments'));
+        } else if(Auth::user()->rol === 'Coordinador') {
+            $cities = Mesa::where('departamento',Auth::user()->location)->distinct('municipio')->pluck('municipio');
+
+            $data = Mesa::leftJoin('fiscals','mesas.fiscal','=','fiscals.correo')
+                    ->leftJoin('votos', 'mesas.jrv', '=', 'votos.jrv')
+                    ->where('mesas.departamento',Auth::user()->location)
+                    ->select('mesas.*','fiscals.nombres','fiscals.apellidos','fiscals.dpi','fiscals.telefono', \DB::raw('CASE WHEN votos.jrv IS NOT NULL THEN 1 ELSE 0 END AS votos'))
+                    ->get();
+
+            return view('fiscal.coordinators-jrvs', compact('data','cities'));
+        }
     }
 
     /**
