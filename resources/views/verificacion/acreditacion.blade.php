@@ -61,7 +61,12 @@
     @if ($mesas->first()->departamento == "SAN MARCOS")
         <img src="assets/img/firma-san-marcos.jpg" alt="" width="750px" height="160px">
     @else
+        @if ($mesas->first()->departamento == "ESCUINTLA")
+        <img src="assets/img/firma-escuintla.jpg" alt="" width="750px" height="160px">
+        @else
         <img src="assets/img/firma.jpg" alt="" width="750px" height="160px">
+        @endif
+
     @endif
 
 @endif
