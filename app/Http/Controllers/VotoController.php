@@ -161,7 +161,7 @@ class VotoController extends Controller
                 return view('voto.create', ['mesa'=>$mesa]);
             }
             else{
-                return redirect('/voto/'.$voto->id);
+                return redirect('/voto/'.$voto-jrv);
             }
 
         }
