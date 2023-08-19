@@ -55,7 +55,7 @@
 <p style='margin-top:0cm;margin-right:0cm;margin-bottom:8.0pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri",sans-serif;'><span style='font-size:16px;font-family:"Corbel",sans-serif;'>Agradeciendo su atenci&oacute;n y apoyo, me despido con muestras de mi alta estima.</span></p>
 
 
-@if ($mesas->first()->departamento == "ESCUINTLA" || $mesas->first()->departamento == "JALAPA" || $mesas->first()->departamento == "QUICHE" || $mesas->first()->departamento == "SACATEPÉQUEZ" || $mesas->first()->departamento == "SANTA ROSA" ||$mesas->first()->departamento == "ALTA VERAPAZ" ||$mesas->first()->departamento == "CHIMALTENANGO" || $mesas->first()->departamento == "TOTONICAPÁN"  )
+@if ($mesas->first()->departamento == "JALAPA" || $mesas->first()->departamento == "QUICHE" || $mesas->first()->departamento == "SACATEPÉQUEZ" || $mesas->first()->departamento == "SANTA ROSA" ||$mesas->first()->departamento == "ALTA VERAPAZ" ||$mesas->first()->departamento == "CHIMALTENANGO" || $mesas->first()->departamento == "TOTONICAPÁN"  )
 <img src="assets/img/sinfirma.jpg" alt="" width="750px" height="160px">
 @else
     @if ($mesas->first()->departamento == "SAN MARCOS")
