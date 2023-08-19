@@ -418,13 +418,39 @@ class FiscalController extends Controller
 
             return view('mesa.admin-jrvs', compact('data','departments'));
         } else if(Auth::user()->rol === 'Coordinador') {
-            $cities = Mesa::where('departamento',Auth::user()->location)->distinct('municipio')->pluck('municipio');
+            if(Auth::user()->location === 'GUATEMALA') {
+                // fetch departments
+                $cities = Mesa::where('departamento',Auth::user()->location)
+                        ->whereNotIn('municipio',[Auth::user()->location])->distinct('municipio')->pluck('municipio');
 
-            $data = Mesa::leftJoin('fiscals','mesas.fiscal','=','fiscals.correo')
-                    ->leftJoin('votos', 'mesas.jrv', '=', 'votos.jrv')
-                    ->where('mesas.departamento',Auth::user()->location)
-                    ->select('mesas.*','fiscals.nombres','fiscals.apellidos','fiscals.dpi','fiscals.telefono', \DB::raw('CASE WHEN votos.jrv IS NOT NULL THEN 1 ELSE 0 END AS votos'))
-                    ->get();
+                $data = Mesa::leftJoin('fiscals','mesas.fiscal','=','fiscals.correo')
+                        ->leftJoin('votos', 'mesas.jrv', '=', 'votos.jrv')
+                        ->where('mesas.departamento',Auth::user()->location)
+                        ->whereNotIn('mesas.municipio',[Auth::user()->location])
+                        ->select('mesas.*','fiscals.nombres','fiscals.apellidos','fiscals.dpi','fiscals.telefono', \DB::raw('CASE WHEN votos.jrv IS NOT NULL THEN 1 ELSE 0 END AS votos'))
+                        ->get();
+                
+            } else if(Auth::user()->location === 'CDGT') {
+                // fetch departments
+                $cities = Mesa::where('departamento','GUATEMALA')
+                        ->where('municipio',['GUATEMALA'])->distinct('municipio')->pluck('municipio');
+
+                $data = Mesa::leftJoin('fiscals','mesas.fiscal','=','fiscals.correo')
+                        ->leftJoin('votos', 'mesas.jrv', '=', 'votos.jrv')
+                        ->where('mesas.departamento','GUATEMALA')
+                        ->where('mesas.municipio',['GUATEMALA'])
+                        ->select('mesas.*','fiscals.nombres','fiscals.apellidos','fiscals.dpi','fiscals.telefono', \DB::raw('CASE WHEN votos.jrv IS NOT NULL THEN 1 ELSE 0 END AS votos'))
+                        ->get();
+            } else {
+                // fetch departments
+                $cities = Mesa::where('departamento',Auth::user()->location)->distinct('municipio')->pluck('municipio');
+
+                $data = Mesa::leftJoin('fiscals','mesas.fiscal','=','fiscals.correo')
+                        ->leftJoin('votos', 'mesas.jrv', '=', 'votos.jrv')
+                        ->where('mesas.departamento',Auth::user()->location)
+                        ->select('mesas.*','fiscals.nombres','fiscals.apellidos','fiscals.dpi','fiscals.telefono', \DB::raw('CASE WHEN votos.jrv IS NOT NULL THEN 1 ELSE 0 END AS votos'))
+                        ->get();
+            }
 
             return view('fiscal.coordinators-jrvs', compact('data','cities'));
         }
