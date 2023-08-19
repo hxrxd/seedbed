@@ -206,7 +206,7 @@ class VotoController extends Controller
 
             $id = Auth::user('email');
             $fiscal = Fiscal::where('correo',$id->email)->first();
-            $mesa = Mesa::select('jrv','departamento','municipio','nombre','fiscal')->where('fiscal',$id->email)->first();
+            $mesa = Mesa::select('jrv','departamento','municipio','nombre','fiscal')->where('jrv',$request->jrv)->first();
 
             return view('voto.createv', ['fiscal'=>$fiscal,'mesa'=>$mesa,'semillaold'=>$semillaold,'uneold'=>$uneold,'blancoold'=>$blancoold,'nuloold'=>$nuloold,'sinusarold'=>$sinusarold]);
         } catch (ValidationException $e) {
