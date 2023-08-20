@@ -201,6 +201,8 @@
 
             function authorize(currentID, button) {
 
+                var adminQrUrl = "{{ route('admin.qr', ['id' => '__email__']) }}".replace('__email__', currentID);
+
                 $.ajax({
                     url: "{{url('admin/authorize')}}",
                     type: "POST",
@@ -213,15 +215,19 @@
                         //console.log(result);
                         
                         showSimpleAlert('¡Proceso exitoso!', 'El fiscal fue acreditado', 'NO_BUTTON','success');
+
+                        var newButton = button.cloneNode(true);
+
+                        newButton.innerHTML = '<div class="flex flex-row items-center justify-start">' +
+                                                '<svg class="w-6 h-6 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 18">' +
+                                                    '<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 1v11m0 0 4-4m-4 4L4 8m11 4v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3"/>' +
+                                                '</svg>' +
+                                                '<span class="ml-2">Descargar Acreditación</span>' +
+                                            '</div>';
                         
-                        // Remove the item from the list in the DOM
-                        //var item = button.closest(".item-list");
-                        //item.disable();
-                        
-                        setTimeout(() => {
-                            var redirectUrl = result.redirect_url;
-                            window.location.href = redirectUrl;
-                        }, 1000);
+                        newButton.href = adminQrUrl;
+
+                        button.parentNode.replaceChild(newButton, button);
 
                     },
                     error: function(xhr, status, error) {
