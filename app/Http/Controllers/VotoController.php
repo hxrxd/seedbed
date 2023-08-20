@@ -152,8 +152,7 @@ class VotoController extends Controller
         //comprobación si son las 6 pm
         if(true){
             //copmprobación si ya registro el voto
-            $id = Auth::user('email');
-            $voto = Voto::where('fiscal',$id->email)->first();
+            $voto = Voto::where('jrv',$jrv)->first();
             if($voto==null){
 
 
