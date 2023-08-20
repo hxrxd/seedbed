@@ -165,7 +165,7 @@
                                 <p class="text-white mb-4">Disponible a partir del <strong>1 de agosto</strong></p>
                                 @if ($fis->status == "Active")
                                 <a class="text-indigo-800 font-extrabold bg-[#f7fdcf] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center">En proceso</a>
-                                @else 
+                                @else
                                 <a class="text-indigo-800 font-extrabold bg-[#f7fdcf] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center">Proceso completado</a>
                                 @endif
                             </div>
@@ -177,7 +177,7 @@
                             <div class="flex flex-col items-start justify-start mt-4">
                                 <!--<p class="text-white ml-8">Documento válido ante la JRV</strong></p>-->
                                 <p class="text-white mb-4">Disponible a partir del <strong>14 de agosto</strong></p>
-                                @if ($fis->status == "Acreditado") 
+                                @if ($fis->status == "Acreditado")
                                 <a id="acred" href="{{url('admin/qr/'.Auth::user()->email)}}" class="text-indigo-800 font-extrabold bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center">Descargar</a>
                                 @else
                                 <a id="acred2" class="text-indigo-800 font-extrabold bg-[#f7fdcf] hover:bg-[#f7fdcf] rounded-lg text-sm px-5 py-1.5 text-center">No disponible</a>
@@ -196,7 +196,22 @@
                         </div>
                     </div>
                 </div>
+
             </div>
+            <div class="flex justify-center">
+                <h5 class="mb-0 md:ml-2 md:mr-8 text-3xl font-extrabold text-indigo-900 dark:text-white">Cargar mi acta</h5>
+            </div>
+            <div class="flex justify-center items-center">
+                <div class="aspect-w-9 aspect-h-16  ">
+                    <video controls class="mx-auto">
+                        <source src="{{ asset('assets/img/voto.mp4') }}" type="video/mp4">
+
+                    </video>
+                </div>
+            </div>
+
+
+
 
             @endif
 
@@ -211,7 +226,7 @@
                     <div class="flex flex-row items-center md:justify-start md:mt-0 w-full">
                         <select id="department" name="departamento" class="rounded-lg w-full font-bold text-lg text-gray-700 border-0  bg-gray-200 hover:bg-gray-300">
                             @if (Auth::user()->rol == "Admin")
-                                <option value="">GENERAL</option>    
+                                <option value="">GENERAL</option>
                                 @foreach ($departments as $department)
                                 <option value="{{ $department }}">{{ $department }}</option>
                                 @endforeach
@@ -222,12 +237,12 @@
                             @endif
                             </select>
                         </div>
-                         
 
-                        
+
+
                     </div>
                 </div>
-                
+
                 <div class="grid md:grid-cols-3 gap-4 sm:grid-cols-1 ">
                     <div class="bg-[#e9f877] h-52 p-8 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
                         <div class="flex flex-col items-start">
@@ -263,7 +278,7 @@
                             <p class="text-md mb-2 font-extrabold text-indigo-700" style="color:#e9f877;">Top Cobertura Departamental</p>
                             <h3 id="stats-5" class="text-xl font-extrabold text-white">Fetching data...</h3>
                             <p id="stats-6" class="text-sm font-extrabold text-white"> </p>
-                            
+
                             <p class="mt-2 text-xl font-medium text-white">
                                 <ol class="text-xs font-medium text-white">
                                     <li id="stats-7"></li>
@@ -271,7 +286,7 @@
                                     <li id="stats-9"></li>
                                     <li id="stats-10"></li>
                                 </ol>
-                            </p> 
+                            </p>
                         </div>
                     </div>
                     @endif
@@ -287,7 +302,7 @@
                                     <li id="stats-15"></li>
                                     <li id="stats-16"></li>
                                 </ol>
-                            </p> 
+                            </p>
                         </div>
                     </div>
                     <div class="custom-background-card bg-cover bg-fixed h-52 p-8 md:p-8 text-start rounded-lg shadow sm:rounded-lg">
@@ -334,7 +349,7 @@
                 event.preventDefault();
             });
         });
-        
+
         setTimeout(() => {
             $('#department').val();
             $('#department').trigger('change');
