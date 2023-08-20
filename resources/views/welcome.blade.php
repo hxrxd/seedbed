@@ -122,12 +122,7 @@
                      </div>
                      @else
                      @if (Route::has('register'))
-                     <div class="flex flex-col p-8 mr-auto mt-4 items-center rounded-lg">
-                        <svg class="mb-4 w-6 h-6 text-third dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
-                            <path d="M17.947 2.053a5.209 5.209 0 0 0-3.793-1.53A6.414 6.414 0 0 0 10 2.311 6.482 6.482 0 0 0 5.824.5a5.2 5.2 0 0 0-3.8 1.521c-1.915 1.916-2.315 5.392.625 8.333l7 7a.5.5 0 0 0 .708 0l7-7a6.6 6.6 0 0 0 2.123-4.508 5.179 5.179 0 0 0-1.533-3.793Z"/>
-                        </svg>
-                        <p class="text-center"><strong class="text-indigo-800">Movimiento Semilla</strong> agradece tu valiosa contribución a defender el voto y la democracia de manera voluntaria. Esto solo es posible porque estamos trabajando juntos.</p>  
-                     </div>
+                     
                      <div class="mt-12 mb-8 flex flex-wrap justify-center gap-y-4 gap-x-6">
                         <a href="{{ route('login') }}" class="relative flex h-12 w-full items-center justify-center bg-[#e9f877] hover:bg-[#f7fdcf] rounded-lg text-sm px-6 py-1.5 text-center sm:w-max">
                         <span class="relative text-2xl font-semibold text-primary">Iniciar Sesión</span>
@@ -139,7 +134,12 @@
                         <span class="relative text-2xl font-semibold text-primary">Conocer más</span>
                         </a>-->
                      </div>
-                     
+                     <div class="flex flex-col p-8 mr-auto mt-4 items-center rounded-lg">
+                        <svg class="mb-4 w-6 h-6 text-third dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
+                            <path d="M17.947 2.053a5.209 5.209 0 0 0-3.793-1.53A6.414 6.414 0 0 0 10 2.311 6.482 6.482 0 0 0 5.824.5a5.2 5.2 0 0 0-3.8 1.521c-1.915 1.916-2.315 5.392.625 8.333l7 7a.5.5 0 0 0 .708 0l7-7a6.6 6.6 0 0 0 2.123-4.508 5.179 5.179 0 0 0-1.533-3.793Z"/>
+                        </svg>
+                        <p class="text-center"><strong class="text-indigo-800">Movimiento Semilla</strong> agradece tu valiosa contribución a defender el voto y la democracia de manera voluntaria. Esto solo es posible porque estamos trabajando juntos.</p>  
+                     </div>
 
                      <!--<span class="text-base text-gray-600">¿Ya tienes una cuenta?</span>
                      <a href="{{ route('login') }}" class="block px-4  w-full items-center justify-center rounded-lg text-sm px-4 py-1.5 text-center astro-UY3JLCBK">
