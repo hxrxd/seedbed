@@ -13,6 +13,7 @@ use App\Exports\FiscalesExport;
 use App\Exports\VotosExport;
 use App\Exports\VotosCompleteExport;
 use Maatwebsite\Excel\Facades\Excel;
+use Auth;
 
 class ExcelController extends Controller
 {
