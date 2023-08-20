@@ -262,7 +262,12 @@ class VotoController extends Controller
             $votos->fiscal = $id->email;
             $votos->save();
 
-            return redirect('/dashboard');
+            if(Auth::user()->rol === 'Admin' || Auth::user()->rol === 'Coordinador') {
+                return redirect('/admin/jrvs');
+            } else {
+                return redirect('/assignments');
+            }
+            
     }
 
     /**

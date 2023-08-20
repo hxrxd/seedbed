@@ -14,13 +14,13 @@
     <div class="container max-w-7xl mx-auto sm:px-0.5 lg:px-8 mt-16">
 
         <!--Card-->
-        <div class="min-h-screen p-6 bg-gray-100 flex  justify-center">
+        <div class="min-h-screen py-6 bg-gray-100 flex  justify-center">
             <div class="container max-w-screen-lg mx-auto">
               <div>
                 <form id="form" method="POST" action="{{ route('createstore') }}">
                     @csrf
 
-                <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
+                <div class="bg-white rounded shadow-lg py-4 px-4 md:p-8 mb-6">
                   <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
                     <div class="text-gray-600">
                       <p class="font-medium text-lg">Acta de cierre mesa {{ $mesa->jrv }}</p>

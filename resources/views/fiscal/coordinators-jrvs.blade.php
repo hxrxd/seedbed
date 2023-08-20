@@ -9,7 +9,7 @@
                 @csrf          
 
                 <!-- JRV selection section -->
-                <div class="flex flex-col md:flex-row px-4 md:px-0 items-center justify-start mb-4">
+                <div class="flex flex-col md:flex-row px-8 md:px-0 items-center justify-start mb-4">
                     <div class="flex flex-row mr-auto items-center justify-start">
                         <h1 class="font-extrabold text-3xl text-gray-800 leading-tight">
                             {{ __('Mesas') }}
@@ -27,7 +27,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="flex flex-row items-center md:justify-end mt-8 md:mt-0 md:ml-auto">
+                            <div class="flex flex-row items-center md:justify-end md:mt-0 md:ml-auto">
                                 <div class="relative mr-2">
                                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                         <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -82,7 +82,7 @@
                                         </div>
                                     </span>
                                     
-                                    <a href="{{url('/voto/create/'.$data->jrv)}}" class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
+                                    <a href="{{url('/voto/'.$data->jrv)}}" class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
                                         <div class="flex flex-row items-center justify-start">
                                             <svg class="w-5 h-5 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 21">
                                                 <g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
