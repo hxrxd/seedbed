@@ -34,7 +34,7 @@
                 <td>{{ $mesa->une }}</td>
                 <td>{{ $mesa->blanco }}</td>
                 <td>{{ $mesa->nulo }}</td>
-                <td>{{ $mesa->sinuso }}</td>
+                <td>{{ $mesa->sinusar }}</td>
                 <td>{{ $mesa->fiscal }}</td>
 
             </tr>
