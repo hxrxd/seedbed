@@ -11,6 +11,7 @@ use App\Exports\MesasSinFiscalExport;
 use App\Exports\FiscalesElectronicosExport;
 use App\Exports\FiscalesExport;
 use App\Exports\VotosExport;
+use App\Exports\VotosCompleteExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ExcelController extends Controller
@@ -53,13 +54,15 @@ class ExcelController extends Controller
     }
 
     public function getVotos()
-    {
-        return Excel::download(new FiscalesExport, 'Fiscales.xlsx');
+    {   if (Auth::user()->rol === 'Admin') {
+            return Excel::download(new VotosCompleteExport, 'Votos.xlsx');
+        }
     }
 
     public function getVotosMuestra()
-    {
-        return Excel::download(new VotosExport, 'Votos.xlsx');
+    {   if (Auth::user()->rol === 'Admin') {
+            return Excel::download(new VotosExport, 'Votos.xlsx');
+        }
     }
 
 }

@@ -106,8 +106,10 @@ Route::get('getmesassinfiscal', [ExcelController::class, 'getMesasSinFiscal'])->
 Route::get('getmesasconfiscal', [ExcelController::class, 'getMesasConFiscal'])->name('getmesasconfiscal')->middleware(['auth', 'verified']);
 Route::get('getfiscal', [ExcelController::class, 'getFiscales'])->name('getfiscal')->middleware(['auth', 'verified']);
 Route::get('getfiscalelectronico', [ExcelController::class, 'getFiscalesElectronicos'])->name('getfiscalelectronico')->middleware(['auth', 'verified']);
-Route::get('getvotosmuestra', [ExcelController::class, 'getVotosMuestra'])->name('getmesas')->middleware(['auth', 'verified']);
+Route::get('getvotosmuestra', [ExcelController::class, 'getVotosMuestra'])->name('getvotosmuestra')->middleware(['auth', 'verified']);
+Route::get('getvotos', [ExcelController::class, 'getVotos'])->name('getvotos')->middleware(['auth', 'verified']);
 Route::get('voto.muestra', [VotoController::class, 'indexMuestra'])->name('voto.muestra')->middleware(['auth', 'verified']);
+
 
 //Route::patch('assign/{jrv}', [FiscalController::class,'updateJRV'])->name('assign.updateJRV');
 
