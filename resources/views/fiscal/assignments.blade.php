@@ -99,23 +99,14 @@
                                         </div>
                                     </a>
                                     @else
-                                    <!-- Borrar span y descomentar el boton -->
-                                    <span class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center opacity-50 cursor-not-allowed">
+                                    <a href="{{url('/voto/create/'.$jrv->jrv)}}" class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
                                         <div class="flex flex-row items-center justify-start">
                                             <svg class="w-4 h-4 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16">
                                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12V1m0 0L4 5m4-4 4 4m3 5v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3"/>
                                             </svg>
                                             <span class="ml-2">Acta</span>
                                         </div>
-                                    </span> 
-                                    <!--<a href="{{url('/voto/create/'.$jrv->jrv)}}" class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center">
-                                        <div class="flex flex-row items-center justify-start">
-                                            <svg class="w-4 h-4 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16">
-                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12V1m0 0L4 5m4-4 4 4m3 5v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3"/>
-                                            </svg>
-                                            <span class="ml-2">Acta</span>
-                                        </div>
-                                    </a>-->
+                                    </a>
                                     <span class="text-indigo-800 hover:bg-[#e9f877] rounded-lg mr-2 font-extrabold text-sm px-2 py-1.5 text-center opacity-50 cursor-not-allowed">
                                         <div class="flex flex-row items-center justify-start">
                                             <svg class="w-5 h-5 text-indigo-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 21">
