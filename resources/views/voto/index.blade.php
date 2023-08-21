@@ -28,7 +28,7 @@
     <input id="GTSU" name="GTSU" type="hidden" value="{{ $GTSU->GTSU ?? 0  }}">
     <input id="GTTO" name="GTTO" type="hidden" value="{{ $GTTO->GTTO ?? 0  }}">
     <input id="GTZA" name="GTZA" type="hidden" value="{{ $GTZA->GTZA ?? 0  }}">
-    <input id="max" name="max" type="hidden" value="{{ $MAX }}">
+    <input id="max" name="max" type="hidden" value="{{ $GTGU->GTGU }}">
 
     <section class="bg-white dark:bg-gray-900">
         <div class="py-20 px-4 mx-auto max-w-screen-xl lg:py-20">
