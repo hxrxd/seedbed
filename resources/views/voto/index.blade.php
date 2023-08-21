@@ -249,8 +249,8 @@
             ['GT-SU', gtsu],
             ['GT-TO', gtto],
             ['GT-ZA', gtza],
-            ['Min', -1000],
-            ['Max', 1000],
+            ['Min', -max],
+            ['Max', max],
 
         ]);
 
