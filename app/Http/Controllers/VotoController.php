@@ -44,7 +44,7 @@ class VotoController extends Controller
         $GTPR =DB::table('votos')->select(DB::raw('sum(semilla)- sum(une) as GTPR'))->join('mesas', 'votos.jrv', '=', 'mesas.jrv')->where('departamento', '=', 'EL PROGRESO')->groupBy('departamento')->first();
         $GTQC =DB::table('votos')->select(DB::raw('sum(semilla)- sum(une) as GTQC'))->join('mesas', 'votos.jrv', '=', 'mesas.jrv')->where('departamento', '=', 'QUICHÉ')->groupBy('departamento')->first();
         $GTQZ =DB::table('votos')->select(DB::raw('sum(semilla)- sum(une) as GTQZ'))->join('mesas', 'votos.jrv', '=', 'mesas.jrv')->where('departamento', '=', 'QUETZALTENANGO')->groupBy('departamento')->first();
-        $GTRE =DB::table('votos')->select(DB::raw('sum(semilla)- sum(une) as GTRE'))->join('mesas', 'votos.jrv', '=', 'mesas.jrv')->where('departamento', '=', 'RETALULEU')->groupBy('departamento')->first();
+        $GTRE =DB::table('votos')->select(DB::raw('sum(semilla)- sum(une) as GTRE'))->join('mesas', 'votos.jrv', '=', 'mesas.jrv')->where('departamento', '=', 'RETALHULEU')->groupBy('departamento')->first();
         $GTSA =DB::table('votos')->select(DB::raw('sum(semilla)- sum(une) as GTSA'))->join('mesas', 'votos.jrv', '=', 'mesas.jrv')->where('departamento', '=', 'SACATEPÉQUEZ')->groupBy('departamento')->first();
         $GTSM =DB::table('votos')->select(DB::raw('sum(semilla)- sum(une) as GTSM'))->join('mesas', 'votos.jrv', '=', 'mesas.jrv')->where('departamento', '=', 'SAN MARCOS')->groupBy('departamento')->first();
         $GTSO =DB::table('votos')->select(DB::raw('sum(semilla)- sum(une) as GTSO'))->join('mesas', 'votos.jrv', '=', 'mesas.jrv')->where('departamento', '=', 'SOLOLÁ')->groupBy('departamento')->first();
@@ -113,7 +113,7 @@ class VotoController extends Controller
         $GTPR =DB::table('votos')->select(DB::raw('sum(semilla)- sum(une) as GTPR'))->join('mesas', 'votos.jrv', '=', 'mesas.jrv')->where('mesas.muestra',1)->where('departamento', '=', 'EL PROGRESO')->groupBy('departamento')->first();
         $GTQC =DB::table('votos')->select(DB::raw('sum(semilla)- sum(une) as GTQC'))->join('mesas', 'votos.jrv', '=', 'mesas.jrv')->where('mesas.muestra',1)->where('departamento', '=', 'QUICHÉ')->groupBy('departamento')->first();
         $GTQZ =DB::table('votos')->select(DB::raw('sum(semilla)- sum(une) as GTQZ'))->join('mesas', 'votos.jrv', '=', 'mesas.jrv')->where('mesas.muestra',1)->where('departamento', '=', 'QUETZALTENANGO')->groupBy('departamento')->first();
-        $GTRE =DB::table('votos')->select(DB::raw('sum(semilla)- sum(une) as GTRE'))->join('mesas', 'votos.jrv', '=', 'mesas.jrv')->where('mesas.muestra',1)->where('departamento', '=', 'RETALULEU')->groupBy('departamento')->first();
+        $GTRE =DB::table('votos')->select(DB::raw('sum(semilla)- sum(une) as GTRE'))->join('mesas', 'votos.jrv', '=', 'mesas.jrv')->where('mesas.muestra',1)->where('departamento', '=', 'RETALHULEU')->groupBy('departamento')->first();
         $GTSA =DB::table('votos')->select(DB::raw('sum(semilla)- sum(une) as GTSA'))->join('mesas', 'votos.jrv', '=', 'mesas.jrv')->where('mesas.muestra',1)->where('departamento', '=', 'SACATEPÉQUEZ')->groupBy('departamento')->first();
         $GTSM =DB::table('votos')->select(DB::raw('sum(semilla)- sum(une) as GTSM'))->join('mesas', 'votos.jrv', '=', 'mesas.jrv')->where('mesas.muestra',1)->where('departamento', '=', 'SAN MARCOS')->groupBy('departamento')->first();
         $GTSO =DB::table('votos')->select(DB::raw('sum(semilla)- sum(une) as GTSO'))->join('mesas', 'votos.jrv', '=', 'mesas.jrv')->where('mesas.muestra',1)->where('departamento', '=', 'SOLOLÁ')->groupBy('departamento')->first();
@@ -267,7 +267,7 @@ class VotoController extends Controller
             } else {
                 return redirect('/assignments');
             }
-            
+
     }
 
     /**
