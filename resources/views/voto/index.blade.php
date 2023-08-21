@@ -257,7 +257,7 @@
         var options = {
           region: 'GT', // Africa
           resolution: 'provinces',
-          colorAxis: {colors: ['#50a700', '#659064']},
+          colorAxis: {colors: ['#50a700', 'white', '#d6df23']},
         };
 
         var chart = new google.visualization.GeoChart(document.getElementById('geochart-colors'));
