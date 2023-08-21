@@ -232,7 +232,6 @@
             ['GT-CM', gtcm],
             ['GT-CQ', gtcq],
             ['GT-ES', gtes],
-            ['GT-GU', gtgu],
             ['GT-HU', gthu],
             ['GT-IZ', gtiz],
             ['GT-JA', gtja],
@@ -249,8 +248,6 @@
             ['GT-SU', gtsu],
             ['GT-TO', gtto],
             ['GT-ZA', gtza],
-            ['Min', -max],
-            ['Max', max],
 
         ]);
 
